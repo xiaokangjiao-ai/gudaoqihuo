@@ -33,3 +33,35 @@ A：基础规则1周可掌握，实盘稳定盈利需3-6个月练习。
 
 Q：股票分析技术能用到期货上吗？
 A：部分技术指标（MA、KDJ、MACD）通用，但期货有杠杆，需严格控制仓位。
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "期货学习需要多久能上手？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "基础规则1周可掌握，实盘稳定盈利需3-6个月练习。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "股票分析技术能用到期货上吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "部分技术指标（MA、KDJ、MACD）通用，但期货有杠杆，需严格控制仓位。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "原油期货分析需要关注哪些数据？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "主要关注OPEC产量政策、美国EIA库存数据、地缘冲突及美元指数走势。"
+      }
+    }
+  ]
+}
+</script>
