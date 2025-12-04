@@ -1,3 +1,4 @@
 baseURL = 'https://gudaoqihuo.com/'
-languageCode = 'en-us'
-title = '股道期货的个人网站'
+languageCode = 'zh-CN'
+title = '股道期货 - 专业交易系统分享'
+description = '专注期货、股票、黄金、原油交易系统教学，提供实战课程与投资理念分享'
