@@ -1,37 +1,194 @@
-{{ partial "header.html" . }}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>股道期货 - 期货学习_股票分析技术_原油黄金期货实盘交易系统</title>
+    <meta name="keywords" content="期货学习,股票分析技术,期货分析技术,原油黄金,外汇,期货实盘交易系统">
+    <meta name="description" content="股道期货专注期货学习、股票分析技术分享，提供原油黄金期货分析、外汇交易策略及期货实盘交易系统教程，助力投资者提升交易水平">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            font-family: Arial, sans-serif; 
+        }
+        .top-title {
+            text-align: center; 
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f5f5f5; 
+        }
+        .main-title {
+            font-size: 28px; 
+            margin: 10px 0;
+        }
+        .sub-title {
+            font-size: 18px; 
+            color: #333; 
+        }
+        .nav-bar {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .nav-bar a {
+            margin: 0 15px;
+            font-size: 16px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        .content-container {
+            display: flex; 
+            gap: 40px; 
+            margin: 30px 0;
+        }
+        .left-column, .right-column {
+            flex: 1; 
+        }
+        .column-title {
+            font-size: 20px; 
+            color: #0066cc; 
+            border-bottom: 2px solid #0066cc; 
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style: none; 
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #0066cc; 
+            text-decoration: none; 
+        }
+        a:hover {
+            text-decoration: underline; 
+        }
+        .contact {
+            text-align: center; 
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .contact-title {
+            font-size: 22px; 
+            margin-bottom: 10px;
+        }
+        .email {
+            font-size: 24px; 
+            font-weight: bold; 
+        }
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column; 
+                gap: 20px; 
+            }
+            .main-title {
+                font-size: 22px; 
+            }
+            .sub-title {
+                font-size: 16px;
+            }
+            .email {
+                font-size: 20px; 
+            }
+            .nav-bar a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-title">
+        <div class="main-title">
+            股道期货 - 期货学习与股票分析技术专业平台
+        </div>
+        <div class="sub-title">
+            原油黄金期货分析 | 外汇交易策略 | 期货实盘交易系统分享
+        </div>
+    </div>
 
-        <!-- 左边栏：文章列表 -->
+    <div class="nav-bar">
+        <a href="/">首页</a>
+        <a href="/zh/qihuo-xuexi/">期货学习</a>
+        <a href="/zh/gupiao-fenxi/">股票分析技术</a>
+        <a href="/zh/waihui-huangjin/">外汇黄金</a>
+        <a href="https://space.bilibili.com/390301964" target="_blank">B站主页</a>
+        <a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程购买</a>
+    </div>
+
+    <div class="content-container">
         <div class="left-column">
-            <!-- 投资交易系统文章列表 -->
             <div>
-                <h2 class="column-title">投资交易系统文章列表</h2>
+                <h2 class="column-title">期货学习核心内容</h2>
                 <ul>
-                    <li><a href="/zh/investment-ideas/2025-12-04-期货趋势交易系统/" target="_self">期货趋势交易系统：原油/黄金盈利的3个核心规则</a></li>
-                    <li><a href="#" target="_self">波段交易系统：捕捉中期行情的5个技巧</a></li>
-                    <li><a href="#" target="_self">日内交易系统：短线获利的实战方法</a></li>
+                    <li><a href="/zh/qihuo-xuexi/#期货新手入门必学知识点" target="_self">期货新手入门：保证金与品种选择</a></li>
+                    <li><a href="/zh/qihuo-xuexi/#期货分析技术实战技巧" target="_self">原油期货分析技术：EIA数据解读</a></li>
+                    <li><a href="/zh/qihuo-xuexi/#期货分析技术实战技巧" target="_self">黄金期货交易技巧：避险情绪利用</a></li>
+                    <li><a href="#" target="_self">期货实盘交易系统：趋势判断方法</a></li>
                 </ul>
             </div>
 
-            <!-- 交易技术文章列表 -->
             <div style="margin-top: 30px;">
-                <h2 class="column-title">交易技术文章列表</h2>
+                <h2 class="column-title">股票分析技术</h2>
                 <ul>
-                    <li><a href="#" target="_self">入场即爆点：精准把握买卖时机</a></li>
-                    <li><a href="#" target="_self">固化一招鲜：打造自己的专属交易技巧</a></li>
-                    <li><a href="#" target="_self">夹板做反向：震荡行情中的获利策略</a></li>
+                    <li><a href="/zh/gupiao-fenxi/#kdj指标在股票分析中的应用" target="_self">KDJ指标实战：金叉买入技巧</a></li>
+                    <li><a href="/zh/gupiao-fenxi/#macd指标背离判断趋势反转" target="_self">MACD背离：趋势反转信号识别</a></li>
+                    <li><a href="#" target="_self">股票波段交易：布林带止损策略</a></li>
+                    <li><a href="#" target="_self">股票vs期货分析技术差异对比</a></li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <h2 class="column-title">外汇黄金联动分析</h2>
+                <ul>
+                    <li><a href="/zh/waihui-huangjin/#外汇主要货币对特点" target="_self">外汇货币对：欧元/美元走势分析</a></li>
+                    <li><a href="/zh/waihui-huangjin/#外汇与黄金的联动关系" target="_self">黄金与美元指数联动规律</a></li>
+                    <li><a href="#" target="_self">外汇交易入门：杠杆风险控制</a></li>
                 </ul>
             </div>
         </div>
 
-        <!-- 右边栏：收费课程目录 -->
         <div class="right-column">
-            <h2 class="column-title">收费课程目录</h2>
+            <h2 class="column-title">精品课程推荐</h2>
             <ul>
-                <li><a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程1：基础篇限时免费</a></li>
+                <li><a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程1：期货基础入门（限时免费）</a></li>
                 <li><a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程2：期货实盘交易系统完整版</a></li>
-                <li><a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程3：一对一交易系统定制服务</a></li>
+                <li><a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程3：股票分析技术实战课</a></li>
+                <li><a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程4：一对一交易系统定制服务</a></li>
             </ul>
-        </div>
-    </div> <!-- 关闭中间内容区的div -->
 
-{{ partial "footer.html" . }}
+            <div style="margin-top: 30px;">
+                <h2 class="column-title">热门交易技巧</h2>
+                <ul>
+                    <li><a href="#" target="_self">入场即爆点：精准买卖时机捕捉</a></li>
+                    <li><a href="#" target="_self">固化一招鲜：专属交易技巧打造</a></li>
+                    <li><a href="#" target="_self">夹板做反向：震荡行情获利策略</a></li>
+                    <li><a href="#" target="_self">日内交易系统：短线盈利方法</a></li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 30px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
+                <h3 style="color: #d9534f; margin-top: 0;">学习提示</h3>
+                <p style="font-size: 14px; line-height: 1.6;">
+                    期货学习需循序渐进，建议先掌握基础分析技术，再结合实盘练习。原油黄金等品种受国际行情影响大，需关注宏观经济数据！
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact">
+        <div class="contact-title">联系方式 | Contact</div>
+        <div class="email">panitmaayan@hotmail.com</div>
+        <p style="margin-top: 10px;">B站：股道期货 | 微信：gdqh8888（备注：学习）</p>
+    </div>
+</body>
+</html>
