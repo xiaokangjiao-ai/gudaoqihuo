@@ -1,4 +1,14 @@
 baseURL = 'https://gudaoqihuo.com/'
 languageCode = 'zh-CN'
-title = '股道期货 - 专业交易系统分享'
-description = '专注期货、股票、黄金、原油交易系统教学，提供实战课程与投资理念分享'
+title = '股道期货 - 专业期货交易系统实战教学'
+description = '专注期货、股票实战交易技巧，提供趋势/波段/日内交易系统课程，附实盘案例与行情复盘'
+# 新增SEO和构建优化
+[build]
+minify = true  # 开启静态文件压缩（提速）
+[params]
+  keywords = "期货交易系统,股票分析,原油期货,螺纹钢期货,期货实战课程"
+  author = "股道期货"
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.8
+  filename = "sitemap.xml"
