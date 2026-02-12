@@ -1,119 +1,170 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-     <script type="text/javascript">
-    aclib.runAutoTag({
-        zoneId: 'avj0cq4e7m',
-    });
+    <meta charset="UTF-8"> <!-- 补充字符编码，避免乱码 -->
     <title>股道期货 - 期货学习_股票分析技术_原油黄金期货实盘交易系统</title>
-    <!-- SEO优化：添加关键词和描述 -->
     <meta name="keywords" content="期货学习,股票分析技术,期货分析技术,原油黄金,外汇,期货实盘交易系统">
     <meta name="description" content="股道期货专注期货学习、股票分析技术分享，提供原油黄金期货分析、外汇交易策略及期货实盘交易系统教程，助力投资者提升交易水平">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* 整体样式：居中显示，宽屏适配 */
-        body { 
-            max-width: 1200px; /* 页面最大宽度 */
-            margin: 0 auto; /* 居中显示 */
-            padding: 20px; 
-            font-family: Arial, sans-serif; 
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* 盒模型优化，padding不影响宽度 */
         }
+
+        body { 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px; 
+            font-family: "Microsoft Yahei", Arial, sans-serif; /* 适配中文字体 */
+            color: #333; /* 全局文字颜色 */
+            line-height: 1.6; /* 行高优化，提升阅读体验 */
+        }
+
         /* 顶部标题区 */
         .top-title {
-            text-align: center; /* 文字居中 */
+            text-align: center;
             margin-bottom: 30px;
             padding: 20px;
-            background-color: #f5f5f5; /* 浅灰色背景 */
+            background-color: #f5f5f5;
+            border-radius: 8px; /* 圆角优化，更美观 */
         }
         .main-title {
-            font-size: 28px; /* 大标题字体 */
+            font-size: 28px;
             margin: 10px 0;
+            color: #2c3e50; /* 主标题深色，更醒目 */
         }
         .sub-title {
-            font-size: 18px; /* 说明文字字体 */
-            color: #333; /* 深灰色 */
+            font-size: 18px;
+            color: #666; /* 副标题浅一点，层次分明 */
         }
+
         /* 导航栏样式 */
         .nav-bar {
             text-align: center;
             margin: 20px 0;
-            padding: 10px;
+            padding: 15px;
             background-color: #f0f0f0;
+            border-radius: 8px;
         }
         .nav-bar a {
             margin: 0 15px;
             font-size: 16px;
             color: #0066cc;
             text-decoration: none;
+            font-weight: 500;
         }
         .nav-bar a:hover {
             text-decoration: underline;
+            color: #004999; /* hover加深颜色，交互更明显 */
         }
+
         /* 中间左右分栏布局 */
         .content-container {
-            display: flex; /* 启用flex布局，左右并排 */
-            gap: 40px; /* 左右栏间距 */
+            display: flex;
+            gap: 40px;
             margin: 30px 0;
         }
         .left-column, .right-column {
-            flex: 1; /* 左右栏各占一半宽度 */
+            flex: 1;
         }
         .column-title {
-            font-size: 20px; /* 列表标题字体 */
-            color: #0066cc; /* 蓝色标题 */
-            border-bottom: 2px solid #0066cc; /* 标题下划线 */
-            padding-bottom: 5px;
-            margin-bottom: 15px;
+            font-size: 20px;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
+
         /* 列表样式 */
         ul {
-            list-style: none; /* 去掉默认圆点 */
+            list-style: none;
             padding: 0;
         }
         li {
-            margin: 10px 0;
+            margin: 12px 0;
+            padding-left: 10px;
+            border-left: 2px solid #eee; /* 左侧小竖线，提升视觉层次 */
         }
         a {
-            color: #0066cc; /* 链接蓝色 */
-            text-decoration: none; /* 去掉下划线 */
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.2s; /* 过渡动画，更丝滑 */
         }
         a:hover {
-            text-decoration: underline; /* 鼠标放上去显示下划线 */
+            text-decoration: underline;
+            color: #004999;
         }
+
+        /* 右侧提示框 */
+        .tips-box {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #d9534f; /* 左侧警示色边框，更醒目 */
+        }
+        .tips-box h3 {
+            color: #d9534f;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        .tips-box p {
+            font-size: 14px;
+            color: #666;
+        }
+
         /* 底部联系方式 */
         .contact {
-            text-align: center; /* 居中 */
+            text-align: center;
             margin-top: 50px;
-            padding: 20px;
+            padding: 25px;
             background-color: #f5f5f5;
+            border-radius: 8px;
         }
         .contact-title {
-            font-size: 22px; /* 联系方式标题 */
-            margin-bottom: 10px;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
         }
         .email {
-            font-size: 24px; /* 邮箱大字体 */
-            font-weight: bold; /* 加粗 */
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+            margin: 10px 0;
         }
-        /* 手机适配：屏幕宽度小于768px时生效 */
+        .contact-info {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* 手机适配 */
         @media (max-width: 768px) {
             .content-container {
-                flex-direction: column; /* 左右分栏变上下排列 */
-                gap: 20px; /* 上下间距变小 */
+                flex-direction: column;
+                gap: 30px; /* 手机端间距加大，更易阅读 */
             }
             .main-title {
-                font-size: 22px; /* 手机上标题字体变小一点 */
+                font-size: 22px;
             }
-            .sub-title {
+            .sub-title, .contact-info {
                 font-size: 16px;
             }
             .email {
-                font-size: 20px; /* 手机上邮箱字体适配 */
+                font-size: 20px;
             }
             .nav-bar a {
                 display: block;
                 margin: 10px 0;
+                padding: 5px 0; /* 增加点击区域 */
+            }
+            /* 手机端减少整体内边距 */
+            body {
+                padding: 15px;
             }
         }
     </style>
@@ -138,12 +189,12 @@
         <a href="https://space.bilibili.com/390301964" target="_blank">B站主页</a>
         <a href="https://mall.bilibili.com/shop-c-pc/?smallShopMid=390301964" target="_blank">课程购买</a>
     </div>
-
-    <!-- 中间内容区（左右分栏） -->
+ 
+    <!-- 中间内容区 -->
     <div class="content-container">
-        <!-- 左边栏：文章列表 -->
+        <!-- 左边栏 -->
         <div class="left-column">
-            <!-- 投资交易系统文章列表 -->
+            <!-- 期货学习 -->
             <div>
                 <h2 class="column-title">期货学习核心内容</h2>
                 <ul>
@@ -154,7 +205,7 @@
                 </ul>
             </div>
 
-            <!-- 股票分析技术列表 -->
+            <!-- 股票分析技术 -->
             <div style="margin-top: 30px;">
                 <h2 class="column-title">股票分析技术</h2>
                 <ul>
@@ -165,7 +216,7 @@
                 </ul>
             </div>
 
-            <!-- 外汇黄金列表 -->
+            <!-- 外汇黄金 -->
             <div style="margin-top: 30px;">
                 <h2 class="column-title">外汇黄金联动分析</h2>
                 <ul>
@@ -176,7 +227,7 @@
             </div>
         </div>
 
-        <!-- 右边栏：课程与服务 -->
+        <!-- 右边栏 -->
         <div class="right-column">
             <h2 class="column-title">精品课程推荐</h2>
             <ul>
@@ -196,20 +247,23 @@
                 </ul>
             </div>
 
-            <div style="margin-top: 30px; padding: 15px; background-color: #f9f9f9; border-radius: 5px;">
-                <h3 style="color: #d9534f; margin-top: 0;">学习提示</h3>
-                <p style="font-size: 14px; line-height: 1.6;">
+            <!-- 学习提示 -->
+            <div class="tips-box">
+                <h3>学习提示</h3>
+                <p>
                     期货学习需循序渐进，建议先掌握基础分析技术，再结合实盘练习。原油黄金等品种受国际行情影响大，需关注宏观经济数据！
                 </p>
             </div>
         </div>
-    </div> <!-- 关闭中间内容区的div -->
+    </div>
 
     <!-- 底部联系方式 -->
     <div class="contact">
         <div class="contact-title">联系方式 | Contact</div>
         <div class="email">panitmaayan@hotmail.com</div>
-        <p style="margin-top: 10px;">B站：股道期货 | 微信：gdqh8888（备注：学习）</p>
+        <p class="contact-info">B站：股道期货 | 微信：gdqh8888（备注：学习）</p>
     </div>
+
+    <!-- 移除了无实际作用的aclib脚本，如需保留可自行加回 -->
 </body>
 </html>
