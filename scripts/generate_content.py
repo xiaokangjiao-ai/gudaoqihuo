@@ -5,7 +5,12 @@
 中英双语 | 多源热点 | AI伪原创 | 内链网络 | 结构化数据 | AdSense+Amazon变现
 """
 
-import os, re, json, time, random, hashlib, requests
+import os, sys, re, json, time, random, hashlib, requests
+
+# Windows GBK 终端兼容
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from datetime import datetime
 from pathlib import Path
 
