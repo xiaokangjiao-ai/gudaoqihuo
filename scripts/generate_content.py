@@ -345,7 +345,54 @@ def classify_topic(topic):
         for kw in keywords:
             if kw in topic:
                 return cat
+    # 二级兜底：对"hot"再做一次分类尝试
+    secondary_rules = {
+        "tech": ["新","消息","曝光","最新"],
+        "life": ["建议","方法","攻略","技巧"],
+        "health": ["注意","提醒","专家","研究"],
+        "entertainment": ["网友","热搜","冲上","刷屏"],
+    }
+    for cat, kws in secondary_rules.items():
+        if any(kw in topic for kw in kws):
+            return cat
     return "hot"
+
+
+def ensure_category_balance():
+    """兜底：保证每个分类至少有2篇文章，不够的用热点关键词强制补充"""
+    manifest = load_manifest()
+    extra_generated = 0
+    for cat in CATEGORIES:
+        count = sum(1 for a in manifest if a["category"] == cat)
+        needed = max(0, 2 - count)
+        if needed == 0:
+            continue
+        # 取未被使用过的热点词来补
+        used_slugs = {a["slug"] for a in manifest}
+        for topic in HOT_TOPICS:
+            if needed == 0:
+                break
+            slug = topic_to_slug(topic)
+            if slug in used_slugs:
+                continue
+            # 强制放入该分类
+            print(f"  📦 补充分类「{CATEGORIES[cat]['name']}」: {topic}")
+            title, body = generate_article(topic)
+            if not title or not body:
+                continue
+            related = get_related_articles(cat, slug)
+            filename = f"{slug}.html"
+            html = generate_article_html(title, body, cat, slug, related)
+            (OUTPUT_DIR / filename).write_text(html, encoding="utf-8")
+            add_to_manifest(slug, title, cat, filename)
+            used_slugs.add(slug)
+            needed -= 1
+            extra_generated += 1
+            print(f"  ✅ 补充完成: {filename} → {cat}")
+            time.sleep(2)
+    if extra_generated > 0:
+        print(f"  📊 分类补充分别完成，共补 {extra_generated} 篇")
+    return extra_generated
 
 
 # ==================== Manifest管理 ====================
@@ -801,7 +848,16 @@ def main():
             (OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page(cat), encoding="utf-8")
         rebuild_sitemap()
 
-    print(f"\n🏁 完成!本次生成 {generated} 篇新文章")
+    # 4. 分类兜底（每个分类至少2篇）
+    extra = ensure_category_balance()
+    if extra > 0:
+        print("\n📐 补充后重建站点...")
+        rebuild_index()
+        for cat in CATEGORIES:
+            (OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page(cat), encoding="utf-8")
+        rebuild_sitemap()
+
+    print(f"\n🏁 完成!本次生成 {generated} 篇新文章,补充 {extra} 篇兜底文章")
 
 
 if __name__ == "__main__":
