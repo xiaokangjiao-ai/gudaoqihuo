@@ -312,22 +312,25 @@ def generate_article_en(topic_zh):
 
     prompt = f"""{style}
 
-Write a 800-1200 word article based on this trending topic from China: {topic_zh}
+Write a 800-1200 word article in ENGLISH ONLY based on this trending topic from China: {topic_zh}
 
-Requirements:
+CRITICAL RULES:
 1. {title_style}
-2. First paragraph hooks the reader immediately
-3. 4-6 sections with ## subheadings
-4. Each section has substance - opinions and examples, no fluff
-5. Naturally include 2-3 long-tail keywords
-6. End with an engaging question or call-to-action
-7. Conversational tone - avoid formal academic language
-8. No AI disclaimers like "As an AI" or "This article was generated"
+2. EVERYTHING must be in English - title, body, subheadings ALL in English
+3. NEVER use Chinese characters anywhere in your output
+4. First paragraph hooks the reader immediately
+5. 4-6 sections with ## subheadings (in English)
+6. Each section has substance - opinions and examples, no fluff
+7. Naturally include 2-3 long-tail keywords (in English)
+8. End with an engaging question or call-to-action
+9. Conversational tone - avoid formal academic language
+10. No AI disclaimers like "As an AI" or "This article was generated"
+11. If you include any Chinese characters, the article will be rejected
 
 Output format:
-First line: Title only (no markdown formatting)
+First line: Title in English only (no markdown formatting)
 Blank line
-Body (markdown format with ## for subheadings)"""
+Body in English only (markdown format with ## for subheadings)"""
 
     try:
         token = get_zhipu_token()
@@ -346,6 +349,16 @@ Body (markdown format with ## for subheadings)"""
         body = "\n".join(lines[1:]).strip()
 
         title = _de_ai_title_en(title)
+        
+        # 后处理：检测并过滤中文内容
+        chinese_chars = re.findall(r'[\u4e00-\u9fff]', title + body)
+        if len(chinese_chars) > 5:
+            print(f"    ⚠️ 英文文章含中文({len(chinese_chars)}字),重新生成...")
+            # 重试一次，用更严格的prompt
+            title, body = _retry_generate_en_strict(topic_zh)
+            if not title:
+                print(f"    ❌ 英文生成失败(含中文过多)")
+                return None, None
 
         return title, body
     except Exception as e:
@@ -382,6 +395,38 @@ def _de_ai_title_en(title):
     if len(title) > 70:
         title = title[:67] + "..."
     return title
+
+def _retry_generate_en_strict(topic_zh):
+    """严格模式重试生成英文文章(禁止中文)"""
+    strict_prompt = f"""You are an English news writer. Write an article in 100% ENGLISH.
+
+Topic (Chinese reference): {topic_zh}
+
+ABSOLUTE RULES:
+- Title: ENGLISH ONLY, no Chinese characters at all
+- Body: ENGLISH ONLY, every single word must be English
+- Subheadings: ENGLISH ONLY
+- 800-1200 words, 4-6 sections with ## subheadings
+- Conversational, engaging style
+- Output: Title on first line, then blank line, then body
+
+VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
+    try:
+        token = get_zhipu_token()
+        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": strict_prompt}], "temperature": 0.85, "max_tokens": 2000}
+        resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
+        result = resp.json()
+        if "choices" not in result:
+            return None, None
+        content = result["choices"][0]["message"]["content"]
+        lines = content.strip().split("\n")
+        title = lines[0].strip().strip("#").strip()
+        body = "\n".join(lines[1:]).strip()
+        return _de_ai_title_en(title), body
+    except Exception as e:
+        print(f"    严格模式重试失败: {e}")
+        return None, None
 
 # ==================== 分类 ====================
 
@@ -425,7 +470,10 @@ def slug_exists(slug, lang="zh"):
 
 def add_to_manifest(slug, title, category, filename, lang="zh"):
     manifest = load_manifest(lang)
-    manifest.append({"slug": slug, "title": title, "category": category, "date": datetime.now().strftime("%Y-%m-%d"), "filename": filename})
+    # 用精确到秒的时间戳确保新文章永远排在最前面
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # 插入到列表头部(最新的在最前面)
+    manifest.insert(0, {"slug": slug, "title": title, "category": category, "date": datetime.now().strftime("%Y-%m-%d"), "timestamp": timestamp, "filename": filename})
     save_manifest(manifest, lang)
 
 def get_related_articles(category, current_slug, lang="zh", limit=3):
@@ -657,7 +705,7 @@ p{{margin-bottom:15px;text-align:justify}}
 def generate_category_page_zh(category):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
-    articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("date", ""), reverse=True)[:50]
+    articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">暂无文章...</li>'
 
     return f"""<!DOCTYPE html>
@@ -707,7 +755,7 @@ a:hover{{color:#ff6b35}}
 def generate_category_page_en(category):
     cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
-    articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("date", ""), reverse=True)[:50]
+    articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">No articles yet...</li>'
 
     return f"""<!DOCTYPE html>
@@ -761,7 +809,7 @@ def rebuild_index_zh():
     if not manifest:
         print("  中文首页:暂无文章")
         return
-    articles = sorted(manifest, key=lambda x: x.get("date", ""), reverse=True)[:100]
+    articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
     list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
     cat_links = "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in CATEGORIES.items())
 
@@ -824,7 +872,7 @@ def rebuild_index_en():
     if not manifest:
         print("  英文首页:暂无文章")
         return
-    articles = sorted(manifest, key=lambda x: x.get("date", ""), reverse=True)[:100]
+    articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
     list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
     cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in EN_CATEGORIES.items())
 
