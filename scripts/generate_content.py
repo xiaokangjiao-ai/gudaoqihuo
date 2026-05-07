@@ -27,7 +27,7 @@ SITEMAP_FILE = Path("sitemap.xml")
 
 SITE_NAME = "每日热点速递"
 SITE_URL = "https://gudaoqihuo.com"
-SITE_DESC = "AI智能聚合热点资讯，每日更新，一站了解天下事"
+SITE_DESC = "AI智能聚合热点资讯,每日更新,一站了解天下事"
 
 CATEGORIES = {
     "hot":         {"name": "社会热点",   "icon": "🔥"},
@@ -37,7 +37,7 @@ CATEGORIES = {
     "entertainment":{"name": "娱乐八卦",   "icon": "🎬"},
 }
 
-# CPS推广链接占位（替换为真实链接后生效）
+# CPS推广链接占位(替换为真实链接后生效)
 CPS_LINKS = {
     "tech": [
         {"text": "2025手机性价比排行榜",       "url": "#tech-cps-1"},
@@ -65,7 +65,7 @@ AD_CODE_TOP        = '<!-- AD_SLOT_TOP -->'
 AD_CODE_MIDDLE    = '<!-- AD_SLOT_MIDDLE -->'
 AD_CODE_BOTTOM    = '<!-- AD_SLOT_BOTTOM -->'
 
-# ==================== 热点抓取（带重试+备用） ====================
+# ==================== 热点抓取(带重试+备用) ====================
 
 def fetch_with_retry(url, headers=None, timeout=10, retries=2):
     for attempt in range(retries + 1):
@@ -136,7 +136,7 @@ def fetch_zhihu_hot():
         return []
 
 
-# 常青话题池（热点源全部失效时的保底）
+# 常青话题池(热点源全部失效时的保底)
 FALLBACK_TOPICS = [
     "2025年最值得买的手机推荐", "如何快速提升睡眠质量", "年轻人副业赚钱方法",
     "ChatGPT最新使用技巧大全", "减肥最有效的方法是什么", "手机电池保养秘诀",
@@ -152,7 +152,7 @@ FALLBACK_TOPICS = [
 
 
 def get_hot_topics():
-    """多源热点聚合，去重，备用"""
+    """多源热点聚合,去重,备用"""
     print("📡 开始抓取热点话题...")
     all_topics = []
     sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot]
@@ -174,14 +174,14 @@ def get_hot_topics():
             seen.add(t_clean)
             unique.append(t_clean)
 
-    print(f"  共抓取 {len(all_topics)} 条，去重后 {len(unique)} 条")
+    print(f"  共抓取 {len(all_topics)} 条,去重后 {len(unique)} 条")
 
     if len(unique) < ARTICLES_PER_RUN:
         needed = ARTICLES_PER_RUN - len(unique)
         extra = [t for t in FALLBACK_TOPICS if t not in seen]
         random.shuffle(extra)
         unique.extend(extra[:needed])
-        print(f"  热点不足，补充 {needed} 条常青话题")
+        print(f"  热点不足,补充 {needed} 条常青话题")
 
     random.shuffle(unique)
     return unique[:ARTICLES_PER_RUN]
@@ -206,21 +206,21 @@ def get_zhipu_token():
                       headers={"alg": "HS256", "sign_type": "SIGN"})
 
 
-# 随机风格prompt池（降低AI味）
+# 随机风格prompt池(降低AI味)
 STYLE_PROMPTS = [
-    "你是一个资深自媒体写手，风格接地气、像朋友聊天，喜欢用"说实话"、"讲真"、"你敢信"这类口语。",
-    "你是一个犀利的社会观察者，喜欢用反问句、感叹号，观点鲜明，敢说敢评。",
-    "你是一个生活达人，擅长把复杂的事情说简单，喜欢举例说明，语气亲切温暖。",
-    "你是一个深度分析型作者，喜欢扒细节、挖内幕，但表达方式通俗不装。",
-    "你是一个带点毒舌的评论员，说话一针见血，偶尔带点黑色幽默，但信息量足。",
+    '你是一个资深自媒体写手，风格接地气、像朋友聊天，喜欢用"说实话"、"讲真"、"你敢信"这类口语。',
+    "你是一个犀利的社会观察者,喜欢用反问句、感叹号,观点鲜明,敢说敢评。",
+    "你是一个生活达人,擅长把复杂的事情说简单,喜欢举例说明,语气亲切温暖。",
+    "你是一个深度分析型作者,喜欢扒细节、挖内幕,但表达方式通俗不装。",
+    "你是一个带点毒舌的评论员,说话一针见血,偶尔带点黑色幽默,但信息量足。",
 ]
 
 TITLE_STYLES = [
-    "标题带数字（如'3个真相'、'5大变化'），制造好奇心，让人想点进去，25字以内",
-    "标题用疑问句式（如'到底怎么回事？'、'真的假的？'），引发好奇，25字以内",
-    "标题制造悬念（如'背后的真相'、'很多人不知道'），暗示有猛料，25字以内",
-    "标题用反差感（如'看似XX其实XX'），打破认知，25字以内",
-    "标题强调时效性（如'刚刚曝光'、'最新消息'），制造紧迫感，25字以内",
+    "标题带数字(如'3个真相'、'5大变化'),制造好奇心,让人想点进去,25字以内",
+    "标题用疑问句式(如'到底怎么回事?'、'真的假的?'),引发好奇,25字以内",
+    "标题制造悬念(如'背后的真相'、'很多人不知道'),暗示有猛料,25字以内",
+    "标题用反差感(如'看似XX其实XX'),打破认知,25字以内",
+    "标题强调时效性(如'刚刚曝光'、'最新消息'),制造紧迫感,25字以内",
 ]
 
 
@@ -233,22 +233,22 @@ def generate_article(topic):
 
 请根据以下热门话题写一篇1200-1800字的文章。
 
-话题：{topic}
+话题:{topic}
 
-要求：
+要求:
 1. {title_style}
-2. 第一段包含核心关键词，一两句话抓住眼球
-3. 分4-6个小节，每节有##小标题
-4. 每个小节内容充实，有观点有例子，不是废话
+2. 第一段包含核心关键词,一两句话抓住眼球
+3. 分4-6个小节,每节有##小标题
+4. 每个小节内容充实,有观点有例子,不是废话
 5. 自然插入2-3个长尾关键词
-6. 结尾引导互动（提问或评论引导）
-7. 语气口语化，避免"首先其次最后"这种僵硬表达
+6. 结尾引导互动(提问或评论引导)
+7. 语气口语化,避免"首先其次最后"这种僵硬表达
 8. 不要出现"作为AI"、"本文由AI生成"等字样
 
-输出格式：
-第一行：标题（纯文字，不加任何标记）
+输出格式:
+第一行:标题(纯文字,不加任何标记)
 空一行
-正文（markdown格式，##标记小标题）"""
+正文(markdown格式,##标记小标题)"""
 
     try:
         token = get_zhipu_token()
@@ -307,7 +307,7 @@ def _de_ai_process(text):
             result.append(p)
             continue
         if random.random() < 0.25 and not any(p_stripped.startswith(w) for w in fillers):
-            p = random.choice(fillers) + "，" + p[0].lower() + p[1:]
+            p = random.choice(fillers) + "," + p[0].lower() + p[1:]
         result.append(p)
 
     return "\n\n".join(result)
@@ -316,10 +316,10 @@ def _de_ai_process(text):
 def _de_ai_title(title):
     """标题党优化"""
     if len(title) < 8 or title.startswith("关于") or title.startswith("对于"):
-        prefixes = ["突发！", "重磅！", "刚刚！", "速看！", "震惊！", "刚刚曝光！", "出大事了！"]
+        prefixes = ["突发!", "重磅!", "刚刚!", "速看!", "震惊!", "刚刚曝光!", "出大事了!"]
         title = random.choice(prefixes) + title
     if len(title) > 30:
-        title = title[:28] + "…"
+        title = title[:28] + "..."
     return title
 
 
@@ -446,7 +446,7 @@ def _jsonld_article(title, cat_name, date_iso, slug):
         "dateModified": date_iso,
         "author": {"@type": "Organization", "name": SITE_NAME},
         "publisher": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL},
-        "description": f"{title}，{cat_name}深度解读",
+        "description": f"{title},{cat_name}深度解读",
         "mainEntityOfPage": {"@type": "WebPage", "@id": f"{SITE_URL}/articles/{slug}.html"},
     }, ensure_ascii=False)
 
@@ -487,11 +487,11 @@ def generate_article_html(title, body, category, slug, related_articles):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} - {SITE_NAME}</title>
-<meta name="description" content="{title}，{cat_name}深度解读，了解更多请阅读全文。">
+<meta name="description" content="{title},{cat_name}深度解读,了解更多请阅读全文。">
 <meta name="keywords" content="{title},{cat_name},热点资讯,最新消息,深度解读">
 <link rel="canonical" href="{SITE_URL}/articles/{slug}.html">
 <meta property="og:title" content="{title}">
-<meta property="og:description" content="{title}，{cat_name}深度解读">
+<meta property="og:description" content="{title},{cat_name}深度解读">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{SITE_URL}/articles/{slug}.html">
 <meta property="og:site_name" content="{SITE_NAME}">
@@ -585,7 +585,7 @@ def generate_category_page(category):
     list_items = "\n".join(
         f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
         for a in articles
-    ) or '<li style="color:#999">暂无文章，敬请期待...</li>'
+    ) or '<li style="color:#999">暂无文章,敬请期待...</li>'
 
     html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -593,7 +593,7 @@ def generate_category_page(category):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{cat_icon} {cat_name} - {SITE_NAME}</title>
-<meta name="description" content="{cat_name}最新资讯，每日更新，{cat_name}深度解读。">
+<meta name="description" content="{cat_name}最新资讯,每日更新,{cat_name}深度解读。">
 <meta name="keywords" content="{cat_name},最新资讯,热点,深度解读">
 <link rel="canonical" href="{SITE_URL}/articles/{category}.html">
 <meta name="robots" content="index, follow">
@@ -652,7 +652,7 @@ a:hover{{color:#ff6b35}}
 def rebuild_index():
     manifest = load_manifest()
     if not manifest:
-        print("  首页：暂无文章")
+        print("  首页:暂无文章")
         return
 
     articles = sorted(manifest, key=lambda x: x.get("date", ""), reverse=True)[:100]
@@ -718,7 +718,7 @@ a:hover{{color:#ff6b35}}
 </ul>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {SITE_NAME} | AI智能聚合，每日多次更新</p>
+<p>© 2025 {SITE_NAME} | AI智能聚合,每日多次更新</p>
 <p>
 <a href="/">首页</a>
 <a href="/articles/hot.html">社会热点</a>
@@ -732,7 +732,7 @@ a:hover{{color:#ff6b35}}
 </html>"""
 
     INDEX_FILE.write_text(html, encoding="utf-8")
-    print(f"  首页已更新，展示 {len(articles)} 篇")
+    print(f"  首页已更新,展示 {len(articles)} 篇")
 
 
 # ==================== Sitemap ====================
@@ -747,7 +747,7 @@ def rebuild_sitemap():
 
     sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{"".join(urls)}\n</urlset>'
     SITEMAP_FILE.write_text(sitemap, encoding="utf-8")
-    print(f"  Sitemap已更新，共 {len(urls)} 条URL")
+    print(f"  Sitemap已更新,共 {len(urls)} 条URL")
 
 
 # ==================== 主流程 ====================
@@ -801,7 +801,7 @@ def main():
             (OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page(cat), encoding="utf-8")
         rebuild_sitemap()
 
-    print(f"\n🏁 完成！本次生成 {generated} 篇新文章")
+    print(f"\n🏁 完成!本次生成 {generated} 篇新文章")
 
 
 if __name__ == "__main__":
