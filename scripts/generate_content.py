@@ -571,6 +571,8 @@ def generate_article_html(title, body, category, slug, related_articles):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
 <title>{title} - {SITE_NAME}</title>
 <meta name="description" content="{title},{cat_name}深度解读,了解更多请阅读全文。">
 <meta name="keywords" content="{title},{cat_name},热点资讯,最新消息,深度解读">
@@ -678,6 +680,8 @@ def generate_category_page(category):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
 <title>{cat_icon} {cat_name} - {SITE_NAME}</title>
 <meta name="description" content="{cat_name}最新资讯,每日更新,{cat_name}深度解读。">
 <meta name="keywords" content="{cat_name},最新资讯,热点,深度解读">
@@ -759,6 +763,8 @@ def rebuild_index():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
 <title>{SITE_NAME} - {SITE_DESC}</title>
 <meta name="description" content="{SITE_DESC}">
 <meta name="keywords" content="今日热点,热搜,最新消息,社会新闻,科技资讯,健康养生,生活百科,娱乐八卦">
