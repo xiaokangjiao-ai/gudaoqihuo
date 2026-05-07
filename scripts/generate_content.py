@@ -42,24 +42,24 @@ CATEGORIES = {
 # 格式: https://www.amazon.cn/dp/商品ASIN?tag=你的AssociateTag
 CPS_LINKS = {
     "tech": [
-        {"text": "2025高性价比手机推荐",      "url": "https://www.amazon.cn/gp/bestsellers/electronics/ref=zg_bs_electronics?tag=gudaoqihuo-23", "desc": "热销数码产品"},
-        {"text": "AI智能工具实用合集",       "url": "https://www.amazon.cn/s?k=AI%E5%B7%A5%E5%85%B7&i=office-products&tag=gudaoqihuo-23", "desc": "效率神器"},
+        {"text": "2025高性价比手机推荐",      "url": "https://www.amazon.cn/gp/bestsellers/electronics/ref=zg_bs_electronics?tag=gudaoqihuo-20", "desc": "热销数码产品"},
+        {"text": "AI智能工具实用合集",       "url": "https://www.amazon.cn/s?k=AI%E5%B7%A5%E5%85%B7&i=office-products&tag=gudaoqihuo-20", "desc": "效率神器"},
     ],
     "health": [
-        {"text": "养生保健精选好物",         "url": "https://www.amazon.cn/s?k=%E5%85%BB%E7%94%9F&i=hpc&tag=gudaoqihuo-23", "desc": "健康生活"},
-        {"text": "运动健身必备装备",         "url": "https://www.amazon.cn/s?k=%E8%BF%90%E5%8A%A8%E5%81%A5%E8%BA%AB&i=sporting-goods&tag=gudaoqihuo-23", "desc": "活力每一天"},
+        {"text": "养生保健精选好物",         "url": "https://www.amazon.cn/s?k=%E5%85%BB%E7%94%9F&i=hpc&tag=gudaoqihuo-20", "desc": "健康生活"},
+        {"text": "运动健身必备装备",         "url": "https://www.amazon.cn/s?k=%E8%BF%90%E5%8A%A8%E5%81%A5%E8%BA%AB&i=sporting-goods&tag=gudaoqihuo-20", "desc": "活力每一天"},
     ],
     "life": [
-        {"text": "居家好物省钱攻略",          "url": "https://www.amazon.cn/s?k=%E5%B1%85%E5%AE%B6%E5%A5%BD%E7%89%A9&i=kitchen&tag=gudaoqihuo-23", "desc": "品质生活"},
-        {"text": "图书畅销榜TOP20",           "url": "https://www.amazon.cn/gp/best sellers/books/ref=zg_bs_books?tag=gudaoqihuo-23", "desc": "阅读充电"},
+        {"text": "居家好物省钱攻略",          "url": "https://www.amazon.cn/s?k=%E5%B1%85%E5%AE%B6%E5%A5%BD%E7%89%A9&i=kitchen&tag=gudaoqihuo-20", "desc": "品质生活"},
+        {"text": "图书畅销榜TOP20",           "url": "https://www.amazon.cn/gp/best sellers/books/ref=zg_bs_books?tag=gudaoqihuo-20", "desc": "阅读充电"},
     ],
     "entertainment": [
-        {"text": "热门影视周边好物",          "url": "https://www.amazon.cn/s?k=%E5%BD%B1%E8%A7%86%E5%91%A8%E8%BE%B9&tag=gudaoqihuo-23", "desc": "追剧必备"},
-        {"text": "明星同款推荐单品",          "url": "https://www.amazon.cn/s?k=%E6%98%8E%E6%98%9F%E5%90%8C%E6%AC%BE&tag=gudaoqihuo-23", "desc": "潮流好物"},
+        {"text": "热门影视周边好物",          "url": "https://www.amazon.cn/s?k=%E5%BD%B1%E8%A7%86%E5%91%A8%E8%BE%B9&tag=gudaoqihuo-20", "desc": "追剧必备"},
+        {"text": "明星同款推荐单品",          "url": "https://www.amazon.cn/s?k=%E6%98%8E%E6%98%9F%E5%90%8C%E6%AC%BE&tag=gudaoqihuo-20", "desc": "潮流好物"},
     ],
     "hot": [
-        {"text": "今日热搜相关好物",          "url": "https://www.amazon.cn/?_encoding=UTF8&tag=gudaoqihuo-23", "desc": "发现更多"},
-        {"text": "限时优惠活动专区",          "url": "https://www.amazon.cn/gp/goldbox?ref_=gs_gb_top&tag=gudaoqihuo-23", "desc": "今日特价"},
+        {"text": "今日热搜相关好物",          "url": "https://www.amazon.cn/?_encoding=UTF8&tag=gudaoqihuo-20", "desc": "发现更多"},
+        {"text": "限时优惠活动专区",          "url": "https://www.amazon.cn/gp/goldbox?ref_=gs_gb_top&tag=gudaoqihuo-20", "desc": "今日特价"},
     ],
 }
 
