@@ -37,33 +37,62 @@ CATEGORIES = {
     "entertainment":{"name": "娱乐八卦",   "icon": "🎬"},
 }
 
-# CPS推广链接占位(替换为真实链接后生效)
+# CPS推广链接(亚马逊联盟格式,替换为真实 Associates 链接后生效)
+# 获取链接: https://affiliate-program.amazon.com/
+# 格式: https://www.amazon.cn/dp/商品ASIN?tag=你的AssociateTag
 CPS_LINKS = {
     "tech": [
-        {"text": "2025手机性价比排行榜",       "url": "#tech-cps-1"},
-        {"text": "AI工具合集免费用",            "url": "#tech-cps-2"},
+        {"text": "2025高性价比手机推荐",      "url": "https://www.amazon.cn/gp/bestsellers/electronics/ref=zg_bs_electronics?tag=gudaoqihuo-23", "desc": "热销数码产品"},
+        {"text": "AI智能工具实用合集",       "url": "https://www.amazon.cn/s?k=AI%E5%B7%A5%E5%85%B7&i=office-products&tag=gudaoqihuo-23", "desc": "效率神器"},
     ],
     "health": [
-        {"text": "养生好物精选推荐",           "url": "#health-cps-1"},
-        {"text": "健康食品优惠专区",            "url": "#health-cps-2"},
+        {"text": "养生保健精选好物",         "url": "https://www.amazon.cn/s?k=%E5%85%BB%E7%94%9F&i=hpc&tag=gudaoqihuo-23", "desc": "健康生活"},
+        {"text": "运动健身必备装备",         "url": "https://www.amazon.cn/s?k=%E8%BF%90%E5%8A%A8%E5%81%A5%E8%BA%AB&i=sporting-goods&tag=gudaoqihuo-23", "desc": "活力每一天"},
     ],
     "life": [
-        {"text": "副业赚钱实操指南",           "url": "#life-cps-1"},
-        {"text": "省钱优惠券大合集",            "url": "#life-cps-2"},
+        {"text": "居家好物省钱攻略",          "url": "https://www.amazon.cn/s?k=%E5%B1%85%E5%AE%B6%E5%A5%BD%E7%89%A9&i=kitchen&tag=gudaoqihuo-23", "desc": "品质生活"},
+        {"text": "图书畅销榜TOP20",           "url": "https://www.amazon.cn/gp/best sellers/books/ref=zg_bs_books?tag=gudaoqihuo-23", "desc": "阅读充电"},
     ],
     "entertainment": [
-        {"text": "热门影视VIP会员特价",        "url": "#ent-cps-1"},
-        {"text": "明星同款好物推荐",            "url": "#ent-cps-2"},
+        {"text": "热门影视周边好物",          "url": "https://www.amazon.cn/s?k=%E5%BD%B1%E8%A7%86%E5%91%A8%E8%BE%B9&tag=gudaoqihuo-23", "desc": "追剧必备"},
+        {"text": "明星同款推荐单品",          "url": "https://www.amazon.cn/s?k=%E6%98%8E%E6%98%9F%E5%90%8C%E6%AC%BE&tag=gudaoqihuo-23", "desc": "潮流好物"},
     ],
     "hot": [
-        {"text": "今日热门推荐",               "url": "#hot-cps-1"},
-        {"text": "深度解读专栏",                "url": "#hot-cps-2"},
+        {"text": "今日热搜相关好物",          "url": "https://www.amazon.cn/?_encoding=UTF8&tag=gudaoqihuo-23", "desc": "发现更多"},
+        {"text": "限时优惠活动专区",          "url": "https://www.amazon.cn/gp/goldbox?ref_=gs_gb_top&tag=gudaoqihuo-23", "desc": "今日特价"},
     ],
 }
 
-AD_CODE_TOP        = '<!-- AD_SLOT_TOP -->'
-AD_CODE_MIDDLE    = '<!-- AD_SLOT_MIDDLE -->'
-AD_CODE_BOTTOM    = '<!-- AD_SLOT_BOTTOM -->'
+# ==================== 广告位配置 ====================
+# Google AdSense: 申请地址 https://www.google.com/adsense/
+# 拿到代码后直接替换下面的占位符即可
+# 注意: AdSense 要求内容为主、广告为辅，不要放太多广告位
+AD_CODE_TOP     = '''<!-- Google AdSense - 顶部横幅广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-slot="XXXXXXXXXX"
+     data-ad-format="horizontal"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
+
+AD_CODE_MIDDLE  = '''<!-- Google AdSense - 文中广告 -->
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-slot="XXXXXXXXXX"
+     data-ad-format="fluid"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
+
+AD_CODE_BOTTOM  = '''<!-- Google AdSense - 底部广告 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-slot="XXXXXXXXXX"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
 # ==================== 热点抓取(带重试+备用) ====================
 
@@ -467,10 +496,16 @@ def _md2html(text):
 
 def _cps_block(category):
     links = CPS_LINKS.get(category, CPS_LINKS["hot"])
-    html = '<div class="cps-box"><h3>📌 猜你也感兴趣</h3><ul>'
+    html = '<div class="cps-box"><h3>🛒 猜你也感兴趣</h3><ul>'
     for link in links:
-        html += f'<li><a href="{link["url"]}" target="_blank" rel="nofollow">{link["text"]}</a></li>'
-    html += "</ul></div>"
+        desc = link.get("desc", "")
+        url = link["url"]
+        text = link["text"]
+        if desc:
+            html += f'<li><a href="{url}" target="_blank" rel="nofollow">{text}</a><span class="cps-desc">{desc}</span></li>'
+        else:
+            html += f'<li><a href="{url}" target="_blank" rel="nofollow">{text}</a></li>'
+    html += '</ul></div>'
     return html
 
 
@@ -559,14 +594,15 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang S
 h2{{font-size:1.3em;margin:25px 0 10px;color:#2c2c2c;border-left:4px solid #ff6b35;padding-left:10px}}
 h3{{font-size:1.1em;margin:20px 0 8px;color:#444}}
 p{{margin-bottom:15px;text-align:justify}}
-.ad-slot{{background:#f5f5f5;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.85em;border-radius:4px;border:1px dashed #ddd}}
+.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;font-size:1.05em;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
-.cps-box li{{padding:6px 0;border-bottom:1px dashed #ffd9b3}}
+.cps-box li{{padding:8px 0;border-bottom:1px dashed #ffd9b3;display:flex;justify-content:space-between;align-items:center}}
 .cps-box li:last-child{{border-bottom:none}}
-.cps-box a{{color:#d4680a;text-decoration:none;font-weight:500}}
+.cps-box a{{color:#d4680a;text-decoration:none;font-weight:500;font-size:.95em}}
 .cps-box a:hover{{text-decoration:underline}}
+.cps-desc{{color:#999;font-size:.82em;margin-left:auto}}
 .related{{background:#fff;border:1px solid #eee;border-radius:10px;padding:18px;margin:25px 0}}
 .related h3{{margin:0 0 12px;font-size:1.05em;color:#333}}
 .related ul{{list-style:none;padding:0}}
@@ -661,7 +697,7 @@ a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-.ad-slot{{background:#f5f5f5;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.85em;border-radius:4px;border:1px dashed #ddd}}
+.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 </style>
 </head>
 <body>
@@ -748,7 +784,7 @@ a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-.ad-slot{{background:#f5f5f5;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.85em;border-radius:4px;border:1px dashed #ddd}}
+.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 </style>
 </head>
 <body>
