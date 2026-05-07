@@ -1,15 +1,10 @@
-name: Auto Content Deploy
+name: Auto Content Deploy (Bilingual)
 
 on:
   schedule:
-    # 每天北京时间 8:00, 11:00, 14:00, 17:00, 20:00, 23:00 各跑一次
-    # 对应 UTC 0:00, 3:00, 6:00, 9:00, 12:00, 15:00
+    # 每天 8:00 和 14:00 北京时间 (UTC 0:00 和 6:00)
     - cron: '0 0 * * *'
-    - cron: '0 3 * * *'
     - cron: '0 6 * * *'
-    - cron: '0 9 * * *'
-    - cron: '0 12 * * *'
-    - cron: '0 15 * * *'
   workflow_dispatch:
 
 jobs:
@@ -34,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests pyjwt
 
-      - name: Generate content
+      - name: Generate bilingual content
         env:
           ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
         run: python scripts/generate_content.py
@@ -50,7 +45,7 @@ jobs:
           git diff --staged --quiet && {
             echo "无新内容提交"
           } || {
-            git commit -m "auto: 更新热点内容 $(date +%Y-%m-%d-%H%M)"
+            git commit -m "auto: 双语内容更新 $(date +%Y-%m-%d-%H%M)"
             git push
             echo "已推送 $(git log -1 --format='%s')"
           }
