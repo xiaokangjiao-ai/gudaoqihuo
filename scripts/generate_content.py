@@ -67,28 +67,31 @@ CPS_LINKS = {
 # Google AdSense: 申请地址 https://www.google.com/adsense/
 # 拿到代码后直接替换下面的占位符即可
 # 注意: AdSense 要求内容为主、广告为辅，不要放太多广告位
-AD_CODE_TOP     = '''<!-- Google AdSense - 顶部横幅广告 -->
+AD_CODE_TOP     = ''''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833"
+     crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
      style="display:block"
-     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-client="ca-pub-9935054113253833"
      data-ad-slot="XXXXXXXXXX"
      data-ad-format="horizontal"
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
-AD_CODE_MIDDLE  = '''<!-- Google AdSense - 文中广告 -->
+AD_CODE_MIDDLE  = ''''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833"
+     crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
-     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-client="ca-pub-9935054113253833"
      data-ad-slot="XXXXXXXXXX"
      data-ad-format="fluid"
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
-AD_CODE_BOTTOM  = '''<!-- Google AdSense - 底部广告 -->
+AD_CODE_BOTTOM  = ''''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833"
+     crossorigin="anonymous"></script>
 <ins class="adsbygoogle"
      style="display:block"
-     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-client="ca-pub-9935054113253833"
      data-ad-slot="XXXXXXXXXX"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
