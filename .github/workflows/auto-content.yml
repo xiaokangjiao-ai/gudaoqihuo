@@ -1,0 +1,56 @@
+name: Auto Content Deploy
+
+on:
+  schedule:
+    # 每天北京时间 8:00, 11:00, 14:00, 17:00, 20:00, 23:00 各跑一次
+    # 对应 UTC 0:00, 3:00, 6:00, 9:00, 12:00, 15:00
+    - cron: '0 0 * * *'
+    - cron: '0 3 * * *'
+    - cron: '0 6 * * *'
+    - cron: '0 9 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pyjwt
+
+      - name: Generate content
+        env:
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+        run: python scripts/generate_content.py
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Auto Content Bot"
+          git config --global user.email "bot@gudaoqihuo.com"
+
+      - name: Commit and push
+        run: |
+          git add -A
+          git diff --staged --quiet && {
+            echo "无新内容提交"
+          } || {
+            git commit -m "auto: 更新热点内容 $(date +%Y-%m-%d-%H%M)"
+            git push
+            echo "已推送 $(git log -1 --format='%s')"
+          }

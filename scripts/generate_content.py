@@ -1,17 +1,10 @@
 """
-自动热点内容生成器
-- 抓取百度热搜/微博热搜
-- 用智谱AI(GLM)改写生成SEO文章
-- 输出为HTML页面
+全自动热点流量站内容生成器 v2.0
+================================
+多源热点抓取 | AI伪原创 | 标题党 | 内链网络 | 结构化数据 | 广告+CPS变现
 """
 
-import os
-import re
-import json
-import time
-import random
-import hashlib
-import requests
+import os, re, json, time, random, hashlib, requests
 from datetime import datetime
 from pathlib import Path
 
@@ -20,118 +13,185 @@ try:
 except ImportError:
     jwt = None
 
-# ===== 配置 =====
+# ==================== 配置 ====================
+
 API_KEY = os.environ.get("ZHIPU_API_KEY", "")
 API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
-MODEL = "glm-4-flash"  # 免费模型
-ARTICLES_PER_RUN = 3  # 每次生成3篇，一天9篇
+MODEL = "glm-4-flash"
+
+ARTICLES_PER_RUN = 5
 OUTPUT_DIR = Path("articles")
+MANIFEST_FILE = OUTPUT_DIR / "manifest.json"
 INDEX_FILE = Path("index.html")
 SITEMAP_FILE = Path("sitemap.xml")
 
-# 文章分类及对应的广告关键词
+SITE_NAME = "每日热点速递"
+SITE_URL = "https://gudaoqihuo.com"
+SITE_DESC = "AI智能聚合热点资讯，每日更新，一站了解天下事"
+
 CATEGORIES = {
-    "hot": "社会热点",
-    "tech": "科技数码",
-    "health": "健康养生",
-    "life": "生活百科",
-    "entertainment": "娱乐八卦",
+    "hot":         {"name": "社会热点",   "icon": "🔥"},
+    "tech":        {"name": "科技数码",   "icon": "📱"},
+    "health":      {"name": "健康养生",   "icon": "🏥"},
+    "life":        {"name": "生活百科",   "icon": "💡"},
+    "entertainment":{"name": "娱乐八卦",   "icon": "🎬"},
 }
 
-# ===== 热点抓取 =====
+# CPS推广链接占位（替换为真实链接后生效）
+CPS_LINKS = {
+    "tech": [
+        {"text": "2025手机性价比排行榜",       "url": "#tech-cps-1"},
+        {"text": "AI工具合集免费用",            "url": "#tech-cps-2"},
+    ],
+    "health": [
+        {"text": "养生好物精选推荐",           "url": "#health-cps-1"},
+        {"text": "健康食品优惠专区",            "url": "#health-cps-2"},
+    ],
+    "life": [
+        {"text": "副业赚钱实操指南",           "url": "#life-cps-1"},
+        {"text": "省钱优惠券大合集",            "url": "#life-cps-2"},
+    ],
+    "entertainment": [
+        {"text": "热门影视VIP会员特价",        "url": "#ent-cps-1"},
+        {"text": "明星同款好物推荐",            "url": "#ent-cps-2"},
+    ],
+    "hot": [
+        {"text": "今日热门推荐",               "url": "#hot-cps-1"},
+        {"text": "深度解读专栏",                "url": "#hot-cps-2"},
+    ],
+}
+
+AD_CODE_TOP        = '<!-- AD_SLOT_TOP -->'
+AD_CODE_MIDDLE    = '<!-- AD_SLOT_MIDDLE -->'
+AD_CODE_BOTTOM    = '<!-- AD_SLOT_BOTTOM -->'
+
+# ==================== 热点抓取（带重试+备用） ====================
+
+def fetch_with_retry(url, headers=None, timeout=10, retries=2):
+    for attempt in range(retries + 1):
+        try:
+            resp = requests.get(
+                url,
+                headers=headers or {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+                },
+                timeout=timeout,
+            )
+            resp.raise_for_status()
+            return resp
+        except Exception as e:
+            if attempt < retries:
+                time.sleep(1.5)
+            else:
+                print(f"    请求失败: {e}")
+    return None
+
 
 def fetch_baidu_hot():
-    """抓取百度热搜"""
-    try:
-        url = "https://top.baidu.com/board?tab=realtime"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        }
-        resp = requests.get(url, headers=headers, timeout=10)
-        # 从页面中提取热搜词
-        pattern = r'"word":"(.*?)"'
-        words = re.findall(pattern, resp.text)
-        return words[:20] if words else []
-    except Exception as e:
-        print(f"百度热搜抓取失败: {e}")
+    """百度热搜实时榜"""
+    print("    抓取百度热搜...")
+    resp = fetch_with_retry("https://top.baidu.com/board?tab=realtime")
+    if not resp:
         return []
+    words = re.findall(r'"word":"(.*?)"', resp.text)
+    return words[:30]
 
 
 def fetch_weibo_hot():
-    """抓取微博热搜"""
+    """微博热搜"""
+    print("    抓取微博热搜...")
+    resp = fetch_with_retry("https://weibo.com/ajax/side/hotSearch")
+    if not resp:
+        return []
     try:
-        url = "https://weibo.com/ajax/side/hotSearch"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-        resp = requests.get(url, headers=headers, timeout=10)
         data = resp.json()
-        words = []
-        for item in data.get("data", {}).get("realtime", []):
-            word = item.get("word", "")
-            if word:
-                words.append(word)
-        return words[:20]
-    except Exception as e:
-        print(f"微博热搜抓取失败: {e}")
+        return [item.get("word", "") for item in data.get("data", {}).get("realtime", []) if item.get("word")][:30]
+    except:
         return []
 
 
 def fetch_toutiao_hot():
-    """抓取头条热榜"""
+    """头条热榜"""
+    print("    抓取头条热榜...")
+    resp = fetch_with_retry("https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc")
+    if not resp:
+        return []
     try:
-        url = "https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-        resp = requests.get(url, headers=headers, timeout=10)
         data = resp.json()
-        words = []
-        for item in data.get("data", []):
-            title = item.get("Title", "")
-            if title:
-                words.append(title)
-        return words[:20]
-    except Exception as e:
-        print(f"头条热榜抓取失败: {e}")
+        return [item.get("Title", "") for item in data.get("data", []) if item.get("Title")][:30]
+    except:
         return []
 
 
+def fetch_zhihu_hot():
+    """知乎热榜"""
+    print("    抓取知乎热榜...")
+    resp = fetch_with_retry("https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50")
+    if not resp:
+        return []
+    try:
+        data = resp.json()
+        return [item.get("target", {}).get("title", "") for item in data.get("data", []) if item.get("target", {}).get("title")][:30]
+    except:
+        return []
+
+
+# 常青话题池（热点源全部失效时的保底）
+FALLBACK_TOPICS = [
+    "2025年最值得买的手机推荐", "如何快速提升睡眠质量", "年轻人副业赚钱方法",
+    "ChatGPT最新使用技巧大全", "减肥最有效的方法是什么", "手机电池保养秘诀",
+    "2025年房价走势预测", "居家健身最有效的动作", "信用卡省钱攻略",
+    "AI写作工具哪个最好用", "电动牙刷真的比普通牙刷好吗", "上班族如何缓解颈椎疼痛",
+    "2025年最火的短视频赛道", "拼多多和淘宝哪个更省钱", "失眠怎么办最有效",
+    "远程办公效率提升技巧", "厨房收纳神器推荐", "2025年高考政策变化",
+    "退休金计算方法详解", "驾照考试新规解读", "空调省电技巧",
+    "洗衣机清洗方法", "手机信号差怎么解决", "微波炉加热食物注意事项",
+    "租房合同注意事项", "社保断缴有什么影响", "个人养老金怎么交最划算",
+    "2025年新能源汽车推荐", "WiFi信号增强方法", "冰箱食物存放正确方式",
+]
+
+
 def get_hot_topics():
-    """汇总所有热点，去重后随机选取"""
+    """多源热点聚合，去重，备用"""
+    print("📡 开始抓取热点话题...")
     all_topics = []
-    all_topics.extend(fetch_baidu_hot())
-    all_topics.extend(fetch_weibo_hot())
-    all_topics.extend(fetch_toutiao_hot())
+    sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot]
+    for source in sources:
+        try:
+            topics = source()
+            if topics:
+                all_topics.extend(topics)
+                print(f"    {source.__name__}: 获取 {len(topics)} 条")
+        except Exception as e:
+            print(f"    {source.__name__} 异常: {e}")
 
     # 去重
     seen = set()
     unique = []
     for t in all_topics:
-        if t not in seen and len(t) > 2:
-            seen.add(t)
-            unique.append(t)
+        t_clean = t.strip()
+        if t_clean and t_clean not in seen and 2 < len(t_clean) < 50:
+            seen.add(t_clean)
+            unique.append(t_clean)
 
-    if not unique:
-        # 备用话题
-        unique = [
-            "2025年最值得买的手机推荐",
-            "如何快速提升睡眠质量",
-            "年轻人副业赚钱方法",
-            "ChatGPT最新使用技巧",
-            "今日股市行情分析",
-        ]
+    print(f"  共抓取 {len(all_topics)} 条，去重后 {len(unique)} 条")
+
+    if len(unique) < ARTICLES_PER_RUN:
+        needed = ARTICLES_PER_RUN - len(unique)
+        extra = [t for t in FALLBACK_TOPICS if t not in seen]
+        random.shuffle(extra)
+        unique.extend(extra[:needed])
+        print(f"  热点不足，补充 {needed} 条常青话题")
 
     random.shuffle(unique)
     return unique[:ARTICLES_PER_RUN]
 
 
-# ===== AI内容生成 =====
+# ==================== AI内容生成 ====================
 
 def get_zhipu_token():
-    """生成智谱API的JWT token"""
+    """智谱API JWT token生成"""
     if not jwt:
-        # 如果没有pyjwt，直接用API Key作为Bearer token（智谱也支持）
         return API_KEY
     parts = API_KEY.split(".")
     if len(parts) != 2:
@@ -142,318 +202,606 @@ def get_zhipu_token():
         "exp": int(time.time()) + 3600,
         "timestamp": int(time.time()),
     }
-    token = jwt.encode(payload, secret, algorithm="HS256",
-                       headers={"alg": "HS256", "sign_type": "SIGN"})
-    return token
+    return jwt.encode(payload, secret, algorithm="HS256",
+                      headers={"alg": "HS256", "sign_type": "SIGN"})
+
+
+# 随机风格prompt池（降低AI味）
+STYLE_PROMPTS = [
+    "你是一个资深自媒体写手，风格接地气、像朋友聊天，喜欢用"说实话"、"讲真"、"你敢信"这类口语。",
+    "你是一个犀利的社会观察者，喜欢用反问句、感叹号，观点鲜明，敢说敢评。",
+    "你是一个生活达人，擅长把复杂的事情说简单，喜欢举例说明，语气亲切温暖。",
+    "你是一个深度分析型作者，喜欢扒细节、挖内幕，但表达方式通俗不装。",
+    "你是一个带点毒舌的评论员，说话一针见血，偶尔带点黑色幽默，但信息量足。",
+]
+
+TITLE_STYLES = [
+    "标题带数字（如'3个真相'、'5大变化'），制造好奇心，让人想点进去，25字以内",
+    "标题用疑问句式（如'到底怎么回事？'、'真的假的？'），引发好奇，25字以内",
+    "标题制造悬念（如'背后的真相'、'很多人不知道'），暗示有猛料，25字以内",
+    "标题用反差感（如'看似XX其实XX'），打破认知，25字以内",
+    "标题强调时效性（如'刚刚曝光'、'最新消息'），制造紧迫感，25字以内",
+]
 
 
 def generate_article(topic):
-    """用智谱AI生成一篇SEO优化的文章"""
-    prompt = f"""你是一个专业的中文SEO内容写手。请根据以下热门话题写一篇1000-1500字的文章。
+    """AI生成伪原创文章"""
+    style = random.choice(STYLE_PROMPTS)
+    title_style = random.choice(TITLE_STYLES)
+
+    prompt = f"""{style}
+
+请根据以下热门话题写一篇1200-1800字的文章。
 
 话题：{topic}
 
 要求：
-1. 标题要吸引点击，包含关键词，30字以内
-2. 开头第一段要包含核心关键词，吸引读者继续阅读
-3. 文章分3-5个小节，每节有小标题（用##标记）
-4. 内容要有信息量，不能是废话连篇
-5. 结尾要有总结和引导互动的话
-6. 自然插入2-3个相关长尾关键词
-7. 语气亲民接地气，像朋友聊天一样
+1. {title_style}
+2. 第一段包含核心关键词，一两句话抓住眼球
+3. 分4-6个小节，每节有##小标题
+4. 每个小节内容充实，有观点有例子，不是废话
+5. 自然插入2-3个长尾关键词
+6. 结尾引导互动（提问或评论引导）
+7. 语气口语化，避免"首先其次最后"这种僵硬表达
+8. 不要出现"作为AI"、"本文由AI生成"等字样
 
-请直接输出，格式：
-第一行是标题（不加任何标记）
-第二行空行
-后面是正文（用markdown格式）"""
+输出格式：
+第一行：标题（纯文字，不加任何标记）
+空一行
+正文（markdown格式，##标记小标题）"""
 
     try:
         token = get_zhipu_token()
-        headers = {
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-        }
+        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
         data = {
             "model": MODEL,
             "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.85,
-            "max_tokens": 2000,
+            "temperature": 0.9,
+            "max_tokens": 2500,
         }
-        resp = requests.post(API_URL, headers=headers, json=data, timeout=60)
+        resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
         if "choices" not in result:
-            print(f"AI返回异常: {result}")
+            print(f"  AI返回异常: {str(result)[:200]}")
             return None, None
 
         content = result["choices"][0]["message"]["content"]
         lines = content.strip().split("\n")
         title = lines[0].strip().strip("#").strip()
         body = "\n".join(lines[1:]).strip()
+
+        body = _de_ai_process(body)
+        title = _de_ai_title(title)
+
         return title, body
     except Exception as e:
-        print(f"AI生成失败: {e}")
+        print(f"  AI生成失败: {e}")
         return None, None
 
 
-def classify_topic(topic):
-    """简单分类"""
-    tech_keywords = ["手机", "AI", "芯片", "科技", "数码", "电脑", "苹果", "华为", "小米", "ChatGPT", "人工智能"]
-    health_keywords = ["健康", "养生", "睡眠", "减肥", "医", "病", "食物", "营养", "锻炼"]
-    life_keywords = ["生活", "省钱", "副业", "赚钱", "工作", "职场", "房", "车"]
-    ent_keywords = ["明星", "综艺", "电影", "电视剧", "演员", "导演", "票房", "恋情"]
+def _de_ai_process(text):
+    """去AI味后处理"""
+    replacements = {
+        "首先": "先说", "其次": "再来看", "最后": "说到底",
+        "总而言之": "说白了", "综上所述": "所以啊",
+        "值得注意的是": "这里有个重点", "不可否认": "谁都知道",
+        "众所周知": "大家都清楚", "引发了广泛关注": "网上都炸了",
+        "引起了热议": "网友吵翻了", "引起了广泛讨论": "大家都在讨论",
+        "不言而喻": "懂的都懂", "至关重要": "特别关键",
+        "息息相关": "紧密相连", "举足轻重": "非常重要",
+        "日新月异": "变化太快", "蓬勃发展": "越搞越火",
+        "与此同时": "再一个", "在当今社会": "现在",
+        "随着社会的发展": "现在", "在日常生活中": "平时",
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
 
-    for kw in tech_keywords:
-        if kw in topic:
-            return "tech"
-    for kw in health_keywords:
-        if kw in topic:
-            return "health"
-    for kw in life_keywords:
-        if kw in topic:
-            return "life"
-    for kw in ent_keywords:
-        if kw in topic:
-            return "entertainment"
+    # 随机插入填充词
+    fillers = ["说实话", "讲真", "你敢信", "我跟你讲", "老实说", "真的", "确实"]
+    paragraphs = text.split("\n\n")
+    result = []
+    for p in paragraphs:
+        p_stripped = p.strip()
+        if not p_stripped or p_stripped.startswith("#"):
+            result.append(p)
+            continue
+        if random.random() < 0.25 and not any(p_stripped.startswith(w) for w in fillers):
+            p = random.choice(fillers) + "，" + p[0].lower() + p[1:]
+        result.append(p)
+
+    return "\n\n".join(result)
+
+
+def _de_ai_title(title):
+    """标题党优化"""
+    if len(title) < 8 or title.startswith("关于") or title.startswith("对于"):
+        prefixes = ["突发！", "重磅！", "刚刚！", "速看！", "震惊！", "刚刚曝光！", "出大事了！"]
+        title = random.choice(prefixes) + title
+    if len(title) > 30:
+        title = title[:28] + "…"
+    return title
+
+
+# ==================== 分类 ====================
+
+def classify_topic(topic):
+    """关键词分类"""
+    rules = {
+        "tech": ["手机","AI","芯片","科技","数码","电脑","苹果","华为","小米","ChatGPT",
+                 "人工智能","互联网","软件","APP","5G","机器人","电动车","特斯拉","比亚迪",
+                 "新能源车","自动驾驶","智能","OpenAI","GPT","编程","代码","操作系统",
+                 "GPU","显卡","CPU","智能家居","耳机","平板"],
+        "health": ["健康","养生","睡眠","减肥","医","病","食物","营养","锻炼","健身",
+                   "医院","中医","食疗","维生素","体检","癌症","长寿","慢性病","心理",
+                   "抑郁","焦虑","疫苗","过敏","眼睛","牙齿"],
+        "life": ["生活","省钱","副业","赚钱","工作","职场","房","车","贷款","社保",
+                 "养老金","退休","保险","税收","公积金","信用卡","存款","利率","消费","物价"],
+        "entertainment": ["明星","综艺","电影","电视剧","演员","导演","票房","恋情",
+                          "离婚","八卦","偶像","演唱会","歌手","网红","直播","选秀",
+                          "粉丝","塌房","热搜","出轨","复合","韩剧","美剧"],
+    }
+    for cat, keywords in rules.items():
+        for kw in keywords:
+            if kw in topic:
+                return cat
     return "hot"
 
 
-# ===== HTML生成 =====
+# ==================== Manifest管理 ====================
+
+def load_manifest():
+    if MANIFEST_FILE.exists():
+        try:
+            return json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return []
+    return []
+
+
+def save_manifest(manifest):
+    OUTPUT_DIR.mkdir(exist_ok=True)
+    MANIFEST_FILE.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def slug_exists(slug):
+    return any(a["slug"] == slug for a in load_manifest())
+
+
+def add_to_manifest(slug, title, category, filename):
+    manifest = load_manifest()
+    manifest.append({
+        "slug": slug,
+        "title": title,
+        "category": category,
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "filename": filename,
+    })
+    save_manifest(manifest)
+
+
+def get_related_articles(category, current_slug, limit=3):
+    manifest = load_manifest()
+    related = [a for a in manifest if a["category"] == category and a["slug"] != current_slug]
+    related = sorted(related, key=lambda x: x.get("date", ""), reverse=True)[:limit]
+    return related
+
+
+# ==================== HTML生成 ====================
 
 def topic_to_slug(topic):
-    """生成URL友好的文件名"""
-    h = hashlib.md5(topic.encode()).hexdigest()[:8]
-    # 取前10个中文字符
-    clean = re.sub(r'[^\u4e00-\u9fa5a-zA-Z0-9]', '', topic)[:10]
+    h = hashlib.md5(topic.encode()).hexdigest()[:10]
+    clean = re.sub(r"[^\u4e00-\u9fa5a-zA-Z0-9]", "", topic)[:15]
     return f"{clean}-{h}"
 
 
-def generate_html(title, body, category, slug):
-    """生成完整的HTML页面"""
-    cat_name = CATEGORIES.get(category, "热点")
-    date_str = datetime.now().strftime("%Y-%m-%d")
+def _md2html(text):
+    """简易markdown转HTML"""
+    html = text
+    html = re.sub(r"^## (.+)$", r"<h2>\1</h2>", html, flags=re.MULTILINE)
+    html = re.sub(r"^### (.+)$", r"<h3>\1</h3>", html, flags=re.MULTILINE)
+    html = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html)
+    html = re.sub(r"\[(.+?)\]\((.+?)\)", r'<a href="\2">\1</a>', html)
 
-    # 将markdown转成简单HTML
-    html_body = body
-    html_body = re.sub(r'^## (.+)$', r'<h2>\1</h2>', html_body, flags=re.MULTILINE)
-    html_body = re.sub(r'^### (.+)$', r'<h3>\1</h3>', html_body, flags=re.MULTILINE)
-    html_body = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html_body)
-    # 段落处理
-    paragraphs = html_body.split("\n\n")
-    html_body = ""
+    paragraphs = html.split("\n\n")
+    result = []
     for p in paragraphs:
         p = p.strip()
         if not p:
             continue
         if p.startswith("<h"):
-            html_body += p + "\n"
+            result.append(p)
         else:
-            html_body += f"<p>{p}</p>\n"
+            lines = p.split("\n")
+            p_html = "<br>".join(l.strip() for l in lines if l.strip())
+            result.append(f"<p>{p_html}</p>")
+    return "\n".join(result)
 
-    # CPS广告区块（根据分类不同展示不同推广）
-    ad_blocks = {
-        "tech": '<div class="ad-box"><p>📱 <a href="#tech-rec">2025热门数码好物推荐</a> | <a href="#tech-rec">AI工具合集</a></p></div>',
-        "health": '<div class="ad-box"><p>🏥 <a href="#health-rec">健康好物推荐</a> | <a href="#health-rec">养生食谱大全</a></p></div>',
-        "life": '<div class="ad-box"><p>💰 <a href="#life-rec">副业赚钱指南</a> | <a href="#life-rec">省钱攻略</a></p></div>',
-        "entertainment": '<div class="ad-box"><p>🎬 <a href="#ent-rec">热门影视推荐</a> | <a href="#ent-rec">明星周边</a></p></div>',
-        "hot": '<div class="ad-box"><p>🔥 <a href="#hot-rec">今日热门推荐</a> | <a href="#hot-rec">热点深度解读</a></p></div>',
-    }
-    ad_html = ad_blocks.get(category, ad_blocks["hot"])
+
+def _cps_block(category):
+    links = CPS_LINKS.get(category, CPS_LINKS["hot"])
+    html = '<div class="cps-box"><h3>📌 猜你也感兴趣</h3><ul>'
+    for link in links:
+        html += f'<li><a href="{link["url"]}" target="_blank" rel="nofollow">{link["text"]}</a></li>'
+    html += "</ul></div>"
+    return html
+
+
+def _related_block(related_articles):
+    if not related_articles:
+        return ""
+    html = '<div class="related"><h3>📖 相关推荐</h3><ul>'
+    for a in related_articles:
+        html += f'<li><a href="/articles/{a["filename"]}">{a["title"]}</a><span class="date">{a.get("date","")}</span></li>'
+    html += "</ul></div>"
+    return html
+
+
+def _jsonld_article(title, cat_name, date_iso, slug):
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "datePublished": date_iso,
+        "dateModified": date_iso,
+        "author": {"@type": "Organization", "name": SITE_NAME},
+        "publisher": {"@type": "Organization", "name": SITE_NAME, "url": SITE_URL},
+        "description": f"{title}，{cat_name}深度解读",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": f"{SITE_URL}/articles/{slug}.html"},
+    }, ensure_ascii=False)
+
+
+def _jsonld_breadcrumb(category, cat_name, title, slug):
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "首页",         "item": SITE_URL},
+            {"@type": "ListItem", "position": 2, "name": cat_name,       "item": f"{SITE_URL}/articles/{category}.html"},
+            {"@type": "ListItem", "position": 3, "name": title,           "item": f"{SITE_URL}/articles/{slug}.html"},
+        ]
+    }, ensure_ascii=False)
+
+
+def generate_article_html(title, body, category, slug, related_articles):
+    cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
+    cat_name = cat_info["name"]
+    cat_icon = cat_info["icon"]
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
+
+    html_body = _md2html(body)
+
+    # 在第2个</p>后插入中间广告位
+    parts = html_body.split("</p>")
+    if len(parts) > 3:
+        parts.insert(3, f"</p>\n{AD_CODE_MIDDLE}")
+        html_body = "".join(parts)
+
+    json_ld_article = _jsonld_article(title, cat_name, date_iso, slug)
+    json_ld_breadcrumb = _jsonld_breadcrumb(category, cat_name, title, slug)
 
     html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} - 热点资讯</title>
-<meta name="description" content="{title}，最新热点资讯深度解读，了解更多请阅读全文。">
-<meta name="keywords" content="{title},{cat_name},热点资讯,最新消息">
-<link rel="canonical" href="https://gudaoqihuo.com/articles/{slug}.html">
+<title>{title} - {SITE_NAME}</title>
+<meta name="description" content="{title}，{cat_name}深度解读，了解更多请阅读全文。">
+<meta name="keywords" content="{title},{cat_name},热点资讯,最新消息,深度解读">
+<link rel="canonical" href="{SITE_URL}/articles/{slug}.html">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{title}，{cat_name}深度解读">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{SITE_URL}/articles/{slug}.html">
+<meta property="og:site_name" content="{SITE_NAME}">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">{json_ld_article}</script>
+<script type="application/ld+json">{json_ld_breadcrumb}</script>
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:800px;margin:0 auto;padding:20px;background:#f9f9f9}}
-h1{{font-size:1.6em;margin-bottom:10px;color:#1a1a1a}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB",sans-serif;line-height:1.8;color:#333;max-width:800px;margin:0 auto;padding:15px;background:#fafafa}}
+.header{{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}}
+.header h1{{font-size:1.1em;color:#ff6b35}}
+.header a{{color:#666;text-decoration:none;font-size:.9em}}
+.breadcrumb{{font-size:.85em;color:#999;margin-bottom:15px}}
+.breadcrumb a{{color:#ff6b35;text-decoration:none}}
+.article-title{{font-size:1.6em;font-weight:bold;margin-bottom:8px;color:#1a1a1a;line-height:1.4}}
+.meta{{color:#888;font-size:.88em;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #eee;display:flex;gap:15px;flex-wrap:wrap}}
+.meta span{{display:flex;align-items:center;gap:4px}}
 h2{{font-size:1.3em;margin:25px 0 10px;color:#2c2c2c;border-left:4px solid #ff6b35;padding-left:10px}}
 h3{{font-size:1.1em;margin:20px 0 8px;color:#444}}
 p{{margin-bottom:15px;text-align:justify}}
-.meta{{color:#888;font-size:0.9em;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee}}
-.ad-box{{background:#fff8f0;border:1px solid #ffe0c0;border-radius:8px;padding:15px;margin:25px 0;text-align:center}}
-.ad-box a{{color:#ff6b35;text-decoration:none;font-weight:bold}}
-.footer{{margin-top:40px;padding-top:20px;border-top:1px solid #eee;text-align:center;color:#888;font-size:0.85em}}
-.nav{{margin-bottom:20px;padding:10px 0;border-bottom:1px solid #eee}}
-.nav a{{color:#ff6b35;text-decoration:none;margin-right:15px}}
+.ad-slot{{background:#f5f5f5;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.85em;border-radius:4px;border:1px dashed #ddd}}
+.cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
+.cps-box h3{{margin:0 0 12px;font-size:1.05em;color:#d4680a}}
+.cps-box ul{{list-style:none;padding:0}}
+.cps-box li{{padding:6px 0;border-bottom:1px dashed #ffd9b3}}
+.cps-box li:last-child{{border-bottom:none}}
+.cps-box a{{color:#d4680a;text-decoration:none;font-weight:500}}
+.cps-box a:hover{{text-decoration:underline}}
+.related{{background:#fff;border:1px solid #eee;border-radius:10px;padding:18px;margin:25px 0}}
+.related h3{{margin:0 0 12px;font-size:1.05em;color:#333}}
+.related ul{{list-style:none;padding:0}}
+.related li{{padding:8px 0;border-bottom:1px solid #f5f5f5;display:flex;justify-content:space-between;align-items:center}}
+.related li:last-child{{border-bottom:none}}
+.related a{{color:#333;text-decoration:none;flex:1}}
+.related a:hover{{color:#ff6b35}}
+.related .date{{color:#ccc;font-size:.8em;white-space:nowrap;margin-left:10px}}
+.footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
+.footer a{{color:#999;text-decoration:none;margin:0 8px}}
+@media(max-width:600px){{.article-title{{font-size:1.3em}}.meta{{flex-direction:column;gap:5px}}}}
 </style>
 </head>
 <body>
-<nav class="nav">
-<a href="/">首页</a>
-<a href="/articles/">全部文章</a>
+<div class="header">
+<h1>📰 {SITE_NAME}</h1>
+<a href="/">← 返回首页</a>
+</div>
+<nav class="breadcrumb">
+<a href="/">首页</a> &gt; <a href="/articles/{category}.html">{cat_icon} {cat_name}</a> &gt; {title}
 </nav>
 <article>
-<h1>{title}</h1>
-<div class="meta">发布时间：{date_str} | 分类：{cat_name} | 阅读约3分钟</div>
-{ad_html}
-{html_body}
-{ad_html}
-</article>
-<div class="footer">
-<p>© 2025 热点资讯站 | 内容仅供参考</p>
+<h1 class="article-title">{title}</h1>
+<div class="meta">
+<span>📅 {date_str}</span>
+<span>{cat_icon} {cat_name}</span>
+<span>⏱ 约5分钟</span>
 </div>
-<!-- 广告位预留 -->
-<div id="ad-placeholder"></div>
+<div class="ad-slot">{AD_CODE_TOP}</div>
+{html_body}
+{_cps_block(category)}
+{_related_block(related_articles)}
+</article>
+<div class="ad-slot">{AD_CODE_BOTTOM}</div>
+<div class="footer">
+<p>© 2025 {SITE_NAME} | 内容由AI智能生成仅供参考</p>
+<p>
+<a href="/">首页</a>
+<a href="/articles/hot.html">社会热点</a>
+<a href="/articles/tech.html">科技数码</a>
+<a href="/articles/health.html">健康养生</a>
+<a href="/articles/life.html">生活百科</a>
+<a href="/articles/entertainment.html">娱乐八卦</a>
+</p>
+</div>
 </body>
 </html>"""
     return html
 
 
-# ===== 首页生成 =====
+# ==================== 分类页 ====================
 
-def rebuild_index():
-    """重建首页，列出所有文章"""
-    articles_dir = OUTPUT_DIR
-    if not articles_dir.exists():
-        return
+def generate_category_page(category):
+    cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
+    cat_name = cat_info["name"]
+    cat_icon = cat_info["icon"]
 
-    # 收集所有文章
-    articles = []
-    for f in sorted(articles_dir.glob("*.html"), key=os.path.getmtime, reverse=True):
-        if f.name == "index.html":
-            continue
-        # 从文件中提取标题
-        content = f.read_text(encoding="utf-8")
-        title_match = re.search(r"<h1>(.*?)</h1>", content)
-        date_match = re.search(r"发布时间：(\d{4}-\d{2}-\d{2})", content)
-        cat_match = re.search(r"分类：(.+?) \|", content)
-        if title_match:
-            articles.append({
-                "title": title_match.group(1),
-                "url": f"/articles/{f.name}",
-                "date": date_match.group(1) if date_match else "",
-                "category": cat_match.group(1) if cat_match else "热点",
-            })
+    articles = sorted(
+        [a for a in load_manifest() if a["category"] == category],
+        key=lambda x: x.get("date", ""), reverse=True
+    )[:50]
 
-    # 只保留最新100篇在首页
-    articles = articles[:100]
+    list_items = "\n".join(
+        f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+        for a in articles
+    ) or '<li style="color:#999">暂无文章，敬请期待...</li>'
 
-    # 生成文章列表HTML
-    article_list = ""
-    for a in articles:
-        article_list += f'<li><span class="date">{a["date"]}</span><span class="cat">[{a["category"]}]</span><a href="{a["url"]}">{a["title"]}</a></li>\n'
-
-    index_html = f"""<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日热点资讯 - 今日头条热搜汇总</title>
-<meta name="description" content="每日更新最新热点资讯、社会新闻、科技动态、健康养生、生活百科，一站了解天下事。">
-<meta name="keywords" content="今日热点,热搜,最新消息,社会新闻,科技资讯,健康养生">
+<title>{cat_icon} {cat_name} - {SITE_NAME}</title>
+<meta name="description" content="{cat_name}最新资讯，每日更新，{cat_name}深度解读。">
+<meta name="keywords" content="{cat_name},最新资讯,热点,深度解读">
+<link rel="canonical" href="{SITE_URL}/articles/{category}.html">
+<meta name="robots" content="index, follow">
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:20px;background:#f9f9f9}}
-h1{{text-align:center;margin:20px 0;color:#1a1a1a}}
-.subtitle{{text-align:center;color:#666;margin-bottom:30px}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
+.header{{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}}
+.header h1{{font-size:1.1em;color:#ff6b35}}
+.header a{{color:#666;text-decoration:none;font-size:.9em}}
+.breadcrumb{{font-size:.85em;color:#999;margin-bottom:15px}}
+.breadcrumb a{{color:#ff6b35;text-decoration:none}}
+.cat-title{{font-size:1.5em;margin:20px 0;font-weight:bold}}
 ul{{list-style:none}}
-li{{padding:12px 15px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}}
+li{{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}}
 li:hover{{background:#fff}}
-.date{{color:#999;font-size:0.85em;white-space:nowrap}}
-.cat{{color:#ff6b35;font-size:0.8em;white-space:nowrap}}
+.date{{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}}
 a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
-.footer{{margin-top:40px;text-align:center;color:#888;font-size:0.85em}}
-.ad-banner{{background:#fff8f0;border:1px solid #ffe0c0;border-radius:8px;padding:20px;margin:20px 0;text-align:center}}
-.ad-banner a{{color:#ff6b35;font-weight:bold;text-decoration:none}}
+.footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
+.footer a{{color:#999;text-decoration:none;margin:0 8px}}
+.ad-slot{{background:#f5f5f5;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.85em;border-radius:4px;border:1px dashed #ddd}}
 </style>
 </head>
 <body>
-<h1>📰 每日热点资讯</h1>
-<p class="subtitle">AI智能聚合，每日三更，一站了解天下事</p>
-<div class="ad-banner">
-<p>🔥 <a href="#">热门推荐</a> | <a href="#">今日必读</a> | <a href="#">深度好文</a></p>
+<div class="header">
+<h1>📰 {SITE_NAME}</h1>
+<a href="/">← 返回首页</a>
 </div>
+<nav class="breadcrumb">
+<a href="/">首页</a> &gt; {cat_icon} {cat_name}
+</nav>
+<h2 class="cat-title">{cat_icon} {cat_name}</h2>
+<div class="ad-slot">{AD_CODE_TOP}</div>
 <ul>
-{article_list}
+{list_items}
 </ul>
+<div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 每日热点资讯 | 内容由AI智能生成，仅供参考</p>
-<p>更新频率：每日三次自动更新</p>
+<p>© 2025 {SITE_NAME}</p>
+<p>
+<a href="/">首页</a>
+<a href="/articles/hot.html">社会热点</a>
+<a href="/articles/tech.html">科技数码</a>
+<a href="/articles/health.html">健康养生</a>
+<a href="/articles/life.html">生活百科</a>
+<a href="/articles/entertainment.html">娱乐八卦</a>
+</p>
 </div>
-<!-- 广告位 -->
-<div id="ad-placeholder"></div>
+</body>
+</html>"""
+    return html
+
+
+# ==================== 首页 ====================
+
+def rebuild_index():
+    manifest = load_manifest()
+    if not manifest:
+        print("  首页：暂无文章")
+        return
+
+    articles = sorted(manifest, key=lambda x: x.get("date", ""), reverse=True)[:100]
+    list_items = "\n".join(
+        f'<li><span class="date">{a.get("date","")}</span>'
+        f'<span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span>'
+        f'<a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+        for a in articles
+    )
+
+    cat_links = "\n".join(
+        f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>'
+        for k, v in CATEGORIES.items()
+    )
+
+    html = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{SITE_NAME} - {SITE_DESC}</title>
+<meta name="description" content="{SITE_DESC}">
+<meta name="keywords" content="今日热点,热搜,最新消息,社会新闻,科技资讯,健康养生,生活百科,娱乐八卦">
+<link rel="canonical" href="{SITE_URL}/">
+<meta property="og:title" content="{SITE_NAME}">
+<meta property="og:description" content="{SITE_DESC}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{SITE_URL}/">
+<meta property="og:site_name" content="{SITE_NAME}">
+<meta name="robots" content="index, follow">
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
+.site-header{{text-align:center;padding:25px 0 20px}}
+.site-header h1{{font-size:1.8em;color:#1a1a1a;margin-bottom:5px}}
+.site-header p{{color:#888;font-size:.95em}}
+.cat-nav{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}}
+.cat-link{{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;font-weight:500;border:1px solid #ffe0c0}}
+.cat-link:hover{{background:#ff6b35;color:#fff;border-color:#ff6b35}}
+ul{{list-style:none}}
+li{{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px}}
+li:hover{{background:#fff}}
+.date{{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}}
+.cat{{color:#ff6b35;font-size:.8em;white-space:nowrap;min-width:75px}}
+a{{color:#333;text-decoration:none}}
+a:hover{{color:#ff6b35}}
+.footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
+.footer a{{color:#999;text-decoration:none;margin:0 8px}}
+.ad-slot{{background:#f5f5f5;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.85em;border-radius:4px;border:1px dashed #ddd}}
+</style>
+</head>
+<body>
+<div class="site-header">
+<h1>📰 {SITE_NAME}</h1>
+<p>{SITE_DESC}</p>
+</div>
+<nav class="cat-nav">
+{cat_links}
+</nav>
+<div class="ad-slot">{AD_CODE_TOP}</div>
+<ul>
+{list_items}
+</ul>
+<div class="ad-slot">{AD_CODE_BOTTOM}</div>
+<div class="footer">
+<p>© 2025 {SITE_NAME} | AI智能聚合，每日多次更新</p>
+<p>
+<a href="/">首页</a>
+<a href="/articles/hot.html">社会热点</a>
+<a href="/articles/tech.html">科技数码</a>
+<a href="/articles/health.html">健康养生</a>
+<a href="/articles/life.html">生活百科</a>
+<a href="/articles/entertainment.html">娱乐八卦</a>
+</p>
+</div>
 </body>
 </html>"""
 
-    INDEX_FILE.write_text(index_html, encoding="utf-8")
-    print(f"首页已更新，共 {len(articles)} 篇文章")
+    INDEX_FILE.write_text(html, encoding="utf-8")
+    print(f"  首页已更新，展示 {len(articles)} 篇")
 
+
+# ==================== Sitemap ====================
 
 def rebuild_sitemap():
-    """重建sitemap"""
-    articles_dir = OUTPUT_DIR
-    if not articles_dir.exists():
-        return
+    manifest = load_manifest()
+    urls = [f'<url><loc>{SITE_URL}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>']
+    for cat in CATEGORIES:
+        urls.append(f'<url><loc>{SITE_URL}/articles/{cat}.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>')
+    for a in manifest:
+        urls.append(f'<url><loc>{SITE_URL}/articles/{a["filename"]}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>')
 
-    urls = ['<url><loc>https://gudaoqihuo.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>']
-    for f in sorted(articles_dir.glob("*.html"), key=os.path.getmtime, reverse=True):
-        if f.name == "index.html":
-            continue
-        urls.append(f'<url><loc>https://gudaoqihuo.com/articles/{f.name}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>')
-
-    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{"".join(urls)}
-</urlset>"""
-
+    sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{"".join(urls)}\n</urlset>'
     SITEMAP_FILE.write_text(sitemap, encoding="utf-8")
-    print("Sitemap已更新")
+    print(f"  Sitemap已更新，共 {len(urls)} 条URL")
 
 
-# ===== 主流程 =====
+# ==================== 主流程 ====================
 
 def main():
     if not API_KEY:
-        print("错误：未设置 ZHIPU_API_KEY 环境变量")
+        print("❌ 未设置 ZHIPU_API_KEY 环境变量")
         return
 
-    # 确保输出目录存在
+    print(f"🚀 内容生成器 v2.0 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    # 获取热点话题
-    print("正在抓取热点话题...")
+    # 1. 抓热点
     topics = get_hot_topics()
-    print(f"获取到 {len(topics)} 个话题: {topics}")
+    print(f"📋 本轮话题: {topics}")
 
-    # 检查已有文章，避免重复
-    existing = set()
-    for f in OUTPUT_DIR.glob("*.html"):
-        existing.add(f.stem)
-
+    # 2. 逐篇生成
     generated = 0
-    for topic in topics:
+    for i, topic in enumerate(topics):
         slug = topic_to_slug(topic)
-        if slug in existing:
-            print(f"跳过已存在: {topic}")
+        if slug_exists(slug):
+            print(f"  ⏭ 跳过重复: {topic}")
             continue
 
-        print(f"正在生成: {topic}")
+        print(f"  ✍️ [{i+1}/{len(topics)}] 生成: {topic}")
         category = classify_topic(topic)
         title, body = generate_article(topic)
 
         if not title or not body:
+            print(f"  ❌ 生成失败: {topic}")
             continue
 
-        html = generate_html(title, body, category, slug)
-        output_path = OUTPUT_DIR / f"{slug}.html"
-        output_path.write_text(html, encoding="utf-8")
-        print(f"已生成: {output_path}")
-        generated += 1
+        related = get_related_articles(category, slug)
+        filename = f"{slug}.html"
+        html = generate_article_html(title, body, category, slug, related)
+        (OUTPUT_DIR / filename).write_text(html, encoding="utf-8")
+        add_to_manifest(slug, title, category, filename)
 
+        generated += 1
+        print(f"  ✅ 已生成: {filename}")
+
+        # 避免API限流
+        if i < len(topics) - 1:
+            time.sleep(2)
+
+    # 3. 重建站点
     if generated > 0:
-        print(f"\n本次共生成 {generated} 篇文章")
+        print("\n📐 重建站点页面...")
         rebuild_index()
+        for cat in CATEGORIES:
+            (OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page(cat), encoding="utf-8")
         rebuild_sitemap()
-    else:
-        print("本次无新文章生成")
+
+    print(f"\n🏁 完成！本次生成 {generated} 篇新文章")
 
 
 if __name__ == "__main__":
