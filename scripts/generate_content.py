@@ -46,7 +46,7 @@ EN_INDEX_FILE = Path("en/index.html")
 SITEMAP_FILE = Path("sitemap.xml")
 
 # GA4 追踪代码
-GA4_ID = "G-XE3F4GQMQ5"
+GA4_ID = "G-XE3F4GQQM5"
 GA4_CODE = f'''<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>
 <script>
