@@ -45,6 +45,17 @@ INDEX_FILE = Path("index.html")
 EN_INDEX_FILE = Path("en/index.html")
 SITEMAP_FILE = Path("sitemap.xml")
 
+# GA4 追踪代码
+GA4_ID = "G-XE3F4GQMQ5"
+GA4_CODE = f'''<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_ID}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', '{GA4_ID}');
+</script>'''
+
 # 中文分类
 CATEGORIES = {
     "hot":          {"name": "社会热点",   "icon": "🔥"},
@@ -599,6 +610,7 @@ p{{margin-bottom:15px;text-align:justify}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 </style>
+{GA4_CODE}
 </head>
 <body>
 <div class="header">
@@ -675,6 +687,7 @@ p{{margin-bottom:15px;text-align:justify}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 </style>
+{GA4_CODE}
 </head>
 <body>
 <div class="header">
@@ -734,6 +747,7 @@ a:hover{{color:#ff6b35}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 </style>
+{GA4_CODE}
 </head>
 <body>
 <div class="header">
@@ -784,6 +798,7 @@ a:hover{{color:#ff6b35}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 </style>
+{GA4_CODE}
 </head>
 <body>
 <div class="header">
@@ -845,6 +860,7 @@ a:hover{{color:#ff6b35}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 </style>
+{GA4_CODE}
 </head>
 <body>
 <div class="site-header">
@@ -908,6 +924,7 @@ a:hover{{color:#ff6b35}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
 </style>
+{GA4_CODE}
 </head>
 <body>
 <div class="site-header">
