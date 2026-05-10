@@ -1013,6 +1013,48 @@ def rebuild_sitemap():
 
 # ==================== 主流程 ====================
 
+def clean_old_articles(days=15):
+    """清理N天前的旧文章，保持仓库轻量"""
+    from datetime import datetime, timedelta
+    cutoff_date = datetime.now() - timedelta(days=days)
+    cutoff_str = cutoff_date.strftime('%Y-%m-%d')
+    
+    removed_zh, removed_en = 0, 0
+    
+    # 清理中文文章
+    if MANIFEST_FILE.exists():
+        manifest = json.loads(MANIFEST_FILE.read_text(encoding='utf-8'))
+        new_manifest = []
+        for item in manifest:
+            if item.get('date', '9999-99-99') < cutoff_str:
+                # 删除文件
+                file_path = OUTPUT_DIR / item['filename']
+                if file_path.exists():
+                    file_path.unlink()
+                    removed_zh += 1
+            else:
+                new_manifest.append(item)
+        MANIFEST_FILE.write_text(json.dumps(new_manifest, ensure_ascii=False, indent=2), encoding='utf-8')
+    
+    # 清理英文文章
+    if EN_MANIFEST_FILE.exists():
+        manifest = json.loads(EN_MANIFEST_FILE.read_text(encoding='utf-8'))
+        new_manifest = []
+        for item in manifest:
+            if item.get('date', '9999-99-99') < cutoff_str:
+                file_path = EN_OUTPUT_DIR / item['filename']
+                if file_path.exists():
+                    file_path.unlink()
+                    removed_en += 1
+            else:
+                new_manifest.append(item)
+        EN_MANIFEST_FILE.write_text(json.dumps(new_manifest, ensure_ascii=False, indent=2), encoding='utf-8')
+    
+    if removed_zh > 0 or removed_en > 0:
+        print(f"🧹 清理完成: 删除中文 {removed_zh} 篇, 英文 {removed_en} 篇 (保留 {days} 天内)")
+    
+    return removed_zh, removed_en
+
 def main():
     if not API_KEY:
         print("❌ 未设置 ZHIPU_API_KEY 环境变量")
@@ -1021,6 +1063,9 @@ def main():
     print(f"🚀 双语内容生成器 v3.0 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     OUTPUT_DIR.mkdir(exist_ok=True)
     EN_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # 0. 清理旧文章(保留15天)
+    clean_old_articles(days=15)
 
     # 1. 抓热点
     topics = get_hot_topics()
