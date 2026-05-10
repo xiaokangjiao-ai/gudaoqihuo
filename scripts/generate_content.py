@@ -58,6 +58,7 @@ gtag('config', '{GA4_ID}');
 
 # 中文分类
 CATEGORIES = {
+    "finance":      {"name": "财经投资",   "icon": "📈"},
     "hot":          {"name": "社会热点",   "icon": "🔥"},
     "tech":         {"name": "科技数码",   "icon": "📱"},
     "health":       {"name": "健康养生",   "icon": "🏥"},
@@ -67,6 +68,7 @@ CATEGORIES = {
 
 # 英文分类
 EN_CATEGORIES = {
+    "finance":      {"name": "Finance",      "icon": "📈"},
     "hot":          {"name": "Trending",     "icon": "🔥"},
     "tech":         {"name": "Tech",         "icon": "📱"},
     "health":       {"name": "Health",       "icon": "🏥"},
@@ -97,6 +99,12 @@ CPS_LINKS = {
         {"text": "限时优惠活动专区", "url": "https://www.amazon.cn/gp/goldbox?tag=gudaoqihuo-20", "desc": "今日特价"},
     ],
 }
+
+# 财经分类CPS推广链接
+CPS_LINKS["finance"] = [
+    {"text": "理财入门必读书籍", "url": "https://www.amazon.cn/s?k=理财书籍&tag=gudaoqihuo-20", "desc": "财商提升"},
+    {"text": "投资工具精选合集", "url": "https://www.amazon.cn/s?k=投资工具&tag=gudaoqihuo-20", "desc": "实战必备"},
+]
 
 # 英文CPS推广链接(Amazon.com)
 EN_CPS_LINKS = {
