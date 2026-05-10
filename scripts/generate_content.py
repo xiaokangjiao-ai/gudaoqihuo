@@ -122,6 +122,11 @@ EN_CPS_LINKS = {
     ],
 }
 
+EN_CPS_LINKS["finance"] = [
+    {"text": "Finance & Investment Books", "url": "https://www.amazon.com/s?k=finance+books&tag=gudaoqihuo-20", "desc": "Money Smart"},
+    {"text": "Stock Market Tools", "url": "https://www.amazon.com/s?k=stock+market+tools&tag=gudaoqihuo-20", "desc": "Trade Smart"},
+]
+
 # 广告位配置(中英文共用)
 AD_CODE_TOP = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
@@ -190,10 +195,32 @@ def fetch_zhihu_hot():
         return [item.get("target", {}).get("title", "") for item in data.get("data", []) if item.get("target", {}).get("title")][:30]
     except: return []
 
+def fetch_finance_hot():
+    print("    抓取财经热点...")
+    # 东方财富热门话题
+    sources = []
+    try:
+        resp = fetch_with_retry("https://push2.eastmoney.com/api/qt/clist/get?cb=jQuery&pn=1&pz=20&po=1&np=1&ut=bd1d9ddb04089700cf9c27f6f7426281&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23,m:0+t:81+s:2048&fields=f1,f2,f3,f12,f14&_=1")
+        if resp:
+            text = resp.text
+            # 提取股票名称
+            names = re.findall(r'"f14":"([^"]+)"', text)
+            topics = [f"{n}股票" for n in names if n][:10]
+            sources.extend(topics)
+    except: pass
+    # 补充财经固定热点词
+    finance_keywords = [
+        "A股今日行情", "美联储加息", "人民币汇率", "黄金价格走势",
+        "科技股最新动态", "新能源汽车板块", "半导体行业分析", "房地产政策",
+        "数字货币行情", "基金定投技巧"
+    ]
+    sources.extend(finance_keywords)
+    return sources[:15]
+
 def get_hot_topics():
     print("📡 开始抓取热点话题...")
     all_topics = []
-    sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot]
+    sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot, fetch_finance_hot]
     for source in sources:
         try:
             topics = source()
@@ -444,9 +471,10 @@ VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
 def classify_topic(topic):
     """中文分类"""
     keywords = {
-        "tech": ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能"],
-        "health": ["健康", "养生", "医疗", "医院", "疫情", "病毒", "疫苗", "减肥", "健身", "营养", "睡眠", "心理"],
-        "life": ["生活", "美食", "旅游", "房产", "汽车", "教育", "职场", "理财", "购物", "家居", "亲子"],
+        "finance":    ["股票", "期货", "基金", "黄金", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元"],
+        "tech":       ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能"],
+        "health":     ["健康", "养生", "医疗", "医院", "疫情", "病毒", "疫苗", "减肥", "健身", "营养", "睡眠", "心理"],
+        "life":       ["生活", "美食", "旅游", "房产", "汽车", "教育", "职场", "购物", "家居", "亲子"],
         "entertainment": ["娱乐", "明星", "电影", "电视剧", "综艺", "音乐", "游戏", "网红", "八卦", "偶像"],
     }
     for cat, kws in keywords.items():
