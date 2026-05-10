@@ -46,6 +46,7 @@ jobs:
             echo "无新内容提交"
           } || {
             git commit -m "auto: 双语内容更新 $(date +%Y-%m-%d-%H%M)"
-            git push
+            git pull origin main --rebase || true
+            git push origin main
             echo "已推送 $(git log -1 --format='%s')"
           }
