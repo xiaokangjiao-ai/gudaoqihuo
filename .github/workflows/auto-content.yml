@@ -2,9 +2,10 @@ name: Auto Content Deploy (Bilingual)
 
 on:
   schedule:
-    # 每天 8:00 和 14:00 北京时间，错开整点避免GitHub延迟
-    - cron: '23 0 * * *'   # UTC 0:23 = 北京 8:23
-    - cron: '17 6 * * *'   # UTC 6:17 = 北京 14:17
+    # 北京时间 8:00, 12:00, 18:00 (UTC 0:00, 4:00, 10:00)
+    - cron: '0 0 * * *'     # 北京 8:00
+    - cron: '0 4 * * *'     # 北京 12:00
+    - cron: '0 10 * * *'    # 北京 18:00
   workflow_dispatch:
 
 jobs:
