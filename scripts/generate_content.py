@@ -148,6 +148,78 @@ AD_CODE_BOTTOM = '''<script async src="https://pagead2.googlesyndication.com/pag
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
+# 文章头图SVG模板(按分类)
+SVG_HERO_TEMPLATES = {
+    "finance": {
+        "gradient": ["#FF8C00", "#FFD700", "#FFA500"],
+        "icon_svg": '<path d="M30 70 L50 50 L60 60 L80 30" stroke="rgba(255,255,255,0.9)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="70" r="3" fill="rgba(255,255,255,0.7)"/><circle cx="50" cy="50" r="3" fill="rgba(255,255,255,0.7)"/><circle cx="60" cy="60" r="3" fill="rgba(255,255,255,0.7)"/><circle cx="80" cy="30" r="3" fill="rgba(255,255,255,0.7)"/><polygon points="75,28 83,28 80,22" fill="rgba(255,255,255,0.8)"/>',
+        "pattern": '<line x1="0" y1="90" x2="300" y2="90" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="0" y1="60" x2="300" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>',
+    },
+    "hot": {
+        "gradient": ["#FF4444", "#FF6B35", "#FF8C42"],
+        "icon_svg": '<path d="M55 25 C55 25 70 45 70 55 C70 63 63 70 55 70 C50 70 46 67 45 63 C44 67 40 70 35 70 C27 70 20 63 20 55 C20 45 35 25 35 25 C35 25 42 35 42 42" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" fill="none" stroke-linecap="round"/>',
+        "pattern": '<circle cx="50" cy="20" r="8" fill="rgba(255,255,255,0.06)"/><circle cx="250" cy="70" r="12" fill="rgba(255,255,255,0.04)"/>',
+    },
+    "tech": {
+        "gradient": ["#0066FF", "#0099FF", "#00D4FF"],
+        "icon_svg": '<rect x="40" y="35" width="30" height="40" rx="3" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><line x1="48" y1="72" x2="62" y2="72" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"/><circle cx="55" cy="42" r="2" fill="rgba(255,255,255,0.6)"/><path d="M25 50 L35 50 M75 50 L85 50 M55 20 L55 30 M55 75 L55 80" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>',
+        "pattern": '<circle cx="200" cy="30" r="20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/><circle cx="220" cy="50" r="15" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>',
+    },
+    "health": {
+        "gradient": ["#2ECC71", "#27AE60", "#1ABC9C"],
+        "icon_svg": '<path d="M55 40 C55 32 62 28 67 33 C72 38 67 48 55 58 C43 48 38 38 43 33 C48 28 55 32 55 40Z" fill="rgba(255,255,255,0.85)"/>',
+        "pattern": '<circle cx="40" cy="60" r="6" fill="rgba(255,255,255,0.06)"/><circle cx="260" cy="40" r="4" fill="rgba(255,255,255,0.05)"/>',
+    },
+    "life": {
+        "gradient": ["#F39C12", "#E67E22", "#D35400"],
+        "icon_svg": '<path d="M55 25 L60 45 L80 45 L64 57 L70 77 L55 65 L40 77 L46 57 L30 45 L50 45Z" fill="rgba(255,255,255,0.85)"/>',
+        "pattern": '<rect x="150" y="15" width="8" height="8" rx="1" transform="rotate(30 154 19)" fill="rgba(255,255,255,0.05)"/>',
+    },
+    "entertainment": {
+        "gradient": ["#9B59B6", "#E91E63", "#FF5722"],
+        "icon_svg": '<rect x="35" y="30" width="40" height="30" rx="3" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><path d="M35 33 L55 45 L75 33" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none"/><line x1="48" y1="30" x2="48" y2="25" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/><line x1="55" y1="30" x2="55" y2="22" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/><line x1="62" y1="30" x2="62" y2="25" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>',
+        "pattern": '<polygon points="200,15 203,22 210,22 204,27 206,34 200,30 194,34 196,27 190,22 197,22" fill="rgba(255,255,255,0.06)"/>',
+    },
+}
+
+def generate_svg_hero(title, category, lang="zh"):
+    """生成文章头图SVG"""
+    cat_key = category if category in SVG_HERO_TEMPLATES else "hot"
+    tmpl = SVG_HERO_TEMPLATES[cat_key]
+    g = tmpl["gradient"]
+    if lang == "zh":
+        display_title = title[:28] + ("..." if len(title) > 28 else "")
+    else:
+        display_title = title[:38] + ("..." if len(title) > 38 else "")
+    display_title = display_title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+    cat_info = CATEGORIES.get(category, CATEGORIES["hot"]) if lang == "zh" else EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
+    cat_name = cat_info["name"]
+    cat_icon = cat_info["icon"]
+    site_label = SITE_NAME if lang == "zh" else EN_SITE_NAME
+    date_label = datetime.now().strftime("%Y-%m-%d")
+    svg = (
+        '<div class="hero-svg"><svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">'
+        '<defs><linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">'
+        '<stop offset="0%" style="stop-color:' + g[0] + '"/>'
+        '<stop offset="50%" style="stop-color:' + g[1] + '"/>'
+        '<stop offset="100%" style="stop-color:' + g[2] + '"/>'
+        '</linearGradient>'
+        '<filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '</defs>'
+        '<rect width="800" height="280" fill="url(#hg)"/>'
+        '<circle cx="680" cy="60" r="120" fill="rgba(255,255,255,0.04)"/>'
+        '<circle cx="720" cy="200" r="80" fill="rgba(255,255,255,0.03)"/>'
+        '<circle cx="100" cy="240" r="60" fill="rgba(255,255,255,0.03)"/>'
+        + tmpl["pattern"]
+        + '<g transform="translate(620,80) scale(1.8)" filter="url(#glow)">' + tmpl["icon_svg"] + '</g>'
+        + f'<text x="40" y="70" font-size="14" fill="rgba(255,255,255,0.7)" font-family="-apple-system,sans-serif" font-weight="500">{cat_icon} {cat_name}</text>'
+        + f'<text x="40" y="135" font-size="30" fill="white" font-family="-apple-system,sans-serif" font-weight="700">{display_title}</text>'
+        '<line x1="40" y1="158" x2="200" y2="158" stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round"/>'
+        + f'<text x="40" y="190" font-size="13" fill="rgba(255,255,255,0.6)" font-family="-apple-system,sans-serif">{site_label} {chr(183)} {date_label}</text>'
+        '</svg></div>'
+    )
+    return svg
+
 # 财经免责声明
 FINANCE_DISCLAIMER_ZH = '''<div style="background:linear-gradient(135deg,#fff8f0,#fff3e0);border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.88em;color:#8d6e63;line-height:1.7">
 ⚠️ <strong>免责声明</strong><br>
@@ -629,6 +701,7 @@ def generate_article_html_zh(title, body, category, slug, related_articles):
     date_str = datetime.now().strftime("%Y-%m-%d")
     date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
+    svg_hero = generate_svg_hero(title, category, "zh")
 
     # 插入中间广告
     parts = html_body.split("</p>")
@@ -660,7 +733,9 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 .meta{{color:#888;font-size:.88em;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #eee}}
 h2{{font-size:1.3em;margin:25px 0 10px;color:#2c2c2c;border-left:4px solid #ff6b35;padding-left:10px}}
 p{{margin-bottom:15px;text-align:justify}}
-.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
+.ad-slot{{margin:20px 0;text-align:center}}
+.hero-svg{{margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}}
+.hero-svg svg{{width:100%;display:block}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
@@ -675,6 +750,7 @@ p{{margin-bottom:15px;text-align:justify}}
 .related .date{{color:#ccc;font-size:.8em;margin-left:10px}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
+@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -689,8 +765,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <article>
 <h1 class="article-title">{title}</h1>
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
-<div class="ad-slot">{AD_CODE_TOP}</div>
-{html_body}
+{svg_hero}
 {html_body}
 {disclaimer}
 {_cps_block(category, "zh")}
@@ -710,6 +785,7 @@ def generate_article_html_en(title, body, category, slug, related_articles):
     date_str = datetime.now().strftime("%Y-%m-%d")
     date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
+    svg_hero = generate_svg_hero(title, category, "en")
 
     parts = html_body.split("</p>")
     if len(parts) > 3:
@@ -740,7 +816,9 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 .meta{{color:#888;font-size:.88em;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #eee}}
 h2{{font-size:1.3em;margin:25px 0 10px;color:#2c2c2c;border-left:4px solid #ff6b35;padding-left:10px}}
 p{{margin-bottom:15px;text-align:justify}}
-.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
+.ad-slot{{margin:20px 0;text-align:center}}
+.hero-svg{{margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}}
+.hero-svg svg{{width:100%;display:block}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
@@ -755,6 +833,7 @@ p{{margin-bottom:15px;text-align:justify}}
 .related .date{{color:#ccc;font-size:.8em;margin-left:10px}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
+@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -769,7 +848,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <article>
 <h1 class="article-title">{title}</h1>
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
-<div class="ad-slot">{AD_CODE_TOP}</div>
+{svg_hero}
 {html_body}
 {disclaimer}
 {_cps_block(category, "en")}
@@ -816,7 +895,7 @@ a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
+.ad-slot{{margin:20px 0;text-align:center}}
 </style>
 {GA4_CODE}
 </head>
@@ -869,7 +948,7 @@ a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
+.ad-slot{{margin:20px 0;text-align:center}}
 </style>
 {GA4_CODE}
 </head>
@@ -946,7 +1025,7 @@ a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
+.ad-slot{{margin:20px 0;text-align:center}}
 </style>
 {GA4_CODE}
 </head>
@@ -1034,7 +1113,7 @@ a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-.ad-slot{{margin:20px 0;min-height:90px;text-align:center}}
+.ad-slot{{margin:20px 0;text-align:center}}
 </style>
 {GA4_CODE}
 </head>
