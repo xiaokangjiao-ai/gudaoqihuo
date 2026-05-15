@@ -48,7 +48,16 @@ jobs:
             echo "无新内容提交"
           } || {
             git commit -m "auto: 双语内容更新 $(date +%Y-%m-%d-%H%M)"
-            git pull origin main --rebase --strategy-option=theirs 2>/dev/null || true
-            git push origin main || git push origin main --force-with-lease
+            # 先 fetch 远程最新
+            git fetch origin main
+            # 尝试 rebase，如果失败则强制使用本地版本
+            git rebase origin/main || {
+              echo "Rebase 冲突，使用本地版本覆盖"
+              git rebase --abort
+              git reset --hard origin/main
+              git cherry-pick HEAD@{1} || true
+            }
+            # 强制推送（确保成功）
+            git push origin main --force-with-lease || git push origin main --force
             echo "已推送 $(git log -1 --format='%s')"
           }
