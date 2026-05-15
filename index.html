@@ -16,6 +16,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-
 .lang-switch{text-align:center;margin-bottom:15px}
 .lang-switch a{color:#ff6b35;text-decoration:none;margin:0 10px;padding:5px 15px;border:1px solid #ff6b35;border-radius:20px}
 .lang-switch a:hover{background:#ff6b35;color:#fff}
+.top-bar{display:flex;justify-content:center;align-items:center;gap:15px;margin-bottom:10px}
+.contact-btn{color:#2e7d32;text-decoration:none;font-size:.9em;cursor:pointer;border:1px solid #a5d6a7;padding:4px 14px;border-radius:20px;background:#e8f5e9}
+.contact-btn:hover{background:#43a047;color:#fff}
+.contact-box{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:25px 30px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.18);z-index:1000;min-width:300px}
+.contact-box.show{display:block}
+.contact-box h3{margin:0 0 18px;font-size:1.1em;color:#333}
+.contact-item{margin:10px 0;padding:10px 14px;background:#f5f5f5;border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.contact-item code{font-size:.9em;color:#555;word-break:break-all}
+.contact-item button{padding:4px 12px;border-radius:6px;background:#ff6b35;color:#fff;border:none;cursor:pointer;font-size:.85em;white-space:nowrap}
+.contact-item button:hover{background:#e65100}
+.contact-close{margin-top:18px;padding:8px 20px;border-radius:8px;background:#eee;color:#666;border:none;cursor:pointer;font-size:.9em}
+.contact-close:hover{background:#ddd}
+.contact-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);z-index:999}
+.contact-overlay.show{display:block}
 .cat-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#fff;border-radius:10px}
 .cat-link{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}
 .cat-link:hover{background:#ff6b35;color:#fff}
@@ -44,8 +58,18 @@ gtag('config', 'G-XE3F4GQQM5');
 <h1>📰 每日热点速递</h1>
 <p>AI智能聚合热点资讯,每日更新,一站了解天下事</p>
 </div>
+<div class="top-bar">
 <div class="lang-switch">
 <a href="/">中文</a> | <a href="/en/">English</a>
+</div>
+<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">✉️ 联系我们</a>
+</div>
+<div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
+<div class="contact-box" id="contactBox">
+<h3>✉️ 联系我们</h3>
+<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='已复制'">复制</button></div>
+<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='已复制'">复制</button></div>
+<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">关闭</button>
 </div>
 <nav class="cat-nav"><a href="/articles/finance.html" class="cat-link">📈 财经投资</a>
 <a href="/articles/hot.html" class="cat-link">🔥 社会热点</a>
