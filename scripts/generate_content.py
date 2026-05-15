@@ -148,6 +148,17 @@ AD_CODE_BOTTOM = '''<script async src="https://pagead2.googlesyndication.com/pag
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
+# 财经免责声明
+FINANCE_DISCLAIMER_ZH = '''<div style="background:linear-gradient(135deg,#fff8f0,#fff3e0);border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.88em;color:#8d6e63;line-height:1.7">
+⚠️ <strong>免责声明</strong><br>
+本频道所有内容仅供参考和学习交流之用，不构成任何投资建议、交易指导或财务顾问意见。市场有风险，投资需谨慎。文中提及的股票、基金、数字货币、大宗商品等金融产品，均不构成买入、卖出或持有的推荐。投资者应根据自身风险承受能力独立判断，并自行承担投资风险。过往表现不代表未来收益。如需专业投资建议，请咨询持牌金融机构。本站及作者对任何因参考本文内容而造成的直接或间接损失不承担任何责任。
+</div>'''
+
+FINANCE_DISCLAIMER_EN = '''<div style="background:linear-gradient(135deg,#fff8f0,#fff3e0);border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.88em;color:#8d6e63;line-height:1.7">
+⚠️ <strong>Disclaimer</strong><br>
+All content in this section is for informational and educational purposes only and does not constitute investment advice, trading guidance, or financial advisory services. Market involves risk; invest with caution. Stocks, funds, cryptocurrencies, commodities, and other financial instruments mentioned herein do not constitute recommendations to buy, sell, or hold. Investors should make independent judgments based on their own risk tolerance and bear their own investment risks. Past performance does not guarantee future results. For professional investment advice, please consult a licensed financial institution. This site and its authors accept no liability for any direct or indirect losses resulting from reliance on content published herein.
+</div>'''
+
 # 备用常青话题
 FALLBACK_TOPICS = [
     "人工智能发展趋势", "健康养生小知识", "科技数码测评", "生活小妙招", "娱乐八卦热点",
@@ -216,6 +227,17 @@ def fetch_finance_hot():
             topics = [f"{n}股票" for n in names if n][:10]
             sources.extend(topics)
     except: pass
+    # 全球热门股票与大宗商品点评
+    global_market_topics = [
+        "特斯拉股价最新动态", "苹果公司财报分析", "英伟达AI芯片市场前景",
+        "微软市值走势分析", "谷歌AI战略布局",
+        "阿里巴巴港股走势", "腾讯控股投资价值分析", "比亚迪新能源汽车市场",
+        "贵州茅台股价点评", "中国平安投资策略",
+        "黄金价格走势与避险情绪", "原油价格分析OPEC产量",
+        "比特币以太坊行情分析", "铜价走势与新能源需求",
+        "美联储利率决议影响", "人民币对美元汇率",
+    ]
+    sources.extend(global_market_topics)
     # 补充财经固定热点词
     finance_keywords = [
         "A股今日行情", "美联储加息", "人民币汇率", "黄金价格走势",
@@ -223,7 +245,14 @@ def fetch_finance_hot():
         "数字货币行情", "基金定投技巧"
     ]
     sources.extend(finance_keywords)
-    return sources[:15]
+    # 去重
+    seen = set()
+    unique = []
+    for t in sources:
+        if t not in seen:
+            seen.add(t)
+            unique.append(t)
+    return unique[:25]
 
 def get_hot_topics():
     print("📡 开始抓取热点话题...")
@@ -608,6 +637,7 @@ def generate_article_html_zh(title, body, category, slug, related_articles):
         html_body = "".join(parts)
 
     json_ld = _jsonld_article(title, cat_name, date_iso, slug, "zh")
+    disclaimer = FINANCE_DISCLAIMER_ZH if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -661,6 +691,8 @@ p{{margin-bottom:15px;text-align:justify}}
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
 <div class="ad-slot">{AD_CODE_TOP}</div>
 {html_body}
+{html_body}
+{disclaimer}
 {_cps_block(category, "zh")}
 {_related_block(related_articles, "zh")}
 </article>
@@ -685,6 +717,7 @@ def generate_article_html_en(title, body, category, slug, related_articles):
         html_body = "".join(parts)
 
     json_ld = _jsonld_article(title, cat_name, date_iso, slug, "en")
+    disclaimer = FINANCE_DISCLAIMER_EN if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -738,6 +771,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
 <div class="ad-slot">{AD_CODE_TOP}</div>
 {html_body}
+{disclaimer}
 {_cps_block(category, "en")}
 {_related_block(related_articles, "en")}
 </article>
@@ -756,6 +790,7 @@ def generate_category_page_zh(category):
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">暂无文章...</li>'
+    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -794,6 +829,7 @@ a:hover{{color:#ff6b35}}
 <h2 class="cat-title">{cat_icon} {cat_name}</h2>
 <div class="ad-slot">{AD_CODE_TOP}</div>
 <ul>{list_items}</ul>
+{cat_disclaimer}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
 <p>© 2025 {SITE_NAME}</p>
@@ -807,6 +843,7 @@ def generate_category_page_en(category):
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">No articles yet...</li>'
+    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -845,6 +882,7 @@ a:hover{{color:#ff6b35}}
 <h2 class="cat-title">{cat_icon} {cat_name}</h2>
 <div class="ad-slot">{AD_CODE_TOP}</div>
 <ul>{list_items}</ul>
+{cat_disclaimer}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
 <p>© 2025 {EN_SITE_NAME}</p>
