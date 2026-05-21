@@ -27,6 +27,12 @@ MODEL = "glm-4-flash"
 
 ARTICLES_PER_RUN = 20  # 每次生成20个话题，每个话题中英文各一篇 = 40篇
 
+# SEO Ping服务
+PING_SERVICES = [
+    "http://ping.baidu.com/ping/RPC2",
+    "http://rpc.weblogs.com/RPC2",
+]
+
 # 中文站点
 OUTPUT_DIR = Path("articles")
 MANIFEST_FILE = OUTPUT_DIR / "manifest.json"
@@ -416,12 +422,14 @@ def generate_article_zh(topic):
 要求:
 1. {title_style}
 2. 第一段包含核心关键词,一两句话抓住眼球
-3. 分4-6个小节,每节有##小标题
+3. 分4-6个小节,每节有##小标题,小标题要包含关键词
 4. 每个小节内容充实,有观点有例子
-5. 自然插入2-3个长尾关键词
-6. 结尾引导互动(提问或评论引导)
-7. 语气口语化,避免"首先其次最后"这种僵硬表达
-8. 不要出现"作为AI"、"本文由AI生成"等字样
+5. 自然插入3-5个长尾关键词变体(如同义词、相关词),不要堆砌
+6. 在文章中间段落自然插入一个FAQ段落,用### 标记问题,紧跟简短回答(2-3句)
+7. 结尾引导互动(提问或评论引导)
+8. 语气口语化,避免"首先其次最后"这种僵硬表达
+9. 不要出现"作为AI"、"本文由AI生成"等字样
+10. 文章末尾加一行总结,用粗体标记核心关键词
 
 输出格式:
 第一行:标题(纯文字,不加任何标记)
@@ -468,8 +476,9 @@ CRITICAL RULES:
 4. First paragraph hooks the reader immediately
 5. 4-6 sections with ## subheadings (in English)
 6. Each section has substance - opinions and examples, no fluff
-7. Naturally include 2-3 long-tail keywords (in English)
-8. End with an engaging question or call-to-action
+7. Naturally include 3-5 long-tail keyword variations (synonyms, related terms), no keyword stuffing
+8. Include a FAQ section in the middle using ### for questions, with brief 2-3 sentence answers
+9. End with an engaging question or call-to-action
 9. Conversational tone - avoid formal academic language
 10. No AI disclaimers like "As an AI" or "This article was generated"
 11. If you include any Chinese characters, the article will be rejected
@@ -624,7 +633,7 @@ def add_to_manifest(slug, title, category, filename, lang="zh"):
     manifest.insert(0, {"slug": slug, "title": title, "category": category, "date": datetime.now().strftime("%Y-%m-%d"), "timestamp": timestamp, "filename": filename})
     save_manifest(manifest, lang)
 
-def get_related_articles(category, current_slug, lang="zh", limit=3):
+def get_related_articles(category, current_slug, lang="zh", limit=5):
     manifest = load_manifest(lang)
     related = [a for a in manifest if a["category"] == category and a["slug"] != current_slug]
     return sorted(related, key=lambda x: x.get("date", ""), reverse=True)[:limit]
@@ -685,15 +694,33 @@ def _related_block(related_articles, lang="zh"):
     html += "</ul></div>"
     return html
 
-def _jsonld_article(title, cat_name, date_iso, slug, lang="zh"):
-    return json.dumps({
+def _jsonld_article(title, cat_name, date_iso, slug, category, lang="zh"):
+    site_name = SITE_NAME if lang == "zh" else EN_SITE_NAME
+    site_url = SITE_URL if lang == "zh" else EN_SITE_URL
+    prefix = "/articles/" if lang == "zh" else "/en/articles/"
+    # Breadcrumb JSON-LD
+    breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": site_name, "item": site_url},
+            {"@type": "ListItem", "position": 2, "name": cat_name, "item": f"{site_url}{prefix}{category}.html"},
+            {"@type": "ListItem", "position": 3, "name": title, "item": f"{site_url}{prefix}{slug}.html"},
+        ]
+    }
+    # Article JSON-LD (enhanced)
+    article = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": title,
         "datePublished": date_iso,
         "dateModified": date_iso,
-        "publisher": {"@type": "Organization", "name": SITE_NAME if lang == "zh" else EN_SITE_NAME}
-    }, ensure_ascii=False)
+        "author": {"@type": "Organization", "name": site_name},
+        "publisher": {"@type": "Organization", "name": site_name, "logo": {"@type": "ImageObject", "url": f"{site_url}/favicon.ico"}},
+        "mainEntityOfPage": f"{site_url}{prefix}{slug}.html",
+        "articleSection": cat_name,
+    }
+    return json.dumps(breadcrumb, ensure_ascii=False) + "\n" + json.dumps(article, ensure_ascii=False)
 
 def generate_article_html_zh(title, body, category, slug, related_articles):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
@@ -709,7 +736,7 @@ def generate_article_html_zh(title, body, category, slug, related_articles):
         parts.insert(3, f"</p>\n{AD_CODE_MIDDLE}")
         html_body = "".join(parts)
 
-    json_ld = _jsonld_article(title, cat_name, date_iso, slug, "zh")
+    json_ld = _jsonld_article(title, cat_name, date_iso, slug, category, "zh")
     disclaimer = FINANCE_DISCLAIMER_ZH if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
@@ -774,7 +801,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
 <p>© 2025 {SITE_NAME}</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
+<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
 </div>
 </body>
 </html>"""
@@ -792,7 +819,7 @@ def generate_article_html_en(title, body, category, slug, related_articles):
         parts.insert(3, f"</p>\n{AD_CODE_MIDDLE}")
         html_body = "".join(parts)
 
-    json_ld = _jsonld_article(title, cat_name, date_iso, slug, "en")
+    json_ld = _jsonld_article(title, cat_name, date_iso, slug, category, "en")
     disclaimer = FINANCE_DISCLAIMER_EN if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
@@ -1286,7 +1313,28 @@ def main():
             (EN_OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page_en(cat), encoding="utf-8")
         rebuild_sitemap()
 
+    # 4. Ping搜索引擎
+    if zh_generated > 0 or en_generated > 0:
+        ping_search_engines()
+
     print(f"\n🏁 完成! 本次生成: 中文 {zh_generated} 篇, 英文 {en_generated} 篇")
+
+
+# ==================== SEO Ping服务 ====================
+
+def ping_search_engines():
+    """主动通知搜索引擎有新内容"""
+    sitemap_url = f"{SITE_URL}/sitemap.xml"
+    ping_targets = [
+        f"http://www.google.com/ping?sitemap={sitemap_url}",
+        f"http://www.bing.com/ping?sitemap={sitemap_url}",
+    ]
+    for url in ping_targets:
+        try:
+            resp = requests.get(url, timeout=10)
+            print(f"  📡 Ping {url.split('?')[0]}: {resp.status_code}")
+        except Exception as e:
+            print(f"  📡 Ping {url.split('?')[0]}: 失败({e})")
 
 if __name__ == "__main__":
     main()
