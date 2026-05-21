@@ -83,33 +83,37 @@ EN_CATEGORIES = {
 }
 
 # 中文CPS推广链接(亚马逊)
+# 拼多多CPS推广链接(PID: 39923394_315955963)
+PDD_LINK = {"text": "百亿补贴×春夏服饰狂欢", "url": "https://p.pinduoduo.com/1SQ3UtrO?sc=EFAC", "desc": "换季特惠5折起"}
+
+# 中文CPS推广链接(亚马逊+拼多多)
 CPS_LINKS = {
     "tech": [
         {"text": "2025高性价比手机推荐", "url": "https://www.amazon.cn/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "热销数码"},
-        {"text": "AI智能工具实用合集", "url": "https://www.amazon.cn/s?k=AI工具&tag=gudaoqihuo-20", "desc": "效率神器"},
+        PDD_LINK,
     ],
     "health": [
         {"text": "养生保健精选好物", "url": "https://www.amazon.cn/s?k=养生&tag=gudaoqihuo-20", "desc": "健康生活"},
-        {"text": "运动健身必备装备", "url": "https://www.amazon.cn/s?k=运动健身&tag=gudaoqihuo-20", "desc": "活力每一天"},
+        PDD_LINK,
     ],
     "life": [
         {"text": "居家好物省钱攻略", "url": "https://www.amazon.cn/s?k=居家好物&tag=gudaoqihuo-20", "desc": "品质生活"},
-        {"text": "图书畅销榜TOP20", "url": "https://www.amazon.cn/gp/bestsellers/books?tag=gudaoqihuo-20", "desc": "阅读充电"},
+        PDD_LINK,
     ],
     "entertainment": [
         {"text": "热门影视周边好物", "url": "https://www.amazon.cn/s?k=影视周边&tag=gudaoqihuo-20", "desc": "追剧必备"},
-        {"text": "明星同款推荐单品", "url": "https://www.amazon.cn/s?k=明星同款&tag=gudaoqihuo-20", "desc": "潮流好物"},
+        PDD_LINK,
     ],
     "hot": [
         {"text": "今日热搜相关好物", "url": "https://www.amazon.cn/?tag=gudaoqihuo-20", "desc": "发现更多"},
-        {"text": "限时优惠活动专区", "url": "https://www.amazon.cn/gp/goldbox?tag=gudaoqihuo-20", "desc": "今日特价"},
+        PDD_LINK,
     ],
 }
 
 # 财经分类CPS推广链接
 CPS_LINKS["finance"] = [
     {"text": "理财入门必读书籍", "url": "https://www.amazon.cn/s?k=理财书籍&tag=gudaoqihuo-20", "desc": "财商提升"},
-    {"text": "投资工具精选合集", "url": "https://www.amazon.cn/s?k=投资工具&tag=gudaoqihuo-20", "desc": "实战必备"},
+    PDD_LINK,
 ]
 
 # 英文CPS推广链接(Amazon.com)
