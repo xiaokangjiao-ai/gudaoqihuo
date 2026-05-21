@@ -85,35 +85,37 @@ EN_CATEGORIES = {
 # 中文CPS推广链接(亚马逊)
 # 拼多多CPS推广链接(PID: 39923394_315955963)
 PDD_LINK = {"text": "百亿补贴×春夏服饰狂欢", "url": "https://p.pinduoduo.com/1SQ3UtrO?sc=EFAC", "desc": "换季特惠5折起"}
+# 京东联盟推广链接
+JD_LINK = {"text": "京东好物特惠", "url": "https://u.jd.com/HOm83O5", "desc": "品质保障"}
 
 # 中文CPS推广链接(亚马逊+拼多多)
 CPS_LINKS = {
     "tech": [
         {"text": "2025高性价比手机推荐", "url": "https://www.amazon.cn/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "热销数码"},
-        PDD_LINK,
+        JD_LINK, PDD_LINK,
     ],
     "health": [
         {"text": "养生保健精选好物", "url": "https://www.amazon.cn/s?k=养生&tag=gudaoqihuo-20", "desc": "健康生活"},
-        PDD_LINK,
+        JD_LINK, PDD_LINK,
     ],
     "life": [
         {"text": "居家好物省钱攻略", "url": "https://www.amazon.cn/s?k=居家好物&tag=gudaoqihuo-20", "desc": "品质生活"},
-        PDD_LINK,
+        JD_LINK, PDD_LINK,
     ],
     "entertainment": [
         {"text": "热门影视周边好物", "url": "https://www.amazon.cn/s?k=影视周边&tag=gudaoqihuo-20", "desc": "追剧必备"},
-        PDD_LINK,
+        JD_LINK, PDD_LINK,
     ],
     "hot": [
         {"text": "今日热搜相关好物", "url": "https://www.amazon.cn/?tag=gudaoqihuo-20", "desc": "发现更多"},
-        PDD_LINK,
+        JD_LINK, PDD_LINK,
     ],
 }
 
 # 财经分类CPS推广链接
 CPS_LINKS["finance"] = [
     {"text": "理财入门必读书籍", "url": "https://www.amazon.cn/s?k=理财书籍&tag=gudaoqihuo-20", "desc": "财商提升"},
-    PDD_LINK,
+    JD_LINK, PDD_LINK,
 ]
 
 # 英文CPS推广链接(Amazon.com)
@@ -770,9 +772,9 @@ p{{margin-bottom:15px;text-align:justify}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
-.cps-box li{{padding:8px 0;border-bottom:1px dashed #ffd9b3;display:flex;justify-content:space-between}}
-.cps-box a{{color:#d4680a;text-decoration:none}}
-.cps-desc{{color:#999;font-size:.82em}}
+.cps-box li{{padding:8px 0;border-bottom:1px dashed #ffd9b3;display:flex;justify-content:space-between;align-items:center;gap:8px}}
+.cps-box a{{color:#d4680a;text-decoration:none;font-weight:500;flex-shrink:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+.cps-desc{{color:#999;font-size:.82em;flex-shrink:0}}
 .related{{background:#fff;border:1px solid #eee;border-radius:10px;padding:18px;margin:25px 0}}
 .related h3{{margin:0 0 12px;color:#333}}
 .related ul{{list-style:none;padding:0}}
@@ -781,7 +783,7 @@ p{{margin-bottom:15px;text-align:justify}}
 .related .date{{color:#ccc;font-size:.8em;margin-left:10px}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}}}
+@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -853,9 +855,9 @@ p{{margin-bottom:15px;text-align:justify}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
-.cps-box li{{padding:8px 0;border-bottom:1px dashed #ffd9b3;display:flex;justify-content:space-between}}
-.cps-box a{{color:#d4680a;text-decoration:none}}
-.cps-desc{{color:#999;font-size:.82em}}
+.cps-box li{{padding:8px 0;border-bottom:1px dashed #ffd9b3;display:flex;justify-content:space-between;align-items:center;gap:8px}}
+.cps-box a{{color:#d4680a;text-decoration:none;font-weight:500;flex-shrink:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+.cps-desc{{color:#999;font-size:.82em;flex-shrink:0}}
 .related{{background:#fff;border:1px solid #eee;border-radius:10px;padding:18px;margin:25px 0}}
 .related h3{{margin:0 0 12px;color:#333}}
 .related ul{{list-style:none;padding:0}}
@@ -864,7 +866,7 @@ p{{margin-bottom:15px;text-align:justify}}
 .related .date{{color:#ccc;font-size:.8em;margin-left:10px}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}}}
+@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}}}
 </style>
 {GA4_CODE}
 </head>
