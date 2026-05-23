@@ -590,6 +590,132 @@ VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
         print(f"    严格模式重试失败: {e}")
         return None, None
 
+# ==================== 思维导图生成 ====================
+
+def generate_mindmap_zh(title, body):
+    """根据文章内容用AI生成思维导图大纲"""
+    body_excerpt = body[:1800] if len(body) > 1800 else body
+    prompt = f"""你是一个思维导图专家。请根据以下文章提取核心要点，生成思维导图大纲。
+
+文章标题: {title}
+文章内容(节选):
+{body_excerpt}
+
+要求:
+1. 用markdown层级格式（# 根节点，## 二级节点，### 三级节点）
+2. 最多3层，根节点=文章核心主题（10字以内）
+3. 5-8个二级节点，每个下面1-3个三级要点
+4. 节点文字简洁（8字以内），只提炼关键词
+5. 只输出大纲，不要任何解释文字
+
+输出示例:
+# 新能源车市场
+## 政策驱动
+### 补贴加码
+### 双积分制
+## 技术突破
+### 固态电池"""
+    try:
+        token = get_zhipu_token()
+        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.3, "max_tokens": 400}
+        resp = requests.post(API_URL, headers=headers, json=data, timeout=60)
+        result = resp.json()
+        if "choices" not in result:
+            print(f"    脑图AI异常: {str(result)[:100]}")
+            return _fallback_mindmap(body, "zh")
+        content = result["choices"][0]["message"]["content"].strip()
+        if '#' not in content:
+            return _fallback_mindmap(body, "zh")
+        return content
+    except Exception as e:
+        print(f"    脑图生成失败: {e}")
+        return _fallback_mindmap(body, "zh")
+
+def generate_mindmap_en(title, body):
+    """根据英文文章用AI生成思维导图"""
+    body_excerpt = body[:1800] if len(body) > 1800 else body
+    prompt = f"""You are a mind map expert. Extract key points from this article into a mind map outline.
+
+Title: {title}
+Content (excerpt):
+{body_excerpt}
+
+Requirements:
+1. Markdown hierarchy (# root, ## level 2, ### level 3)
+2. Max 3 levels, root = core theme (under 6 words)
+3. 5-8 level-2 nodes, 1-3 level-3 points each
+4. Each node concise (under 6 words)
+5. Output ONLY the outline, NO explanations
+6. ALL in English, no Chinese characters
+
+Example:
+# EV Market Trends
+## Policy Drivers
+### Subsidy Extensions
+### Emission Targets
+## Tech Breakthroughs
+### Solid-state Battery"""
+    try:
+        token = get_zhipu_token()
+        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.3, "max_tokens": 400}
+        resp = requests.post(API_URL, headers=headers, json=data, timeout=60)
+        result = resp.json()
+        if "choices" not in result:
+            return _fallback_mindmap(body, "en")
+        content = result["choices"][0]["message"]["content"].strip()
+        chinese_chars = re.findall(r'[\u4e00-\u9fff]', content)
+        if len(chinese_chars) > 3 or '#' not in content:
+            return _fallback_mindmap(body, "en")
+        return content
+    except Exception as e:
+        print(f"    Mindmap gen failed: {e}")
+        return _fallback_mindmap(body, "en")
+
+def _fallback_mindmap(body, lang="zh"):
+    """从文章##/###标题提取脑图(免费兜底)"""
+    headings = re.findall(r'^#{2,3}\s+(.+)$', body, re.MULTILINE)
+    if not headings:
+        return "# 本文要点\n## 核心内容\n### 详情见正文" if lang == "zh" else "# Key Points\n## Main Content\n### See Article"
+    root = "# 文章要点" if lang == "zh" else "# Article Overview"
+    lines = [root]
+    for h in headings[:8]:
+        h = h.strip()
+        if len(h) > 25:
+            h = h[:23] + ".."
+        lines.append(f"## {h}" if re.match(r'^##\s', f"## {h}") else f"### {h}")
+    return "\n".join(lines)
+
+def _mindmap_html_block(mindmap_text, slug="mm", lang="zh"):
+    """将markdown脑图转成CSS树状HTML(零依赖)"""
+    if not mindmap_text or not mindmap_text.strip():
+        return ""
+    label = "🧠 文章思维导图" if lang == "zh" else "🧠 Article Mind Map"
+    lines = mindmap_text.strip().split('\n')
+    nodes = []
+    for line in lines:
+        m = re.match(r'^(#+)\s+(.+)$', line)
+        if not m:
+            continue
+        level = len(m.group(1))
+        content = m.group(2).strip()
+        content = content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+        indent_px = max(0, (level - 2) * 24)
+        if level == 1:
+            nodes.append(f'<div class="mm-root"><span class="mm-dot"></span>{content}</div>')
+        elif level == 2:
+            nodes.append(f'<div class="mm-node mm-l2" style="--indent:{indent_px}px"><span class="mm-dot"></span>{content}</div>')
+        else:
+            nodes.append(f'<div class="mm-node mm-l3" style="--indent:{indent_px}px"><span class="mm-dot"></span>{content}</div>')
+    if not nodes:
+        return ""
+    tree = '\n'.join(nodes)
+    return f'''<div class="mindmap-section">
+<h3>{label}</h3>
+<div class="mm-tree">{tree}</div>
+</div>'''
+
 # ==================== 分类 ====================
 
 def classify_topic(topic):
@@ -728,13 +854,14 @@ def _jsonld_article(title, cat_name, date_iso, slug, category, lang="zh"):
     }
     return json.dumps(breadcrumb, ensure_ascii=False) + "\n" + json.dumps(article, ensure_ascii=False)
 
-def generate_article_html_zh(title, body, category, slug, related_articles):
+def generate_article_html_zh(title, body, category, slug, related_articles, mindmap_text=""):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     date_str = datetime.now().strftime("%Y-%m-%d")
     date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "zh")
+    mindmap_block = _mindmap_html_block(mindmap_text, slug, "zh") if mindmap_text else ""
 
     # 插入中间广告
     parts = html_body.split("</p>")
@@ -783,7 +910,16 @@ p{{margin-bottom:15px;text-align:justify}}
 .related .date{{color:#ccc;font-size:.8em;margin-left:10px}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}}}
+.mindmap-section{{background:linear-gradient(135deg,#f8f9ff,#fff5f0);border:1px solid #e8e0f0;border-radius:12px;padding:20px;margin:20px 0}}
+.mindmap-section h3{{margin:0 0 16px;font-size:1.05em;color:#333}}
+.mm-tree{{padding:0}}
+.mm-root{{background:linear-gradient(135deg,#ff6b35,#ff8c42);color:#fff;padding:10px 20px;border-radius:8px;font-weight:bold;font-size:1.05em;margin-bottom:12px;display:inline-block;box-shadow:0 2px 8px rgba(255,107,53,0.3)}}
+.mm-dot{{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:8px;vertical-align:middle}}
+.mm-node{{padding:7px 8px 7px calc(var(--indent,0px) + 30px);margin:4px 0;border-left:2px solid #ffccbd;position:relative;line-height:1.4}}
+.mm-l2{{font-size:.95em;color:#444}}
+.mm-l3{{font-size:.87em;color:#666;border-left-color:#ffe0d5;padding-left:calc(var(--indent,0px) + 45px)}}
+.mm-l3 .mm-dot{{width:4px;height:4px}}
+@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -799,6 +935,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <h1 class="article-title">{title}</h1>
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
 {svg_hero}
+{mindmap_block}
 {html_body}
 {disclaimer}
 {_cps_block(category, "zh")}
@@ -812,13 +949,14 @@ p{{margin-bottom:15px;text-align:justify}}
 </body>
 </html>"""
 
-def generate_article_html_en(title, body, category, slug, related_articles):
+def generate_article_html_en(title, body, category, slug, related_articles, mindmap_text=""):
     cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     date_str = datetime.now().strftime("%Y-%m-%d")
     date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "en")
+    mindmap_block = _mindmap_html_block(mindmap_text, slug, "en") if mindmap_text else ""
 
     parts = html_body.split("</p>")
     if len(parts) > 3:
@@ -866,7 +1004,16 @@ p{{margin-bottom:15px;text-align:justify}}
 .related .date{{color:#ccc;font-size:.8em;margin-left:10px}}
 .footer{{margin-top:30px;padding-top:15px;border-top:1px solid #eee;text-align:center;color:#aaa;font-size:.82em}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
-@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}}}
+.mindmap-section{{background:linear-gradient(135deg,#f8f9ff,#fff5f0);border:1px solid #e8e0f0;border-radius:12px;padding:20px;margin:20px 0}}
+.mindmap-section h3{{margin:0 0 16px;font-size:1.05em;color:#333}}
+.mm-tree{{padding:0}}
+.mm-root{{background:linear-gradient(135deg,#ff6b35,#ff8c42);color:#fff;padding:10px 20px;border-radius:8px;font-weight:bold;font-size:1.05em;margin-bottom:12px;display:inline-block;box-shadow:0 2px 8px rgba(255,107,53,0.3)}}
+.mm-dot{{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:8px;vertical-align:middle}}
+.mm-node{{padding:7px 8px 7px calc(var(--indent,0px) + 30px);margin:4px 0;border-left:2px solid #ffccbd;position:relative;line-height:1.4}}
+.mm-l2{{font-size:.95em;color:#444}}
+.mm-l3{{font-size:.87em;color:#666;border-left-color:#ffe0d5;padding-left:calc(var(--indent,0px) + 45px)}}
+.mm-l3 .mm-dot{{width:4px;height:4px}}
+@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -882,6 +1029,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <h1 class="article-title">{title}</h1>
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
 {svg_hero}
+{mindmap_block}
 {html_body}
 {disclaimer}
 {_cps_block(category, "en")}
@@ -1258,7 +1406,7 @@ def main():
         print("❌ 未设置 ZHIPU_API_KEY 环境变量")
         return
 
-    print(f"🚀 双语内容生成器 v3.0 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🚀 双语内容生成器 v4.0 (含脑图) 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     OUTPUT_DIR.mkdir(exist_ok=True)
     EN_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -1283,7 +1431,9 @@ def main():
                 category = classify_topic(topic)
                 filename_zh = f"{slug_zh}.html"
                 related_zh = get_related_articles(category, slug_zh, "zh")
-                html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh)
+                print(f"    🧠 生成脑图...")
+                mindmap_zh = generate_mindmap_zh(title_zh, body_zh)
+                html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh, mindmap_zh)
                 (OUTPUT_DIR / filename_zh).write_text(html_zh, encoding="utf-8")
                 add_to_manifest(slug_zh, title_zh, category, filename_zh, "zh")
                 zh_generated += 1
@@ -1300,7 +1450,9 @@ def main():
                 category = classify_topic_en(topic)
                 filename_en = f"{slug_en}.html"
                 related_en = get_related_articles(category, slug_en, "en")
-                html_en = generate_article_html_en(title_en, body_en, category, slug_en, related_en)
+                print(f"    🧠 生成脑图...")
+                mindmap_en = generate_mindmap_en(title_en, body_en)
+                html_en = generate_article_html_en(title_en, body_en, category, slug_en, related_en, mindmap_en)
                 (EN_OUTPUT_DIR / filename_en).write_text(html_en, encoding="utf-8")
                 add_to_manifest(slug_en, title_en, category, filename_en, "en")
                 en_generated += 1
