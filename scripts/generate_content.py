@@ -286,7 +286,7 @@ def fetch_toutiao_hot():
     if not resp: return []
     try:
         data = resp.json()
-        return [item.get("Title", "") for item in data.get("data", []) if item.get("Title")][:30]
+        return [item.get("Title", "") for item in data.get("data", []) if item.get("Title")][:50]
     except: return []
 
 def fetch_zhihu_hot():
