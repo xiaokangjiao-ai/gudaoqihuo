@@ -371,6 +371,95 @@ def get_hot_topics():
     random.shuffle(unique)
     return unique[:ARTICLES_PER_RUN]
 
+def get_hot_topics_en():
+    """英文热点抓取：Reddit + Hacker News + Twitter(Trends24)"""
+    print("[EN] 开始抓取英文热点话题...")
+    all_topics = []
+
+    # Reddit热点 (r/all/hot)
+    print("    抓取Reddit热点...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://www.reddit.com/r/all/hot.json?limit=30", headers=headers, timeout=15)
+        if resp:
+            data = resp.json()
+            posts = data.get("data", {}).get("children", [])
+            topics = [p.get("data", {}).get("title", "") for p in posts if p.get("data", {}).get("title")]
+            all_topics.extend(topics[:30])
+            print(f"    Reddit: 获取 {len(topics)} 条")
+    except Exception as e:
+        print(f"    Reddit热点异常: {e}")
+
+    # Hacker News热点
+    print("    抓取Hacker News热点...")
+    try:
+        resp = fetch_with_retry("https://hacker-news.firebaseio.com/v0/topstories.json", timeout=15)
+        if resp:
+            story_ids = resp.json()[:15]
+            topics = []
+            for sid in story_ids:
+                s_resp = fetch_with_retry(f"https://hacker-news.firebaseio.com/v0/item/{sid}.json", timeout=10)
+                if s_resp:
+                    s_data = s_resp.json()
+                    title = s_data.get("title", "")
+                    if title:
+                        topics.append(title)
+                time.sleep(0.2)
+            all_topics.extend(topics)
+            print(f"    HN: 获取 {len(topics)} 条")
+    except Exception as e:
+        print(f"    HN热点异常: {e}")
+
+    # Twitter热点 (Trends24)
+    print("    抓取Twitter热点...")
+    try:
+        resp = fetch_with_retry("https://trends24.in/united-states/", timeout=15)
+        if resp:
+            import re as _re
+            trends = _re.findall(r'#([A-Za-z0-9_]+)', resp.text)
+            if trends:
+                all_topics.extend(trends[:30])
+                print(f"    Twitter: 获取 {len(trends)} 条")
+    except Exception as e:
+        print(f"    Twitter热点异常: {e}")
+
+    # 去重
+    seen = set()
+    unique = []
+    for t in all_topics:
+        t_clean = t.strip()
+        if t_clean and t_clean not in seen and 2 < len(t_clean) < 100:
+            seen.add(t_clean)
+            unique.append(t_clean)
+
+    print(f"  [EN] 共抓取 {len(all_topics)} 条,去重后 {len(unique)} 条")
+
+    if len(unique) < ARTICLES_PER_RUN:
+        needed = ARTICLES_PER_RUN - len(unique)
+        # 英文常青话题（如果热点不足时补充）
+        en_fallback = [
+            "How AI is Transforming Healthcare in 2026",
+            "Top 10 Tech Gadgets You Need This Year",
+            "Stock Market Outlook: What Investors Should Know",
+            "Remote Work Revolution: Future of Employment",
+            "Electric Vehicle Market Trends and Predictions",
+            "Cybersecurity Threats Everyone Should Be Aware Of",
+            "Cryptocurrency Regulation Updates Around the World",
+            "Best Programming Languages to Learn in 2026",
+            "Climate Change: Latest Research and Solutions",
+            "Social Media Impact on Mental Health",
+            "Space Exploration Milestones This Year",
+            "5G vs 6G: The Future of Connectivity",
+        ]
+        extra = [t for t in en_fallback if t not in seen]
+        random.shuffle(extra)
+        unique.extend(extra[:needed])
+        print(f"  [EN] 热点不足,补充 {needed} 条常青话题")
+
+    random.shuffle(unique)
+    return unique[:ARTICLES_PER_RUN]
+
+
 # ==================== AI内容生成 ====================
 
 def get_zhipu_token():
@@ -1413,19 +1502,20 @@ def main():
     # 0. 清理旧文章(保留15天)
     clean_old_articles(days=15)
 
-    # 1. 抓热点
-    topics = get_hot_topics()
-    print(f"📋 本轮话题: {len(topics)} 个")
+    # 1. 抓热点（中英文分离：中文用国内源，英文用国外源）
+    topics_zh = get_hot_topics()
+    topics_en = get_hot_topics_en()
+    print(f"📋 中文话题: {len(topics_zh)} 个, 英文话题: {len(topics_en)} 个")
 
-    # 2. 逐篇生成(中英文)
+    # 2. 逐篇生成
     zh_generated, en_generated = 0, 0
-    for i, topic in enumerate(topics):
+
+    # 2a. 中文循环（使用国内热点：百度/微博/头条/知乎/财经）
+    for i, topic in enumerate(topics_zh):
         slug_zh = topic_to_slug(topic)
-        slug_en = topic_to_slug_en(topic)
-        
-        # 中文版
+
         if not slug_exists(slug_zh, "zh"):
-            print(f"  ✍️ [{i+1}/{len(topics)}] 中文: {topic}")
+            print(f"  ✍️ [ZH {i+1}/{len(topics_zh)}] {topic}")
             title_zh, body_zh = generate_article_zh(topic)
             if title_zh and body_zh:
                 category = classify_topic(topic)
@@ -1440,11 +1530,14 @@ def main():
                 print(f"    ✅ 中文完成: {filename_zh}")
             time.sleep(1)
         else:
-            print(f"  ⏭ [{i+1}/{len(topics)}] 中文跳过(重复): {topic}")
+            print(f"  ⏭ [ZH {i+1}/{len(topics_zh)}] 跳过(重复): {topic}")
 
-        # 英文版
+    # 2b. 英文循环（使用国外热点：Reddit/HN/Twitter）
+    for i, topic in enumerate(topics_en):
+        slug_en = topic_to_slug_en(topic)
+
         if not slug_exists(slug_en, "en"):
-            print(f"  ✍️ [{i+1}/{len(topics)}] 英文: {topic}")
+            print(f"  ✍️ [EN {i+1}/{len(topics_en)}] {topic}")
             title_en, body_en = generate_article_en(topic)
             if title_en and body_en:
                 category = classify_topic_en(topic)
@@ -1459,7 +1552,7 @@ def main():
                 print(f"    ✅ 英文完成: {filename_en}")
             time.sleep(1)
         else:
-            print(f"  ⏭ [{i+1}/{len(topics)}] 英文跳过(重复)")
+            print(f"  ⏭ [EN {i+1}/{len(topics_en)}] 跳过(重复)")
 
     # 3. 重建站点
     if zh_generated > 0 or en_generated > 0:
