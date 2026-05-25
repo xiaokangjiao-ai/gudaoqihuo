@@ -60,7 +60,9 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
 gtag('config', '{GA4_ID}');
-</script>'''
+</script>
+<!-- PropellerAds Multitag -->
+<script src="https://quge5.com/88/tag.min.js" data-zone="243021" async data-cfasync="false"></script>'''
 
 # 中文分类
 CATEGORIES = {
