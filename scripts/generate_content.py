@@ -82,6 +82,16 @@ EN_CATEGORIES = {
     "entertainment":{"name": "Entertainment","icon": "🎬"},
 }
 
+# Category thumbnail colors
+THUMB_COLORS = {
+    "finance": "#1a73e8",
+    "hot": "#ff6b35",
+    "tech": "#7c3aed",
+    "health": "#10b981",
+    "life": "#f59e0b",
+    "entertainment": "#ec4899",
+}
+
 # 中文CPS推广链接(亚马逊)
 # 拼多多CPS推广链接(PID: 39923394_315955963)
 PDD_LINK = {"text": "百亿补贴×春夏服饰狂欢", "url": "https://p.pinduoduo.com/1SQ3UtrO?sc=EFAC", "desc": "换季特惠5折起"}
@@ -978,6 +988,10 @@ def generate_article_html_zh(title, body, category, slug, related_articles, mind
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "zh")
     mindmap_block = _mindmap_html_block(mindmap_text, slug, "zh") if mindmap_text else ""
+    # Reading time: Chinese ~500 chars/min
+    zh_chars = len(re.findall(r'[\u4e00-\u9fff]', body))
+    reading_minutes = max(1, round(zh_chars / 500))
+    reading_time_html = f'<span>📖 {reading_minutes}分钟阅读</span>'
 
     # 插入中间广告
     parts = html_body.split("</p>")
@@ -1036,6 +1050,14 @@ p{{margin-bottom:15px;text-align:justify}}
 .mm-l3{{font-size:.87em;color:#666;border-left-color:#ffe0d5;padding-left:calc(var(--indent,0px) + 45px)}}
 .mm-l3 .mm-dot{{width:4px;height:4px}}
 @media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}}}
+.share-box{{margin:20px 0;padding:15px 20px;background:#f0f8ff;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #d0e8ff}}
+.share-box span{{color:#666;font-size:.9em;white-space:nowrap}}
+.share-box a{{padding:6px 16px;border-radius:20px;text-decoration:none;font-size:.85em;font-weight:500;transition:all .2s}}
+.share-box a:nth-child(2){{background:#ff5a4c;color:#fff}}
+.share-box a:nth-child(3){{background:#1da1f2;color:#fff}}
+.share-box a:nth-child(4){{background:#1877f2;color:#fff}}
+.share-box a:hover{{opacity:.85;transform:translateY(-1px)}}
+@media(max-width:480px){{.share-box{{gap:8px;justify-content:center}}.share-box a{{font-size:.8em;padding:5px 12px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -1049,13 +1071,19 @@ p{{margin-bottom:15px;text-align:justify}}
 </nav>
 <article>
 <h1 class="article-title">{title}</h1>
-<div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
+<div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
 {svg_hero}
 {mindmap_block}
 {html_body}
 {disclaimer}
 {_cps_block(category, "zh")}
 {_related_block(related_articles, "zh")}
+<div class="share-box">
+<span>📤 分享：</span>
+<a href="https://service.weibo.com/share/share.php?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">微博</a>
+<a href="https://twitter.com/intent/tweet?url={SITE_URL}/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">Twitter</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/articles/{slug}.html" target="_blank" rel="nofollow noopener">Facebook</a>
+</div>
 </article>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
@@ -1074,6 +1102,10 @@ def generate_article_html_en(title, body, category, slug, related_articles, mind
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "en")
     mindmap_block = _mindmap_html_block(mindmap_text, slug, "en") if mindmap_text else ""
+    # Reading time: English ~238 words/min
+    en_words = len(body.split())
+    reading_minutes = max(1, round(en_words / 238))
+    reading_time_html = f'<span>📖 {reading_minutes} min read</span>'
 
     parts = html_body.split("</p>")
     if len(parts) > 3:
@@ -1131,6 +1163,14 @@ p{{margin-bottom:15px;text-align:justify}}
 .mm-l3{{font-size:.87em;color:#666;border-left-color:#ffe0d5;padding-left:calc(var(--indent,0px) + 45px)}}
 .mm-l3 .mm-dot{{width:4px;height:4px}}
 @media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}}}
+.share-box{{margin:20px 0;padding:15px 20px;background:#f0f8ff;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #d0e8ff}}
+.share-box span{{color:#666;font-size:.9em;white-space:nowrap}}
+.share-box a{{padding:6px 16px;border-radius:20px;text-decoration:none;font-size:.85em;font-weight:500;transition:all .2s}}
+.share-box a:nth-child(2){{background:#1da1f2;color:#fff}}
+.share-box a:nth-child(3){{background:#1877f2;color:#fff}}
+.share-box a:nth-child(4){{background:#ff4500;color:#fff}}
+.share-box a:hover{{opacity:.85;transform:translateY(-1px)}}
+@media(max-width:480px){{.share-box{{gap:8px;justify-content:center}}.share-box a{{font-size:.8em;padding:5px 12px}}}}
 </style>
 {GA4_CODE}
 </head>
@@ -1144,13 +1184,19 @@ p{{margin-bottom:15px;text-align:justify}}
 </nav>
 <article>
 <h1 class="article-title">{title}</h1>
-<div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span></div>
+<div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
 {svg_hero}
 {mindmap_block}
 {html_body}
 {disclaimer}
 {_cps_block(category, "en")}
 {_related_block(related_articles, "en")}
+<div class="share-box">
+<span>📤 Share:</span>
+<a href="https://twitter.com/intent/tweet?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">Twitter</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/en/articles/{slug}.html" target="_blank" rel="nofollow noopener">Facebook</a>
+<a href="https://www.reddit.com/submit?url={SITE_URL}/en/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">Reddit</a>
+</div>
 </article>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
@@ -1166,7 +1212,7 @@ def generate_category_page_zh(category):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
-    list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">暂无文章...</li>'
+    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(category,THUMB_COLORS["hot"])}">{cat_icon}</span><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">暂无文章...</li>'
     cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
@@ -1194,6 +1240,7 @@ a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;text-align:center}}
+.thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
 </style>
 {GA4_CODE}
 </head>
@@ -1219,7 +1266,7 @@ def generate_category_page_en(category):
     cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
-    list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">No articles yet...</li>'
+    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(category,THUMB_COLORS["hot"])}">{cat_icon}</span><span class="date">{a.get("date","")}</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">No articles yet...</li>'
     cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
@@ -1247,6 +1294,7 @@ a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;text-align:center}}
+.thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
 </style>
 {GA4_CODE}
 </head>
@@ -1296,7 +1344,7 @@ def rebuild_index_zh():
         top5 = cat_articles[:5]
         cat_info = CATEGORIES.get(cat_key, CATEGORIES["hot"])
         items_html = "\n".join(
-            f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+            f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
             for a in top5
         )
         more_link = f'<a href="/articles/{cat_key}.html" class="cat-more">更多 {cat_info["name"]} &rarr;</a>'
@@ -1313,7 +1361,7 @@ def rebuild_index_zh():
     # Full timeline - latest 100
     timeline = articles[:100]
     list_items = "\n".join(
-        f'<li><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+        f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
         for a in timeline
     )
     cat_links = "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in CATEGORIES.items())
@@ -1371,6 +1419,7 @@ a:hover{{color:#ff6b35}}
 .cat-article-list li{{padding:9px 18px}}
 .timeline-header{{font-size:1em;font-weight:bold;color:#333;padding:15px 0 8px;border-bottom:2px solid #ff6b35;margin-bottom:5px}}
 .timeline-header span{{color:#999;font-weight:normal;font-size:.85em;margin-left:10px}}
+.thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
 </style>
 {GA4_CODE}
 </head>
@@ -1417,7 +1466,7 @@ def rebuild_index_en():
         print("  英文首页:暂无文章")
         return
     articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
-    list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
+    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
     cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in EN_CATEGORIES.items())
 
     html = f"""<!DOCTYPE html>
@@ -1465,6 +1514,7 @@ a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;text-align:center}}
+.thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
 </style>
 {GA4_CODE}
 </head>
