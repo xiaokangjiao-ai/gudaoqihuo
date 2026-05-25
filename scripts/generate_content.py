@@ -60,9 +60,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
 gtag('config', '{GA4_ID}');
-</script>
-<!-- PropellerAds Multitag -->
-<script src="https://quge5.com/88/tag.min.js" data-zone="243021" async data-cfasync="false"></script>'''
+</script>'''
 
 # 中文分类
 CATEGORIES = {
@@ -160,24 +158,15 @@ EN_CPS_LINKS["finance"] = [
 ]
 
 # 广告位配置(中英文共用)
-AD_CODE_TOP = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
-<!-- PropellerAds Placeholder -->
-<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
-<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
+AD_CODE_TOP = '''<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
-AD_CODE_MIDDLE = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
-<!-- PropellerAds Placeholder -->
-<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
-<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
+AD_CODE_MIDDLE = '''<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="fluid" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
-AD_CODE_BOTTOM = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
-<!-- PropellerAds Placeholder -->
-<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
-<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
+AD_CODE_BOTTOM = '''<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
