@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://gudaoqihuo.com/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:960px;margin:0 auto;padding:15px;background:#fafafa}
 .site-header{text-align:center;padding:25px 0 20px}
 .site-header h1{font-size:1.8em;color:#1a1a1a;margin-bottom:5px}
 .site-header p{color:#888;font-size:.95em}
@@ -34,15 +34,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-
 .cat-link{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}
 .cat-link:hover{background:#ff6b35;color:#fff}
 ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px}
-li:hover{background:#fff}
-.date{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}
-.cat{color:#ff6b35;font-size:.8em;white-space:nowrap;min-width:75px}
+li{padding:10px 8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;font-size:.93em}
+li:hover{background:#f5f5f5}
+.date{color:#999;font-size:.82em;white-space:nowrap;min-width:80px}
+.cat{color:#ff6b35;font-size:.78em;white-space:nowrap;min-width:70px}
 a{color:#333;text-decoration:none}
 a:hover{color:#ff6b35}
 .footer{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}
 .footer a{color:#999;text-decoration:none;margin:0 8px}
 .ad-slot{margin:20px 0;text-align:center}
+.cat-section{background:#fff;border-radius:12px;margin-bottom:18px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.cat-section-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f0f0}
+.cat-section-title{font-size:1em;font-weight:bold;color:#333}
+.cat-more{font-size:.82em;color:#ff6b35;text-decoration:none;white-space:nowrap}
+.cat-more:hover{text-decoration:underline}
+.cat-article-list li{padding:9px 18px}
+.timeline-header{font-size:1em;font-weight:bold;color:#333;padding:15px 0 8px;border-bottom:2px solid #ff6b35;margin-bottom:5px}
+.timeline-header span{color:#999;font-weight:normal;font-size:.85em;margin-left:10px}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
@@ -55,21 +63,21 @@ gtag('config', 'G-XE3F4GQQM5');
 </head>
 <body>
 <div class="site-header">
-<h1>📰 每日热点速递</h1>
+<h1>&#x1F4F0; 每日热点速递</h1>
 <p>AI智能聚合热点资讯,每日更新,一站了解天下事</p>
 </div>
 <div class="top-bar">
 <div class="lang-switch">
-<a href="/">中文</a> | <a href="/en/">English</a>
+<a href="/">&#x1F1E8;&#x1F1F3; &#x4E2D;&#x6587;</a> | <a href="/en/">&#x1F1FA;&#x1F1F8; English</a>
 </div>
-<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">✉️ 联系我们</a>
+<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">&#x2709;&#xFE0F; &#x8054;&#x7CFB;&#x6211;&#x4EEC;</a>
 </div>
 <div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
 <div class="contact-box" id="contactBox">
-<h3>✉️ 联系我们</h3>
-<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='已复制'">复制</button></div>
-<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='已复制'">复制</button></div>
-<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">关闭</button>
+<h3>&#x2709;&#xFE0F; &#x8054;&#x7CFB;&#x6211;&#x4EEC;</h3>
+<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='&#x5DF2;&#x590D;&#x5236;'">&#x590D;&#x5236;</button></div>
+<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='&#x5DF2;&#x590D;&#x5236;'">&#x590D;&#x5236;</button></div>
+<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">&#x5173;&#x95ED;</button>
 </div>
 <nav class="cat-nav"><a href="/articles/finance.html" class="cat-link">📈 财经投资</a>
 <a href="/articles/hot.html" class="cat-link">🔥 社会热点</a>
@@ -78,9 +86,101 @@ gtag('config', 'G-XE3F4GQQM5');
 <a href="/articles/life.html" class="cat-link">💡 生活百科</a>
 <a href="/articles/entertainment.html" class="cat-link">🎬 娱乐八卦</a></nav>
 <div class="ad-slot"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+<!-- PropellerAds Placeholder -->
+<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
+<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-<ul><li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/5000多年前中国人就用上了刀-5f08e769c5.html">真的假的？5000多年前中国人就用上了刀叉？</a></li>
+
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">📈 财经投资</span>
+    <a href="/articles/finance.html" class="cat-more">更多 财经投资 &rarr;</a>
+  </div>
+  <ul class="cat-article-list"><li><span class="date">2026-05-25</span><a href="/articles/长海股份股票-02ac6c1fd3.html">长海股份股票惊现惊天动地事件，涉及资金高达5亿元！</a></li>
+<li><span class="date">2026-05-22</span><a href="/articles/方邦股份股票-86779528ef.html">**方邦股份股票：最新动态揭秘！**</a></li>
+<li><span class="date">2026-05-22</span><a href="/articles/瑞丰高材股票-331fac849d.html">**看似普通实则潜力无限的瑞丰高材股票**</a></li>
+<li><span class="date">2026-05-22</span><a href="/articles/N嘉德股票-d046436e0f.html">N嘉德股票：揭秘其背后的秘密！</a></li>
+<li><span class="date">2026-05-22</span><a href="/articles/N惠康股票-f121ad601b.html">N惠康股票：隐藏在辉煌背后的秘密</a></li>
+  </ul>
+</section>
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">🔥 社会热点</span>
+    <a href="/articles/hot.html" class="cat-more">更多 社会热点 &rarr;</a>
+  </div>
+  <ul class="cat-article-list"><li><span class="date">2026-05-25</span><a href="/articles/她错过一次列车却救下了一条人命-1b45efbd5d.html">**4秒错过列车，却救下了一条人命！**</a></li>
+<li><span class="date">2026-05-25</span><a href="/articles/美官员称美伊原则上已就协议达成-ddb7f3d444.html">**所有人都在问：美伊协议达成一致，这意味着什么？**</a></li>
+<li><span class="date">2026-05-25</span><a href="/articles/时刻绷紧安全生产这根弦-dd52a28c50.html">标题：安全生产却让企业压力山大？</a></li>
+<li><span class="date">2026-05-25</span><a href="/articles/日本7Eleven创始人铃木敏-682b473ed7.html">铃木敏文离世：7-Eleven的传奇创始人如何改变零售业</a></li>
+<li><span class="date">2026-05-25</span><a href="/articles/湖北一派出所所长凌晨带人徒手扒-210bdba242.html">凌晨湖北派出所所长徒手扒小麦，暖心举动引发热议</a></li>
+  </ul>
+</section>
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">📱 科技数码</span>
+    <a href="/articles/tech.html" class="cat-more">更多 科技数码 &rarr;</a>
+  </div>
+  <ul class="cat-article-list"><li><span class="date">2026-05-24</span><a href="/articles/每天刷手机5小时以上的人都怎么-a38184f755.html">刚刚曝光！每天刷手机5小时以上的人都怎么样了？</a></li>
+<li><span class="date">2026-05-23</span><a href="/articles/618在倒计时高端手机在降价-e3d890e1c8.html">3个真相，揭秘“618”高端手机降价背后的秘密！</a></li>
+<li><span class="date">2026-05-21</span><a href="/articles/雷军强烈建议大家现在就换手机-9b569eeb72.html">雷军强烈建议大家现在就换手机？看似冲动其实有理</a></li>
+<li><span class="date">2026-05-19</span><a href="/articles/中专生花10天手搓AI短片火遍-015c5cdf0f.html">刚刚曝光！中专生10天手搓AI短片火遍全网，这是怎么做到的？</a></li>
+<li><span class="date">2026-05-19</span><a href="/articles/男子腿绑1378个旧手机摄像头-617c59dc45.html">刚刚曝光！男子腿绑1378个旧手机摄像头入境，这背后隐藏...</a></li>
+  </ul>
+</section>
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">🏥 健康养生</span>
+    <a href="/articles/health.html" class="cat-more">更多 健康养生 &rarr;</a>
+  </div>
+  <ul class="cat-article-list"><li><span class="date">2026-05-23</span><a href="/articles/女子日服800粒减肥丸致肠道无-1fa0fbf279.html">肠道堵塞惊魂记：女子日服800粒减肥丸其实暗藏危机</a></li>
+<li><span class="date">2026-05-20</span><a href="/articles/研究发现吃西瓜有助于心脏健康-e7f7fdab2d.html">吃西瓜，心脏健康的秘密武器？</a></li>
+<li><span class="date">2026-05-17</span><a href="/articles/中国使馆提醒防范埃博拉疫情-bada250cfd.html">【刚刚曝光】中国使馆紧急提醒：防范埃博拉疫情，你准备好了吗？</a></li>
+<li><span class="date">2026-05-14</span><a href="/articles/原来健康的人身体是静音的-a041a6ecc6.html">3个真相，原来健康的人身体是“静音”的！</a></li>
+  </ul>
+</section>
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">💡 生活百科</span>
+    <a href="/articles/life.html" class="cat-more">更多 生活百科 &rarr;</a>
+  </div>
+  <ul class="cat-article-list"><li><span class="date">2026-05-25</span><a href="/articles/91岁老人带老伴自驾环游中国-99a33dc281.html">91岁老人带老伴自驾环游中国是怎么回事？</a></li>
+<li><span class="date">2026-05-23</span><a href="/articles/美食广场打不过商场B1-6825382696.html">美食广场缘何不敌商场B1？背后的真相令人深思！</a></li>
+<li><span class="date">2026-05-22</span><a href="/articles/教育部拟设34所本科高等学校-d0250d8f8c.html">3个真相，34所新高校背后的秘密</a></li>
+<li><span class="date">2026-05-21</span><a href="/articles/被判赔3家车企共226万汽车博-1f53704ff8.html">标题：汽车博主被判赔3车企226万！背后的真相竟然是...</a></li>
+<li><span class="date">2026-05-18</span><a href="/articles/辛追夫人同款美食是什么味道-4e0a3c715a.html">辛追夫人同款美食，是穿越千年的味道吗？</a></li>
+  </ul>
+</section>
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">🎬 娱乐八卦</span>
+    <a href="/articles/entertainment.html" class="cat-more">更多 娱乐八卦 &rarr;</a>
+  </div>
+  <ul class="cat-article-list"><li><span class="date">2026-05-24</span><a href="/articles/盒马60元一斤网红葡萄卖断货-25fc05d9fc.html">刚刚曝光！网红葡萄60元一斤，为何卖断货？</a></li>
+<li><span class="date">2026-05-24</span><a href="/articles/2026戛纳电影节获奖名单-61a30bb576.html">刚刚曝光！2026戛纳电影节获奖名单揭晓，影坛风云再起！</a></li>
+<li><span class="date">2026-05-20</span><a href="/articles/百万粉丝女网红上厕所被偷拍-9fc18d87c0.html">刚刚曝光！百万粉丝女网红上厕所被偷拍，这事儿你敢信？</a></li>
+<li><span class="date">2026-05-18</span><a href="/articles/台网红馆长模仿青鸟破防-5a35b99bed.html">到底怎么回事？网红馆长模仿“青鸟”破防，真相竟然是这个！👀</a></li>
+<li><span class="date">2026-05-16</span><a href="/articles/这些网红水果的命名就是消费陷阱-05021a02a3.html">标题：网红水果命名背后的秘密，你真的了解吗？</a></li>
+  </ul>
+</section>
+<div class="ad-slot"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+<!-- PropellerAds Placeholder -->
+<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
+<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="fluid" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<div class="timeline-header">&#x1F4C5; &#x6700;&#x65B0;&#x6587;&#x7AE0; <span>&#x5171; 100 &#x7BC7;</span></div>
+<ul><li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/她错过一次列车却救下了一条人命-1b45efbd5d.html">**4秒错过列车，却救下了一条人命！**</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/美官员称美伊原则上已就协议达成-ddb7f3d444.html">**所有人都在问：美伊协议达成一致，这意味着什么？**</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/时刻绷紧安全生产这根弦-dd52a28c50.html">标题：安全生产却让企业压力山大？</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[财经投资]</span><a href="/articles/长海股份股票-02ac6c1fd3.html">长海股份股票惊现惊天动地事件，涉及资金高达5亿元！</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/日本7Eleven创始人铃木敏-682b473ed7.html">铃木敏文离世：7-Eleven的传奇创始人如何改变零售业</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/湖北一派出所所长凌晨带人徒手扒-210bdba242.html">凌晨湖北派出所所长徒手扒小麦，暖心举动引发热议</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/最美女律师迟宗琳车祸去世年仅4-a02991e630.html">**最美女律师迟宗琳车祸离世，年仅42岁**</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/这些习惯正在悄悄伤害你的甲状腺-5345186069.html">标题：健康饮食却让甲状腺更难了？</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[生活百科]</span><a href="/articles/91岁老人带老伴自驾环游中国-99a33dc281.html">91岁老人带老伴自驾环游中国是怎么回事？</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/詹姆斯22年来首次无缘最佳阵容-842f620fd0.html">**NBA专家解读：詹姆斯无缘最佳阵容背后的真相**</a></li>
+<li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/5000多年前中国人就用上了刀-5f08e769c5.html">真的假的？5000多年前中国人就用上了刀叉？</a></li>
 <li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/女子吃烧烤偶遇十几年没见的大学-7ffc377919.html">**刚刚曝光！女子吃烧烤偶遇十几年没见的大学同学**</a></li>
 <li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/抵达神舟二十三号成功对接空间站-c3adb50059.html">【最新消息】神舟二十三号成功对接空间站，航天事业再创辉煌</a></li>
 <li><span class="date">2026-05-25</span><span class="cat">[社会热点]</span><a href="/articles/网警发布防汛抗灾网络文明倡议书-30b6801862.html">刚刚曝光！网警发布防汛抗灾网络文明倡议书</a></li>
@@ -169,23 +269,16 @@ gtag('config', 'G-XE3F4GQQM5');
 <li><span class="date">2026-05-23</span><span class="cat">[社会热点]</span><a href="/articles/净网这些涉柳州地震的信息是谣言-f9ce916065.html">**真的假的？柳州地震信息全是谣言？**</a></li>
 <li><span class="date">2026-05-22</span><span class="cat">[财经投资]</span><a href="/articles/方邦股份股票-86779528ef.html">**方邦股份股票：最新动态揭秘！**</a></li>
 <li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/烟台老人的纯手工蓑衣火了-8927a6d214.html">最新消息！烟台老人纯手工蓑衣走红网络！</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/女子流鼻涕6年竟因大脑漏水-2788d4d245.html">6年“流鼻涕”之谜：大脑“漏水”竟成真相</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/网传深圳龙岗发洪水系谣言-2a2a22b042.html">标题：深圳龙岗发洪水？真的假的？</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/中俄关系迈上新起点-60d353e2b6.html">3个中俄关系新起点大揭秘</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/胡彦斌一开口找到了破音的位置-e49176a2c1.html">标题：胡彦斌破音之谜，背后的真相竟然是这个！</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/央视揭鹿茸骗局谐音设局强买强卖-8f5dab179e.html">难道这就是真相？央视揭鹿茸骗局：谐音设局，强买强卖？</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/胡彦斌你让我笑哭-d62049915e.html">胡彦斌你让我笑哭：揭秘5大幕后故事</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[财经投资]</span><a href="/articles/瑞丰高材股票-331fac849d.html">**看似普通实则潜力无限的瑞丰高材股票**</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/歌手首场排名齐豫第1庾澄庆淘汰-a8430bae26.html">《歌手》首场排名大揭秘：齐豫领跑 庾澄庆遗憾离场</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[财经投资]</span><a href="/articles/N嘉德股票-d046436e0f.html">N嘉德股票：揭秘其背后的秘密！</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[财经投资]</span><a href="/articles/N惠康股票-f121ad601b.html">N惠康股票：隐藏在辉煌背后的秘密</a></li>
-<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/河南人终于送走了餐桌噩梦蒜薹-275cf2d277.html">刚刚曝光！河南人送走“餐桌噩梦”蒜薹</a></li></ul>
+<li><span class="date">2026-05-22</span><span class="cat">[社会热点]</span><a href="/articles/女子流鼻涕6年竟因大脑漏水-2788d4d245.html">6年“流鼻涕”之谜：大脑“漏水”竟成真相</a></li></ul>
 <div class="ad-slot"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+<!-- PropellerAds Placeholder -->
+<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
+<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <div class="footer">
-<p>&copy; 2025-2026 gudaoqihuo.com - Daily Trending News</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
+<p>&copy; 2025-2026 每日热点速递</p>
+<p><a href="/">&#x9996;&#x9875;</a><a href="/articles/hot.html">&#x793E;&#x4F1A;&#x70ED;&#x70B9;</a><a href="/articles/tech.html">&#x79D1;&#x6280;&#x6570;&#x7801;</a><a href="/articles/health.html">&#x5065;&#x5EB7;&#x517B;&#x751F;</a><a href="/articles/life.html">&#x751F;&#x6D3B;&#x767E;&#x79D1;</a><a href="/articles/entertainment.html">&#x5A1C;&#x4E50;&#x516B;&#x7591;</a><a href="/articles/finance.html">&#x8D22;&#x7ECF;&#x6295;&#x8D44;</a></p>
 <p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
