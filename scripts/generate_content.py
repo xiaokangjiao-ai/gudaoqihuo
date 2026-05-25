@@ -1259,8 +1259,47 @@ def rebuild_index_zh():
     if not manifest:
         print("  中文首页:暂无文章")
         return
-    articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
-    list_items = "\n".join(f'<li><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
+
+    articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)
+
+    # Group by category
+    by_cat = {}
+    for a in articles:
+        cat = a.get("category", "hot")
+        if cat not in by_cat:
+            by_cat[cat] = []
+        by_cat[cat].append(a)
+
+    # Category sections HTML - show top 5 per category
+    CATEGORIES_PRESENT = ["finance","hot","tech","health","life","entertainment"]
+    cat_sections_html = ""
+    for cat_key in CATEGORIES_PRESENT:
+        cat_articles = by_cat.get(cat_key, [])
+        if not cat_articles:
+            continue
+        top5 = cat_articles[:5]
+        cat_info = CATEGORIES.get(cat_key, CATEGORIES["hot"])
+        items_html = "\n".join(
+            f'<li><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+            for a in top5
+        )
+        more_link = f'<a href="/articles/{cat_key}.html" class="cat-more">更多 {cat_info["name"]} &rarr;</a>'
+        cat_sections_html += f"""
+<section class="cat-section">
+  <div class="cat-section-header">
+    <span class="cat-section-title">{cat_info["icon"]} {cat_info["name"]}</span>
+    {more_link}
+  </div>
+  <ul class="cat-article-list">{items_html}
+  </ul>
+</section>"""
+
+    # Full timeline - latest 100
+    timeline = articles[:100]
+    list_items = "\n".join(
+        f'<li><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+        for a in timeline
+    )
     cat_links = "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in CATEGORIES.items())
 
     html = f"""<!DOCTYPE html>
@@ -1274,7 +1313,7 @@ def rebuild_index_zh():
 <link rel="canonical" href="{SITE_URL}/">
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:960px;margin:0 auto;padding:15px;background:#fafafa}}
 .site-header{{text-align:center;padding:25px 0 20px}}
 .site-header h1{{font-size:1.8em;color:#1a1a1a;margin-bottom:5px}}
 .site-header p{{color:#888;font-size:.95em}}
@@ -1299,48 +1338,62 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 .cat-link{{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}}
 .cat-link:hover{{background:#ff6b35;color:#fff}}
 ul{{list-style:none}}
-li{{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px}}
-li:hover{{background:#fff}}
-.date{{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}}
-.cat{{color:#ff6b35;font-size:.8em;white-space:nowrap;min-width:75px}}
+li{{padding:10px 8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;font-size:.93em}}
+li:hover{{background:#f5f5f5}}
+.date{{color:#999;font-size:.82em;white-space:nowrap;min-width:80px}}
+.cat{{color:#ff6b35;font-size:.78em;white-space:nowrap;min-width:70px}}
 a{{color:#333;text-decoration:none}}
 a:hover{{color:#ff6b35}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;text-align:center}}
+.cat-section{{background:#fff;border-radius:12px;margin-bottom:18px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}}
+.cat-section-header{{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f0f0}}
+.cat-section-title{{font-size:1em;font-weight:bold;color:#333}}
+.cat-more{{font-size:.82em;color:#ff6b35;text-decoration:none;white-space:nowrap}}
+.cat-more:hover{{text-decoration:underline}}
+.cat-article-list li{{padding:9px 18px}}
+.timeline-header{{font-size:1em;font-weight:bold;color:#333;padding:15px 0 8px;border-bottom:2px solid #ff6b35;margin-bottom:5px}}
+.timeline-header span{{color:#999;font-weight:normal;font-size:.85em;margin-left:10px}}
 </style>
 {GA4_CODE}
 </head>
 <body>
 <div class="site-header">
-<h1>📰 {SITE_NAME}</h1>
+<h1>&#x1F4F0; {SITE_NAME}</h1>
 <p>{SITE_DESC}</p>
 </div>
 <div class="top-bar">
 <div class="lang-switch">
-<a href="/">中文</a> | <a href="/en/">English</a>
+<a href="/">&#x1F1E8;&#x1F1F3; &#x4E2D;&#x6587;</a> | <a href="/en/">&#x1F1FA;&#x1F1F8; English</a>
 </div>
-<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">✉️ 联系我们</a>
+<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">&#x2709;&#xFE0F; &#x8054;&#x7CFB;&#x6211;&#x4EEC;</a>
 </div>
 <div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
 <div class="contact-box" id="contactBox">
-<h3>✉️ 联系我们</h3>
-<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='已复制'">复制</button></div>
-<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='已复制'">复制</button></div>
-<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">关闭</button>
+<h3>&#x2709;&#xFE0F; &#x8054;&#x7CFB;&#x6211;&#x4EEC;</h3>
+<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='&#x5DF2;&#x590D;&#x5236;'">&#x590D;&#x5236;</button></div>
+<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='&#x5DF2;&#x590D;&#x5236;'">&#x590D;&#x5236;</button></div>
+<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">&#x5173;&#x95ED;</button>
 </div>
 <nav class="cat-nav">{cat_links}</nav>
 <div class="ad-slot">{AD_CODE_TOP}</div>
+{cat_sections_html}
+<div class="ad-slot">{AD_CODE_MIDDLE}</div>
+<div class="timeline-header">&#x1F4C5; &#x6700;&#x65B0;&#x6587;&#x7AE0; <span>&#x5171; {len(timeline)} &#x7BC7;</span></div>
 <ul>{list_items}</ul>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025-2026 {SITE_NAME}</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
+<p>&copy; 2025-2026 {SITE_NAME}</p>
+<p><a href="/">&#x9996;&#x9875;</a><a href="/articles/hot.html">&#x793E;&#x4F1A;&#x70ED;&#x70B9;</a><a href="/articles/tech.html">&#x79D1;&#x6280;&#x6570;&#x7801;</a><a href="/articles/health.html">&#x5065;&#x5EB7;&#x517B;&#x751F;</a><a href="/articles/life.html">&#x751F;&#x6D3B;&#x767E;&#x79D1;</a><a href="/articles/entertainment.html">&#x5A1C;&#x4E50;&#x516B;&#x7591;</a><a href="/articles/finance.html">&#x8D22;&#x7ECF;&#x6295;&#x8D44;</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
     INDEX_FILE.write_text(html, encoding="utf-8")
-    print(f"  中文首页已更新,展示 {len(articles)} 篇")
+    print(f"  中文首页已更新,展示 {len(articles)} 篇,6个分类区块+完整时间线")
+
+
 
 def rebuild_index_en():
     manifest = load_manifest("en")
