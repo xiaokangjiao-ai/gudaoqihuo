@@ -808,13 +808,13 @@ def _mindmap_html_block(mindmap_text, slug="mm", lang="zh"):
 # ==================== 分类 ====================
 
 def classify_topic(topic):
-    """中文分类"""
+    """中文分类 - 关键词扩充版"""
     keywords = {
-        "finance":    ["股票", "期货", "基金", "黄金", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元"],
-        "tech":       ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能"],
-        "health":     ["健康", "养生", "医疗", "医院", "疫情", "病毒", "疫苗", "减肥", "健身", "营养", "睡眠", "心理"],
-        "life":       ["生活", "美食", "旅游", "房产", "汽车", "教育", "职场", "购物", "家居", "亲子"],
-        "entertainment": ["娱乐", "明星", "电影", "电视剧", "综艺", "音乐", "游戏", "网红", "八卦", "偶像"],
+        "finance":    ["股票", "期货", "基金", "黄金", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "P2P", "网贷", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所"],
+        "tech":       ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能", "机器人", "自动驾驶", "量子", "云计算", "大数据", "区块链", "元宇宙", "VR", "AR", "GPU", "CPU", "半导体", "光刻", "华为", "苹果", "小米", "特斯拉", "微软", "谷歌", "OpenAI", "GPT", "大模型", "算法", "模型", "深度学习", "机器学习", "神经网络", "服务器", "数据中心", "算力", "光模块", "服务器", "新能源", "电动车", "充电桩", "电池", "光伏", "钠离子", "核聚变", "可控核", "航天", "火箭", "卫星", "空间站", "神舟", "月球", "火星", "太空", "无人机", "大疆", "操作系统", "鸿蒙", "Android", "iOS", "WiFi", "6G", "宽带", "光纤", "IOT", "物联网", "穿戴", "智能手表", "折叠屏", "OLED", "Micro LED", "面板", "京东方", "龙芯", "麒麟", "信创"],
+        "health":     ["健康", "养生", "医疗", "医院", "疫情", "病毒", "疫苗", "减肥", "健身", "营养", "睡眠", "心理", "医生", "手术", "药物", "中药", "西药", "体检", "癌症", "肿瘤", "糖尿病", "血压", "血糖", "心脏", "肝脏", "肾脏", "肺", "骨", "眼科", "牙科", "中医", "针灸", "艾灸", "推拿", "食疗", "维生素", "蛋白", "益生菌", "过敏", "流感", "感冒", "发烧", "抗生素", "靶向", "免疫", "基因", "DNA", "干细胞", "长寿", "抗衰老", "更年期", "孕产", "婴儿", "儿童", "老年", "痴呆", "阿尔茨海默", "帕金森", "抑郁", "焦虑", "自闭", "戒烟", "戒酒", "救护", "急救", "中毒", "食安", "食品安全", "微塑料", "辐射", "卫生", "疾控", "卫健委", "世卫"],
+        "life":       ["生活", "美食", "旅游", "房产", "汽车", "教育", "职场", "购物", "家居", "亲子", "烧烤", "火锅", "奶茶", "咖啡", "外卖", "小吃", "特产", "水果", "蔬菜", "海鲜", "泡菜", "做饭", "食谱", "景点", "签证", "机票", "酒店", "民宿", "自驾", "高铁", "飞机", "出国", "留学", "移民", "租房", "房价", "楼市", "物业", "装修", "家电", "家具", "清洗", "收纳", "宠物", "猫", "狗", "花", "园艺", "运动", "跑步", "游泳", "瑜伽", "钓鱼", "登山", "露营", "天气", "暴雨", "台风", "高温", "寒潮", "防汛", "抗旱", "高考", "考研", "公务员", "招聘", "简历", "面试", "工资", "社保", "公积金", "养老金", "退休", "离婚", "结婚", "生育", "幼儿园", "学区"],
+        "entertainment": ["娱乐", "明星", "电影", "电视剧", "综艺", "音乐", "游戏", "网红", "八卦", "偶像", "演员", "歌手", "导演", "票房", "上映", "开播", "收官", "综艺", "选秀", "脱口秀", "相声", "小品", "喜剧", "动画", "动漫", "番剧", "漫画", "小说", "网文", "直播", "带货", "短视频", "抖音", "快手", "B站", "微博热搜", "话题", "粉丝", "CP", "塌房", "出轨", "恋情", "婚变", "离婚", "复婚", "代言", "品牌", "时装", "红毯", "颁奖", "奥斯卡", "金鸡", "金马", "跑男", "偶像", "练习生", "粉丝团", "应援", "打榜", "超话", "世界杯", "欧洲杯", "亚洲杯", "国足", "足球", "篮球", "NBA", "CBA", "中超", "英超", "西甲", "意甲", "球迷", "裁判", "教练", "转会", "球员", "梅西", "C罗"],
     }
     for cat, kws in keywords.items():
         if any(kw in topic for kw in kws):
@@ -822,8 +822,19 @@ def classify_topic(topic):
     return "hot"
 
 def classify_topic_en(topic):
-    """英文分类(基于中文话题关键词)"""
-    return classify_topic(topic)  # 使用相同的关键词匹配
+    """英文分类 - 独立英文关键词表"""
+    keywords = {
+        "finance":    ["stock", "market", "invest", "crypto", "bitcoin", "fund", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "IPO", "VC", "startup valuation", "merger", "acquisition", "hedge fund", "private equity", "forex", "currency", "dollar", "euro", "yuan", "commodity", "oil price", "gold price", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "S&P", "Nasdaq", "Dow", "Wall Street", "Silicon Valley Bank"],
+        "tech":       ["AI", "artificial intelligence", "machine learning", "deep learning", "GPT", "LLM", "OpenAI", "Google", "Apple", "Microsoft", "Tesla", "chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "robot", "autonomous", "EV", "electric vehicle", "battery", "solar", "nuclear", "space", "rocket", "satellite", "ISS", "moon", "Mars", "drone", "VR", "AR", "metaverse", "blockchain", "cybersecurity", "hacker", "malware", "app", "software", "hardware", "phone", "laptop", "tablet", "wearable", "IoT", "WiFi", "broadband", "fiber", "operating system", "coding", "developer", "API", "open source", "GitHub", "startup", "unicorn"],
+        "health":     ["health", "medical", "hospital", "doctor", "surgery", "vaccine", "virus", "pandemic", "COVID", "flu", "cancer", "tumor", "diabetes", "heart", "mental health", "depression", "anxiety", "fitness", "diet", "nutrition", "obesity", "weight loss", "sleep", "therapy", "pharma", "drug", "FDA", "clinical trial", "gene therapy", "stem cell", "anti-aging", "longevity", "Alzheimer", "Parkinson", "autism", "allergy", "antibiotic", "supplement", "vitamin", "probiotic", "microplastic", "radiation", "WHO", "CDC", "wellness", "mindful", "meditation", "yoga", "rehab", "emergency", "first aid", "poison", "food safety"],
+        "life":       ["life", "food", "recipe", "restaurant", "coffee", "travel", "flight", "hotel", "vacation", "tourism", "visa", "home", "house", "rent", "mortgage rate", "decor", "furniture", "pet", "dog", "cat", "garden", "weather", "storm", "hurricane", "heatwave", "flood", "education", "school", "college", "university", "scholarship", "job", "career", "salary", "resume", "interview", "retirement", "pension", "marriage", "divorce", "parenting", "baby", "kids", "elder", "commute", "housing", "lifestyle", "hobby", "camping", "hiking", "fishing", "cooking", "baking", "BBQ"],
+        "entertainment": ["entertainment", "movie", "film", "TV", "series", "show", "music", "song", "album", "concert", "game", "gaming", "esports", "streamer", "YouTube", "TikTok", "influencer", "celebrity", "actor", "actress", "singer", "director", "box office", "Oscar", "Emmy", "Grammy", "comic", "anime", "manga", "novel", "book", "podcast", "Netflix", "Disney", "Marvel", "DC", "Star Wars", "sport", "football", "soccer", "NBA", "NFL", "MLB", "FIFA", "World Cup", "Olympic", "championship", "player", "coach", "transfer", "fan", "stadium", "draft", "MVP"],
+    }
+    topic_lower = topic.lower()
+    for cat, kws in keywords.items():
+        if any(kw.lower() in topic_lower for kw in kws):
+            return cat
+    return "hot"
 
 # ==================== Manifest管理 ====================
 
@@ -1032,8 +1043,9 @@ p{{margin-bottom:15px;text-align:justify}}
 </article>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {SITE_NAME}</p>
+<p>© 2025-2026 {SITE_NAME}</p>
 <p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
@@ -1126,7 +1138,7 @@ p{{margin-bottom:15px;text-align:justify}}
 </article>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {EN_SITE_NAME}</p>
+<p>© 2025-2026 {EN_SITE_NAME}</p>
 <p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
 </div>
 </body>
@@ -1181,7 +1193,7 @@ a:hover{{color:#ff6b35}}
 {cat_disclaimer}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {SITE_NAME}</p>
+<p>© 2025-2026 {SITE_NAME}</p>
 <p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
 </div>
 </body>
@@ -1234,7 +1246,7 @@ a:hover{{color:#ff6b35}}
 {cat_disclaimer}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {EN_SITE_NAME}</p>
+<p>© 2025-2026 {EN_SITE_NAME}</p>
 <p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
 </div>
 </body>
@@ -1322,7 +1334,7 @@ a:hover{{color:#ff6b35}}
 <ul>{list_items}</ul>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {SITE_NAME}</p>
+<p>© 2025-2026 {SITE_NAME}</p>
 <p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
 </div>
 </body>
@@ -1410,7 +1422,7 @@ a:hover{{color:#ff6b35}}
 <ul>{list_items}</ul>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025 {EN_SITE_NAME}</p>
+<p>© 2025-2026 {EN_SITE_NAME}</p>
 <p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
 </div>
 </body>
