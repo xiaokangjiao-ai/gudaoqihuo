@@ -149,14 +149,23 @@ EN_CPS_LINKS["finance"] = [
 
 # 广告位配置(中英文共用)
 AD_CODE_TOP = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+<!-- PropellerAds Placeholder -->
+<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
+<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
 AD_CODE_MIDDLE = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+<!-- PropellerAds Placeholder -->
+<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
+<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="fluid" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
 AD_CODE_BOTTOM = '''<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+<!-- PropellerAds Placeholder -->
+<script src="https://propellerads.com/splash.js?id=YOUR_ZONE_ID" async></script>
+<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
@@ -479,11 +488,16 @@ STYLE_PROMPTS = [
 ]
 
 TITLE_STYLES = [
-    "标题带数字(如'3个真相'、'5大变化'),制造好奇心,让人想点进去,25字以内",
-    "标题用疑问句式(如'到底怎么回事?'、'真的假的?'),引发好奇,25字以内",
-    "标题制造悬念(如'背后的真相'、'很多人不知道'),暗示有猛料,25字以内",
-    "标题用反差感(如'看似XX其实XX'),打破认知,25字以内",
-    "标题强调时效性(如'刚刚曝光'、'最新消息'),制造紧迫感,25字以内",
+    "标题用数字+场景(如'男子XX时发现YY'),制造代入感,25字以内",
+    "标题用具体人物+动作(如'XX做了件让所有人震惊的事'),制造好奇,25字以内",
+    "标题用问答式(如'XX是怎么回事?'),引发点击欲望,25字以内",
+    "标题用陈述句但包含具体数据(如'XX事件涉及YY人ZZ万元'),专业可信,25字以内",
+    "标题用情绪共鸣(如'网友怒了!'、'所有人都在问'),引发讨论,25字以内",
+    "标题用时间/地点+事件(如'今日XX地发生YY'),信息感强,25字以内",
+    "标题用专家解读视角(如'XX行业人士揭示YY真相'),权威感,25字以内",
+    "标题用对比冲突(如'XX却让YY更难了'),制造张力,25字以内",
+    "标题用清单式(如'关于XX,你需要知道的事'),实用感强,25字以内",
+    "标题用动词+结果(如'XX教会我们YY'),启发性强,25字以内",
 ]
 
 # 英文风格提示
@@ -496,11 +510,14 @@ EN_STYLE_PROMPTS = [
 ]
 
 EN_TITLE_STYLES = [
-    "Create a numbered headline (like '3 Secrets', '5 Changes') that sparks curiosity, under 60 characters",
-    "Use a question format (like 'What Really Happened?', 'Is This Real?') to create intrigue, under 60 characters",
-    "Create suspense (like 'The Truth Behind', 'What Nobody Tells You') suggesting hidden information, under 60 characters",
-    "Use contrast (like 'Seems X But Actually Y') to challenge assumptions, under 60 characters",
-    "Emphasize urgency (like 'Just Revealed', 'Breaking') to create immediacy, under 60 characters",
+    "Create a specific scenario headline (like 'When X Does Y, The Result Is Z') with strong specificity, under 60 characters",
+    "Use a person-action headline (like 'Expert Reveals The Secret Nobody Talks About') to build authority, under 60 characters",
+    "Use a data-driven headline (like 'X People Are Now Doing Y - Here Is Why') with concrete numbers, under 60 characters",
+    "Use a contrast headline (like 'X But Y Is Actually Getting Harder') to create tension, under 60 characters",
+    "Create a helpful list headline (like 'Everything You Need to Know About X') for practical value, under 60 characters",
+    "Use a news-anchor style headline (like 'X Just Announced Y, And It Changes Everything') for authority, under 60 characters",
+    "Use an emotional resonance headline (like 'People Are Speaking Up About X - Here Is What They Say') for community feel, under 60 characters",
+    "Use a How-To or guide headline (like 'How to X Without Y: A Complete Guide') for evergreen appeal, under 60 characters",
 ]
 
 def generate_article_zh(topic):
@@ -684,26 +701,26 @@ VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
 def generate_mindmap_zh(title, body):
     """根据文章内容用AI生成思维导图大纲"""
     body_excerpt = body[:1800] if len(body) > 1800 else body
-    prompt = f"""你是一个思维导图专家。请根据以下文章提取核心要点，生成思维导图大纲。
+    prompt = f"""你是一个内容提炼专家。请根据以下文章提取"核心要点"卡片内容。
 
 文章标题: {title}
 文章内容(节选):
 {body_excerpt}
 
 要求:
-1. 用markdown层级格式（# 根节点，## 二级节点，### 三级节点）
-2. 最多3层，根节点=文章核心主题（10字以内）
-3. 5-8个二级节点，每个下面1-3个三级要点
-4. 节点文字简洁（8字以内），只提炼关键词
-5. 只输出大纲，不要任何解释文字
+1. 提炼4-6个核心要点，每个要点一句话（20字以内），直击要害
+2. 每个要点用emoji符号开头，分类清晰（避免纯文字墙）
+3. 格式：emoji + 要点标题 + 简短说明（1-2句）
+4. 最后一行总结金句（1句话，25字以内）
+5. 只输出内容，不要解释，不要markdown列表格式
 
 输出示例:
-# 新能源车市场
-## 政策驱动
-### 补贴加码
-### 双积分制
-## 技术突破
-### 固态电池"""
+[KEY] 关键结论：标题即观点，一句话说明白
+[DATA] 数据支撑：文章中最有力的数字或事实
+[?!] 反常识点：读者意想不到的那个真相
+[HOT] 热度来源：为什么这件事现在很火
+[+] 社会影响：对普通人有什么影响
+[GOLD] 总结金句：一句话记住这篇文章"""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
@@ -731,20 +748,19 @@ Content (excerpt):
 {body_excerpt}
 
 Requirements:
-1. Markdown hierarchy (# root, ## level 2, ### level 3)
-2. Max 3 levels, root = core theme (under 6 words)
-3. 5-8 level-2 nodes, 1-3 level-3 points each
-4. Each node concise (under 6 words)
-5. Output ONLY the outline, NO explanations
-6. ALL in English, no Chinese characters
+1. Distill 4-6 core points, each one sentence (under 25 words), punchy and direct
+2. Each point starts with an emoji, clearly categorized (no wall of text)
+3. Format: emoji + point title + brief explanation (1-2 sentences)
+4. End with a summary gold sentence (1 sentence, under 30 words)
+5. Output only content, no explanation, no markdown list format
 
-Example:
-# EV Market Trends
-## Policy Drivers
-### Subsidy Extensions
-### Emission Targets
-## Tech Breakthroughs
-### Solid-state Battery"""
+Output example:
+[KEY] KEY INSIGHT: One sentence that nails the entire article
+[DATA] DATA POINT: The most powerful number or fact from the piece
+[?!] COUNTERINTUITIVE: The one truth readers won't expect
+[HOT] WHY IT'S HOT: Why this topic is trending right now
+[+] IMPACT: What it means for regular people
+[GOLD] GOLD LINE: One memorable takeaway sentence"""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
@@ -810,8 +826,8 @@ def _mindmap_html_block(mindmap_text, slug="mm", lang="zh"):
 def classify_topic(topic):
     """中文分类 - 关键词扩充版"""
     keywords = {
-        "finance":    ["股票", "期货", "基金", "黄金", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "P2P", "网贷", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所"],
-        "tech":       ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能", "机器人", "自动驾驶", "量子", "云计算", "大数据", "区块链", "元宇宙", "VR", "AR", "GPU", "CPU", "半导体", "光刻", "华为", "苹果", "小米", "特斯拉", "微软", "谷歌", "OpenAI", "GPT", "大模型", "算法", "模型", "深度学习", "机器学习", "神经网络", "服务器", "数据中心", "算力", "光模块", "服务器", "新能源", "电动车", "充电桩", "电池", "光伏", "钠离子", "核聚变", "可控核", "航天", "火箭", "卫星", "空间站", "神舟", "月球", "火星", "太空", "无人机", "大疆", "操作系统", "鸿蒙", "Android", "iOS", "WiFi", "6G", "宽带", "光纤", "IOT", "物联网", "穿戴", "智能手表", "折叠屏", "OLED", "Micro LED", "面板", "京东方", "龙芯", "麒麟", "信创"],
+        "finance":    ["股票", "期货", "基金", "黄金", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "P2P", "网贷", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所", "AI概念股", "DeepSeek概念", "大模型", "ChatGPT概念", "人工智能", "科技股", "芯片股", "英伟达", "GPU", "算力", "算力股", "数据中心", "云服务", "SaaS", "软件股", "半导体", "光刻机", "国产替代", "科技自主", "科创板", "专精特新"],
+        "tech":       ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能", "机器人", "自动驾驶", "量子", "云计算", "大数据", "区块链", "元宇宙", "VR", "AR", "GPU", "CPU", "半导体", "光刻", "华为", "苹果", "小米", "特斯拉", "微软", "谷歌", "OpenAI", "GPT", "大模型", "算法", "模型", "深度学习", "机器学习", "神经网络", "服务器", "数据中心", "算力", "光模块", "服务器", "新能源", "电动车", "充电桩", "电池", "光伏", "钠离子", "核聚变", "可控核", "航天", "火箭", "卫星", "空间站", "神舟", "月球", "火星", "太空", "无人机", "大疆", "操作系统", "鸿蒙", "Android", "iOS", "WiFi", "6G", "宽带", "光纤", "IOT", "物联网", "穿戴", "智能手表", "折叠屏", "OLED", "Micro LED", "面板", "京东方", "龙芯", "麒麟", "信创", "DeepSeek", "Kimi", "通义千问", "豆包", "文心一言", "GPT-5", "Claude", "Gemini", "AI应用", "AI工具", "AI生成", "AIGC", "AI绘画", "AI视频", "AI写作", "AI搜索", "AI助手", "AI模型", "开源模型", "AI芯片", "NPU", "AI算力", "边缘AI", "端侧AI", "具身智能", "人形机器人", "AppleIntelligence", "AI手机", "AI电脑", "Copilot", "Cursor", "Windsurf", "Perplexity", "Grok", "AI眼镜", "AI耳机", "AI教育", "AI医疗", "AI办公"],
         "health":     ["健康", "养生", "医疗", "医院", "疫情", "病毒", "疫苗", "减肥", "健身", "营养", "睡眠", "心理", "医生", "手术", "药物", "中药", "西药", "体检", "癌症", "肿瘤", "糖尿病", "血压", "血糖", "心脏", "肝脏", "肾脏", "肺", "骨", "眼科", "牙科", "中医", "针灸", "艾灸", "推拿", "食疗", "维生素", "蛋白", "益生菌", "过敏", "流感", "感冒", "发烧", "抗生素", "靶向", "免疫", "基因", "DNA", "干细胞", "长寿", "抗衰老", "更年期", "孕产", "婴儿", "儿童", "老年", "痴呆", "阿尔茨海默", "帕金森", "抑郁", "焦虑", "自闭", "戒烟", "戒酒", "救护", "急救", "中毒", "食安", "食品安全", "微塑料", "辐射", "卫生", "疾控", "卫健委", "世卫"],
         "life":       ["生活", "美食", "旅游", "房产", "汽车", "教育", "职场", "购物", "家居", "亲子", "烧烤", "火锅", "奶茶", "咖啡", "外卖", "小吃", "特产", "水果", "蔬菜", "海鲜", "泡菜", "做饭", "食谱", "景点", "签证", "机票", "酒店", "民宿", "自驾", "高铁", "飞机", "出国", "留学", "移民", "租房", "房价", "楼市", "物业", "装修", "家电", "家具", "清洗", "收纳", "宠物", "猫", "狗", "花", "园艺", "运动", "跑步", "游泳", "瑜伽", "钓鱼", "登山", "露营", "天气", "暴雨", "台风", "高温", "寒潮", "防汛", "抗旱", "高考", "考研", "公务员", "招聘", "简历", "面试", "工资", "社保", "公积金", "养老金", "退休", "离婚", "结婚", "生育", "幼儿园", "学区"],
         "entertainment": ["娱乐", "明星", "电影", "电视剧", "综艺", "音乐", "游戏", "网红", "八卦", "偶像", "演员", "歌手", "导演", "票房", "上映", "开播", "收官", "综艺", "选秀", "脱口秀", "相声", "小品", "喜剧", "动画", "动漫", "番剧", "漫画", "小说", "网文", "直播", "带货", "短视频", "抖音", "快手", "B站", "微博热搜", "话题", "粉丝", "CP", "塌房", "出轨", "恋情", "婚变", "离婚", "复婚", "代言", "品牌", "时装", "红毯", "颁奖", "奥斯卡", "金鸡", "金马", "跑男", "偶像", "练习生", "粉丝团", "应援", "打榜", "超话", "世界杯", "欧洲杯", "亚洲杯", "国足", "足球", "篮球", "NBA", "CBA", "中超", "英超", "西甲", "意甲", "球迷", "裁判", "教练", "转会", "球员", "梅西", "C罗"],
@@ -824,8 +840,8 @@ def classify_topic(topic):
 def classify_topic_en(topic):
     """英文分类 - 独立英文关键词表"""
     keywords = {
-        "finance":    ["stock", "market", "invest", "crypto", "bitcoin", "fund", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "IPO", "VC", "startup valuation", "merger", "acquisition", "hedge fund", "private equity", "forex", "currency", "dollar", "euro", "yuan", "commodity", "oil price", "gold price", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "S&P", "Nasdaq", "Dow", "Wall Street", "Silicon Valley Bank"],
-        "tech":       ["AI", "artificial intelligence", "machine learning", "deep learning", "GPT", "LLM", "OpenAI", "Google", "Apple", "Microsoft", "Tesla", "chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "robot", "autonomous", "EV", "electric vehicle", "battery", "solar", "nuclear", "space", "rocket", "satellite", "ISS", "moon", "Mars", "drone", "VR", "AR", "metaverse", "blockchain", "cybersecurity", "hacker", "malware", "app", "software", "hardware", "phone", "laptop", "tablet", "wearable", "IoT", "WiFi", "broadband", "fiber", "operating system", "coding", "developer", "API", "open source", "GitHub", "startup", "unicorn"],
+        "finance":    ["stock", "market", "invest", "crypto", "bitcoin", "fund", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "IPO", "VC", "startup valuation", "merger", "acquisition", "hedge fund", "private equity", "forex", "currency", "dollar", "euro", "yuan", "commodity", "oil price", "gold price", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "S&P", "Nasdaq", "Dow", "Wall Street", "AI stock", "Nvidia", "AMD", "Palantir", "Snowflake", "Datadog", "Arm", "Super Micro", "AI chip", "tech stock", "Magnificent 7", "FAANG", "Meme stock", "short squeeze", "options trading", "day trading", "retail investor", "institutional investor", "hedge fund strategy", "ETF flow", "bond yield", "yield curve", "Fed rate cut", "earnings report", "SEC filing", "antitrust", "tech regulation", "OpenAI", "Microsoft", "Google", "Meta", "Amazon", "Apple", "Tesla", "deepseek", "llm", "AI model", "AI earnings", "AI valuation", "AI IPO"],
+        "tech":       ["AI", "artificial intelligence", "machine learning", "deep learning", "GPT", "LLM", "OpenAI", "Google", "Apple", "Microsoft", "Tesla", "chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "robot", "autonomous", "EV", "electric vehicle", "battery", "solar", "nuclear", "space", "rocket", "satellite", "ISS", "moon", "Mars", "drone", "VR", "AR", "metaverse", "blockchain", "cybersecurity", "hacker", "malware", "app", "software", "hardware", "phone", "laptop", "tablet", "wearable", "IoT", "WiFi", "broadband", "fiber", "operating system", "coding", "developer", "API", "open source", "GitHub", "startup", "unicorn", "DeepSeek", "Claude", "Gemini", "Copilot", "Cursor", "Windsurf", "Perplexity", "Grok", "ChatGPT", "AIGC", "AI video", "AI image", "AI writing", "AI search", "AI agent", "AI assistant", "edge AI", "on-device AI", "AI model", "open weight model", "multimodal", "reasoning", "context window", "token", "fine-tuning", "RAG", "agentic", "robotics", "humanoid robot", "autonomous driving", "Waymo", "Figure robot", "Boston Dynamics"],
         "health":     ["health", "medical", "hospital", "doctor", "surgery", "vaccine", "virus", "pandemic", "COVID", "flu", "cancer", "tumor", "diabetes", "heart", "mental health", "depression", "anxiety", "fitness", "diet", "nutrition", "obesity", "weight loss", "sleep", "therapy", "pharma", "drug", "FDA", "clinical trial", "gene therapy", "stem cell", "anti-aging", "longevity", "Alzheimer", "Parkinson", "autism", "allergy", "antibiotic", "supplement", "vitamin", "probiotic", "microplastic", "radiation", "WHO", "CDC", "wellness", "mindful", "meditation", "yoga", "rehab", "emergency", "first aid", "poison", "food safety"],
         "life":       ["life", "food", "recipe", "restaurant", "coffee", "travel", "flight", "hotel", "vacation", "tourism", "visa", "home", "house", "rent", "mortgage rate", "decor", "furniture", "pet", "dog", "cat", "garden", "weather", "storm", "hurricane", "heatwave", "flood", "education", "school", "college", "university", "scholarship", "job", "career", "salary", "resume", "interview", "retirement", "pension", "marriage", "divorce", "parenting", "baby", "kids", "elder", "commute", "housing", "lifestyle", "hobby", "camping", "hiking", "fishing", "cooking", "baking", "BBQ"],
         "entertainment": ["entertainment", "movie", "film", "TV", "series", "show", "music", "song", "album", "concert", "game", "gaming", "esports", "streamer", "YouTube", "TikTok", "influencer", "celebrity", "actor", "actress", "singer", "director", "box office", "Oscar", "Emmy", "Grammy", "comic", "anime", "manga", "novel", "book", "podcast", "Netflix", "Disney", "Marvel", "DC", "Star Wars", "sport", "football", "soccer", "NBA", "NFL", "MLB", "FIFA", "World Cup", "Olympic", "championship", "player", "coach", "transfer", "fan", "stadium", "draft", "MVP"],
