@@ -1038,13 +1038,14 @@ p{{margin-bottom:15px;text-align:justify}}
 .mm-l2{{font-size:.95em;color:#444}}
 .mm-l3{{font-size:.87em;color:#666;border-left-color:#ffe0d5;padding-left:calc(var(--indent,0px) + 45px)}}
 .mm-l3 .mm-dot{{width:4px;height:4px}}
-@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}}}
+@media(max-width:480px){{body{{font-size:16px;line-height:1.7}}.article-title{{font-size:1.3em}}.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}.share-box a{{min-height:44px;display:inline-flex;align-items:center}}}}
 .share-box{{margin:20px 0;padding:15px 20px;background:#f0f8ff;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #d0e8ff}}
 .share-box span{{color:#666;font-size:.9em;white-space:nowrap}}
-.share-box a{{padding:6px 16px;border-radius:20px;text-decoration:none;font-size:.85em;font-weight:500;transition:all .2s}}
-.share-box a:nth-child(2){{background:#ff5a4c;color:#fff}}
-.share-box a:nth-child(3){{background:#1da1f2;color:#fff}}
-.share-box a:nth-child(4){{background:#1877f2;color:#fff}}
+.share-box a{{padding:6px 16px;border-radius:20px;text-decoration:none;font-size:.85em;font-weight:500;transition:all .2s;cursor:pointer}}
+.share-box a:nth-child(2){{background:#07c160;color:#fff}}
+.share-box a:nth-child(3){{background:#ff5a4c;color:#fff}}
+.share-box a:nth-child(4){{background:#ff2442;color:#fff}}
+.share-box a:nth-child(5){{background:#666;color:#fff}}
 .share-box a:hover{{opacity:.85;transform:translateY(-1px)}}
 @media(max-width:480px){{.share-box{{gap:8px;justify-content:center}}.share-box a{{font-size:.8em;padding:5px 12px}}}}
 </style>
@@ -1069,9 +1070,10 @@ p{{margin-bottom:15px;text-align:justify}}
 {_related_block(related_articles, "zh")}
 <div class="share-box">
 <span>📤 分享：</span>
+<a href="javascript:void(0)" onclick="window.open('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={SITE_URL}/articles/{slug}.html','_blank','width=200,height=200')" rel="nofollow">微信</a>
 <a href="https://service.weibo.com/share/share.php?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">微博</a>
-<a href="https://twitter.com/intent/tweet?url={SITE_URL}/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">Twitter</a>
-<a href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/articles/{slug}.html" target="_blank" rel="nofollow noopener">Facebook</a>
+<a href="https://www.toutiao.com/c/user/token/msProvideShareLink/?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">今日头条</a>
+<a href="javascript:void(0)" onclick="navigator.clipboard.writeText('{SITE_URL}/articles/{slug}.html');this.textContent='已复制';">复制链接</a>
 </div>
 </article>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
@@ -1151,13 +1153,14 @@ p{{margin-bottom:15px;text-align:justify}}
 .mm-l2{{font-size:.95em;color:#444}}
 .mm-l3{{font-size:.87em;color:#666;border-left-color:#ffe0d5;padding-left:calc(var(--indent,0px) + 45px)}}
 .mm-l3 .mm-dot{{width:4px;height:4px}}
-@media(max-width:480px){{.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}}}
+@media(max-width:480px){{body{{font-size:16px;line-height:1.7}}.article-title{{font-size:1.3em}}.hero-svg{{margin:15px 0;border-radius:8px}}.cps-box{{padding:14px;margin:18px 0}}.cps-box li{{flex-direction:column;align-items:flex-start;gap:2px;padding:10px 0}}.cps-box a{{white-space:normal;font-size:.95em}}.cps-desc{{margin-top:2px}}.mindmap-section{{padding:14px}}.share-box a{{min-height:44px;display:inline-flex;align-items:center}}}}
 .share-box{{margin:20px 0;padding:15px 20px;background:#f0f8ff;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #d0e8ff}}
 .share-box span{{color:#666;font-size:.9em;white-space:nowrap}}
-.share-box a{{padding:6px 16px;border-radius:20px;text-decoration:none;font-size:.85em;font-weight:500;transition:all .2s}}
-.share-box a:nth-child(2){{background:#1da1f2;color:#fff}}
-.share-box a:nth-child(3){{background:#1877f2;color:#fff}}
-.share-box a:nth-child(4){{background:#ff4500;color:#fff}}
+.share-box a{{padding:6px 16px;border-radius:20px;text-decoration:none;font-size:.85em;font-weight:500;transition:all .2s;cursor:pointer}}
+.share-box a:nth-child(2){{background:#000;color:#fff}}
+.share-box a:nth-child(3){{background:#0088cc;color:#fff}}
+.share-box a:nth-child(4){{background:#1877f2;color:#fff}}
+.share-box a:nth-child(5){{background:#666;color:#fff}}
 .share-box a:hover{{opacity:.85;transform:translateY(-1px)}}
 @media(max-width:480px){{.share-box{{gap:8px;justify-content:center}}.share-box a{{font-size:.8em;padding:5px 12px}}}}
 </style>
@@ -1182,9 +1185,10 @@ p{{margin-bottom:15px;text-align:justify}}
 {_related_block(related_articles, "en")}
 <div class="share-box">
 <span>📤 Share:</span>
-<a href="https://twitter.com/intent/tweet?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">Twitter</a>
+<a href="https://twitter.com/intent/tweet?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">X</a>
+<a href="https://t.me/share/url?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">Telegram</a>
 <a href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/en/articles/{slug}.html" target="_blank" rel="nofollow noopener">Facebook</a>
-<a href="https://www.reddit.com/submit?url={SITE_URL}/en/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">Reddit</a>
+<a href="javascript:void(0)" onclick="navigator.clipboard.writeText('{SITE_URL}/en/articles/{slug}.html');this.textContent='Copied';">Copy Link</a>
 </div>
 </article>
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
@@ -1200,9 +1204,10 @@ p{{margin-bottom:15px;text-align:justify}}
 def generate_category_page_zh(category):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
+    cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
     articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
-    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(category,THUMB_COLORS["hot"])}">{cat_icon}</span><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">暂无文章...</li>'
-    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>' if category == "finance" else ""
+    card_items = "\n".join(f'<article class="card"><span class="card-thumb" style="background:{cat_color}">{cat_icon}</span><div class="card-content"><a href="/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>' for a in articles) or '<div style="color:#999;text-align:center;padding:40px">暂无文章...</div>'
+    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -1214,39 +1219,47 @@ def generate_category_page_zh(category):
 <link rel="canonical" href="{SITE_URL}/articles/{category}.html">
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.6;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
 .header{{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}}
 .header h1{{font-size:1.1em;color:#ff6b35}}
 .breadcrumb{{font-size:.85em;color:#999;margin-bottom:15px}}
 .breadcrumb a{{color:#ff6b35;text-decoration:none}}
 .cat-title{{font-size:1.5em;margin:20px 0;font-weight:bold}}
-ul{{list-style:none}}
-li{{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}}
-li:hover{{background:#fff}}
-.date{{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}}
-a{{color:#333;text-decoration:none}}
-a:hover{{color:#ff6b35}}
+.card-grid{{display:grid;grid-template-columns:1fr;gap:12px}}
+.card{{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#fff;border-radius:10px;border:1px solid #eee;transition:box-shadow .2s}}
+.card:hover{{box-shadow:0 2px 12px rgba(0,0,0,.08)}}
+.card-thumb{{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;font-size:20px;flex-shrink:0;color:#fff}}
+.card-content{{flex:1;min-width:0}}
+.card-title{{color:#1a1a1a;text-decoration:none;font-size:1em;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}}
+.card-title:hover{{color:#ff6b35}}
+.card-meta{{margin-top:6px;color:#999;font-size:.82em}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;text-align:center}}
-.thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
+@media(max-width:600px){{
+.card{{padding:12px;gap:10px}}
+.card-thumb{{width:40px;height:40px;font-size:18px}}
+.card-title{{font-size:.95em}}
+.header{{flex-wrap:wrap;gap:8px}}
+}}
 </style>
 {GA4_CODE}
 </head>
 <body>
 <div class="header">
-<h1>📰 {SITE_NAME}</h1>
+<h1>&#x1F4F0; {SITE_NAME}</h1>
 <div><a href="/">中文</a> | <a href="/en/">English</a></div>
 </div>
 <nav class="breadcrumb"><a href="/">首页</a> &gt; {cat_icon} {cat_name}</nav>
 <h2 class="cat-title">{cat_icon} {cat_name}</h2>
 <div class="ad-slot">{AD_CODE_TOP}</div>
-<ul>{list_items}</ul>
+<div class="card-grid">{card_items}</div>
 {cat_disclaimer}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025-2026 {SITE_NAME}</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
+<p>&copy; 2025-2026 {SITE_NAME}</p>
+<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
@@ -1254,9 +1267,10 @@ a:hover{{color:#ff6b35}}
 def generate_category_page_en(category):
     cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
+    cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
     articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
-    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(category,THUMB_COLORS["hot"])}">{cat_icon}</span><span class="date">{a.get("date","")}</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles) or '<li style="color:#999">No articles yet...</li>'
-    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>' if category == "finance" else ""
+    card_items = "\n".join(f'<article class="card"><span class="card-thumb" style="background:{cat_color}">{cat_icon}</span><div class="card-content"><a href="/en/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>' for a in articles) or '<div style="color:#999;text-align:center;padding:40px">No articles yet...</div>'
+    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1268,39 +1282,47 @@ def generate_category_page_en(category):
 <link rel="canonical" href="{EN_SITE_URL}/en/articles/{category}.html">
 <style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
+body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}}
 .header{{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}}
 .header h1{{font-size:1.1em;color:#ff6b35}}
 .breadcrumb{{font-size:.85em;color:#999;margin-bottom:15px}}
 .breadcrumb a{{color:#ff6b35;text-decoration:none}}
 .cat-title{{font-size:1.5em;margin:20px 0;font-weight:bold}}
-ul{{list-style:none}}
-li{{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}}
-li:hover{{background:#fff}}
-.date{{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}}
-a{{color:#333;text-decoration:none}}
-a:hover{{color:#ff6b35}}
+.card-grid{{display:grid;grid-template-columns:1fr;gap:12px}}
+.card{{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#fff;border-radius:10px;border:1px solid #eee;transition:box-shadow .2s}}
+.card:hover{{box-shadow:0 2px 12px rgba(0,0,0,.08)}}
+.card-thumb{{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;font-size:20px;flex-shrink:0;color:#fff}}
+.card-content{{flex:1;min-width:0}}
+.card-title{{color:#1a1a1a;text-decoration:none;font-size:1em;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}}
+.card-title:hover{{color:#ff6b35}}
+.card-meta{{margin-top:6px;color:#999;font-size:.82em}}
 .footer{{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}}
 .footer a{{color:#999;text-decoration:none;margin:0 8px}}
 .ad-slot{{margin:20px 0;text-align:center}}
-.thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
+@media(max-width:600px){{
+.card{{padding:12px;gap:10px}}
+.card-thumb{{width:40px;height:40px;font-size:18px}}
+.card-title{{font-size:.95em}}
+.header{{flex-wrap:wrap;gap:8px}}
+}}
 </style>
 {GA4_CODE}
 </head>
 <body>
 <div class="header">
-<h1>📰 {EN_SITE_NAME}</h1>
+<h1>&#x1F4F0; {EN_SITE_NAME}</h1>
 <div><a href="/">中文</a> | <a href="/en/">English</a></div>
 </div>
 <nav class="breadcrumb"><a href="/en/">Home</a> &gt; {cat_icon} {cat_name}</nav>
 <h2 class="cat-title">{cat_icon} {cat_name}</h2>
 <div class="ad-slot">{AD_CODE_TOP}</div>
-<ul>{list_items}</ul>
+<div class="card-grid">{card_items}</div>
 {cat_disclaimer}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
-<p>© 2025-2026 {EN_SITE_NAME}</p>
-<p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
+<p>&copy; 2025-2026 {EN_SITE_NAME}</p>
+<p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a><a href="/en/articles/finance.html">Finance</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
