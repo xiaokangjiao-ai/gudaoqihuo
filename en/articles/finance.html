@@ -8,22 +8,29 @@
 <link rel="canonical" href="https://gudaoqihuo.com/en/articles/finance.html">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
 .header{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}
 .header h1{font-size:1.1em;color:#ff6b35}
 .breadcrumb{font-size:.85em;color:#999;margin-bottom:15px}
 .breadcrumb a{color:#ff6b35;text-decoration:none}
 .cat-title{font-size:1.5em;margin:20px 0;font-weight:bold}
-ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}
-li:hover{background:#fff}
-.date{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}
-a{color:#333;text-decoration:none}
-a:hover{color:#ff6b35}
+.card-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#fff;border-radius:10px;border:1px solid #eee;transition:box-shadow .2s}
+.card:hover{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.card-thumb{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;font-size:20px;flex-shrink:0;color:#fff}
+.card-content{flex:1;min-width:0}
+.card-title{color:#1a1a1a;text-decoration:none;font-size:1em;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}
+.card-title:hover{color:#ff6b35}
+.card-meta{margin-top:6px;color:#999;font-size:.82em}
 .footer{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}
 .footer a{color:#999;text-decoration:none;margin:0 8px}
 .ad-slot{margin:20px 0;text-align:center}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
+@media(max-width:600px){
+.card{padding:12px;gap:10px}
+.card-thumb{width:40px;height:40px;font-size:18px}
+.card-title{font-size:.95em}
+.header{flex-wrap:wrap;gap:8px}
+}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
@@ -36,69 +43,70 @@ gtag('config', 'G-XE3F4GQQM5');
 </head>
 <body>
 <div class="header">
-<h1>📰 Daily Trending News</h1>
+<h1>&#x1F4F0; Daily Trending News</h1>
 <div><a href="/">中文</a> | <a href="/en/">English</a></div>
 </div>
 <nav class="breadcrumb"><a href="/en/">Home</a> &gt; 📈 Finance</nav>
 <h2 class="cat-title">📈 Finance</h2>
 <div class="ad-slot"></div>
-<ul><li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/en/articles/article-5eed9b1a2f.html">People Are Buzzing About Eagle 3.1: A Triumphant Collaboration Unve...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/en/articles/article-868e59c23a.html">**Expert Decodes the GitHub Actions Outage: What It Means for Devel...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/en/articles/article-2a715890da.html">How to Embrace the Apple Vision Pro Without Spending Hours a Day</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/en/articles/article-c2fc27abf6.html">**When Motorola Phones Hijack Amazon App, Affiliate Codes Are Inser...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/en/articles/article-343574ad11.html">macOS Under Threat: CVE-2026-28952: A New Vulnerability That's Maki...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-bbac875896.html">**Ninth Circuit Panel Raises Doubts About Section 230, shaking up i...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-c25be91ae9.html">**"China's Local-First Video Revolution: A Boon or a Bane?"**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-4ca7f9721c.html">Microsoft Copilot Cowork Exfiltrates Files: A Security Wake-Up Call</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-fda5fb50a6.html">Everything You Need to Know About Norway's Huawei Flash Storage and...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-8244034e72.html">**Everything You Need to Know About Microsoft's Data Center Cancell...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-97009fcee9.html">Top 7 Search Engine Alternatives to Google: A Modern Guide</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/en/articles/article-87172eb791.html">Memory Just Got Costlier: AI Chips Now Spend Two-Thirds on Memory, ...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/en/articles/article-86779528ef.html">**The Unraveling Mystery of Fang Bang Stock: 4 Insights Unveiled**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/en/articles/article-331fac849d.html">The Rise and Fall of Rui Feng High Material Stock: Fact or Fiction?</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/en/articles/article-d046436e0f.html">The Rise and Fall of N Jiade Stock</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/en/articles/article-f121ad601b.html">**Title: N惠康股票: The Rise and Future Prospects of a Promising Stock**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-a0a7b33519.html">**The Truth Behind the Rayman Lighting Stock Drama**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-10bc2aa30d.html">The 4-Step Blueprint to Understanding the Rise and Fall of Weida Ph...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-b4c5c8d9b7.html">3 Critical Insights into the Huzhi Electromechanical Stock Trend</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-cec1b755e4.html">"What Really Happened? The Oil Price Plunge and the Gold Rush"</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-32b5280baa.html">The Dragon soars, the market shudders: The Rise and Fall of Longten...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-866a20a328.html">Unveiling the Mysteries of the Daju CNC Stock: 5 Must-Know Rules</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-8bc9b7b6f4.html">The Inside Scoop on Ruowei Technology's Stock Rise</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-995b735258.html">Just Revealed: The Critical Rules for Navigating Jiguang Technology...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-ece8dcd915.html">**3 Critical Insights into the Tri-Symphony Electric Stock Boom**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/en/articles/article-02cc8495d2.html">Breaking News: Oil Prices Surge Tonight – What It Means for You!</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-1e3eb1b27e.html">Title: Rise of Ruihua Tai Stock: A Comprehensive Analysis</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-88cfc20557.html">**The Thriving World of Sealed Technology Stocks**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-fff7bbc56e.html">What Really Happened? The Controversy Surrounding Zhengguang Stock</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-d70ff026aa.html">**Just Revealed: The Unspoken Truth Behind Lianyun Technology Stock**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-5a7200fee1.html">**What Really Happened with *ST Yuan Dao's Stock?**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-4de6544047.html">What Really Happened with Jinlihua Dian Stock?</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-0ff63a912c.html">The Hidden Truth Behind the Rising Star: RuiXiang Intelligent Stock</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/en/articles/article-4367760a44.html">Just Revealed: The Green Technology Stock Sensation in China</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-5953a3a99e.html">**The Real Story Behind the Stirring of STQI Stocks**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-48cf1166b6.html">**The New Energy Tragedy: New Special Electric's Stock Drama Unveil...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-34f613cd68.html">**The Truth Behind the Golden "Monkey Market": Unveiling China's Ec...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-dc98b8fa4b.html">ST Power Stock: A Deep Dive into the Electric Vehicle Industry's Ri...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-d0088daba2.html">The Real Story Behind Canaan Creative's Stock Surge: Fact or Fiction?</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-2b4f427aaa.html">**Title: "Everbright New Materials Stock Soars: A Comprehensive Ana...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/en/articles/article-a00ee7fd0d.html">The Unraveling Mystery of the Nakin Equipment Stock: 5 Unspoken Truths</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/en/articles/article-6303edb301.html">Just Revealed: Wang Leehom Responds to Endorsement Fee Investment i...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/en/articles/article-319b2d7f55.html">The Rise of Van拓数创 Stock: A Game-Changing Investment</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/en/articles/article-75e7e330b4.html">Just Revealed: The Rising Stock of Sochen Technology</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/en/articles/article-2fef0eaff5.html">Springtime Group's Stock: A Dive into the China Market's Intrigue</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/en/articles/article-abd8162a56.html">The Rise and Fall of Youyan Composites Stock: A Tale of Market Spec...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/en/articles/article-a1a74f2b83.html">The Mysterious Rise and Fall of Liqi Intelligent Stock</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-17</span><a href="/en/articles/article-7fa964bba7.html">The Mysterious Reunion: A 27-Year-Old Tree-Planting Gesture Unveiled</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-17</span><a href="/en/articles/article-f35beb7177.html">**The Rise and Fall of NuiXiang Stock: A Tale of Market Intrigue**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-17</span><a href="/en/articles/article-5212a3c07f.html">What Really Happened with Yanpai Stock?</a></li></ul>
-<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>
+<div class="card-grid"><article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-5eed9b1a2f.html" class="card-title">People Are Buzzing About Eagle 3.1: A Triumphant Collaboration Unve...</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-868e59c23a.html" class="card-title">**Expert Decodes the GitHub Actions Outage: What It Means for Devel...</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-2a715890da.html" class="card-title">How to Embrace the Apple Vision Pro Without Spending Hours a Day</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-c2fc27abf6.html" class="card-title">**When Motorola Phones Hijack Amazon App, Affiliate Codes Are Inser...</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-343574ad11.html" class="card-title">macOS Under Threat: CVE-2026-28952: A New Vulnerability That's Maki...</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-bbac875896.html" class="card-title">**Ninth Circuit Panel Raises Doubts About Section 230, shaking up i...</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-c25be91ae9.html" class="card-title">**"China's Local-First Video Revolution: A Boon or a Bane?"**</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-4ca7f9721c.html" class="card-title">Microsoft Copilot Cowork Exfiltrates Files: A Security Wake-Up Call</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-fda5fb50a6.html" class="card-title">Everything You Need to Know About Norway's Huawei Flash Storage and...</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-8244034e72.html" class="card-title">**Everything You Need to Know About Microsoft's Data Center Cancell...</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-97009fcee9.html" class="card-title">Top 7 Search Engine Alternatives to Google: A Modern Guide</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-87172eb791.html" class="card-title">Memory Just Got Costlier: AI Chips Now Spend Two-Thirds on Memory, ...</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-86779528ef.html" class="card-title">**The Unraveling Mystery of Fang Bang Stock: 4 Insights Unveiled**</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-331fac849d.html" class="card-title">The Rise and Fall of Rui Feng High Material Stock: Fact or Fiction?</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-d046436e0f.html" class="card-title">The Rise and Fall of N Jiade Stock</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-f121ad601b.html" class="card-title">**Title: N惠康股票: The Rise and Future Prospects of a Promising Stock**</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-a0a7b33519.html" class="card-title">**The Truth Behind the Rayman Lighting Stock Drama**</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-10bc2aa30d.html" class="card-title">The 4-Step Blueprint to Understanding the Rise and Fall of Weida Ph...</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-b4c5c8d9b7.html" class="card-title">3 Critical Insights into the Huzhi Electromechanical Stock Trend</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-cec1b755e4.html" class="card-title">"What Really Happened? The Oil Price Plunge and the Gold Rush"</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-32b5280baa.html" class="card-title">The Dragon soars, the market shudders: The Rise and Fall of Longten...</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-866a20a328.html" class="card-title">Unveiling the Mysteries of the Daju CNC Stock: 5 Must-Know Rules</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-8bc9b7b6f4.html" class="card-title">The Inside Scoop on Ruowei Technology's Stock Rise</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-995b735258.html" class="card-title">Just Revealed: The Critical Rules for Navigating Jiguang Technology...</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-ece8dcd915.html" class="card-title">**3 Critical Insights into the Tri-Symphony Electric Stock Boom**</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-02cc8495d2.html" class="card-title">Breaking News: Oil Prices Surge Tonight – What It Means for You!</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-1e3eb1b27e.html" class="card-title">Title: Rise of Ruihua Tai Stock: A Comprehensive Analysis</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-88cfc20557.html" class="card-title">**The Thriving World of Sealed Technology Stocks**</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-fff7bbc56e.html" class="card-title">What Really Happened? The Controversy Surrounding Zhengguang Stock</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-d70ff026aa.html" class="card-title">**Just Revealed: The Unspoken Truth Behind Lianyun Technology Stock**</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-5a7200fee1.html" class="card-title">**What Really Happened with *ST Yuan Dao's Stock?**</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-4de6544047.html" class="card-title">What Really Happened with Jinlihua Dian Stock?</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-0ff63a912c.html" class="card-title">The Hidden Truth Behind the Rising Star: RuiXiang Intelligent Stock</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-4367760a44.html" class="card-title">Just Revealed: The Green Technology Stock Sensation in China</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-5953a3a99e.html" class="card-title">**The Real Story Behind the Stirring of STQI Stocks**</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-48cf1166b6.html" class="card-title">**The New Energy Tragedy: New Special Electric's Stock Drama Unveil...</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-34f613cd68.html" class="card-title">**The Truth Behind the Golden "Monkey Market": Unveiling China's Ec...</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-dc98b8fa4b.html" class="card-title">ST Power Stock: A Deep Dive into the Electric Vehicle Industry's Ri...</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-d0088daba2.html" class="card-title">The Real Story Behind Canaan Creative's Stock Surge: Fact or Fiction?</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-2b4f427aaa.html" class="card-title">**Title: "Everbright New Materials Stock Soars: A Comprehensive Ana...</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-a00ee7fd0d.html" class="card-title">The Unraveling Mystery of the Nakin Equipment Stock: 5 Unspoken Truths</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-6303edb301.html" class="card-title">Just Revealed: Wang Leehom Responds to Endorsement Fee Investment i...</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-319b2d7f55.html" class="card-title">The Rise of Van拓数创 Stock: A Game-Changing Investment</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-75e7e330b4.html" class="card-title">Just Revealed: The Rising Stock of Sochen Technology</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-2fef0eaff5.html" class="card-title">Springtime Group's Stock: A Dive into the China Market's Intrigue</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-abd8162a56.html" class="card-title">The Rise and Fall of Youyan Composites Stock: A Tale of Market Spec...</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-a1a74f2b83.html" class="card-title">The Mysterious Rise and Fall of Liqi Intelligent Stock</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-7fa964bba7.html" class="card-title">The Mysterious Reunion: A 27-Year-Old Tree-Planting Gesture Unveiled</a><div class="card-meta"><span>2026-05-17</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-f35beb7177.html" class="card-title">**The Rise and Fall of NuiXiang Stock: A Tale of Market Intrigue**</a><div class="card-meta"><span>2026-05-17</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/en/articles/article-5212a3c07f.html" class="card-title">What Really Happened with Yanpai Stock?</a><div class="card-meta"><span>2026-05-17</span></div></div></article></div>
+<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>
 <div class="ad-slot"><div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <div class="footer">
-<p>© 2025-2026 Daily Trending News</p>
-<p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
+<p>&copy; 2025-2026 Daily Trending News</p>
+<p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a><a href="/en/articles/finance.html">Finance</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>

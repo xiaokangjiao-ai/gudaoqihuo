@@ -8,22 +8,29 @@
 <link rel="canonical" href="https://gudaoqihuo.com/articles/finance.html">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.6;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
 .header{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}
 .header h1{font-size:1.1em;color:#ff6b35}
 .breadcrumb{font-size:.85em;color:#999;margin-bottom:15px}
 .breadcrumb a{color:#ff6b35;text-decoration:none}
 .cat-title{font-size:1.5em;margin:20px 0;font-weight:bold}
-ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}
-li:hover{background:#fff}
-.date{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}
-a{color:#333;text-decoration:none}
-a:hover{color:#ff6b35}
+.card-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#fff;border-radius:10px;border:1px solid #eee;transition:box-shadow .2s}
+.card:hover{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.card-thumb{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;font-size:20px;flex-shrink:0;color:#fff}
+.card-content{flex:1;min-width:0}
+.card-title{color:#1a1a1a;text-decoration:none;font-size:1em;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}
+.card-title:hover{color:#ff6b35}
+.card-meta{margin-top:6px;color:#999;font-size:.82em}
 .footer{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}
 .footer a{color:#999;text-decoration:none;margin:0 8px}
 .ad-slot{margin:20px 0;text-align:center}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
+@media(max-width:600px){
+.card{padding:12px;gap:10px}
+.card-thumb{width:40px;height:40px;font-size:18px}
+.card-title{font-size:.95em}
+.header{flex-wrap:wrap;gap:8px}
+}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
@@ -36,69 +43,70 @@ gtag('config', 'G-XE3F4GQQM5');
 </head>
 <body>
 <div class="header">
-<h1>📰 每日热点速递</h1>
+<h1>&#x1F4F0; 每日热点速递</h1>
 <div><a href="/">中文</a> | <a href="/en/">English</a></div>
 </div>
 <nav class="breadcrumb"><a href="/">首页</a> &gt; 📈 财经投资</nav>
 <h2 class="cat-title">📈 财经投资</h2>
 <div class="ad-slot"></div>
-<ul><li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/小米一季度净利润6072亿-1e5dd3e1f2.html">**小米一季度净利润60.72亿却让手机行业更难了**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/美联储加息-d872efac92.html">美联储主席鲍威尔做了件让所有人震惊的事</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/半导体行业分析-19902fbd02.html">半导体行业分析：市场规模突破2万亿元，创新驱动产业升级</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/收评创业板指探底回升涨054-ae612102a8.html">创业板探底回升，涨0.54%却让投资者更纠结？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/人民币汇率-ead6568f3c.html">**人民币汇率波动加剧，涉及资金规模高达XX亿元**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/数字货币行情-e08a0e42df.html">2023年数字货币市场风云再起</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/宇树科技科创板IPO将于6月1-57d271e5c5.html">出大事了!关于宇树科技科创板IPO，你需要知道的事</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/A股今日行情-5834bf8d74.html">深度解读：A股今日行情，揭秘涨跌背后的秘密！</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/新能源汽车板块-321bbfc350.html">1. 突然！男子开车时发现新能源汽车如此神速</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/科技股最新动态-79e5314fa4.html">标题：科技股崩盘，网友炸锅！揭秘最新动态</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-26</span><a href="/articles/黄金价格走势-f0347c58d6.html">**黄金价格波动：全球市场如何影响中国投资者**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/A股出现三大异象-13f13d7a1b.html">A股三大异象却让投资者更难了</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/华虹公司股票-999fd3c726.html">华虹公司股票大揭秘：王总的一举一动震惊市场</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/惠城环保股票-289ca29738.html">**惠城环保股票风云再起：10亿资金涌入，股价翻倍**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/杰美特股票-66ce6503df.html">杰美特股票：揭秘其背后的真相与未来走向</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/东芯股份股票-7578c7ecbf.html">东芯股份股票风波：涉及7人，金额高达5000万元，揭秘内...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/A股收评科创50指数大涨近6-5f227238ed.html">4月19日A股收评：科创50指数大涨近6%创年内最大涨幅</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/7只半导体热门股拟套现127亿-c40f9d319d.html">今日A股惊现127亿套现潮：7大半导体热门股“割肉”离场</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-25</span><a href="/articles/长海股份股票-02ac6c1fd3.html">长海股份股票惊现惊天动地事件，涉及资金高达5亿元！</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/articles/方邦股份股票-86779528ef.html">**方邦股份股票：最新动态揭秘！**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/articles/瑞丰高材股票-331fac849d.html">**看似普通实则潜力无限的瑞丰高材股票**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/articles/N嘉德股票-d046436e0f.html">N嘉德股票：揭秘其背后的秘密！</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-22</span><a href="/articles/N惠康股票-f121ad601b.html">N惠康股票：隐藏在辉煌背后的秘密</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/雷曼光电股票-a0a7b33519.html">雷曼光电股票：隐藏的秘密</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/纬达光电股票-10bc2aa30d.html">**看似普通，实则潜力无限——纬达光电股票解析**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/昊志机电股票-b4c5c8d9b7.html">昊志机电股票：揭开背后的真相</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/油价暴跌黄金白银上涨-cec1b755e4.html">油价暴跌，黄金白银上涨——背后的真相？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/龙腾光电股票-32b5280baa.html">龙腾光电股票：看似高深，其实简单易懂</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/大族数控股票-866a20a328.html">**3个真相，揭秘大族数控股票背后的秘密**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/瑞华技术股票-8bc9b7b6f4.html">瑞华技术股票，这场“涨停”背后隐藏了什么？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/聚光科技股票-995b735258.html">标题：聚光科技股票：揭开神秘面纱背后的真相</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/三协电机股票-ece8dcd915.html">**三协电机股票，这是怎么回事？**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-21</span><a href="/articles/油价今晚上调-02cc8495d2.html">刚刚曝光！油价今晚上调，车主们要加钱啦！</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/瑞华泰股票-1e3eb1b27e.html">瑞华泰股票，这股神秘力量到底怎么回事？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/密封科技股票-88cfc20557.html">刚刚曝光！密封科技股票背后的大秘密，你敢看吗？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/争光股份股票-fff7bbc56e.html">争光股份股票：看似平凡其实不凡</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/联芸科技股票-d70ff026aa.html">联芸科技股票，你真的了解吗？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/ST元道股票-5a7200fee1.html">**3个真相让你看清ST元道股票风云变幻**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/金利华电股票-4de6544047.html">金利华电股票，到底怎么回事？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/锐翔智能股票-0ff63a912c.html">标题：锐翔智能股票：看似繁荣背后，藏着怎样的“陷阱”？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-20</span><a href="/articles/绿通科技股票-4367760a44.html">绿通科技股票，到底值不值得投资？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/思特奇股票-5953a3a99e.html">最新消息：思特奇股票大揭秘！背后的真相让人惊讶！</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/新特电气股票-48cf1166b6.html">标题：新特电气股票，这是真的吗？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/黄金进入猴市-34f613cd68.html">黄金“猴市”：揭秘3个真相，洞察市场风云</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/ST动力股票-dc98b8fa4b.html">3个真相揭秘：*ST动力股票的兴衰之路</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/灿勤科技股票-d0088daba2.html">灿勤科技股票：揭秘背后真相，你了解多少？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/逸豪新材股票-2b4f427aaa.html">逸豪新材股票最新消息：刚刚曝光，股价涨跌背后的真相！</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-19</span><a href="/articles/耐科装备股票-a00ee7fd0d.html">标题：刚刚曝光！耐科装备股票大揭秘，你敢信吗？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/articles/王力宏回应用代言费买比亚迪股票-6303edb301.html">标题：王力宏回应投资比亚迪：3个真相让你看懂明星理财</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-05-18</span><a href="/articles/凡拓数创股票-319b2d7f55.html">标题：凡拓数创股票：揭开背后的财富密码？</a></li></ul>
-<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">⚠️ <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>
+<div class="card-grid"><article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/上纬新材股票-717ceaa2c6.html" class="card-title">上纬新材股票：揭秘背后的投资秘密！</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/胜科纳米股票-6358c88bcc.html" class="card-title">**纳米帝国崛起：胜科纳米股票的大逆袭**</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/小米一季度净利润6072亿-1e5dd3e1f2.html" class="card-title">**小米一季度净利润60.72亿却让手机行业更难了**</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/美联储加息-d872efac92.html" class="card-title">美联储主席鲍威尔做了件让所有人震惊的事</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/半导体行业分析-19902fbd02.html" class="card-title">半导体行业分析：市场规模突破2万亿元，创新驱动产业升级</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/收评创业板指探底回升涨054-ae612102a8.html" class="card-title">创业板探底回升，涨0.54%却让投资者更纠结？</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/人民币汇率-ead6568f3c.html" class="card-title">**人民币汇率波动加剧，涉及资金规模高达XX亿元**</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/数字货币行情-e08a0e42df.html" class="card-title">2023年数字货币市场风云再起</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/宇树科技科创板IPO将于6月1-57d271e5c5.html" class="card-title">出大事了!关于宇树科技科创板IPO，你需要知道的事</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/A股今日行情-5834bf8d74.html" class="card-title">深度解读：A股今日行情，揭秘涨跌背后的秘密！</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/新能源汽车板块-321bbfc350.html" class="card-title">1. 突然！男子开车时发现新能源汽车如此神速</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/科技股最新动态-79e5314fa4.html" class="card-title">标题：科技股崩盘，网友炸锅！揭秘最新动态</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/黄金价格走势-f0347c58d6.html" class="card-title">**黄金价格波动：全球市场如何影响中国投资者**</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/A股出现三大异象-13f13d7a1b.html" class="card-title">A股三大异象却让投资者更难了</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/华虹公司股票-999fd3c726.html" class="card-title">华虹公司股票大揭秘：王总的一举一动震惊市场</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/惠城环保股票-289ca29738.html" class="card-title">**惠城环保股票风云再起：10亿资金涌入，股价翻倍**</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/杰美特股票-66ce6503df.html" class="card-title">杰美特股票：揭秘其背后的真相与未来走向</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/东芯股份股票-7578c7ecbf.html" class="card-title">东芯股份股票风波：涉及7人，金额高达5000万元，揭秘内...</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/A股收评科创50指数大涨近6-5f227238ed.html" class="card-title">4月19日A股收评：科创50指数大涨近6%创年内最大涨幅</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/7只半导体热门股拟套现127亿-c40f9d319d.html" class="card-title">今日A股惊现127亿套现潮：7大半导体热门股“割肉”离场</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/长海股份股票-02ac6c1fd3.html" class="card-title">长海股份股票惊现惊天动地事件，涉及资金高达5亿元！</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/方邦股份股票-86779528ef.html" class="card-title">**方邦股份股票：最新动态揭秘！**</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/瑞丰高材股票-331fac849d.html" class="card-title">**看似普通实则潜力无限的瑞丰高材股票**</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/N嘉德股票-d046436e0f.html" class="card-title">N嘉德股票：揭秘其背后的秘密！</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/N惠康股票-f121ad601b.html" class="card-title">N惠康股票：隐藏在辉煌背后的秘密</a><div class="card-meta"><span>2026-05-22</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/雷曼光电股票-a0a7b33519.html" class="card-title">雷曼光电股票：隐藏的秘密</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/纬达光电股票-10bc2aa30d.html" class="card-title">**看似普通，实则潜力无限——纬达光电股票解析**</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/昊志机电股票-b4c5c8d9b7.html" class="card-title">昊志机电股票：揭开背后的真相</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/油价暴跌黄金白银上涨-cec1b755e4.html" class="card-title">油价暴跌，黄金白银上涨——背后的真相？</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/龙腾光电股票-32b5280baa.html" class="card-title">龙腾光电股票：看似高深，其实简单易懂</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/大族数控股票-866a20a328.html" class="card-title">**3个真相，揭秘大族数控股票背后的秘密**</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/瑞华技术股票-8bc9b7b6f4.html" class="card-title">瑞华技术股票，这场“涨停”背后隐藏了什么？</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/聚光科技股票-995b735258.html" class="card-title">标题：聚光科技股票：揭开神秘面纱背后的真相</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/三协电机股票-ece8dcd915.html" class="card-title">**三协电机股票，这是怎么回事？**</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/油价今晚上调-02cc8495d2.html" class="card-title">刚刚曝光！油价今晚上调，车主们要加钱啦！</a><div class="card-meta"><span>2026-05-21</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/瑞华泰股票-1e3eb1b27e.html" class="card-title">瑞华泰股票，这股神秘力量到底怎么回事？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/密封科技股票-88cfc20557.html" class="card-title">刚刚曝光！密封科技股票背后的大秘密，你敢看吗？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/争光股份股票-fff7bbc56e.html" class="card-title">争光股份股票：看似平凡其实不凡</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/联芸科技股票-d70ff026aa.html" class="card-title">联芸科技股票，你真的了解吗？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/ST元道股票-5a7200fee1.html" class="card-title">**3个真相让你看清ST元道股票风云变幻**</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/金利华电股票-4de6544047.html" class="card-title">金利华电股票，到底怎么回事？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/锐翔智能股票-0ff63a912c.html" class="card-title">标题：锐翔智能股票：看似繁荣背后，藏着怎样的“陷阱”？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/绿通科技股票-4367760a44.html" class="card-title">绿通科技股票，到底值不值得投资？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/思特奇股票-5953a3a99e.html" class="card-title">最新消息：思特奇股票大揭秘！背后的真相让人惊讶！</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/新特电气股票-48cf1166b6.html" class="card-title">标题：新特电气股票，这是真的吗？</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/黄金进入猴市-34f613cd68.html" class="card-title">黄金“猴市”：揭秘3个真相，洞察市场风云</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/ST动力股票-dc98b8fa4b.html" class="card-title">3个真相揭秘：*ST动力股票的兴衰之路</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/灿勤科技股票-d0088daba2.html" class="card-title">灿勤科技股票：揭秘背后真相，你了解多少？</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/逸豪新材股票-2b4f427aaa.html" class="card-title">逸豪新材股票最新消息：刚刚曝光，股价涨跌背后的真相！</a><div class="card-meta"><span>2026-05-19</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#1a73e8">📈</span><div class="card-content"><a href="/articles/耐科装备股票-a00ee7fd0d.html" class="card-title">标题：刚刚曝光！耐科装备股票大揭秘，你敢信吗？</a><div class="card-meta"><span>2026-05-19</span></div></div></article></div>
+<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>
 <div class="ad-slot"><div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <div class="footer">
-<p>© 2025-2026 每日热点速递</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
+<p>&copy; 2025-2026 每日热点速递</p>
+<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>

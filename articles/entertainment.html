@@ -8,22 +8,29 @@
 <link rel="canonical" href="https://gudaoqihuo.com/articles/entertainment.html">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.6;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
 .header{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:2px solid #ff6b35;margin-bottom:15px}
 .header h1{font-size:1.1em;color:#ff6b35}
 .breadcrumb{font-size:.85em;color:#999;margin-bottom:15px}
 .breadcrumb a{color:#ff6b35;text-decoration:none}
 .cat-title{font-size:1.5em;margin:20px 0;font-weight:bold}
-ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}
-li:hover{background:#fff}
-.date{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}
-a{color:#333;text-decoration:none}
-a:hover{color:#ff6b35}
+.card-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{display:flex;align-items:flex-start;gap:12px;padding:14px;background:#fff;border-radius:10px;border:1px solid #eee;transition:box-shadow .2s}
+.card:hover{box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.card-thumb{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;font-size:20px;flex-shrink:0;color:#fff}
+.card-content{flex:1;min-width:0}
+.card-title{color:#1a1a1a;text-decoration:none;font-size:1em;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4}
+.card-title:hover{color:#ff6b35}
+.card-meta{margin-top:6px;color:#999;font-size:.82em}
 .footer{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}
 .footer a{color:#999;text-decoration:none;margin:0 8px}
 .ad-slot{margin:20px 0;text-align:center}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
+@media(max-width:600px){
+.card{padding:12px;gap:10px}
+.card-thumb{width:40px;height:40px;font-size:18px}
+.card-title{font-size:.95em}
+.header{flex-wrap:wrap;gap:8px}
+}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
@@ -36,29 +43,30 @@ gtag('config', 'G-XE3F4GQQM5');
 </head>
 <body>
 <div class="header">
-<h1>📰 每日热点速递</h1>
+<h1>&#x1F4F0; 每日热点速递</h1>
 <div><a href="/">中文</a> | <a href="/en/">English</a></div>
 </div>
 <nav class="breadcrumb"><a href="/">首页</a> &gt; 🎬 娱乐八卦</nav>
 <h2 class="cat-title">🎬 娱乐八卦</h2>
 <div class="ad-slot"></div>
-<ul><li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-26</span><a href="/articles/影迷怀疑给阿嬷的情书被偷票房-5af954bbed.html">影迷怀疑《给阿嬷的情书》被偷票房，真相却让影迷更难了</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-26</span><a href="/articles/正直播NBA东决尼克斯vs骑士-6794f080fe.html">正直播NBA东决：尼克斯vs骑士，精彩对决谁主沉浮？</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-25</span><a href="/articles/西湖网红椅遭商拍霸位排队超半小-0a82928268.html">摄影师商拍霸位西湖网红椅，排队超半小时</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-25</span><a href="/articles/球员夺冠后捧起奖杯下一秒碎一地-7d1c2da6b4.html">球员夺冠后捧起奖杯下一秒碎一地：专家解读背后的真相</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-24</span><a href="/articles/盒马60元一斤网红葡萄卖断货-25fc05d9fc.html">刚刚曝光！网红葡萄60元一斤，为何卖断货？</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-24</span><a href="/articles/2026戛纳电影节获奖名单-61a30bb576.html">刚刚曝光！2026戛纳电影节获奖名单揭晓，影坛风云再起！</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-20</span><a href="/articles/百万粉丝女网红上厕所被偷拍-9fc18d87c0.html">刚刚曝光！百万粉丝女网红上厕所被偷拍，这事儿你敢信？</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-18</span><a href="/articles/台网红馆长模仿青鸟破防-5a35b99bed.html">到底怎么回事？网红馆长模仿“青鸟”破防，真相竟然是这个！👀</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-16</span><a href="/articles/这些网红水果的命名就是消费陷阱-05021a02a3.html">标题：网红水果命名背后的秘密，你真的了解吗？</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-05-13</span><a href="/articles/巩俐中文宣布戛纳电影节开幕-ae727d2930.html">看似中文宣布，实则世界瞩目——巩俐戛纳电影节开幕大秀</a></li></ul>
+<div class="card-grid"><article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/影迷怀疑给阿嬷的情书被偷票房-5af954bbed.html" class="card-title">影迷怀疑《给阿嬷的情书》被偷票房，真相却让影迷更难了</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/正直播NBA东决尼克斯vs骑士-6794f080fe.html" class="card-title">正直播NBA东决：尼克斯vs骑士，精彩对决谁主沉浮？</a><div class="card-meta"><span>2026-05-26</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/西湖网红椅遭商拍霸位排队超半小-0a82928268.html" class="card-title">摄影师商拍霸位西湖网红椅，排队超半小时</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/球员夺冠后捧起奖杯下一秒碎一地-7d1c2da6b4.html" class="card-title">球员夺冠后捧起奖杯下一秒碎一地：专家解读背后的真相</a><div class="card-meta"><span>2026-05-25</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/盒马60元一斤网红葡萄卖断货-25fc05d9fc.html" class="card-title">刚刚曝光！网红葡萄60元一斤，为何卖断货？</a><div class="card-meta"><span>2026-05-24</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/2026戛纳电影节获奖名单-61a30bb576.html" class="card-title">刚刚曝光！2026戛纳电影节获奖名单揭晓，影坛风云再起！</a><div class="card-meta"><span>2026-05-24</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/百万粉丝女网红上厕所被偷拍-9fc18d87c0.html" class="card-title">刚刚曝光！百万粉丝女网红上厕所被偷拍，这事儿你敢信？</a><div class="card-meta"><span>2026-05-20</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/台网红馆长模仿青鸟破防-5a35b99bed.html" class="card-title">到底怎么回事？网红馆长模仿“青鸟”破防，真相竟然是这个！👀</a><div class="card-meta"><span>2026-05-18</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/这些网红水果的命名就是消费陷阱-05021a02a3.html" class="card-title">标题：网红水果命名背后的秘密，你真的了解吗？</a><div class="card-meta"><span>2026-05-16</span></div></div></article>
+<article class="card"><span class="card-thumb" style="background:#ec4899">🎬</span><div class="card-content"><a href="/articles/巩俐中文宣布戛纳电影节开幕-ae727d2930.html" class="card-title">看似中文宣布，实则世界瞩目——巩俐戛纳电影节开幕大秀</a><div class="card-meta"><span>2026-05-13</span></div></div></article></div>
 
 <div class="ad-slot"><div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
 <div class="footer">
-<p>© 2025-2026 每日热点速递</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
+<p>&copy; 2025-2026 每日热点速递</p>
+<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
+<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>
