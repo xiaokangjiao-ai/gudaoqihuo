@@ -60,9 +60,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){{dataLayer.push(arguments);}}
 gtag('js', new Date());
 gtag('config', '{GA4_ID}');
-</script>
-<!-- Monetag Zone -->
-<script>(function(s){{s.dataset.zone='11058175',s.src='https://nap5k.com/tag.min.js'}})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>'''
+</script>'''
 
 # 中文分类
 CATEGORIES = {
