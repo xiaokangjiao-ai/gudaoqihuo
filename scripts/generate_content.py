@@ -1072,7 +1072,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <span>📤 分享：</span>
 <a href="javascript:void(0)" onclick="window.open('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={SITE_URL}/articles/{slug}.html','_blank','width=200,height=200')" rel="nofollow">微信</a>
 <a href="https://service.weibo.com/share/share.php?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">微博</a>
-<a href="https://www.toutiao.com/c/user/token/msProvideShareLink/?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">今日头条</a>
+<a href="https://www.douyin.com/share/video/{slug}" target="_blank" rel="nofollow noopener">今日头条</a>
 <a href="javascript:void(0)" onclick="navigator.clipboard.writeText('{SITE_URL}/articles/{slug}.html');this.textContent='已复制';">复制链接</a>
 </div>
 </article>
