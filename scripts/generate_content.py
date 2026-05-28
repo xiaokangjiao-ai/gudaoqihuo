@@ -25,7 +25,7 @@ API_KEY = os.environ.get("ZHIPU_API_KEY", "")
 API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
 MODEL = "glm-4-flash"
 
-ARTICLES_PER_RUN = 20  # 每次生成20个话题，每个话题中英文各一篇 = 40篇
+ARTICLES_PER_RUN = 20  # 每次生成20个话题,每个话题中英文各一篇 = 40篇
 
 # SEO Ping服务
 PING_SERVICES = [
@@ -243,7 +243,7 @@ def generate_svg_hero(title, category, lang="zh"):
 # 财经免责声明
 FINANCE_DISCLAIMER_ZH = '''<div style="background:linear-gradient(135deg,#fff8f0,#fff3e0);border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.88em;color:#8d6e63;line-height:1.7">
 ⚠️ <strong>免责声明</strong><br>
-本频道所有内容仅供参考和学习交流之用，不构成任何投资建议、交易指导或财务顾问意见。市场有风险，投资需谨慎。文中提及的股票、基金、数字货币、大宗商品等金融产品，均不构成买入、卖出或持有的推荐。投资者应根据自身风险承受能力独立判断，并自行承担投资风险。过往表现不代表未来收益。如需专业投资建议，请咨询持牌金融机构。本站及作者对任何因参考本文内容而造成的直接或间接损失不承担任何责任。
+本频道所有内容仅供参考和学习交流之用,不构成任何投资建议、交易指导或财务顾问意见。市场有风险,投资需谨慎。文中提及的股票、基金、数字货币、大宗商品等金融产品,均不构成买入、卖出或持有的推荐。投资者应根据自身风险承受能力独立判断,并自行承担投资风险。过往表现不代表未来收益。如需专业投资建议,请咨询持牌金融机构。本站及作者对任何因参考本文内容而造成的直接或间接损失不承担任何责任。
 </div>'''
 
 FINANCE_DISCLAIMER_EN = '''<div style="background:linear-gradient(135deg,#fff8f0,#fff3e0);border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.88em;color:#8d6e63;line-height:1.7">
@@ -380,7 +380,7 @@ def get_hot_topics():
     return unique[:ARTICLES_PER_RUN]
 
 def get_hot_topics_en():
-    """英文热点抓取：Reddit + Hacker News + Twitter(Trends24)"""
+    """英文热点抓取:Reddit + Hacker News + Twitter(Trends24)"""
     print("[EN] 开始抓取英文热点话题...")
     all_topics = []
 
@@ -444,7 +444,7 @@ def get_hot_topics_en():
 
     if len(unique) < ARTICLES_PER_RUN:
         needed = ARTICLES_PER_RUN - len(unique)
-        # 英文常青话题（如果热点不足时补充）
+        # 英文常青话题(如果热点不足时补充)
         en_fallback = [
             "How AI is Transforming Healthcare in 2026",
             "Top 10 Tech Gadgets You Need This Year",
@@ -479,7 +479,7 @@ def get_zhipu_token():
     return jwt.encode(payload, secret, algorithm="HS256", headers={"alg": "HS256", "sign_type": "SIGN"})
 
 STYLE_PROMPTS = [
-    '你是一个资深自媒体写手，风格接地气、像朋友聊天，喜欢用"说实话"、"讲真"、"你敢信"这类口语。',
+    '你是一个资深自媒体写手,风格接地气、像朋友聊天,喜欢用"说实话"、"讲真"、"你敢信"这类口语。',
     "你是一个犀利的社会观察者,喜欢用反问句、感叹号,观点鲜明,敢说敢评。",
     "你是一个生活达人,擅长把复杂的事情说简单,喜欢举例说明,语气亲切温暖。",
     "你是一个深度分析型作者,喜欢扒细节、挖内幕,但表达方式通俗不装。",
@@ -530,17 +530,18 @@ def generate_article_zh(topic):
 
 话题:{topic}
 
-要求:
+硬性要求:
 1. {title_style}
-2. 第一段包含核心关键词,一两句话抓住眼球
-3. 分4-6个小节,每节有##小标题,小标题要包含关键词
-4. 每个小节内容充实,有观点有例子
-5. 自然插入3-5个长尾关键词变体(如同义词、相关词),不要堆砌
-6. 在文章中间段落自然插入一个FAQ段落,用### 标记问题,紧跟简短回答(2-3句)
-7. 结尾引导互动(提问或评论引导)
-8. 语气口语化,避免"首先其次最后"这种僵硬表达
-9. 不要出现"作为AI"、"本文由AI生成"等字样
-10. 文章末尾加一行总结,用粗体标记核心关键词
+2. 第一段直接切入事件，别废话，一两句话点爆好奇心
+3. 分4-6个小节，每节用##小标题，小标题要带关键词、有情绪、像真人的口吻
+4. 每小节有观点有例子，别光说空话
+5. 自然穿插3-5个相关词，别堆砌关键词
+6. 中间插入一个FAQ段落，用###问，紧跟2-3句回答
+7. 结尾别总结，直接抛个问题或说出你的看法，引导评论区
+8. 语气口语化，像朋友吃饭聊天，别装
+9. 绝对禁用词汇：“首先”“其次”“最后”“总而言之”“综上所述”“让我们来看看”“不可否认”“值得注意的是”“需要指出的是”“在当今社会”“随着...的发展”“越来越多的人”“从某种意义上说”“希望这篇文章能够帮助大家有所"
+10. 别出现“作为AI”“本文由AI生成”“作为一个...”这类自我指涉
+11. 别用模板开头如“近年来”“最近”“最近一段时间”这种万金油开场白
 
 输出格式:
 第一行:标题(纯文字,不加任何标记)
@@ -580,24 +581,24 @@ def generate_article_en(topic_zh):
 
 Write a 800-1200 word article in ENGLISH ONLY based on this trending topic from China: {topic_zh}
 
-CRITICAL RULES:
+HARD RULES:
 1. {title_style}
-2. EVERYTHING must be in English - title, body, subheadings ALL in English
-3. NEVER use Chinese characters anywhere in your output
-4. First paragraph hooks the reader immediately
-5. 4-6 sections with ## subheadings (in English)
-6. Each section has substance - opinions and examples, no fluff
-7. Naturally include 3-5 long-tail keyword variations (synonyms, related terms), no keyword stuffing
-8. Include a FAQ section in the middle using ### for questions, with brief 2-3 sentence answers
-9. End with an engaging question or call-to-action
-9. Conversational tone - avoid formal academic language
-10. No AI disclaimers like "As an AI" or "This article was generated"
-11. If you include any Chinese characters, the article will be rejected
+2. EVERYTHING in English - title, body, subheadings - no Chinese characters
+3. First paragraph: jump straight into the story, no fluff, hook the reader
+4. 4-6 sections with ## subheadings that sound like a real person talking
+5. Each section needs real opinions and concrete examples, no generic fluff
+6. Naturally weave in 3-5 related terms, no keyword stuffing
+7. Include one FAQ section in the middle with ### question + 2-3 sentence answer
+8. End with a provocative question or your take, not a summary
+9. Write like you're explaining to a friend over coffee, not a textbook
+10. BANNED PHRASES: "In today's society", "With the development of", "More and more people", "It is worth noting that", "Let's take a look", "In conclusion", "To sum up", "As we can see", "Needless to say", "It goes without saying", "At the end of the day", "First and foremost", "Last but not least"
+11. No AI disclaimers like "As an AI" or "This article was generated"
+12. Start directly with the event/trend, not with time markers like "Recently" or "In recent years"
 
 Output format:
-First line: Title in English only (no markdown formatting)
+First line: Title in English (no markdown)
 Blank line
-Body in English only (markdown format with ## for subheadings)"""
+Body in English (markdown with ## subheadings)"""
 
     try:
         token = get_zhipu_token()
@@ -616,12 +617,13 @@ Body in English only (markdown format with ## for subheadings)"""
         body = "\n".join(lines[1:]).strip()
 
         title = _de_ai_title_en(title)
-        
-        # 后处理：检测并过滤中文内容
+        body = _de_ai_process_en(body)
+
+        # 后处理:检测并过滤中文内容
         chinese_chars = re.findall(r'[\u4e00-\u9fff]', title + body)
         if len(chinese_chars) > 5:
             print(f"    ⚠️ 英文文章含中文({len(chinese_chars)}字),重新生成...")
-            # 重试一次，用更严格的prompt
+            # 重试一次,用更严格的prompt
             title, body = _retry_generate_en_strict(topic_zh)
             if not title:
                 print(f"    ❌ 英文生成失败(含中文过多)")
@@ -633,16 +635,49 @@ Body in English only (markdown format with ## for subheadings)"""
         return None, None
 
 def _de_ai_process_zh(text):
-    """中文去AI味"""
+    """中文去AI味 - 增强版"""
     replacements = {
+        # 原有规则
         "首先": "先说", "其次": "再来看", "最后": "说到底",
         "总而言之": "说白了", "综上所述": "所以啊",
         "值得注意的是": "这里有个重点", "不可否认": "谁都知道",
         "众所周知": "大家都清楚", "引发了广泛关注": "网上都炸了",
         "引起了热议": "网友吵翻了", "引起了广泛讨论": "大家都在讨论",
+        # 新增规则 - 模板句式
+        "让我们来看看": "看看", "让我们来看": "看", "让我们": "",
+        "不得不说": "说实话", "不得不": "得",
+        "相信大家": "你们", "大家一定": "你肯定",
+        "值得注意的是": "重点是", "值得注意的是,": "重点:",
+        "需要指出的是": "关键在", "需要强调的是": "强调一下",
+        "在当今社会": "现在", "在当今": "现在", "在现代社会": "现在",
+        "随着科技的发展": "科技发展到现在", "随着社会的进步": "社会进步后",
+        "越来越多的人": "好多人", "越来越多的人开始": "好多人都开始",
+        "人们开始": "大家开始", "人们逐渐": "大家慢慢",
+        "不可否认的是": "确实", "不可否认,": "确实,",
+        "毫无疑问": "肯定", "毫无疑问,": "肯定,",
+        "一般来说": "通常", "一般而言": "通常",
+        "换句话说": "也就是", "换言之": "也就是说",
+        "由此可见": "所以", "由此可知": "这就能看出",
+        "综上所述": "总结一下", "总而言之": "说白了",
+        "从某种意义上说": "某种程度上", "从某种程度上说": "某种程度上",
+        "事实上": "其实", "事实上,": "其实,",
+        "实际上": "其实", "实际上,": "其实,",
+        "有意思的是": "巧的是", "有意思的是,": "巧的是,",
+        "更重要的是": "关键的是", "更重要的是,": "关键是,",
+        "不仅如此": "而且", "不仅如此,": "而且,",
+        "一方面": "一来", "另一方面": "二来",
+        "总的来说": "总之", "总体来说": "总之",
+        "在一定程度上": "某种程度上", "在很大程度上": "很大程度上",
+        # AI 特色结尾
+        "希望这篇文章": "", "希望本文": "",
+        "能够帮助大家": "", "能够给大家": "",
+        "有所帮助": "有收获",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
+    # 清理多余空格
+    text = re.sub(r' +', ' ', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
     return text
 
 def _de_ai_title_zh(title):
@@ -662,6 +697,34 @@ def _de_ai_title_en(title):
     if len(title) > 70:
         title = title[:67] + "..."
     return title
+
+def _de_ai_process_en(text):
+    """英文去AI味"""
+    replacements = {
+        "In today's society": "Today", "in today's society": "today",
+        "With the development of": "As", "with the development of": "as",
+        "More and more people": "Many people", "more and more people": "many people",
+        "It is worth noting that": "Note that", "it is worth noting that": "note that",
+        "Let's take a look": "Let's look", "let's take a look": "let's look",
+        "In conclusion": "So", "in conclusion": "so",
+        "To sum up": "So", "to sum up": "so",
+        "As we can see": "We see", "as we can see": "we see",
+        "Needless to say": "", "needless to say": "",
+        "It goes without saying that": "", "it goes without saying that": "",
+        "At the end of the day": "Ultimately", "at the end of the day": "ultimately",
+        "First and foremost": "First", "first and foremost": "first",
+        "Last but not least": "Finally", "last but not least": "finally",
+        "As an AI": "", "as an AI": "",
+        "This article was generated": "", "this article was generated": "",
+        "In recent years": "", "in recent years": "",
+        "Recently,": "", "recently,": "",
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    # 清理多余空格和空行
+    text = re.sub(r' +', ' ', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text
 
 def _retry_generate_en_strict(topic_zh):
     """严格模式重试生成英文文章(禁止中文)"""
@@ -707,19 +770,19 @@ def generate_mindmap_zh(title, body):
 {body_excerpt}
 
 要求:
-1. 提炼4-6个核心要点，每个要点一句话（20字以内），直击要害
-2. 每个要点用emoji符号开头，分类清晰（避免纯文字墙）
-3. 格式：emoji + 要点标题 + 简短说明（1-2句）
-4. 最后一行总结金句（1句话，25字以内）
-5. 只输出内容，不要解释，不要markdown列表格式
+1. 提炼4-6个核心要点,每个要点一句话(20字以内),直击要害
+2. 每个要点用emoji符号开头,分类清晰(避免纯文字墙)
+3. 格式:emoji + 要点标题 + 简短说明(1-2句)
+4. 最后一行总结金句(1句话,25字以内)
+5. 只输出内容,不要解释,不要markdown列表格式
 
 输出示例:
-[KEY] 关键结论：标题即观点，一句话说明白
-[DATA] 数据支撑：文章中最有力的数字或事实
-[?!] 反常识点：读者意想不到的那个真相
-[HOT] 热度来源：为什么这件事现在很火
-[+] 社会影响：对普通人有什么影响
-[GOLD] 总结金句：一句话记住这篇文章"""
+[KEY] 关键结论:标题即观点,一句话说明白
+[DATA] 数据支撑:文章中最有力的数字或事实
+[?!] 反常识点:读者意想不到的那个真相
+[HOT] 热度来源:为什么这件事现在很火
+[+] 社会影响:对普通人有什么影响
+[GOLD] 总结金句:一句话记住这篇文章"""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
@@ -1069,7 +1132,7 @@ p{{margin-bottom:15px;text-align:justify}}
 {_cps_block(category, "zh")}
 {_related_block(related_articles, "zh")}
 <div class="share-box">
-<span>📤 分享：</span>
+<span>📤 分享:</span>
 <a href="javascript:void(0)" onclick="window.open('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={SITE_URL}/articles/{slug}.html','_blank','width=200,height=200')" rel="nofollow">微信</a>
 <a href="https://service.weibo.com/share/share.php?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">微博</a>
 <a href="javascript:void(0)" onclick="window.open('{SITE_URL}/articles/{slug}.html','_blank');" rel="nofollow">今日头条</a>
@@ -1207,7 +1270,7 @@ def generate_category_page_zh(category):
     cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
     articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     card_items = "\n".join(f'<article class="card"><span class="card-thumb" style="background:{cat_color}">{cat_icon}</span><div class="card-content"><a href="/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>' for a in articles) or '<div style="color:#999;text-align:center;padding:40px">暂无文章...</div>'
-    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>免责声明：</strong>本频道内容仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</div>' if category == "finance" else ""
+    cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>免责声明:</strong>本频道内容仅供学习参考,不构成任何投资建议。市场有风险,投资需谨慎。</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -1591,13 +1654,13 @@ def rebuild_sitemap():
 # ==================== 主流程 ====================
 
 def clean_old_articles(days=15):
-    """清理N天前的旧文章，保持仓库轻量"""
+    """清理N天前的旧文章,保持仓库轻量"""
     from datetime import datetime, timedelta
     cutoff_date = datetime.now() - timedelta(days=days)
     cutoff_str = cutoff_date.strftime('%Y-%m-%d')
-    
+
     removed_zh, removed_en = 0, 0
-    
+
     # 清理中文文章
     if MANIFEST_FILE.exists():
         manifest = json.loads(MANIFEST_FILE.read_text(encoding='utf-8'))
@@ -1612,7 +1675,7 @@ def clean_old_articles(days=15):
             else:
                 new_manifest.append(item)
         MANIFEST_FILE.write_text(json.dumps(new_manifest, ensure_ascii=False, indent=2), encoding='utf-8')
-    
+
     # 清理英文文章
     if EN_MANIFEST_FILE.exists():
         manifest = json.loads(EN_MANIFEST_FILE.read_text(encoding='utf-8'))
@@ -1626,10 +1689,10 @@ def clean_old_articles(days=15):
             else:
                 new_manifest.append(item)
         EN_MANIFEST_FILE.write_text(json.dumps(new_manifest, ensure_ascii=False, indent=2), encoding='utf-8')
-    
+
     if removed_zh > 0 or removed_en > 0:
         print(f"🧹 清理完成: 删除中文 {removed_zh} 篇, 英文 {removed_en} 篇 (保留 {days} 天内)")
-    
+
     return removed_zh, removed_en
 
 def main():
@@ -1644,7 +1707,7 @@ def main():
     # 0. 清理旧文章(保留15天)
     clean_old_articles(days=15)
 
-    # 1. 抓热点（中英文分离：中文用国内源，英文用国外源）
+    # 1. 抓热点(中英文分离:中文用国内源,英文用国外源)
     topics_zh = get_hot_topics()
     topics_en = get_hot_topics_en()
     print(f"📋 中文话题: {len(topics_zh)} 个, 英文话题: {len(topics_en)} 个")
@@ -1652,7 +1715,7 @@ def main():
     # 2. 逐篇生成
     zh_generated, en_generated = 0, 0
 
-    # 2a. 中文循环（使用国内热点：百度/微博/头条/知乎/财经）
+    # 2a. 中文循环(使用国内热点:百度/微博/头条/知乎/财经)
     for i, topic in enumerate(topics_zh):
         slug_zh = topic_to_slug(topic)
 
@@ -1674,7 +1737,7 @@ def main():
         else:
             print(f"  ⏭ [ZH {i+1}/{len(topics_zh)}] 跳过(重复): {topic}")
 
-    # 2b. 英文循环（使用国外热点：Reddit/HN/Twitter）
+    # 2b. 英文循环(使用国外热点:Reddit/HN/Twitter)
     for i, topic in enumerate(topics_en):
         slug_en = topic_to_slug_en(topic)
 
