@@ -251,10 +251,16 @@ FINANCE_DISCLAIMER_EN = '''<div style="background:linear-gradient(135deg,#fff8f0
 All content in this section is for informational and educational purposes only and does not constitute investment advice, trading guidance, or financial advisory services. Market involves risk; invest with caution. Stocks, funds, cryptocurrencies, commodities, and other financial instruments mentioned herein do not constitute recommendations to buy, sell, or hold. Investors should make independent judgments based on their own risk tolerance and bear their own investment risks. Past performance does not guarantee future results. For professional investment advice, please consult a licensed financial institution. This site and its authors accept no liability for any direct or indirect losses resulting from reliance on content published herein.
 </div>'''
 
-# 备用常青话题
+# 备用常青话题（AI+金融偏向）
 FALLBACK_TOPICS = [
-    "人工智能发展趋势", "健康养生小知识", "科技数码测评", "生活小妙招", "娱乐八卦热点",
-    "职场生存指南", "理财投资入门", "教育学习方法", "旅游攻略推荐", "美食烹饪技巧",
+    # AI+金融方向
+    "AI概念股投资机会", "大模型厂商财报分析", "英伟达产业链投资", "DeepSeek对金融市场影响",
+    "量化交易策略入门", "智能投顾发展趋势", "数字人民币应用场景", "AI赋能金融科技",
+    "AI芯片股配置逻辑", "算力概念股投资分析", "金融AI大模型应用", "FinTech人工智能前沿",
+    # 科技数码
+    "人工智能发展趋势", "AI手机怎么选", "大模型应用实测", "智能穿戴设备",
+    # 生活健康
+    "健康养生小知识", "职场生存指南", "理财投资入门",
 ]
 
 # ==================== 热点抓取 ====================
@@ -330,11 +336,14 @@ def fetch_finance_hot():
         "美联储利率决议影响", "人民币对美元汇率",
     ]
     sources.extend(global_market_topics)
-    # 补充财经固定热点词
+    # 补充财经固定热点词（AI+金融垂直偏向）
     finance_keywords = [
-        "A股今日行情", "美联储加息", "人民币汇率", "黄金价格走势",
-        "科技股最新动态", "新能源汽车板块", "半导体行业分析", "房地产政策",
-        "数字货币行情", "基金定投技巧"
+        "AI概念股投资机会", "大模型厂商财报", "英伟达产业链分析", "DeepSeek概念股",
+        "算力概念股行情", "AI芯片板块走势", "金融AI大模型应用", "智能投顾发展趋势",
+        "量化交易策略动态", "数字货币行情", "比特币以太坊走势", "AI赋能券商概念",
+        "科技股最新动态", "新能源汽车板块", "半导体行业分析", "美联储加息",
+        "人民币汇率走势", "黄金价格走势", "A股大盘分析", "科创板AI公司",
+        "AI+金融跨界投资", "FinTech人工智能前沿", "数字人民币最新进展",
     ]
     sources.extend(finance_keywords)
     # 去重
@@ -523,12 +532,19 @@ def generate_article_zh(topic):
     """生成中文文章"""
     style = random.choice(STYLE_PROMPTS)
     title_style = random.choice(TITLE_STYLES)
+    # AI+金融偏向：财经/科技分类的文章注入垂直角度
+    cat = classify_topic(topic)
+    angle_hint = ""
+    if cat == "finance":
+        angle_hint = "\n【写作角度】本篇属于财经/投资类内容，请从以下角度切入：结合AI技术对金融行业的影响，分析投资机会与风险，可引用具体数据或案例，结尾引导读者对AI+金融趋势的思考。"
+    elif cat == "tech":
+        angle_hint = "\n【写作角度】本篇涉及科技/AI领域，请侧重AI应用场景、技术落地进展、行业竞争格局等角度，让读者感受到AI技术的真实影响力。"
 
     prompt = f"""{style}
 
 请根据以下热门话题写一篇1200-1800字的文章。
 
-话题:{topic}
+话题:{topic}{angle_hint}
 
 硬性要求:
 1. {title_style}
@@ -576,10 +592,16 @@ def generate_article_en(topic_zh):
     """生成英文文章(基于中文话题)"""
     style = random.choice(EN_STYLE_PROMPTS)
     title_style = random.choice(EN_TITLE_STYLES)
+    cat_en = classify_topic_en(topic_zh)
+    angle_hint = ""
+    if cat_en == "finance":
+        angle_hint = "\n[WRITING ANGLE] This is a finance/investment topic - focus on AI's impact on financial markets, investment opportunities, and risk analysis. Use specific data or cases, and end by prompting readers to think about AI+Finance trends."
+    elif cat_en == "tech":
+        angle_hint = "\n[WRITING ANGLE] This is a tech/AI topic - emphasize AI application scenarios, real-world impact, and industry competition dynamics. Make readers feel the tangible power of AI technology."
 
     prompt = f"""{style}
 
-Write a 800-1200 word article in ENGLISH ONLY based on this trending topic from China: {topic_zh}
+Write a 800-1200 word article in ENGLISH ONLY based on this trending topic from China: {topic_zh}{angle_hint}
 
 HARD RULES:
 1. {title_style}
