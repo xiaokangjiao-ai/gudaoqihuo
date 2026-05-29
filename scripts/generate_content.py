@@ -1793,6 +1793,10 @@ def main():
     if zh_generated > 0 or en_generated > 0:
         ping_search_engines()
 
+    # 5. 百度主动推送
+    if zh_generated > 0 or en_generated > 0:
+        push_to_baidu()
+
     print(f"\n🏁 完成! 本次生成: 中文 {zh_generated} 篇, 英文 {en_generated} 篇")
 
 
@@ -1811,6 +1815,71 @@ def ping_search_engines():
             print(f"  📡 Ping {url.split('?')[0]}: {resp.status_code}")
         except Exception as e:
             print(f"  📡 Ping {url.split('?')[0]}: 失败({e})")
+
+
+# ==================== 百度主动推送 ====================
+
+BAIDU_PUSH_API = "http://data.zz.baidu.com/urls?site=https://gudaoqihuo.com&token=FPX5kf2VrcBLvWIk"
+BAIDU_PUSH_LIMIT = 2000  # 每日限额
+
+
+def push_to_baidu():
+    """百度站长API主动推送新文章URL（每次cron生成后自动调用）"""
+    urls = []
+    manifest_path = OUTPUT_DIR / "manifest.json"
+    if manifest_path.exists():
+        try:
+            data = json.loads(manifest_path.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                for item in data:
+                    fname = item.get("file", "") or item.get("filename", "")
+                    slug = item.get("slug", "")
+                    if fname and slug:
+                        urls.append(f"https://gudaoqihuo.com/articles/{fname}")
+                    elif slug:
+                        urls.append(f"https://gudaoqihuo.com/articles/{slug}.html")
+        except Exception:
+            pass
+
+    # 英文文章也推
+    en_manifest_path = EN_OUTPUT_DIR / "manifest.json"
+    if en_manifest_path.exists():
+        try:
+            data = json.loads(en_manifest_path.read_text(encoding="utf-8"))
+            if isinstance(data, list):
+                for item in data:
+                    fname = item.get("file", "") or item.get("filename", "")
+                    slug = item.get("slug", "")
+                    if fname and slug:
+                        urls.append(f"https://gudaoqihuo.com/en/articles/{fname}")
+                    elif slug:
+                        urls.append(f"https://gudaoqihuo.com/en/articles/{slug}.html")
+        except Exception:
+            pass
+
+    if not urls:
+        print("  🔍 百度推送: 无URL可推送")
+        return
+
+    # 去重并限制数量
+    urls = list(dict.fromkeys(urls))[:BAIDU_PUSH_LIMIT]
+
+    try:
+        resp = requests.post(
+            BAIDU_PUSH_API,
+            data="\n".join(urls),
+            headers={"Content-Type": "text/plain"},
+            timeout=15,
+        )
+        result = resp.json() if resp.headers.get("content-type", "").startswith("application/json") else {}
+        success = result.get("success", 0)
+        remain = result.get("remain", "?")
+        not_valid = result.get("not_valid", [])
+        print(f"  📡 百度推送: 成功{success}条, 剩余额度{remain}, 无效{len(not_valid)}条")
+        if not_valid:
+            print(f"    ⚠️ 无效URL示例: {not_valid[:3]}")
+    except Exception as e:
+        print(f"  📡 百度推送失败: {e}")
 
 if __name__ == "__main__":
     main()
