@@ -551,7 +551,7 @@ def generate_article_zh(topic):
 2. 第一段直接切入事件，别废话，一两句话点爆好奇心
 3. 分4-6个小节，每节用##小标题，小标题要带关键词、有情绪、像真人的口吻
 4. 每小节有观点有例子，别光说空话
-5. 自然穿插3-5个相关词，别堆砌关键词
+5. 自然穿插3-5个相关词和2-3个长尾关键词（如"2026年最新""怎么办""为什么""推荐"等搜索短语），别堆砌关键词，长尾词要自然融入句子，别生硬
 6. 中间插入一个FAQ段落，用###问，紧跟2-3句回答
 7. 结尾别总结，直接抛个问题或说出你的看法，引导评论区
 8. 语气口语化，像朋友吃饭聊天，别装
@@ -609,7 +609,7 @@ HARD RULES:
 3. First paragraph: jump straight into the story, no fluff, hook the reader
 4. 4-6 sections with ## subheadings that sound like a real person talking
 5. Each section needs real opinions and concrete examples, no generic fluff
-6. Naturally weave in 3-5 related terms, no keyword stuffing
+6. Naturally weave in 3-5 related terms and 2-3 long-tail keywords (like "best X for Y 2026", "how to X without Y", "why does X happen"), no keyword stuffing, long-tail keywords should blend naturally into sentences
 7. Include one FAQ section in the middle with ### question + 2-3 sentence answer
 8. End with a provocative question or your take, not a summary
 9. Write like you're explaining to a friend over coffee, not a textbook
