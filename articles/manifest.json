@@ -6550,5 +6550,32 @@
     "date": "2026-05-17",
     "timestamp": "2026-05-17 06:40:35",
     "filename": "卢昱晓为给阿嬷的情书屏摄道歉-7cc305777b.html"
+  },
+  {
+    "slug": "ai-finance-2026",
+    "title": "AI大模型正在重塑金融行业：从量化交易到风险管理，深度解析2026年AI+金融落地全景",
+    "category": "finance",
+    "date": "2026-06-01",
+    "timestamp": "2026-06-01 20:00:00",
+    "filename": "ai-finance-2026.html",
+    "cover_url": ""
+  },
+  {
+    "slug": "ai-model-comparison-2026",
+    "title": "2026年AI最强模型横评：GPT-5、Claude Opus 4、Gemini 3.0、Grok 3深度对比，谁才是真正的生产力工具？",
+    "category": "tech",
+    "date": "2026-06-01",
+    "timestamp": "2026-06-01 20:30:00",
+    "filename": "ai-model-comparison-2026.html",
+    "cover_url": ""
+  },
+  {
+    "slug": "blue-zones-longevity-2026",
+    "title": "2026年科学验证的长寿秘诀：来自全球5大Blue Zones的深度调研报告",
+    "category": "health",
+    "date": "2026-06-01",
+    "timestamp": "2026-06-01 21:00:00",
+    "filename": "blue-zones-longevity-2026.html",
+    "cover_url": ""
   }
 ]
