@@ -1447,7 +1447,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 <div class="footer">
 <p>&copy; 2025-2026 {SITE_NAME}</p>
 <p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
-<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
+<p><a href="/about-en.html">About</a> | <a href="/privacy-policy-en.html">Privacy</a> | <a href="/terms-en.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
@@ -1517,7 +1517,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 <div class="footer">
 <p>&copy; 2025-2026 {EN_SITE_NAME}</p>
 <p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a><a href="/en/articles/finance.html">Finance</a></p>
-<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
+<p><a href="/about-en.html">About</a> | <a href="/privacy-policy-en.html">Privacy</a> | <a href="/terms-en.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
@@ -1656,7 +1656,7 @@ a:hover{{color:#ff6b35}}
 <div class="footer">
 <p>&copy; 2025-2026 {SITE_NAME}</p>
 <p><a href="/">&#x9996;&#x9875;</a><a href="/articles/hot.html">&#x793E;&#x4F1A;&#x70ED;&#x70B9;</a><a href="/articles/tech.html">&#x79D1;&#x6280;&#x6570;&#x7801;</a><a href="/articles/health.html">&#x5065;&#x5EB7;&#x517B;&#x751F;</a><a href="/articles/life.html">&#x751F;&#x6D3B;&#x767E;&#x79D1;</a><a href="/articles/entertainment.html">&#x5A1C;&#x4E50;&#x516B;&#x7591;</a><a href="/articles/finance.html">&#x8D22;&#x7ECF;&#x6295;&#x8D44;</a></p>
-<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
+<p><a href="/about-en.html">About</a> | <a href="/privacy-policy-en.html">Privacy</a> | <a href="/terms-en.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
