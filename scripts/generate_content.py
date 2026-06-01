@@ -25,7 +25,7 @@ API_KEY = os.environ.get("ZHIPU_API_KEY", "")
 API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
 MODEL = "glm-4-flash"
 
-ARTICLES_PER_RUN = 20  # 每次生成20个话题,每个话题中英文各一篇 = 40篇
+ARTICLES_PER_RUN = 8  # 每次生成20个话题,每个话题中英文各一篇 = 40篇
 
 # SEO Ping服务
 PING_SERVICES = [
@@ -625,6 +625,7 @@ def generate_article_zh(topic):
 11. 别出现"作为AI""本文由AI生成""作为一个..."这类自我指涉
 12. 别用模板开头如"近年来""最近""最近一段时间"
 13. 文章总字数必须在2200字以上，每个小节不少于300字
+14. 深度优先：每个话题必须给出有洞察力的分析，不能只罗列事实，要有观点、有数据支撑、有独特视角
 
 输出格式:
 第一行:标题(纯文字,不加任何标记)
@@ -634,7 +635,7 @@ def generate_article_zh(topic):
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 2500}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 3500}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
@@ -693,6 +694,7 @@ HARD RULES:
 12. No AI disclaimers like "As an AI" or "This article was generated"
 13. Start directly with the event/trend, not with time markers like "Recently" or "In recent years"
 14. Total article must be 1800+ words, each section no less than 250 words
+15. Depth first: give insight and analysis, not just facts. Include data, counter-arguments, and your own perspective.
 
 Output format:
 First line: Title in English (no markdown)
@@ -702,7 +704,7 @@ Body in English (markdown with ## subheadings)"""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 2000}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 3000}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
@@ -835,7 +837,7 @@ ABSOLUTE RULES:
 - Title: ENGLISH ONLY, no Chinese characters at all
 - Body: ENGLISH ONLY, every single word must be English
 - Subheadings: ENGLISH ONLY
-- 800-1200 words, 4-6 sections with ## subheadings
+- 1000-1500 words, 4-6 sections with ## subheadings
 - Conversational, engaging style
 - Output: Title on first line, then blank line, then body
 
