@@ -1844,7 +1844,7 @@ def main():
                 print(f"    🧠 生成脑图...")
                 mindmap_zh = generate_mindmap_zh(title_zh, body_zh)
                 # Fetch Unsplash cover image
-                cover_url_zh = get_unsplash_image(title_zh)
+                cover_url_zh = fetch_unsplash_image(title_zh)
                 html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh, mindmap_zh, cover_url_zh)
                 (OUTPUT_DIR / filename_zh).write_text(html_zh, encoding="utf-8")
                 add_to_manifest(slug_zh, title_zh, category, filename_zh, "zh", cover_url_zh)
@@ -1868,7 +1868,7 @@ def main():
                 print(f"    🧠 生成脑图...")
                 mindmap_en = generate_mindmap_en(title_en, body_en)
                 # Fetch Unsplash cover image
-                cover_url_en = get_unsplash_image(title_en)
+                cover_url_en = fetch_unsplash_image(title_en)
                 html_en = generate_article_html_en(title_en, body_en, category, slug_en, related_en, mindmap_en, cover_url_en)
                 (EN_OUTPUT_DIR / filename_en).write_text(html_en, encoding="utf-8")
                 add_to_manifest(slug_en, title_en, category, filename_en, "en", cover_url_en)
