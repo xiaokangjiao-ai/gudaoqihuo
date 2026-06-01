@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 全自动双语热点流量站内容生成器 v3.0
 ================================
@@ -167,6 +167,68 @@ AD_CODE_MIDDLE = '''<div style="margin:20px 0;text-align:center;min-height:90px;
 AD_CODE_BOTTOM = '''<div style="margin:20px 0;text-align:center;min-height:90px;background:#f9f9f9;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#999;font-size:.8em">Ad Space - Contact: 543837216@qq.com</div>
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
+
+# ==================== Unsplash免费图片 ====================
+UNSPLASH_ACCESS_KEY = os.environ.get('UNSPLASH_ACCESS_KEY', '')
+UNSPLASH_BASE_URL = 'https://api.unsplash.com'
+
+# 分类关键词映射(用于Unsplash搜索)
+CATEGORY_IMAGE_KEYWORDS = {
+    'finance': ['stock market', 'money', 'investment', 'business chart'],
+    'hot': ['breaking news', 'world news', 'crowd', 'city'],
+    'tech': ['technology', 'computer', 'AI artificial intelligence', 'smartphone'],
+    'health': ['health', 'medical', 'wellness', 'fitness'],
+    'life': ['lifestyle', 'home', 'travel', 'food'],
+    'entertainment': ['entertainment', 'concert', 'movie', 'music'],
+}
+
+# 中文关键词快速翻译(用于Unsplash搜索)
+ZH_TO_EN_KEYWORDS = {
+    '科技': 'technology', '人工智能': 'AI', '财经': 'finance', '股市': 'stock market',
+    '健康': 'health', '娱乐': 'entertainment', '社会': 'society', '教育': 'education',
+    '手机': 'smartphone', '经济': 'economy', '互联网': 'internet', '新能源': 'new energy',
+    '房地产': 'real estate', '体育': 'sports', '环境': 'environment', '医疗': 'medical',
+    '苹果': 'Apple iPhone', '华为': 'Huawei', '特斯拉': 'Tesla', '电动车': 'electric car',
+    '芯片': 'semiconductor chip', '机器人': 'robot', '元宇宙': 'metaverse VR',
+    '房价': 'housing prices', '基金': 'investment fund', '比特币': 'Bitcoin crypto',
+    '高考': 'students exam', '教师': 'teacher classroom', '养老': 'elderly care',
+}
+
+def fetch_unsplash_image(topic, category='hot', lang='zh'):
+    """通过Unsplash API获取与话题相关的免费封面图片URL"""
+    if not UNSPLASH_ACCESS_KEY:
+        return None
+    try:
+        headers = {'Authorization': f'Client-ID {UNSPLASH_ACCESS_KEY}'}
+        # 优先用话题关键词搜索
+        query = topic[:50] if len(topic) > 3 else ''
+        # 中文话题转英文关键词
+        if lang == 'zh' and query:
+            for zh_word, en_word in sorted(ZH_TO_EN_KEYWORDS.items(), key=lambda x: -len(x[0])):
+                if zh_word in topic:
+                    query = en_word
+                    break
+        # 回退到分类关键词
+        if not query or len(query) < 3:
+            keywords = CATEGORY_IMAGE_KEYWORDS.get(category, CATEGORY_IMAGE_KEYWORDS['hot'])
+            query = random.choice(keywords)
+        params = {'query': query, 'w': 800, 'h': 400, 'fit': 'crop', 'per_page': 1}
+        resp = requests.get(f'{UNSPLASH_BASE_URL}/search/photos', headers=headers, params=params, timeout=10)
+        if resp.status_code == 200 and resp.json().get('results'):
+            return resp.json()['results'][0]['urls']['regular']
+        # 50次/小时限制,用随机图片兜底
+        resp2 = requests.get(f'{UNSPLASH_BASE_URL}/photos/random', headers=headers, params={'w': 800, 'h': 400, 'fit': 'crop'}, timeout=10)
+        if resp2.status_code == 200:
+            return resp2.json()['urls']['regular']
+    except Exception as e:
+        print(f'    Unsplash获取失败: {e}')
+    return None
+
+def get_cover_image(topic, category, lang='zh', existing_url=None):
+    """获取封面图片:优先用已有URL,否则调Unsplash API"""
+    if existing_url:
+        return existing_url
+    return fetch_unsplash_image(topic, category, lang)
 
 # 文章头图SVG模板(按分类)
 SVG_HERO_TEMPLATES = {
@@ -957,12 +1019,15 @@ def save_manifest(manifest, lang="zh"):
 def slug_exists(slug, lang="zh"):
     return any(a["slug"] == slug for a in load_manifest(lang))
 
-def add_to_manifest(slug, title, category, filename, lang="zh"):
+def add_to_manifest(slug, title, category, filename, lang="zh", cover_url=""):
     manifest = load_manifest(lang)
     # 用精确到秒的时间戳确保新文章永远排在最前面
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     # 插入到列表头部(最新的在最前面)
-    manifest.insert(0, {"slug": slug, "title": title, "category": category, "date": datetime.now().strftime("%Y-%m-%d"), "timestamp": timestamp, "filename": filename})
+    entry = {"slug": slug, "title": title, "category": category, "date": datetime.now().strftime("%Y-%m-%d"), "timestamp": timestamp, "filename": filename}
+    if cover_url:
+        entry["cover_url"] = cover_url
+    manifest.insert(0, entry)
     save_manifest(manifest, lang)
 
 def get_related_articles(category, current_slug, lang="zh", limit=5):
@@ -1054,13 +1119,18 @@ def _jsonld_article(title, cat_name, date_iso, slug, category, lang="zh"):
     }
     return json.dumps(breadcrumb, ensure_ascii=False) + "\n" + json.dumps(article, ensure_ascii=False)
 
-def generate_article_html_zh(title, body, category, slug, related_articles, mindmap_text=""):
+def generate_article_html_zh(title, body, category, slug, related_articles, mindmap_text="", cover_url=""):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     date_str = datetime.now().strftime("%Y-%m-%d")
     date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "zh")
+    # 封面图:优先用Unsplash真实图片,无图则用SVG兜底
+    if cover_url:
+        hero_block = f'''<div class="hero-image"><img src="{cover_url}" alt="{title.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>'''
+    else:
+        hero_block = f'<div class="hero-svg">{svg_hero}</div>'
     mindmap_block = _mindmap_html_block(mindmap_text, slug, "zh") if mindmap_text else ""
     # Reading time: Chinese ~500 chars/min
     zh_chars = len(re.findall(r'[\u4e00-\u9fff]', body))
@@ -1100,6 +1170,8 @@ p{{margin-bottom:15px;text-align:justify}}
 .ad-slot{{margin:20px 0;text-align:center}}
 .hero-svg{{margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}}
 .hero-svg svg{{width:100%;display:block}}
+.hero-image{{margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}}
+.hero-image img{{width:100%;height:auto;display:block;object-fit:cover;max-height:400px;aspect-ratio:2/1}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
@@ -1147,7 +1219,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <article>
 <h1 class="article-title">{title}</h1>
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
-{svg_hero}
+{hero_block}
 {mindmap_block}
 {html_body}
 {disclaimer}
@@ -1170,13 +1242,19 @@ p{{margin-bottom:15px;text-align:justify}}
 </body>
 </html>"""
 
-def generate_article_html_en(title, body, category, slug, related_articles, mindmap_text=""):
+def generate_article_html_en(title, body, category, slug, related_articles, mindmap_text="", cover_url=""):
     cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     date_str = datetime.now().strftime("%Y-%m-%d")
     date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "en")
+    # Cover image: prefer Unsplash, fallback to SVG
+    safe_title = title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    if cover_url:
+        hero_block = '<div class="hero-image"><img src="' + cover_url + '" alt="' + safe_title + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"/></div>'
+    else:
+        hero_block = '<div class="hero-svg">' + svg_hero + '</div>'
     mindmap_block = _mindmap_html_block(mindmap_text, slug, "en") if mindmap_text else ""
     # Reading time: English ~238 words/min
     en_words = len(body.split())
@@ -1215,6 +1293,8 @@ p{{margin-bottom:15px;text-align:justify}}
 .ad-slot{{margin:20px 0;text-align:center}}
 .hero-svg{{margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}}
 .hero-svg svg{{width:100%;display:block}}
+.hero-image{{margin:20px 0;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}}
+.hero-image img{{width:100%;height:auto;display:block;object-fit:cover;max-height:400px;aspect-ratio:2/1}}
 .cps-box{{background:linear-gradient(135deg,#fff9f0,#fff5e6);border:1px solid #ffe0c0;border-radius:10px;padding:18px;margin:25px 0}}
 .cps-box h3{{margin:0 0 12px;color:#d4680a}}
 .cps-box ul{{list-style:none;padding:0}}
@@ -1262,6 +1342,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <article>
 <h1 class="article-title">{title}</h1>
 <div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
+{hero_block}
 {svg_hero}
 {mindmap_block}
 {html_body}
@@ -1291,7 +1372,14 @@ def generate_category_page_zh(category):
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
     articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
-    card_items = "\n".join(f'<article class="card"><span class="card-thumb" style="background:{cat_color}">{cat_icon}</span><div class="card-content"><a href="/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>' for a in articles) or '<div style="color:#999;text-align:center;padding:40px">暂无文章...</div>'
+    def _zh_card_html(a):
+        cover = a.get("cover_url", "")
+        if cover:
+            thumb = f'<span class="card-thumb" style="background:{cat_color};padding:0;overflow:hidden"><img src="{cover}" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy"/></span>'
+        else:
+            thumb = f'<span class="card-thumb" style="background:{cat_color}">{cat_icon}</span>'
+        return f'<article class="card">{thumb}<div class="card-content"><a href="/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>'
+    card_items = "\n".join(_zh_card_html(a) for a in articles) or '<div style="color:#999;text-align:center;padding:40px">暂无文章...</div>'
     cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>免责声明:</strong>本频道内容仅供学习参考,不构成任何投资建议。市场有风险,投资需谨慎。</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
@@ -1354,7 +1442,14 @@ def generate_category_page_en(category):
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
     articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
-    card_items = "\n".join(f'<article class="card"><span class="card-thumb" style="background:{cat_color}">{cat_icon}</span><div class="card-content"><a href="/en/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>' for a in articles) or '<div style="color:#999;text-align:center;padding:40px">No articles yet...</div>'
+    def _en_card_html(a):
+        cover = a.get("cover_url", "")
+        if cover:
+            thumb = f'<span class="card-thumb" style="background:{cat_color};padding:0;overflow:hidden"><img src="{cover}" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy"/></span>'
+        else:
+            thumb = f'<span class="card-thumb" style="background:{cat_color}">{cat_icon}</span>'
+        return f'<article class="card">{thumb}<div class="card-content"><a href="/en/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>'
+    card_items = "\n".join(_en_card_html(a) for a in articles) or '<div style="color:#999;text-align:center;padding:40px">No articles yet...</div>'
     cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>' if category == "finance" else ""
 
     return f"""<!DOCTYPE html>
@@ -1748,9 +1843,11 @@ def main():
                 related_zh = get_related_articles(category, slug_zh, "zh")
                 print(f"    🧠 生成脑图...")
                 mindmap_zh = generate_mindmap_zh(title_zh, body_zh)
-                html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh, mindmap_zh)
+                # Fetch Unsplash cover image
+                cover_url_zh = get_unsplash_image(title_zh)
+                html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh, mindmap_zh, cover_url_zh)
                 (OUTPUT_DIR / filename_zh).write_text(html_zh, encoding="utf-8")
-                add_to_manifest(slug_zh, title_zh, category, filename_zh, "zh")
+                add_to_manifest(slug_zh, title_zh, category, filename_zh, "zh", cover_url_zh)
                 zh_generated += 1
                 print(f"    ✅ 中文完成: {filename_zh}")
             time.sleep(1)
@@ -1770,9 +1867,11 @@ def main():
                 related_en = get_related_articles(category, slug_en, "en")
                 print(f"    🧠 生成脑图...")
                 mindmap_en = generate_mindmap_en(title_en, body_en)
-                html_en = generate_article_html_en(title_en, body_en, category, slug_en, related_en, mindmap_en)
+                # Fetch Unsplash cover image
+                cover_url_en = get_unsplash_image(title_en)
+                html_en = generate_article_html_en(title_en, body_en, category, slug_en, related_en, mindmap_en, cover_url_en)
                 (EN_OUTPUT_DIR / filename_en).write_text(html_en, encoding="utf-8")
-                add_to_manifest(slug_en, title_en, category, filename_en, "en")
+                add_to_manifest(slug_en, title_en, category, filename_en, "en", cover_url_en)
                 en_generated += 1
                 print(f"    ✅ 英文完成: {filename_en}")
             time.sleep(1)
