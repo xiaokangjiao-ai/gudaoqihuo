@@ -313,7 +313,7 @@ FINANCE_DISCLAIMER_EN = '''<div style="background:linear-gradient(135deg,#fff8f0
 All content in this section is for informational and educational purposes only and does not constitute investment advice, trading guidance, or financial advisory services. Market involves risk; invest with caution. Stocks, funds, cryptocurrencies, commodities, and other financial instruments mentioned herein do not constitute recommendations to buy, sell, or hold. Investors should make independent judgments based on their own risk tolerance and bear their own investment risks. Past performance does not guarantee future results. For professional investment advice, please consult a licensed financial institution. This site and its authors accept no liability for any direct or indirect losses resulting from reliance on content published herein.
 </div>'''
 
-# 备用常青话题（AI+金融偏向）
+# 备用常青话题(AI+金融偏向)
 FALLBACK_TOPICS = [
     # AI+金融方向
     "AI概念股投资机会", "大模型厂商财报分析", "英伟达产业链投资", "DeepSeek对金融市场影响",
@@ -398,7 +398,7 @@ def fetch_finance_hot():
         "美联储利率决议影响", "人民币对美元汇率",
     ]
     sources.extend(global_market_topics)
-    # 补充财经固定热点词（AI+金融垂直偏向）
+    # 补充财经固定热点词(AI+金融垂直偏向)
     finance_keywords = [
         "AI概念股投资机会", "大模型厂商财报", "英伟达产业链分析", "DeepSeek概念股",
         "算力概念股行情", "AI芯片板块走势", "金融AI大模型应用", "智能投顾发展趋势",
@@ -594,32 +594,37 @@ def generate_article_zh(topic):
     """生成中文文章"""
     style = random.choice(STYLE_PROMPTS)
     title_style = random.choice(TITLE_STYLES)
-    # AI+金融偏向：财经/科技分类的文章注入垂直角度
+    # AI+金融偏向:财经/科技分类的文章注入垂直角度
     cat = classify_topic(topic)
     angle_hint = ""
     if cat == "finance":
-        angle_hint = "\n【写作角度】本篇属于财经/投资类内容，请从以下角度切入：结合AI技术对金融行业的影响，分析投资机会与风险，可引用具体数据或案例，结尾引导读者对AI+金融趋势的思考。"
+        angle_hint = "\n【写作角度】本篇属于财经/投资类内容,请从以下角度切入:结合AI技术对金融行业的影响,分析投资机会与风险,可引用具体数据或案例,结尾引导读者对AI+金融趋势的思考。"
     elif cat == "tech":
-        angle_hint = "\n【写作角度】本篇涉及科技/AI领域，请侧重AI应用场景、技术落地进展、行业竞争格局等角度，让读者感受到AI技术的真实影响力。"
+        angle_hint = "\n【写作角度】本篇涉及科技/AI领域,请侧重AI应用场景、技术落地进展、行业竞争格局等角度,让读者感受到AI技术的真实影响力。"
 
     prompt = f"""{style}
 
-请根据以下热门话题写一篇1200-1800字的文章。
+请根据以下热门话题写一篇2200-3000字的深度文章。必须是原创深度分析，不能只是热点复述。
 
 话题:{topic}{angle_hint}
 
 硬性要求:
 1. {title_style}
-2. 第一段直接切入事件，别废话，一两句话点爆好奇心
-3. 分4-6个小节，每节用##小标题，小标题要带关键词、有情绪、像真人的口吻
-4. 每小节有观点有例子，别光说空话
-5. 自然穿插3-5个相关词和2-3个长尾关键词（如"2026年最新""怎么办""为什么""推荐"等搜索短语），别堆砌关键词，长尾词要自然融入句子，别生硬
-6. 中间插入一个FAQ段落，用###问，紧跟2-3句回答
-7. 结尾别总结，直接抛个问题或说出你的看法，引导评论区
-8. 语气口语化，像朋友吃饭聊天，别装
-9. 绝对禁用词汇：“首先”“其次”“最后”“总而言之”“综上所述”“让我们来看看”“不可否认”“值得注意的是”“需要指出的是”“在当今社会”“随着...的发展”“越来越多的人”“从某种意义上说”“希望这篇文章能够帮助大家有所"
-10. 别出现“作为AI”“本文由AI生成”“作为一个...”这类自我指涉
-11. 别用模板开头如“近年来”“最近”“最近一段时间”这种万金油开场白
+2. 第一段直接切入事件，用一两句话点爆好奇心，别废话
+3. 分5-7个小节，每节用##小标题，小标题要带关键词、有情绪、像真人口吻
+4. 每小节必须有：①你的独立观点（不是照搬新闻）②至少1个具体案例或数据支撑 ③对读者的实际意义或行动建议
+5. 【原创分析强制要求】文章中必须包含以下原创内容（不能只是摘抄新闻）:
+   - 这件事为什么会发生？深层原因是什么？（至少1段分析）
+   - 这件事对普通人有什么影响？应该怎么应对？（至少1段分析）
+   - 引用至少2个具体数据或案例（附来源或背景，不能瞎编）
+6. 自然穿插3-5个相关词和2-3个长尾关键词（如"2026年最新""怎么办""为什么""推荐"等搜索短语），别堆砌，长尾词自然融入句子
+7. 中间插入一个FAQ段落（###问题 + 2-3句实质回答，不能是废话）
+8. 结尾别总结，直接抛一个 provocative 问题或说出你的真实看法，引导评论区讨论
+9. 语气口语化，像朋友吃饭聊天，别装
+10. 绝对禁用词汇："首先""其次""最后""总而言之""综上所述""让我们来看看""不可否认""值得注意的是""需要指出的是""在当今社会""随着...的发展""越来越多的人""从某种意义上说""希望这篇文章能够帮助大家"
+11. 别出现"作为AI""本文由AI生成""作为一个..."这类自我指涉
+12. 别用模板开头如"近年来""最近""最近一段时间"
+13. 文章总字数必须在2200字以上，每个小节不少于300字
 
 输出格式:
 第一行:标题(纯文字,不加任何标记)
@@ -663,21 +668,31 @@ def generate_article_en(topic_zh):
 
     prompt = f"""{style}
 
-Write a 800-1200 word article in ENGLISH ONLY based on this trending topic from China: {topic_zh}{angle_hint}
+Write a 1800-2500 word, in-depth, ORIGINAL analysis article in ENGLISH ONLY based on this trending topic from China: {topic_zh}{angle_hint}
+
+This MUST be original analysis, NOT a summary of news. You need to add your own perspective, not just restate facts.
 
 HARD RULES:
 1. {title_style}
 2. EVERYTHING in English - title, body, subheadings - no Chinese characters
-3. First paragraph: jump straight into the story, no fluff, hook the reader
-4. 4-6 sections with ## subheadings that sound like a real person talking
-5. Each section needs real opinions and concrete examples, no generic fluff
-6. Naturally weave in 3-5 related terms and 2-3 long-tail keywords (like "best X for Y 2026", "how to X without Y", "why does X happen"), no keyword stuffing, long-tail keywords should blend naturally into sentences
-7. Include one FAQ section in the middle with ### question + 2-3 sentence answer
-8. End with a provocative question or your take, not a summary
-9. Write like you're explaining to a friend over coffee, not a textbook
-10. BANNED PHRASES: "In today's society", "With the development of", "More and more people", "It is worth noting that", "Let's take a look", "In conclusion", "To sum up", "As we can see", "Needless to say", "It goes without saying", "At the end of the day", "First and foremost", "Last but not least"
-11. No AI disclaimers like "As an AI" or "This article was generated"
-12. Start directly with the event/trend, not with time markers like "Recently" or "In recent years"
+3. First paragraph: hook the reader with a strong opening, no fluff, get straight to the point
+4. 5-7 sections with ## subheadings that sound like a real person talking
+5. Each section MUST contain:
+   - Your ORIGINAL opinion (not just restating news)
+   - At least 1 concrete data point or real-world case
+   - Practical implication for the reader
+6. [MANDATORY ORIGINAL ANALYSIS - you MUST include]:
+   - Why did this happen? What is the deeper reason? (at least 1 full paragraph)
+   - What does this mean for regular people? How should they respond? (at least 1 full paragraph)
+   - Cite at least 2 specific data points or cases (must be real, do NOT make up numbers)
+7. Naturally weave in 3-5 related terms and 2-3 long-tail keywords (like "best X for Y 2026", "how to X without Y", "why does X happen"), no keyword stuffing
+8. Include one FAQ section in the middle with ### question + 2-3 sentence substantive answer (not fluff)
+9. End with a provocative question or your take, not a summary
+10. Write like you're explaining to a friend over coffee, not a textbook
+11. BANNED PHRASES: "In today's society", "With the development of", "More and more people", "It is worth noting that", "Let's take a look", "In conclusion", "To sum up", "As we can see", "Needless to say", "It goes without saying", "At the end of the day", "First and foremost", "Last but not least"
+12. No AI disclaimers like "As an AI" or "This article was generated"
+13. Start directly with the event/trend, not with time markers like "Recently" or "In recent years"
+14. Total article must be 1800+ words, each section no less than 250 words
 
 Output format:
 First line: Title in English (no markdown)
@@ -1923,7 +1938,7 @@ BAIDU_PUSH_LIMIT = 2000  # 每日限额
 
 
 def push_to_baidu():
-    """百度站长API主动推送新文章URL（每次cron生成后自动调用）"""
+    """百度站长API主动推送新文章URL(每次cron生成后自动调用)"""
     urls = []
     manifest_path = OUTPUT_DIR / "manifest.json"
     if manifest_path.exists():
