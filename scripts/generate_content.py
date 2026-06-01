@@ -1233,7 +1233,7 @@ p{{margin-bottom:15px;text-align:justify}}
 </nav>
 <article>
 <h1 class="article-title">{title}</h1>
-<div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
+<div class="meta"><span>📅 {date_str}</span> <span>👤 每日热点速递编辑部</span> <span>🔄 更新：{date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
 {hero_block}
 {mindmap_block}
 {html_body}
@@ -1252,7 +1252,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <div class="footer">
 <p>© 2025-2026 {SITE_NAME}</p>
 <p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
-<p><a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
+<p><a href="/about.html">关于我们</a> | <a href="/privacy-policy.html">隐私政策</a> | <a href="/terms.html">使用条款</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
 </html>"""
@@ -1356,7 +1356,7 @@ p{{margin-bottom:15px;text-align:justify}}
 </nav>
 <article>
 <h1 class="article-title">{title}</h1>
-<div class="meta"><span>📅 {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
+<div class="meta"><span>📅 {date_str}</span> <span>👤 By: Daily Trending News Editorial</span> <span>🔄 Updated: {date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
 {hero_block}
 {svg_hero}
 {mindmap_block}
