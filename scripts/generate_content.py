@@ -102,59 +102,47 @@ JD_LINK = {"text": "京东好物特惠", "url": "https://u.jd.com/HOm83O5", "des
 CPS_LINKS = {
     "tech": [
         {"text": "2025高性价比手机推荐", "url": "https://www.amazon.cn/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "热销数码"},
-        JD_LINK, PDD_LINK,
     ],
     "health": [
         {"text": "养生保健精选好物", "url": "https://www.amazon.cn/s?k=养生&tag=gudaoqihuo-20", "desc": "健康生活"},
-        JD_LINK, PDD_LINK,
     ],
     "life": [
         {"text": "居家好物省钱攻略", "url": "https://www.amazon.cn/s?k=居家好物&tag=gudaoqihuo-20", "desc": "品质生活"},
-        JD_LINK, PDD_LINK,
     ],
     "entertainment": [
         {"text": "热门影视周边好物", "url": "https://www.amazon.cn/s?k=影视周边&tag=gudaoqihuo-20", "desc": "追剧必备"},
-        JD_LINK, PDD_LINK,
     ],
     "hot": [
         {"text": "今日热搜相关好物", "url": "https://www.amazon.cn/?tag=gudaoqihuo-20", "desc": "发现更多"},
-        JD_LINK, PDD_LINK,
     ],
 }
 
 # 财经分类CPS推广链接
 CPS_LINKS["finance"] = [
     {"text": "理财入门必读书籍", "url": "https://www.amazon.cn/s?k=理财书籍&tag=gudaoqihuo-20", "desc": "财商提升"},
-    JD_LINK, PDD_LINK,
 ]
 
 # 英文CPS推广链接(Amazon.com)
 EN_CPS_LINKS = {
     "tech": [
         {"text": "Best Selling Electronics 2025", "url": "https://www.amazon.com/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "Top Rated"},
-        {"text": "AI Tools & Gadgets", "url": "https://www.amazon.com/s?k=AI+gadgets&tag=gudaoqihuo-20", "desc": "Smart Tech"},
     ],
     "health": [
         {"text": "Health & Wellness Picks", "url": "https://www.amazon.com/s?k=health+wellness&tag=gudaoqihuo-20", "desc": "Stay Healthy"},
-        {"text": "Fitness Must-Haves", "url": "https://www.amazon.com/s?k=fitness+equipment&tag=gudaoqihuo-20", "desc": "Get Fit"},
     ],
     "life": [
         {"text": "Home Essentials", "url": "https://www.amazon.com/s?k=home+essentials&tag=gudaoqihuo-20", "desc": "Quality Living"},
-        {"text": "Best Selling Books", "url": "https://www.amazon.com/gp/bestsellers/books?tag=gudaoqihuo-20", "desc": "Must Read"},
     ],
     "entertainment": [
         {"text": "Movie & TV Merchandise", "url": "https://www.amazon.com/s?k=movie+merchandise&tag=gudaoqihuo-20", "desc": "Fan Favorites"},
-        {"text": "Celebrity Style Picks", "url": "https://www.amazon.com/s?k=celebrity+style&tag=gudaoqihuo-20", "desc": "Trending Now"},
     ],
     "hot": [
         {"text": "Today's Deals", "url": "https://www.amazon.com/gp/goldbox?tag=gudaoqihuo-20", "desc": "Limited Time"},
-        {"text": "Trending Products", "url": "https://www.amazon.com/gp/bestsellers?tag=gudaoqihuo-20", "desc": "What's Hot"},
     ],
 }
 
 EN_CPS_LINKS["finance"] = [
     {"text": "Finance & Investment Books", "url": "https://www.amazon.com/s?k=finance+books&tag=gudaoqihuo-20", "desc": "Money Smart"},
-    {"text": "Stock Market Tools", "url": "https://www.amazon.com/s?k=stock+market+tools&tag=gudaoqihuo-20", "desc": "Trade Smart"},
 ]
 
 # 广告位配置(中英文共用)
@@ -624,7 +612,7 @@ def generate_article_zh(topic):
 10. 绝对禁用词汇："首先""其次""最后""总而言之""综上所述""让我们来看看""不可否认""值得注意的是""需要指出的是""在当今社会""随着...的发展""越来越多的人""从某种意义上说""希望这篇文章能够帮助大家"
 11. 别出现"作为AI""本文由AI生成""作为一个..."这类自我指涉
 12. 别用模板开头如"近年来""最近""最近一段时间"
-13. 文章总字数必须在2200字以上，每个小节不少于300字
+13. 文章总字数必须在2200字以上，每个小节不少于300字。请充分展开每个观点，宁可写得长也不要写得短，最少写满7500个字符（包含标题和正文）
 14. 深度优先：每个话题必须给出有洞察力的分析，不能只罗列事实，要有观点、有数据支撑、有独特视角
 
 输出格式:
@@ -635,7 +623,7 @@ def generate_article_zh(topic):
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 3500}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 4500}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
@@ -693,7 +681,7 @@ HARD RULES:
 11. BANNED PHRASES: "In today's society", "With the development of", "More and more people", "It is worth noting that", "Let's take a look", "In conclusion", "To sum up", "As we can see", "Needless to say", "It goes without saying", "At the end of the day", "First and foremost", "Last but not least"
 12. No AI disclaimers like "As an AI" or "This article was generated"
 13. Start directly with the event/trend, not with time markers like "Recently" or "In recent years"
-14. Total article must be 1800+ words, each section no less than 250 words
+14. Total article must be 1800+ words, each section no less than 250 words. Write AT LEAST 5000 characters total. Expand every point fully - longer is better than shorter
 15. Depth first: give insight and analysis, not just facts. Include data, counter-arguments, and your own perspective.
 
 Output format:
@@ -704,7 +692,7 @@ Body in English (markdown with ## subheadings)"""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 3000}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 4000}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
