@@ -156,11 +156,12 @@ AD_CODE_BOTTOM = '''<div style="margin:20px 0;text-align:center;min-height:90px;
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
-# ==================== Unsplash免费图片 ====================
+# ==================== 免费图片源（多级降级）====================
+# 优先级：Unsplash -> Pixabay -> Lorem Picsum -> SVG兜底
 UNSPLASH_ACCESS_KEY = os.environ.get('UNSPLASH_ACCESS_KEY', '')
-UNSPLASH_BASE_URL = 'https://api.unsplash.com'
+PIXABAY_API_KEY = os.environ.get('PIXABAY_API_KEY', '')  # 可选，不填也能用
 
-# 分类关键词映射(用于Unsplash搜索)
+# 分类关键词映射(用于图片搜索)
 CATEGORY_IMAGE_KEYWORDS = {
     'finance': ['stock market', 'money', 'investment', 'business chart'],
     'hot': ['breaking news', 'world news', 'crowd', 'city'],
@@ -170,7 +171,7 @@ CATEGORY_IMAGE_KEYWORDS = {
     'entertainment': ['entertainment', 'concert', 'movie', 'music'],
 }
 
-# 中文关键词快速翻译(用于Unsplash搜索)
+# 中文关键词快速翻译(用于图片搜索)
 ZH_TO_EN_KEYWORDS = {
     '科技': 'technology', '人工智能': 'AI', '财经': 'finance', '股市': 'stock market',
     '健康': 'health', '娱乐': 'entertainment', '社会': 'society', '教育': 'education',
@@ -182,34 +183,71 @@ ZH_TO_EN_KEYWORDS = {
     '高考': 'students exam', '教师': 'teacher classroom', '养老': 'elderly care',
 }
 
-def fetch_unsplash_image(topic, category='hot', lang='zh'):
-    """通过Unsplash API获取与话题相关的免费封面图片URL"""
+def _get_image_query(topic, category, lang):
+    """根据话题和分类生成英文搜索关键词"""
+    query = topic[:50] if len(topic) > 3 else ''
+    if lang == 'zh' and query:
+        for zh_word, en_word in sorted(ZH_TO_EN_KEYWORDS.items(), key=lambda x: -len(x[0])):
+            if zh_word in topic:
+                query = en_word
+                break
+    if not query or len(query) < 3:
+        keywords = CATEGORY_IMAGE_KEYWORDS.get(category, CATEGORY_IMAGE_KEYWORDS['hot'])
+        query = random.choice(keywords)
+    return query
+
+
+def _try_unsplash(query):
+    """尝试从Unsplash获取图片URL"""
     if not UNSPLASH_ACCESS_KEY:
         return None
     try:
         headers = {'Authorization': f'Client-ID {UNSPLASH_ACCESS_KEY}'}
-        # 优先用话题关键词搜索
-        query = topic[:50] if len(topic) > 3 else ''
-        # 中文话题转英文关键词
-        if lang == 'zh' and query:
-            for zh_word, en_word in sorted(ZH_TO_EN_KEYWORDS.items(), key=lambda x: -len(x[0])):
-                if zh_word in topic:
-                    query = en_word
-                    break
-        # 回退到分类关键词
-        if not query or len(query) < 3:
-            keywords = CATEGORY_IMAGE_KEYWORDS.get(category, CATEGORY_IMAGE_KEYWORDS['hot'])
-            query = random.choice(keywords)
         params = {'query': query, 'w': 800, 'h': 400, 'fit': 'crop', 'per_page': 1}
-        resp = requests.get(f'{UNSPLASH_BASE_URL}/search/photos', headers=headers, params=params, timeout=10)
+        resp = requests.get('https://api.unsplash.com/search/photos', headers=headers, params=params, timeout=10)
         if resp.status_code == 200 and resp.json().get('results'):
-            return resp.json()['results'][0]['urls']['regular']
-        # 50次/小时限制,用随机图片兜底
-        resp2 = requests.get(f'{UNSPLASH_BASE_URL}/photos/random', headers=headers, params={'w': 800, 'h': 400, 'fit': 'crop'}, timeout=10)
+            url = resp.json()['results'][0]['urls']['regular']
+            print(f'    [Unsplash] OK: {query}')
+            return url
+        resp2 = requests.get('https://api.unsplash.com/photos/random', headers=headers, params={'w': 800, 'h': 400, 'fit': 'crop'}, timeout=10)
         if resp2.status_code == 200:
-            return resp2.json()['urls']['regular']
+            url = resp2.json()['urls']['regular']
+            print(f'    [Unsplash] Random OK')
+            return url
     except Exception as e:
-        print(f'    Unsplash获取失败: {e}')
+        print(f'    [Unsplash] Failed: {e}')
+    return None
+
+
+def _try_picsum():
+    """Lorem Picsum - 完全免费无需认证的随机图片"""
+    try:
+        seed = random.randint(1, 100000)
+        url = f'https://picsum.photos/seed/{seed}/800/400'
+        r = requests.head(url, timeout=5)
+        if r.status_code == 200:
+            print(f'    [Picsum] OK (seed={seed})')
+            return url
+    except Exception as e:
+        print(f'    [Picsum] Failed: {e}')
+    return None
+
+
+def fetch_unsplash_image(topic, category='hot', lang='zh'):
+    """多级降级获取封面图片：Unsplash -> Picsum -> None（SVG兜底）"""
+    query = _get_image_query(topic, category, lang)
+    
+    # Level 1: Unsplash
+    url = _try_unsplash(query)
+    if url:
+        return url
+    
+    # Level 2: Lorem Picsum (100%可用，无需认证，GitHub Actions可访问)
+    url = _try_picsum()
+    if url:
+        return url
+    
+    print(f'    [Image] All sources failed, using SVG fallback')
     return None
 
 def get_cover_image(topic, category, lang='zh', existing_url=None):
@@ -1133,7 +1171,7 @@ def generate_article_html_zh(title, body, category, slug, related_articles, mind
     svg_hero = generate_svg_hero(title, category, "zh")
     # 封面图:优先用Unsplash真实图片,无图则用SVG兜底
     if cover_url:
-        hero_block = f'''<div class="hero-image"><img src="{cover_url}" alt="{title.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>'''
+        hero_block = f'''<div class="hero-image"><img src="{cover_url}" alt="{title.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')}" loading="lazy" onerror="this.parentElement.style.display='none'"><p style="text-align:center;font-size:0.75rem;color:#999;margin-top:4px">Image Source: Internet</p></div>'''
     else:
         hero_block = f'<div class="hero-svg">{svg_hero}</div>'
     mindmap_block = _mindmap_html_block(mindmap_text, slug, "zh") if mindmap_text else ""
@@ -1257,7 +1295,7 @@ def generate_article_html_en(title, body, category, slug, related_articles, mind
     # Cover image: prefer Unsplash, fallback to SVG
     safe_title = title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     if cover_url:
-        hero_block = '<div class="hero-image"><img src="' + cover_url + '" alt="' + safe_title + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"/></div>'
+        hero_block = '<div class="hero-image"><img src="' + cover_url + '" alt="' + safe_title + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"/><p style="text-align:center;font-size:0.75rem;color:#999;margin-top:4px">Image Source: Internet</p></div>'
     else:
         hero_block = '<div class="hero-svg">' + svg_hero + '</div>'
     mindmap_block = _mindmap_html_block(mindmap_text, slug, "en") if mindmap_text else ""
