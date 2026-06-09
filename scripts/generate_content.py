@@ -220,17 +220,11 @@ def _try_unsplash(query):
 
 
 def _try_picsum():
-    """Lorem Picsum - 完全免费无需认证的随机图片"""
-    try:
-        seed = random.randint(1, 100000)
-        url = f'https://picsum.photos/seed/{seed}/800/400'
-        r = requests.head(url, timeout=5)
-        if r.status_code == 200:
-            print(f'    [Picsum] OK (seed={seed})')
-            return url
-    except Exception as e:
-        print(f'    [Picsum] Failed: {e}')
-    return None
+    """Lorem Picsum - 完全免费无需认证的随机图片（直接返回URL，不验证）"""
+    seed = random.randint(1, 100000)
+    url = f'https://picsum.photos/seed/{seed}/800/400'
+    print(f'    [Picsum] Using (seed={seed})')
+    return url
 
 
 def fetch_unsplash_image(topic, category='hot', lang='zh'):
