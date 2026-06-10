@@ -41,16 +41,16 @@ PING_SERVICES = [
 # 中文站点
 OUTPUT_DIR = Path("articles")
 MANIFEST_FILE = OUTPUT_DIR / "manifest.json"
-SITE_NAME = "中国新闻"
+SITE_NAME = "孤岛财经"
 SITE_URL = "https://gudaoqihuo.com"
-SITE_DESC = "中国新闻 - AI智能聚合中国热点资讯"
+SITE_DESC = "孤岛财经 - AI聚合全球股票、期货、币圈与AI金融资讯"
 
 # 英文站点
 EN_OUTPUT_DIR = Path("en/articles")
 EN_MANIFEST_FILE = EN_OUTPUT_DIR / "manifest.json"
-EN_SITE_NAME = "World News Today"
+EN_SITE_NAME = "GuDu Finance"
 EN_SITE_URL = "https://gudaoqihuo.com"
-EN_SITE_DESC = "World News Today - AI-powered global news aggregation"
+EN_SITE_DESC = "GuDu Finance - AI-powered global market insights & investment knowledge"
 
 INDEX_FILE = Path("index.html")
 EN_INDEX_FILE = Path("en/index.html")
@@ -1495,7 +1495,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <div class="share-box">
 <span>📤 分享:</span>
 <a href="javascript:void(0)" onclick="window.open('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={SITE_URL}/articles/{slug}.html','_blank','width=200,height=200')" rel="nofollow">微信</a>
-<a href="https://service.weibo.com/share/share.php?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="nofollow noopener">微博</a>
+<a href="https://service.weibo.com/share/share.php?url={SITE_URL}/articles/{slug}.html&title={title}" target="_blank" rel="sponsored nofollow noopener"" target="_blank" rel="nofollow noopener">微博</a>
 <a href="javascript:void(0)" onclick="window.open('{SITE_URL}/articles/{slug}.html','_blank');" rel="nofollow">今日头条</a>
 <a href="javascript:void(0)" onclick="navigator.clipboard.writeText('{SITE_URL}/articles/{slug}.html');this.textContent='已复制';">复制链接</a>
 </div>
@@ -1618,9 +1618,9 @@ p{{margin-bottom:15px;text-align:justify}}
 {_related_block(related_articles, "en")}
 <div class="share-box">
 <span>📤 Share:</span>
-<a href="https://twitter.com/intent/tweet?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">X</a>
-<a href="https://t.me/share/url?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="nofollow noopener">Telegram</a>
-<a href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/en/articles/{slug}.html" target="_blank" rel="nofollow noopener">Facebook</a>
+<a href="https://twitter.com/intent/tweet?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="sponsored nofollow noopener"" target="_blank" rel="nofollow noopener">X</a>
+<a href="https://t.me/share/url?url={SITE_URL}/en/articles/{slug}.html&text={title}" target="_blank" rel="sponsored nofollow noopener"" target="_blank" rel="nofollow noopener">Telegram</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u={SITE_URL}/en/articles/{slug}.html" target="_blank" rel="sponsored nofollow noopener"" target="_blank" rel="nofollow noopener">Facebook</a>
 <a href="javascript:void(0)" onclick="navigator.clipboard.writeText('{SITE_URL}/en/articles/{slug}.html');this.textContent='Copied';">Copy Link</a>
 </div>
 </article>
