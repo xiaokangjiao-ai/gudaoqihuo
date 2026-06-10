@@ -25,6 +25,11 @@ API_KEY = os.environ.get("ZHIPU_API_KEY", "")
 API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
 MODEL = "glm-4-flash"
 
+# Agnes AI 图片生成（完全免费）
+AGNES_API_KEY = os.environ.get("AGNES_API_KEY", "")
+AGNES_API_URL = "https://apihub.agnes-ai.com/v1/images/generations"
+AGNES_MODEL = "agnes-image-2.1-flash"
+
 ARTICLES_PER_RUN = 8  # 每次生成20个话题,每个话题中英文各一篇 = 40篇
 
 # SEO Ping服务
@@ -226,16 +231,54 @@ def _try_picsum():
     return url
 
 
+def _try_agnes(topic, lang='zh'):
+    """Agnes AI 文生图 - 完全免费，根据文章主题生成匹配图片"""
+    if not AGNES_API_KEY:
+        return None
+    try:
+        # 根据主题生成英文prompt（Agnes对英文支持更好）
+        prompt = _get_image_query(topic, '', lang)
+        if len(prompt) > 200:
+            prompt = prompt[:200]
+        resp = requests.post(
+            AGNES_API_URL,
+            headers={
+                'Authorization': f'Bearer {AGNES_API_KEY}',
+                'Content-Type': 'application/json'
+            },
+            json={
+                'model': AGNES_MODEL,
+                'prompt': prompt,
+                'size': '1024x512'
+            },
+            timeout=60
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            url = data.get('data', [{}])[0].get('url')
+            if url:
+                print(f'    [Agnes AI] Generated image for: {topic[:30]}...')
+                return url
+    except Exception as e:
+        print(f'    [Agnes AI] Failed: {e}')
+    return None
+
+
 def fetch_unsplash_image(topic, category='hot', lang='zh'):
-    """多级降级获取封面图片：Unsplash -> Picsum -> None（SVG兜底）"""
+    """多级降级获取封面图片：Agnes AI -> Unsplash -> Picsum -> None（SVG兜底）"""
     query = _get_image_query(topic, category, lang)
     
-    # Level 1: Unsplash
+    # Level 1: Agnes AI 文生图（完全免费，根据主题生成）
+    url = _try_agnes(topic, lang)
+    if url:
+        return url
+    
+    # Level 2: Unsplash
     url = _try_unsplash(query)
     if url:
         return url
     
-    # Level 2: Lorem Picsum (100%可用，无需认证，GitHub Actions可访问)
+    # Level 3: Lorem Picsum (100%可用，无需认证，GitHub Actions可访问)
     url = _try_picsum()
     if url:
         return url
