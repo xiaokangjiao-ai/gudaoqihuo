@@ -36,16 +36,16 @@ PING_SERVICES = [
 # 中文站点
 OUTPUT_DIR = Path("articles")
 MANIFEST_FILE = OUTPUT_DIR / "manifest.json"
-SITE_NAME = "每日热点速递"
+SITE_NAME = "中国新闻"
 SITE_URL = "https://gudaoqihuo.com"
-SITE_DESC = "AI智能聚合热点资讯,每日更新,一站了解天下事"
+SITE_DESC = "中国新闻 - AI智能聚合中国热点资讯"
 
 # 英文站点
 EN_OUTPUT_DIR = Path("en/articles")
 EN_MANIFEST_FILE = EN_OUTPUT_DIR / "manifest.json"
-EN_SITE_NAME = "Daily Trending News"
+EN_SITE_NAME = "World News Today"
 EN_SITE_URL = "https://gudaoqihuo.com"
-EN_SITE_DESC = "AI-powered trending news, updated daily"
+EN_SITE_DESC = "World News Today - AI-powered global news aggregation"
 
 INDEX_FILE = Path("index.html")
 EN_INDEX_FILE = Path("en/index.html")
@@ -428,6 +428,88 @@ def fetch_finance_hot():
     ]
     sources.extend(finance_keywords)
     # 去重
+def fetch_sohu_hot():
+    """搜狐新闻热点"""
+    print("    抓取搜狐新闻...")
+    try:
+        resp = fetch_with_retry("https://www.sohu.com/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h3[^>]*>(.*?)</h3>', resp.text, re.DOTALL)
+        titles = [re.sub(r'<.*?>', '', t).strip() for t in titles if 4 < len(t) < 120]
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_163_hot():
+    """网易新闻热点"""
+    print("    抓取网易新闻...")
+    try:
+        resp = fetch_with_retry("https://news.163.com/rank/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<a[^>]*>([一-鿿][^<]{3,40})</a>', resp.text)
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_qq_hot():
+    """腾讯新闻热点"""
+    print("    抓取腾讯新闻...")
+    try:
+        resp = fetch_with_retry("https://news.qq.com/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'"title":"([^"]{4,80})"', resp.text)
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_sina_hot():
+    """新浪新闻热点"""
+    print("    抓取新浪新闻...")
+    try:
+        resp = fetch_with_retry("https://news.sina.com.cn/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<a[^>]+href[^>]*>([^<]{4,60})</a>', resp.text)
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_thepaper_hot():
+    """澎湃新闻热点"""
+    print("    抓取澎湃新闻...")
+    try:
+        resp = fetch_with_retry("https://www.thepaper.cn/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'"name":"([^"]{4,60})"', resp.text)
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_cctv_hot():
+    """央视新闻热点"""
+    print("    抓取央视新闻...")
+    try:
+        resp = fetch_with_retry("https://news.cctv.com/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'"title":"([^"]{4,80})"', resp.text)
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_36kr_hot():
+    """36氪科技热点"""
+    print("    抓取36氪...")
+    try:
+        resp = fetch_with_retry("https://36kr.com/newsflashes", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'"title":"([^"]{4,100})"', resp.text)
+        return list(set(titles))[:25]
+    except: return []
+
+def fetch_huxiu_hot():
+    """虎嗅商业热点"""
+    print("    抓取虎嗅...")
+    try:
+        resp = fetch_with_retry("https://www.huxiu.com/", timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h[2-5][^>]*>.*?<a[^>]*>([^<]+)</a>', resp.text, re.DOTALL)
+        if not titles:
+            titles = re.findall(r'"title":"([^"]{4,100})"', resp.text)
+        return list(set(titles))[:25]
+    except: return []
     seen = set()
     unique = []
     for t in sources:
@@ -439,7 +521,7 @@ def fetch_finance_hot():
 def get_hot_topics():
     print("📡 开始抓取热点话题...")
     all_topics = []
-    sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot, fetch_finance_hot]
+    sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot, fetch_finance_hot, fetch_sohu_hot, fetch_163_hot, fetch_qq_hot, fetch_sina_hot, fetch_thepaper_hot, fetch_cctv_hot, fetch_36kr_hot, fetch_huxiu_hot]
     for source in sources:
         try:
             topics = source()
@@ -469,6 +551,70 @@ def get_hot_topics():
     random.shuffle(unique)
     return unique[:ARTICLES_PER_RUN]
 
+def fetch_bbc_hot():
+    """BBC News热点"""
+    print("    抓取BBC News...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://www.bbc.com/news", headers=headers, timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h3[^>]*>([^<]{8,120})</h3>', resp.text)
+        return list(set(titles))[:20]
+    except: return []
+def fetch_reuters_hot():
+    """Reuters热点"""
+    print("    抓取Reuters...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://www.reuters.com/", headers=headers, timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h[2-4][^>]*>.*?<a[^>]*>([^<]{6,150})</a>', resp.text, re.DOTALL)
+        return list(set(titles))[:20]
+    except: return []
+def fetch_cnn_hot():
+    """CNN热点"""
+    print("    抓取CNN...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://www.cnn.com/", headers=headers, timeout=15)
+        if not resp: return []
+        titles = re.findall(r'"headline":"([^"]{6,150})"', resp.text)
+        return list(set(titles))[:20]
+    except: return []
+def fetch_guardian_hot():
+    """Guardian热点"""
+    print("    抓取Guardian...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://www.theguardian.com/international", headers=headers, timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h[2-4][^>]*>([^<]{8,150})</h[2-4]>', resp.text)
+        return list(set(titles))[:20]
+    except: return []
+def fetch_ap_hot():
+    """AP News热点"""
+    print("    抓取AP News...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://apnews.com/", headers=headers, timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h[2-3][^>]*>.*?<a[^>]*>([^<]+)</a>', resp.text, re.DOTALL)
+        if not titles:
+            titles = re.findall(r'"headline":"([^"]{6,150})"', resp.text)
+        return list(set(titles))[:20]
+    except: return []
+def fetch_google_news_hot():
+    """Google News热点"""
+    print("    抓取Google News...")
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (compatible; ContentBot/1.0)"}
+        resp = fetch_with_retry("https://news.google.com/home?hl=en-US&gl=US&ceid=US:en", headers=headers, timeout=15)
+        if not resp: return []
+        titles = re.findall(r'<h[3-5][^>]*>([^<]{6,150})</h[3-5]>', resp.text)
+        if not titles:
+            titles = re.findall(r'aria-label="([^"]{8,120})"', resp.text)
+        return list(set(titles))[:20]
+    except: return []
 def get_hot_topics_en():
     """英文热点抓取:Reddit + Hacker News + Twitter(Trends24)"""
     print("[EN] 开始抓取英文热点话题...")
@@ -520,6 +666,48 @@ def get_hot_topics_en():
                 print(f"    Twitter: 获取 {len(trends)} 条")
     except Exception as e:
         print(f"    Twitter热点异常: {e}")
+
+    # BBC News
+    print("    抓取BBC News...")
+    try:
+        bbc = fetch_bbc_hot()
+        if bbc: all_topics.extend(bbc); print(f"    BBC: 获取 {len(bbc)} 条")
+    except Exception as e: print(f"    BBC异常: {e}")
+
+    # Reuters
+    print("    抓取Reuters...")
+    try:
+        reuters = fetch_reuters_hot()
+        if reuters: all_topics.extend(reuters); print(f"    Reuters: 获取 {len(reuters)} 条")
+    except Exception as e: print(f"    Reuters异常: {e}")
+
+    # CNN
+    print("    抓取CNN...")
+    try:
+        cnn = fetch_cnn_hot()
+        if cnn: all_topics.extend(cnn); print(f"    CNN: 获取 {len(cnn)} 条")
+    except Exception as e: print(f"    CNN异常: {e}")
+
+    # Guardian
+    print("    抓取Guardian...")
+    try:
+        guardian = fetch_guardian_hot()
+        if guardian: all_topics.extend(guardian); print(f"    Guardian: 获取 {len(guardian)} 条")
+    except Exception as e: print(f"    Guardian异常: {e}")
+
+    # AP News
+    print("    抓取AP News...")
+    try:
+        ap = fetch_ap_hot()
+        if ap: all_topics.extend(ap); print(f"    AP: 获取 {len(ap)} 条")
+    except Exception as e: print(f"    AP异常: {e}")
+
+    # Google News
+    print("    抓取Google News...")
+    try:
+        gn = fetch_google_news_hot()
+        if gn: all_topics.extend(gn); print(f"    Google News: 获取 {len(gn)} 条")
+    except Exception as e: print(f"    Google News异常: {e}")
 
     # 去重
     seen = set()
