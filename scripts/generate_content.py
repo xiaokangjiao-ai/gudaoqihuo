@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-全自动双语热点流量站内容生成器 v3.0
+全自动双语热点流量站内容生成器 v4.0
 ================================
-中英双语 | 多源热点 | AI伪原创 | 内链网络 | 结构化数据 | AdSense+Amazon变现
+中英双语 | 多源热点 | AI高质量原创 | 内链网络 | 结构化数据 | AdSense+Amazon变现
+版本更新: v4.0 - 大幅提升内容质量,去除AI套话,强制数据支撑
 """
 
 import os, sys, re, json, time, random, hashlib, requests
@@ -841,7 +842,7 @@ EN_TITLE_STYLES = [
 ]
 
 def generate_article_zh(topic):
-    """生成中文文章"""
+    """生成中文文章 - v4.0 高质量版"""
     style = random.choice(STYLE_PROMPTS)
     title_style = random.choice(TITLE_STYLES)
     # AI+金融偏向:财经/科技分类的文章注入垂直角度
@@ -854,28 +855,35 @@ def generate_article_zh(topic):
 
     prompt = f"""{style}
 
-请根据以下热门话题写一篇2200-3000字的深度文章。必须是原创深度分析，不能只是热点复述。
+请根据以下热门话题写一篇2500-3500字的高质量深度文章。必须是原创深度分析，不能只是热点复述或套话堆砌。
 
 话题:{topic}{angle_hint}
 
-硬性要求:
+【硬性要求 - 违反任何一条都会被打回重写】
 1. {title_style}
-2. 第一段直接切入事件，用一两句话点爆好奇心，别废话
-3. 分5-7个小节，每节用##小标题，小标题要带关键词、有情绪、像真人口吻
-4. 每小节必须有：①你的独立观点（不是照搬新闻）②至少1个具体案例或数据支撑 ③对读者的实际意义或行动建议
-5. 【原创分析强制要求】文章中必须包含以下原创内容（不能只是摘抄新闻）:
-   - 这件事为什么会发生？深层原因是什么？（至少1段分析）
-   - 这件事对普通人有什么影响？应该怎么应对？（至少1段分析）
-   - 引用至少2个具体数据或案例（附来源或背景，不能瞎编）
-6. 自然穿插3-5个相关词和2-3个长尾关键词（如"2026年最新""怎么办""为什么""推荐"等搜索短语），别堆砌，长尾词自然融入句子
-7. 中间插入一个FAQ段落（###问题 + 2-3句实质回答，不能是废话）
-8. 结尾别总结，直接抛一个 provocative 问题或说出你的真实看法，引导评论区讨论
-9. 语气口语化，像朋友吃饭聊天，别装
-10. 绝对禁用词汇："首先""其次""最后""总而言之""综上所述""让我们来看看""不可否认""值得注意的是""需要指出的是""在当今社会""随着...的发展""越来越多的人""从某种意义上说""希望这篇文章能够帮助大家"
-11. 别出现"作为AI""本文由AI生成""作为一个..."这类自我指涉
-12. 别用模板开头如"近年来""最近""最近一段时间"
-13. 文章总字数必须在2200字以上，每个小节不少于300字。请充分展开每个观点，宁可写得长也不要写得短，最少写满7500个字符（包含标题和正文）
-14. 深度优先：每个话题必须给出有洞察力的分析，不能只罗列事实，要有观点、有数据支撑、有独特视角
+2. 第一段必须直接切入核心事件/观点，用1-2句话制造信息密度，禁止铺垫、禁止"随着...""近年来"这类废话开头
+3. 分5-7个小节，每节用##小标题。小标题必须包含具体信息，禁止"XX的真相""XX的秘密"这种空洞标题
+4. 每小节必须同时满足：
+   - 有独立观点（用"数据显示""根据XX报告"支撑，禁止"我觉得""我认为"这类主观废话）
+   - 至少1个具体案例/数据（必须注明来源或背景，禁止瞎编"XX品牌""某专家"）
+   - 对读者的 actionable 建议（能直接照着做，不是"要谨慎"这种废话）
+5. 【原创分析 - 质量红线】必须包含：
+   - 深层原因分析：用"因为A导致B"的逻辑链，引用行业报告/数据/历史案例佐证（至少200字）
+   - 影响与应对：具体到"谁、在什么场景、该怎么做"，给出可执行步骤（至少200字）
+   - 至少2个带来源的数据或案例（如"据工信部2026年Q1数据""XX公司2025年报显示"）
+6. 自然融入3-5个相关词和2-3个长尾关键词，禁止堆砌，必须自然融入句子
+7. FAQ段落要求：必须是读者真正会问的实用问题，回答要有具体数据或操作步骤，禁止"视情况而定"这类废话
+8. 结尾：抛一个有争议性的问题或明确站队的观点，引导讨论，禁止"让我们一起期待"这种和稀泥结尾
+9. 语气：像专业领域的朋友聊天，有态度、有信息密度，禁止装客观、禁止端架子
+10. 【绝对禁用词汇】："首先""其次""最后""总而言之""综上所述""让我们来看看""不可否认""值得注意的是""需要指出的是""在当今社会""随着...的发展""越来越多的人""从某种意义上说""希望这篇文章能够帮助大家""我觉得""我认为""可能""大概""或许"
+11. 【禁止自我指涉】："作为AI""本文由AI生成""作为一个语言模型"
+12. 【禁止模板开头】："近年来""最近""最近一段时间""最近网上"
+13. 字数：2500字以上，每小节350字以上，总字符不少于8000（含标题）
+14. 【质量自检】生成完成后检查：
+    - 是否有"我觉得""可能"这类模糊表达？有就删掉重写
+    - 每个数据都有来源吗？没有就补充或删掉
+    - 建议是可执行的吗？不是就改具体
+    - 读完能获得什么新信息？如果没有，加深度分析
 
 输出格式:
 第一行:标题(纯文字,不加任何标记)
@@ -907,7 +915,7 @@ def generate_article_zh(topic):
         return None, None
 
 def generate_article_en(topic_zh):
-    """生成英文文章(基于中文话题)"""
+    """生成英文文章 - v4.0 高质量版(基于中文话题)"""
     style = random.choice(EN_STYLE_PROMPTS)
     title_style = random.choice(EN_TITLE_STYLES)
     cat_en = classify_topic_en(topic_zh)
@@ -919,32 +927,36 @@ def generate_article_en(topic_zh):
 
     prompt = f"""{style}
 
-Write a 1800-2500 word, in-depth, ORIGINAL analysis article in ENGLISH ONLY based on this trending topic from China: {topic_zh}{angle_hint}
+Write a 2000-2800 word, HIGH-QUALITY, ORIGINAL analysis article in ENGLISH ONLY based on this trending topic from China: {topic_zh}{angle_hint}
 
-This MUST be original analysis, NOT a summary of news. You need to add your own perspective, not just restate facts.
+This MUST be original analysis with genuine insights, NOT a summary of news or generic commentary.
 
-HARD RULES:
+[QUALITY STANDARDS - Violating any will result in rejection]
 1. {title_style}
-2. EVERYTHING in English - title, body, subheadings - no Chinese characters
-3. First paragraph: hook the reader with a strong opening, no fluff, get straight to the point
-4. 5-7 sections with ## subheadings that sound like a real person talking
-5. Each section MUST contain:
-   - Your ORIGINAL opinion (not just restating news)
-   - At least 1 concrete data point or real-world case
-   - Practical implication for the reader
-6. [MANDATORY ORIGINAL ANALYSIS - you MUST include]:
-   - Why did this happen? What is the deeper reason? (at least 1 full paragraph)
-   - What does this mean for regular people? How should they respond? (at least 1 full paragraph)
-   - Cite at least 2 specific data points or cases (must be real, do NOT make up numbers)
-7. Naturally weave in 3-5 related terms and 2-3 long-tail keywords (like "best X for Y 2026", "how to X without Y", "why does X happen"), no keyword stuffing
-8. Include one FAQ section in the middle with ### question + 2-3 sentence substantive answer (not fluff)
-9. End with a provocative question or your take, not a summary
-10. Write like you're explaining to a friend over coffee, not a textbook
-11. BANNED PHRASES: "In today's society", "With the development of", "More and more people", "It is worth noting that", "Let's take a look", "In conclusion", "To sum up", "As we can see", "Needless to say", "It goes without saying", "At the end of the day", "First and foremost", "Last but not least"
-12. No AI disclaimers like "As an AI" or "This article was generated"
-13. Start directly with the event/trend, not with time markers like "Recently" or "In recent years"
-14. Total article must be 1800+ words, each section no less than 250 words. Write AT LEAST 5000 characters total. Expand every point fully - longer is better than shorter
-15. Depth first: give insight and analysis, not just facts. Include data, counter-arguments, and your own perspective.
+2. ALL content in English - title, body, subheadings - ZERO Chinese characters allowed
+3. First paragraph: immediate hook with specific information, NO fluff, NO "In recent years" "Nowadays" openings
+4. 5-7 sections with ## subheadings that contain SPECIFIC information, NO generic titles like "The Truth About X" or "X Secrets"
+5. Each section MUST simultaneously have:
+   - Original insight backed by "According to [source]" or "Data from [report]" (NO "I think" "I believe" "Maybe" hedging)
+   - At least 1 concrete data point or real case with attribution (NO made-up "some experts" "a study")
+   - Actionable advice readers can implement immediately (NO "be careful" vague suggestions)
+6. [MANDATORY ORIGINAL ANALYSIS - Quality Gate]:
+   - Root cause analysis: Use "A leads to B" logic chains, cite industry reports/data/historical cases (min 200 words)
+   - Impact & response: Specific "who, in what scenario, should do what" with executable steps (min 200 words)
+   - At least 2 data points with sources (e.g., "According to Q1 2026 MIIT data" "XX Company's 2025 annual report shows")
+7. Naturally weave 3-5 related terms and 2-3 long-tail keywords, NO stuffing, must flow naturally
+8. FAQ requirements: Must be practical questions readers actually ask, answers need specific data or steps, NO "it depends" cop-outs
+9. Ending: Controversial question or clear stance that invites debate, NO "let's wait and see" weak endings
+10. Tone: Like an informed friend in the field - opinionated, information-dense, NO false objectivity, NO lecturing
+11. [BANNED PHRASES]: "In today's society" "With the development of" "More and more people" "It is worth noting that" "Let's take a look" "In conclusion" "To sum up" "As we can see" "Needless to say" "It goes without saying" "At the end of the day" "First and foremost" "Last but not least" "I think" "I believe" "Maybe" "Probably" "Perhaps"
+12. [NO AI DISCLAIMERS]: "As an AI" "This article was generated" "As a language model"
+13. [NO TEMPLATE OPENINGS]: "Recently" "In recent years" "Lately" "These days"
+14. Length: 2000+ words, each section 300+ words, total 5500+ characters
+15. [QUALITY CHECK before output]:
+    - Any "I think" "maybe" hedging? Remove and rewrite with data
+    - Every data point has a source? Add attribution or remove
+    - Is advice actionable and specific? Make it concrete if not
+    - What new information does reader gain? Add depth analysis if none
 
 Output format:
 First line: Title in English (no markdown)
@@ -986,7 +998,7 @@ Body in English (markdown with ## subheadings)"""
         return None, None
 
 def _de_ai_process_zh(text):
-    """中文去AI味 - 增强版"""
+    """中文去AI味 - v4.0 严格版"""
     replacements = {
         # 原有规则
         "首先": "先说", "其次": "再来看", "最后": "说到底",
@@ -1023,12 +1035,37 @@ def _de_ai_process_zh(text):
         "希望这篇文章": "", "希望本文": "",
         "能够帮助大家": "", "能够给大家": "",
         "有所帮助": "有收获",
+        # v4.0 新增 - 主观废话
+        "我觉得": "", "我认为": "", "我感觉": "",
+        "可能": "", "大概": "", "或许": "", "也许": "",
+        "一定程度上": "", "某种程度上": "",
+        "从某种程度上": "", "从一定程度上": "",
+        "有人说": "", "有人觉得": "", "有人认为": "",
+        "不少网友": "", "很多网友": "", "有人表示": "",
+        "专家表示": "", "业内人士": "", "分析人士": "",
+        # 模糊限定词
+        "比较": "", "相对": "", "一定程度上": "",
+        "某种程度上": "", "某种程度上说": "",
+        # 套话
+        "值得一提的是": "", "值得注意": "",
+        "不难发现": "", "不难看出": "",
+        "可以预见": "", "可以预期": "",
+        "不难发现": "", "不难看出": "",
+        "从长远来看": "", "从短期来看": "",
+        "从长远角度": "", "从短期角度": "",
+        # 开头废话
+        "最近": "", "近日": "", "日前": "", "近期": "",
+        "近来": "", "最近一段时间": "", "最近网上": "",
+        "标题：": "", "标题:": "",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
     # 清理多余空格
     text = re.sub(r' +', ' ', text)
     text = re.sub(r'\n{3,}', '\n\n', text)
+    # v4.0 新增 - 删除空括号
+    text = re.sub(r'\(\s*\)', '', text)
+    text = re.sub(r'（\s*）', '', text)
     return text
 
 def _de_ai_title_zh(title):
@@ -1050,7 +1087,7 @@ def _de_ai_title_en(title):
     return title
 
 def _de_ai_process_en(text):
-    """英文去AI味"""
+    """英文去AI味 - v4.0 严格版"""
     replacements = {
         "In today's society": "Today", "in today's society": "today",
         "With the development of": "As", "with the development of": "as",
@@ -1069,12 +1106,43 @@ def _de_ai_process_en(text):
         "This article was generated": "", "this article was generated": "",
         "In recent years": "", "in recent years": "",
         "Recently,": "", "recently,": "",
+        # v4.0 新增 - 主观废话
+        "I think": "", "I believe": "", "I feel": "",
+        "In my opinion": "", "In my view": "",
+        "Maybe": "", "maybe": "",
+        "Probably": "", "probably": "",
+        "Perhaps": "", "perhaps": "",
+        "Some people say": "", "some people say": "",
+        "Some experts": "", "some experts": "",
+        "Many people think": "", "many people think": "",
+        # 模糊限定词
+        "Somewhat": "", "somewhat": "",
+        "Relatively": "", "relatively": "",
+        "Fairly": "", "fairly": "",
+        "Quite": "", "quite": "",
+        "Rather": "", "rather": "",
+        # 套话
+        "It is interesting to note": "", "it is interesting to note": "",
+        "Interestingly": "", "interestingly": "",
+        "Notably": "", "notably": "",
+        "Importantly": "", "importantly": "",
+        "Significantly": "", "significantly": "",
+        "Clearly": "", "clearly": "",
+        "Obviously": "", "obviously": "",
+        "Undoubtedly": "", "undoubtedly": "",
+        # 开头废话
+        "Lately": "", "lately": "",
+        "These days": "", "these days": "",
+        "Nowadays": "", "nowadays": "",
+        "Title:": "", "title:": "",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
     # 清理多余空格和空行
     text = re.sub(r' +', ' ', text)
     text = re.sub(r'\n{3,}', '\n\n', text)
+    # v4.0 新增 - 删除空括号
+    text = re.sub(r'\(\s*\)', '', text)
     return text
 
 def _retry_generate_en_strict(topic_zh):
