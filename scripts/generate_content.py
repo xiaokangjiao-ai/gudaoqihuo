@@ -888,7 +888,7 @@ def generate_article_zh(topic):
 输出格式:
 第一行:标题(纯文字,不加任何标记)
 空一行
-正文(markdown格式,##标记小标题)"""
+正文(纯文本/markdown,禁止##小标题,用自然段落过渡)"""
 
     try:
         token = get_zhipu_token()
@@ -1180,85 +1180,12 @@ VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
 # ==================== 思维导图生成 ====================
 
 def generate_mindmap_zh(title, body):
-    """根据文章内容用AI生成思维导图大纲"""
-    body_excerpt = body[:1800] if len(body) > 1800 else body
-    prompt = f"""你是一个内容提炼专家。请根据以下文章提取"核心要点"卡片内容。
-
-文章标题: {title}
-文章内容(节选):
-{body_excerpt}
-
-要求:
-1. 提炼4-6个核心要点,每个要点一句话(20字以内),直击要害
-2. 每个要点用emoji符号开头,分类清晰(避免纯文字墙)
-3. 格式:emoji + 要点标题 + 简短说明(1-2句)
-4. 最后一行总结金句(1句话,25字以内)
-5. 只输出内容,不要解释,不要markdown列表格式
-
-输出示例:
-[KEY] 关键结论:标题即观点,一句话说明白
-[DATA] 数据支撑:文章中最有力的数字或事实
-[?!] 反常识点:读者意想不到的那个真相
-[HOT] 热度来源:为什么这件事现在很火
-[+] 社会影响:对普通人有什么影响
-[GOLD] 总结金句:一句话记住这篇文章"""
-    try:
-        token = get_zhipu_token()
-        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.3, "max_tokens": 400}
-        resp = requests.post(API_URL, headers=headers, json=data, timeout=60)
-        result = resp.json()
-        if "choices" not in result:
-            print(f"    脑图AI异常: {str(result)[:100]}")
-            return _fallback_mindmap(body, "zh")
-        content = result["choices"][0]["message"]["content"].strip()
-        if '#' not in content:
-            return _fallback_mindmap(body, "zh")
-        return content
-    except Exception as e:
-        print(f"    脑图生成失败: {e}")
-        return _fallback_mindmap(body, "zh")
+    """禁用脑图生成 - 直接返回空字符串"""
+    return ""
 
 def generate_mindmap_en(title, body):
-    """根据英文文章用AI生成思维导图"""
-    body_excerpt = body[:1800] if len(body) > 1800 else body
-    prompt = f"""You are a mind map expert. Extract key points from this article into a mind map outline.
-
-Title: {title}
-Content (excerpt):
-{body_excerpt}
-
-Requirements:
-1. Distill 4-6 core points, each one sentence (under 25 words), punchy and direct
-2. Each point starts with an emoji, clearly categorized (no wall of text)
-3. Format: emoji + point title + brief explanation (1-2 sentences)
-4. End with a summary gold sentence (1 sentence, under 30 words)
-5. Output only content, no explanation, no markdown list format
-
-Output example:
-[KEY] KEY INSIGHT: One sentence that nails the entire article
-[DATA] DATA POINT: The most powerful number or fact from the piece
-[?!] COUNTERINTUITIVE: The one truth readers won't expect
-[HOT] WHY IT'S HOT: Why this topic is trending right now
-[+] IMPACT: What it means for regular people
-[GOLD] GOLD LINE: One memorable takeaway sentence"""
-    try:
-        token = get_zhipu_token()
-        headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.3, "max_tokens": 400}
-        resp = requests.post(API_URL, headers=headers, json=data, timeout=60)
-        result = resp.json()
-        if "choices" not in result:
-            return _fallback_mindmap(body, "en")
-        content = result["choices"][0]["message"]["content"].strip()
-        chinese_chars = re.findall(r'[\u4e00-\u9fff]', content)
-        if len(chinese_chars) > 3 or '#' not in content:
-            return _fallback_mindmap(body, "en")
-        return content
-    except Exception as e:
-        print(f"    Mindmap gen failed: {e}")
-        return _fallback_mindmap(body, "en")
-
+    """禁用脑图生成 - 直接返回空字符串"""
+    return ""
 def _fallback_mindmap(body, lang="zh"):
     """从文章##/###标题提取脑图(免费兜底)"""
     headings = re.findall(r'^#{2,3}\s+(.+)$', body, re.MULTILINE)
