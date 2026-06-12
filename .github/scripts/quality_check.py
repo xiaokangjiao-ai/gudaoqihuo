@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Fix Windows console encoding
-import sys, io
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-
 """
-孤岛财经 质控系统 v3.0 (直接扫描版)
-方案: 扫描articles/目录,通过HTML注释标记避免重复处理
+孤岛财经 质控系统 v3.1
+在GitHub Actions中直接修改本地文件，由workflow负责git commit/push
+也支持本地运行(通过GitHub API)
 """
 
 import os
@@ -16,6 +13,7 @@ import re
 import base64
 import requests
 from datetime import datetime
+from pathlib import Path
 
 # ==================== 配置 ====================
 ZHIPU_API_KEY = os.environ.get("ZHIPU_API_KEY", "")
@@ -23,58 +21,14 @@ ZHIPU_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GITHUB_REPO = "xiaokangjiao-ai/gudaoqihuo"
 QUALITY_THRESHOLD = 7
-MAX_ARTICLES = 10  # 每次最多处理10篇
+MAX_ARTICLES = 10
 
-# ==================== GitHub API ====================
-def gh_get(path):
-    headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json"
-    }
-    url = f"https://api.github.com/repos/{GITHUB_REPO}/{path}"
-    r = requests.get(url, headers=headers, timeout=15)
-    r.raise_for_status()
-    return r.json()
-
-def gh_put(path, content_b64, sha, commit_msg):
-    headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json"
-    }
-    url = f"https://api.github.com/repos/{GITHUB_REPO}/{path}"
-    data = {
-        "message": commit_msg,
-        "content": content_b64,
-        "sha": sha,
-        "branch": "main"
-    }
-    r = requests.put(url, headers=headers, json=data, timeout=15)
-    r.raise_for_status()
-    return r.json()
-
-def get_file(path):
-    """获取文件内容和SHA"""
-    data = gh_get(f"contents/{path}")
-    content = base64.b64decode(data["content"]).decode("utf-8")
-    return content, data["sha"]
-
-def put_file(path, new_content, sha, commit_msg):
-    """更新文件"""
-    content_b64 = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-    return gh_put(path, content_b64, sha, commit_msg)
-
-def list_html_files():
-    """列出articles/和en/articles/下的HTML文件"""
-    files = []
-    for dir_path in ["articles", "en/articles"]:
-        try:
-            items = gh_get(f"contents/{dir_path}")
-            for item in items:
-                if item["name"].endswith(".html"):
-                    files.append(f"{dir_path}/{item['name']}")
-        except Exception as e:
-            print(f"  [List] {dir_path} 读取失败: {e}")
-    return files
+# 检测运行环境
+IN_ACTIONS = os.environ.get("GITHUB_ACTIONS") == "true"
+if IN_ACTIONS:
+    REPO_DIR = Path(os.environ.get("GITHUB_WORKSPACE", "."))
+else:
+    REPO_DIR = None  # 本地无clone,走API
 
 # ==================== 智谱API ====================
 def call_zhipu(prompt, max_tokens=1024):
@@ -102,9 +56,67 @@ def call_zhipu(prompt, max_tokens=1024):
         print(f"  [API] Exception: {e}")
         return None
 
+# ==================== GitHub API (本地运行时使用) ====================
+def gh_get(path):
+    headers = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/vnd.github+json"}
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/{path}"
+    r = requests.get(url, headers=headers, timeout=15)
+    r.raise_for_status()
+    return r.json()
+
+def gh_put(path, content_b64, sha, commit_msg):
+    headers = {"Authorization": f"token {GITHUB_TOKEN}", "Accept": "application/vnd.github+json"}
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/{path}"
+    data = {"message": commit_msg, "content": content_b64, "sha": sha, "branch": "main"}
+    r = requests.put(url, headers=headers, json=data, timeout=15)
+    r.raise_for_status()
+    return r.json()
+
+# ==================== 文件操作 ====================
+def list_html_files():
+    """列出articles/下的HTML文件"""
+    files = []
+    if IN_ACTIONS and REPO_DIR:
+        # 本地文件系统
+        for dir_path in ["articles", "en/articles"]:
+            full_dir = REPO_DIR / dir_path
+            if full_dir.exists():
+                for f in sorted(full_dir.glob("*.html"), key=lambda x: x.stat().st_mtime, reverse=True):
+                    files.append(f"{dir_path}/{f.name}")
+    else:
+        # GitHub API
+        for dir_path in ["articles", "en/articles"]:
+            try:
+                items = gh_get(f"contents/{dir_path}")
+                for item in items:
+                    if item["name"].endswith(".html"):
+                        files.append(f"{dir_path}/{item['name']}")
+            except Exception as e:
+                print(f"  [List] {dir_path} failed: {e}")
+    return files
+
+def read_file(path):
+    """读取文件内容"""
+    if IN_ACTIONS and REPO_DIR:
+        full_path = REPO_DIR / path
+        return full_path.read_text(encoding='utf-8')
+    else:
+        data = gh_get(f"contents/{path}")
+        return base64.b64decode(data["content"]).decode("utf-8"), data["sha"]
+
+def write_file(path, content, sha=None):
+    """写入文件"""
+    if IN_ACTIONS and REPO_DIR:
+        full_path = REPO_DIR / path
+        full_path.write_text(content, encoding='utf-8')
+        return True
+    else:
+        content_b64 = base64.b64encode(content.encode("utf-8")).decode("utf-8")
+        gh_put(path, content_b64, sha, f"Quality optimize: {path}")
+        return True
+
 # ==================== 文章处理 ====================
 def extract_article_info(html_content, file_path):
-    """从HTML提取文章信息"""
     try:
         title_match = re.search(r'<h1[^>]*>(.*?)</h1>', html_content, re.DOTALL)
         if not title_match:
@@ -133,29 +145,21 @@ def extract_article_info(html_content, file_path):
         return None
 
 def check_quality_passed(html_content):
-    """检查文章是否已有质量标记且通过"""
     match = re.search(r'<!-- quality:(\d+) -->', html_content)
     if match:
-        score = int(match.group(1))
-        return score >= QUALITY_THRESHOLD
+        return int(match.group(1)) >= QUALITY_THRESHOLD
     return False
 
-def add_quality_mark(html_content, score):
-    """在文章开头添加质量标记"""
-    mark = f"<!-- quality:{score} -->\n"
-    return mark + html_content
-
 def quality_check(article_info):
-    """质量评分"""
-    print(f"  [Check] {article_info['title'][:40]}...")
+    print(f"  [Check] {article_info['title'][:50]}...")
     prompt = f"""请对以下文章进行质量评分(1-10分),严格按JSON格式输出:
 {{
-    "score": 分数(1-10),
-    "title_score": 标题质量(0-2),
-    "content_score": 内容深度(0-3),
-    "ai_smell_score": AI味程度(0-2,越高AI味越淡),
-    "issues": ["问题列表"],
-    "suggestion": "改进建议(一句话)"
+    "score": 6,
+    "title_score": 1,
+    "content_score": 2,
+    "ai_smell_score": 1,
+    "issues": ["问题1","问题2"],
+    "suggestion": "改进建议"
 }}
 
 文章标题: {article_info['title']}
@@ -163,18 +167,17 @@ def quality_check(article_info):
 开头300字: {article_info['preview']}
 
 评分标准:
-- 标题是否准确吸引人(2分)
-- 内容是否有实质信息而非套话(3分)
-- SEO关键词自然度(1.5分)
-- AI味检测:有无"网友炸锅""震惊""没想到"等(2分)
+- 标题准确专业(2分),标题党扣分
+- 内容有实质信息(3分),套话空洞扣分
+- AI味检测(2分):有"网友炸锅""震惊""没想到""竟然"等词则扣分
+- SEO自然度(1.5分)
 - 图片匹配度(1.5分)
 
-只输出JSON,不要其他内容。"""
+只输出JSON。"""
     
     response = call_zhipu(prompt, max_tokens=512)
     if not response:
         return None
-    
     json_match = re.search(r'\{.*\}', response, re.DOTALL)
     if json_match:
         try:
@@ -184,21 +187,19 @@ def quality_check(article_info):
     return {"score": 5, "issues": ["Parse failed"], "suggestion": "Manual review"}
 
 def optimize_article(article_info):
-    """优化文章"""
     print(f"  [Optimize] Rewriting...")
-    prompt = f"""你是财经网站编辑。请改写以下文章,要求:
-1. 去除所有AI套话("网友炸锅""震惊""竟然""没想到"等情绪化标题党用语)
-2. 用数据和事实替代空泛描述
-3. 保持SEO关键词但更自然
-4. 标题要专业准确,不要夸张
-5. 输出格式严格按:
+    prompt = f"""你是专业财经编辑。改写文章,要求:
+1. 去除所有AI套话("网友炸锅""震惊""竟然""没想到"等)
+2. 标题专业准确,含具体数据,不用夸张用语
+3. 用数据和事实替代空泛描述
+4. 保持SEO关键词但更自然
+5. 输出格式严格:
 
 【新标题】一行标题
 
-【正文】HTML格式的文章正文(含p/h2/strong等标签,不含html/head/body外层标签)
+【正文】HTML正文(含p/h2/strong等标签,不含html/head/body)
 
-原文:
-标题: {article_info['title']}
+原文标题: {article_info['title']}
 分类: {article_info['category']}
 内容: {article_info['full_content']}"""
     
@@ -208,60 +209,57 @@ def optimize_article(article_info):
     
     new_title = ""
     new_content = ""
-    
     title_m = re.search(r'【新标题】\s*(.+)', response)
     body_m = re.search(r'【正文】\s*(.+)', response, re.DOTALL)
-    
     if title_m:
         new_title = title_m.group(1).strip()
     if body_m:
         new_content = body_m.group(1).strip()
-    
     if not new_title and not new_content:
         new_title = article_info['title']
         new_content = response
-    
     return {"title": new_title, "content": new_content}
 
+# ==================== 主流程 ====================
 def process_articles():
-    """主流程"""
     print(f"\n{'='*60}")
-    print(f"GuDao Qihuo Quality Check v3.0 @ {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print(f"GuDao Quality Check v3.1 @ {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print(f"Mode: {'GitHub Actions (local files)' if IN_ACTIONS else 'API (remote)'}")
     print(f"{'='*60}\n")
     
     if not ZHIPU_API_KEY:
-        print("[ERROR] Please set ZHIPU_API_KEY environment variable")
+        print("[ERROR] ZHIPU_API_KEY not set")
         return
     
-    if not GITHUB_TOKEN:
-        print("[ERROR] Please set GITHUB_TOKEN environment variable")
-        return
-    
-    # 列出所有HTML文件
     all_files = list_html_files()
     if not all_files:
         print("[INFO] No HTML files found")
         return
     
-    print(f"[INFO] Found {len(all_files)} HTML files, processing latest {MAX_ARTICLES}\n")
+    # 选最新10篇(Actions模式已按mtime排序)
+    to_process = all_files[:MAX_ARTICLES]
+    print(f"[INFO] Found {len(all_files)} files, checking latest {len(to_process)}\n")
     
-    # 处理最新的N篇(简单策略:处理所有,但跳过已有质量标记且通过的)
     stats = {"total": 0, "skipped": 0, "passed": 0, "optimized": 0, "failed": 0}
     
-    for i, file_path in enumerate(all_files[:MAX_ARTICLES], 1):
+    for i, file_path in enumerate(to_process, 1):
         stats["total"] += 1
-        print(f"[{i}/{min(MAX_ARTICLES, len(all_files))}] {file_path}")
+        print(f"[{i}/{len(to_process)}] {file_path}")
         
         try:
-            html_content, file_sha = get_file(file_path)
+            result = read_file(file_path)
+            if IN_ACTIONS:
+                html_content = result
+                sha = None
+            else:
+                html_content, sha = result
         except Exception as e:
             print(f"  [ERROR] Read failed: {e}\n")
             stats["failed"] += 1
             continue
         
-        # 检查是否已有质量标记且通过
         if check_quality_passed(html_content):
-            print(f"  [SKIP] Already passed quality check\n")
+            print(f"  [SKIP] Already passed\n")
             stats["skipped"] += 1
             continue
         
@@ -272,7 +270,7 @@ def process_articles():
         
         quality = quality_check(info)
         if not quality:
-            print("  [WARN] Quality check failed, skip\n")
+            print("  [WARN] Check failed\n")
             stats["failed"] += 1
             continue
         
@@ -281,10 +279,9 @@ def process_articles():
         print(f"  [Score] {score}/10 | Issues: {', '.join(issues[:2])}")
         
         if score < QUALITY_THRESHOLD:
-            print(f"  [Optimize] Score < {QUALITY_THRESHOLD}, optimizing...")
+            print(f"  [Optimize] Score < {QUALITY_THRESHOLD}...")
             optimized = optimize_article(info)
             if optimized and optimized['content']:
-                # 更新HTML内容
                 new_html = html_content
                 c = optimized['content']
                 
@@ -295,36 +292,28 @@ def process_articles():
                 else:
                     new_html = re.sub(r'<body[^>]*>(.*)</body>', f'<body>{c}</body>', html_content, flags=re.DOTALL)
                 
-                # 添加质量标记
-                new_html = add_quality_mark(new_html, QUALITY_THRESHOLD + 1)  # 标记为新质量
+                new_html = f"<!-- quality:{QUALITY_THRESHOLD+1} -->\n" + new_html
                 
                 try:
-                    put_file(
-                        file_path,
-                        new_html,
-                        file_sha,
-                        f"Quality optimize: {info['title'][:50]} (score {score}->{QUALITY_THRESHOLD+1})"
-                    )
-                    print(f"  [OK] Optimized and pushed\n")
+                    write_file(file_path, new_html, sha)
+                    print(f"  [OK] Optimized\n")
                     stats["optimized"] += 1
                 except Exception as e:
-                    print(f"  [ERROR] Push failed: {e}\n")
+                    print(f"  [ERROR] Write failed: {e}\n")
                     stats["failed"] += 1
             else:
-                print("  [WARN] Optimization failed, keep original\n")
+                print("  [WARN] Optimize failed\n")
                 stats["failed"] += 1
         else:
-            print(f"  [OK] Quality passed")
-            # 添加质量标记
-            new_html = add_quality_mark(html_content, score)
+            new_html = f"<!-- quality:{score} -->\n" + html_content
             try:
-                put_file(file_path, new_html, file_sha, f"Quality mark: {info['title'][:50]} (score {score})")
-                print(f"  [OK] Marked as passed\n")
+                write_file(file_path, new_html, sha)
+                print(f"  [OK] Passed, marked\n")
             except:
-                print(f"  [WARN] Mark failed, but content is good\n")
+                print(f"  [WARN] Mark failed\n")
             stats["passed"] += 1
         
-        time.sleep(1)  # API限流
+        time.sleep(1)
     
     print(f"\n{'='*60}")
     print(f"[Summary] Total={stats['total']} | Skipped={stats['skipped']} | Passed={stats['passed']} | Optimized={stats['optimized']} | Failed={stats['failed']}")
