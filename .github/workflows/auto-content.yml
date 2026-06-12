@@ -37,7 +37,8 @@ jobs:
         env:
           ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-          AGNES_API_KEY: sk-09AgUbZgUBBoX4LPTi4iLhNsaENc8HcKTnfxyqOWtmMe1bOz
+          AGNES_API_KEY: AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+
         run: python scripts/generate_content.py
 
       - name: Configure Git
