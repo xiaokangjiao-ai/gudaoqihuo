@@ -26,7 +26,7 @@ API_KEY = os.environ.get("ZHIPU_API_KEY", "")
 API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"
 MODEL = "glm-4-flash"
 
-# Agnes AI 图片生成（完全免费）
+# Agnes AI 图片生成(完全免费)
 AGNES_API_KEY = os.environ.get("AGNES_API_KEY", "")
 AGNES_API_URL = "https://apihub.agnes-ai.com/v1/images/generations"
 AGNES_MODEL = "agnes-image-2.1-flash"
@@ -161,10 +161,10 @@ AD_CODE_MIDDLE = '''<ins class="adsbygoogle" style="display:block; text-align:ce
 AD_CODE_BOTTOM = '''<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
 
-# ==================== 免费图片源（多级降级）====================
-# 优先级：Unsplash -> Pixabay -> Lorem Picsum -> SVG兜底
+# ==================== 免费图片源(多级降级)====================
+# 优先级:Unsplash -> Pixabay -> Lorem Picsum -> SVG兜底
 UNSPLASH_ACCESS_KEY = os.environ.get('UNSPLASH_ACCESS_KEY', '')
-PIXABAY_API_KEY = os.environ.get('PIXABAY_API_KEY', '')  # 可选，不填也能用
+PIXABAY_API_KEY = os.environ.get('PIXABAY_API_KEY', '')  # 可选,不填也能用
 
 # 分类关键词映射(用于图片搜索)
 CATEGORY_IMAGE_KEYWORDS = {
@@ -225,7 +225,7 @@ def _try_unsplash(query):
 
 
 def _try_picsum():
-    """Lorem Picsum - 完全免费无需认证的随机图片（直接返回URL，不验证）"""
+    """Lorem Picsum - 完全免费无需认证的随机图片(直接返回URL,不验证)"""
     seed = random.randint(1, 100000)
     url = f'https://picsum.photos/seed/{seed}/800/400'
     print(f'    [Picsum] Using (seed={seed})')
@@ -233,11 +233,11 @@ def _try_picsum():
 
 
 def _try_agnes(topic, lang='zh'):
-    """Agnes AI 文生图 - 完全免费，根据文章主题生成匹配图片"""
+    """Agnes AI 文生图 - 完全免费,根据文章主题生成匹配图片"""
     if not AGNES_API_KEY:
         return None
     try:
-        # 根据主题生成英文prompt（Agnes对英文支持更好）
+        # 根据主题生成英文prompt(Agnes对英文支持更好)
         prompt = _get_image_query(topic, '', lang)
         if len(prompt) > 200:
             prompt = prompt[:200]
@@ -266,24 +266,24 @@ def _try_agnes(topic, lang='zh'):
 
 
 def fetch_unsplash_image(topic, category='hot', lang='zh'):
-    """多级降级获取封面图片：Agnes AI -> Unsplash -> Picsum -> None（SVG兜底）"""
+    """多级降级获取封面图片:Agnes AI -> Unsplash -> Picsum -> None(SVG兜底)"""
     query = _get_image_query(topic, category, lang)
-    
-    # Level 1: Agnes AI 文生图（完全免费，根据主题生成）
+
+    # Level 1: Agnes AI 文生图(完全免费,根据主题生成)
     url = _try_agnes(topic, lang)
     if url:
         return url
-    
+
     # Level 2: Unsplash
     url = _try_unsplash(query)
     if url:
         return url
-    
-    # Level 3: Lorem Picsum (100%可用，无需认证，GitHub Actions可访问)
+
+    # Level 3: Lorem Picsum (100%可用,无需认证,GitHub Actions可访问)
     url = _try_picsum()
     if url:
         return url
-    
+
     print(f'    [Image] All sources failed, using SVG fallback')
     return None
 
@@ -585,15 +585,37 @@ def get_hot_topics():
 
     print(f"  共抓取 {len(all_topics)} 条,去重后 {len(unique)} 条")
 
-    if len(unique) < ARTICLES_PER_RUN:
-        needed = ARTICLES_PER_RUN - len(unique)
-        extra = [t for t in FALLBACK_TOPICS if t not in seen]
-        random.shuffle(extra)
-        unique.extend(extra[:needed])
-        print(f"  热点不足,补充 {needed} 条常青话题")
+    # === 强制分类比例: 财经50% + 科技20% + 其他30% ===
+    finance_topics = [t for t in unique if classify_topic(t) == "finance"]
+    tech_topics = [t for t in unique if classify_topic(t) == "tech"]
+    other_topics = [t for t in unique if classify_topic(t) not in ("finance", "tech")]
 
-    random.shuffle(unique)
-    return unique[:ARTICLES_PER_RUN]
+    target_finance = max(4, ARTICLES_PER_RUN // 2)  # 至少4篇财经
+    target_tech = max(2, ARTICLES_PER_RUN // 5)     # 至少2篇科技
+    target_other = ARTICLES_PER_RUN - target_finance - target_tech
+
+    # 财经不足时从FALLBACK补充
+    if len(finance_topics) < target_finance:
+        extra_finance = [t for t in FALLBACK_TOPICS if t not in seen and classify_topic(t) == "finance"]
+        random.shuffle(extra_finance)
+        finance_topics.extend(extra_finance[:target_finance - len(finance_topics)])
+        print(f"  财经热点不足,补充常青话题到 {len(finance_topics)} 条")
+
+    selected = []
+    selected.extend(finance_topics[:target_finance])
+    selected.extend(tech_topics[:target_tech])
+    remaining = [t for t in other_topics if t not in selected]
+    selected.extend(remaining[:target_other])
+
+    # 如果还不够,从所有话题补
+    if len(selected) < ARTICLES_PER_RUN:
+        need = ARTICLES_PER_RUN - len(selected)
+        pool = [t for t in unique if t not in selected and t not in seen]
+        selected.extend(pool[:need])
+
+    random.shuffle(selected)
+    print(f"  分类分布: 财经{sum(1 for t in selected if classify_topic(t)=='finance')} 科技{sum(1 for t in selected if classify_topic(t)=='tech')} 其他{sum(1 for t in selected if classify_topic(t) not in ('finance','tech'))}")
+    return selected[:ARTICLES_PER_RUN]
 
 def fetch_bbc_hot():
     """BBC News热点"""
@@ -801,44 +823,41 @@ def get_zhipu_token():
     return jwt.encode(payload, secret, algorithm="HS256", headers={"alg": "HS256", "sign_type": "SIGN"})
 
 STYLE_PROMPTS = [
-    '你是一个资深自媒体写手,风格接地气、像朋友聊天,喜欢用"说实话"、"讲真"、"你敢信"这类口语。',
-    "你是一个犀利的社会观察者,喜欢用反问句、感叹号,观点鲜明,敢说敢评。",
-    "你是一个生活达人,擅长把复杂的事情说简单,喜欢举例说明,语气亲切温暖。",
-    "你是一个深度分析型作者,喜欢扒细节、挖内幕,但表达方式通俗不装。",
-    "你是一个带点毒舌的评论员,说话一针见血,偶尔带点黑色幽默,但信息量足。",
+    '你是一个专业财经分析师,写作风格务实、数据驱动,用事实和逻辑说话,不用任何口语化表达或情绪化措辞。',
+    '你是一个深度调查记者,追求信息密度和事实准确性,用具体数据和来源支撑每个论点,风格冷静客观。',
+    '你是一个行业研究员,擅长从数据中发现趋势,用图表般的文字呈现分析,避免主观判断,只用"数据显示""根据XX报告"这类客观表述。',
+    '你是一个资深财经编辑,像《财经》杂志的风格,专业但不晦涩,有观点但必须用数据和案例佐证,绝不空谈。',
+    '你是一个投资顾问,写作风格简洁有力,每句话都有信息量,不说废话,不卖弄文采,用事实说话。',
 ]
 
 TITLE_STYLES = [
-    "标题用数字+场景(如'男子XX时发现YY'),制造代入感,25字以内",
-    "标题用具体人物+动作(如'XX做了件让所有人震惊的事'),制造好奇,25字以内",
-    "标题用问答式(如'XX是怎么回事?'),引发点击欲望,25字以内",
-    "标题用陈述句但包含具体数据(如'XX事件涉及YY人ZZ万元'),专业可信,25字以内",
-    "标题用情绪共鸣(如'网友怒了!'、'所有人都在问'),引发讨论,25字以内",
-    "标题用时间/地点+事件(如'今日XX地发生YY'),信息感强,25字以内",
-    "标题用专家解读视角(如'XX行业人士揭示YY真相'),权威感,25字以内",
-    "标题用对比冲突(如'XX却让YY更难了'),制造张力,25字以内",
-    "标题用清单式(如'关于XX,你需要知道的事'),实用感强,25字以内",
-    "标题用动词+结果(如'XX教会我们YY'),启发性强,25字以内",
+    "标题用具体数据+结论(如'XX行业Q1营收增长35%,三大趋势解读'),专业可信,25字以内",
+    "标题用陈述句含关键数据(如'XX政策落地:影响YY万人ZZ亿元市场'),25字以内",
+    "标题用时间+核心结论(如'2026年XX趋势:三大变化及投资方向'),25字以内",
+    "标题用行业+数据洞察(如'XX赛道增速放缓,头部企业如何应对'),25字以内",
+    "标题用对比数据(如'XX指数涨15% vs YY跌8%,背后逻辑分析'),25字以内",
+    "标题用政策/事件+影响范围(如'XX决议通过:对YY行业ZZ市场的三重影响'),25字以内",
+    "标题用清单+数据(如'关于XX的5个关键数据:投资者必须了解'),25字以内",
+    "标题用因果逻辑(如'XX导致YY行业格局重塑,三个判断'),25字以内",
 ]
 
 # 英文风格提示
 EN_STYLE_PROMPTS = [
-    "You are a seasoned tech journalist who writes in a conversational, engaging style like a friend sharing news.",
-    "You are a sharp social commentator who loves asking rhetorical questions and making bold statements.",
-    "You are a lifestyle expert who simplifies complex topics with relatable examples and a warm tone.",
-    "You are an investigative writer who digs deep but keeps the language accessible and jargon-free.",
-    "You are a witty columnist with a dry sense of humor who delivers hard truths with a smile.",
+    "You are a professional financial analyst. Your writing is data-driven, factual, and logical. You cite specific sources and numbers, never use emotional or sensational language.",
+    "You are an investigative business journalist. You prioritize information density and factual accuracy, supporting every claim with concrete data and sources. Your tone is calm and objective.",
+    "You are an industry researcher skilled at finding trends in data. You present analysis with precision, avoid subjective judgments, and only use phrases like 'data shows' or 'according to [report]'.",
+    "You are a senior financial editor in the style of The Economist or Bloomberg - professional but accessible, opinionated but always backed by data and cases, never empty rhetoric.",
+    "You are an investment advisor. Your writing is concise and powerful, every sentence carries information, no filler words, no showing off, just facts and analysis.",
 ]
 
 EN_TITLE_STYLES = [
-    "Create a specific scenario headline (like 'When X Does Y, The Result Is Z') with strong specificity, under 60 characters",
-    "Use a person-action headline (like 'Expert Reveals The Secret Nobody Talks About') to build authority, under 60 characters",
-    "Use a data-driven headline (like 'X People Are Now Doing Y - Here Is Why') with concrete numbers, under 60 characters",
-    "Use a contrast headline (like 'X But Y Is Actually Getting Harder') to create tension, under 60 characters",
-    "Create a helpful list headline (like 'Everything You Need to Know About X') for practical value, under 60 characters",
-    "Use a news-anchor style headline (like 'X Just Announced Y, And It Changes Everything') for authority, under 60 characters",
-    "Use an emotional resonance headline (like 'People Are Speaking Up About X - Here Is What They Say') for community feel, under 60 characters",
-    "Use a How-To or guide headline (like 'How to X Without Y: A Complete Guide') for evergreen appeal, under 60 characters",
+    "Use a data-driven headline with specific numbers (like 'X Sector Grows 35% in Q1: 3 Key Trends') for credibility, under 60 characters",
+    "Use a policy/event + impact headline (like 'X Decision: 3 Impacts on Y Market Worth Z Billion') under 60 characters",
+    "Use a year + trend headline (like '2026 X Outlook: 3 Changes & Investment Directions') under 60 characters",
+    "Use an industry + data insight headline (like 'X Sector Slowdown: How Top Players Are Responding') under 60 characters",
+    "Use a contrast data headline (like 'X Up 15% vs Y Down 8%: The Logic Behind It') under 60 characters",
+    "Use a list + data headline (like '5 Key Data Points About X Investors Must Know') under 60 characters",
+    "Use a causal logic headline (like 'X Reshapes Y Industry: 3 Predictions') under 60 characters",
 ]
 
 def generate_article_zh(topic):
@@ -855,7 +874,7 @@ def generate_article_zh(topic):
 
     prompt = f"""{style}
 
-请根据以下热门话题写一篇2500-3500字的高质量深度文章。必须是原创深度分析，不能只是热点复述或套话堆砌。
+请根据以下热门话题写一篇2500-3500字的专业深度分析文章。必须是原创深度分析，不能只是热点复述或套话堆砌。
 
 话题:{topic}{angle_hint}
 
@@ -874,13 +893,13 @@ def generate_article_zh(topic):
 6. 自然融入3-5个相关词和2-3个长尾关键词，禁止堆砌，必须自然融入句子
 7. FAQ段落要求：必须是读者真正会问的实用问题，回答要有具体数据或操作步骤，禁止"视情况而定"这类废话
 8. 结尾：抛一个有争议性的问题或明确站队的观点，引导讨论，禁止"让我们一起期待"这种和稀泥结尾
-9. 语气：像专业领域的朋友聊天，有态度、有信息密度，禁止装客观、禁止端架子
-10. 【绝对禁用词汇】："首先""其次""最后""总而言之""综上所述""让我们来看看""不可否认""值得注意的是""需要指出的是""在当今社会""随着...的发展""越来越多的人""从某种意义上说""希望这篇文章能够帮助大家""我觉得""我认为""可能""大概""或许"
-11. 【禁止自我指涉】："作为AI""本文由AI生成""作为一个语言模型"
-12. 【禁止模板开头】："近年来""最近""最近一段时间""最近网上"
+9. 语气：专业分析师的语气，有数据、有逻辑、有态度，但绝不使用口语化表达（禁用"说实话""讲真""你敢信""我的观点"）
+10. 【绝对禁用词汇】:"首先""其次""最后""总而言之""综上所述""让我们来看看""不可否认""值得注意的是""需要指出的是""在当今社会""随着...的发展""越来越多的人""从某种意义上说""希望这篇文章能够帮助大家""我觉得""我认为""可能""大概""或许""说实话""讲真""你敢信""我的观点""我的看法""不得不说""相信大家"
+11. 【禁止自我指涉】:"作为AI""本文由AI生成""作为一个语言模型"
+12. 【禁止模板开头】:"近年来""最近""最近一段时间""最近网上"
 13. 字数：2500字以上，每小节350字以上，总字符不少于8000（含标题）
 14. 【质量自检】生成完成后检查：
-    - 是否有"我觉得""可能"这类模糊表达？有就删掉重写
+    - 是否有"我觉得""可能""说实话"这类模糊/口语表达？有就删掉重写
     - 每个数据都有来源吗？没有就补充或删掉
     - 建议是可执行的吗？不是就改具体
     - 读完能获得什么新信息？如果没有，加深度分析
@@ -893,7 +912,7 @@ def generate_article_zh(topic):
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 4500}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.5, "max_tokens": 4500}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
@@ -966,7 +985,7 @@ Body in English (markdown with ## subheadings)"""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.9, "max_tokens": 4000}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": prompt}], "temperature": 0.5, "max_tokens": 4000}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
 
@@ -1035,7 +1054,7 @@ def _de_ai_process_zh(text):
         "希望这篇文章": "", "希望本文": "",
         "能够帮助大家": "", "能够给大家": "",
         "有所帮助": "有收获",
-        # v4.0 新增 - 主观废话
+        # v4.0 新增 - 主观废话(替换为更专业的表述)
         "我觉得": "", "我认为": "", "我感觉": "",
         "可能": "", "大概": "", "或许": "", "也许": "",
         "一定程度上": "", "某种程度上": "",
@@ -1043,6 +1062,18 @@ def _de_ai_process_zh(text):
         "有人说": "", "有人觉得": "", "有人认为": "",
         "不少网友": "", "很多网友": "", "有人表示": "",
         "专家表示": "", "业内人士": "", "分析人士": "",
+        # v4.1 新增 - 口语化表达
+        "说实话": "", "讲真": "", "你敢信": "",
+        "我的观点": "", "我的看法": "", "我的理解": "",
+        "不得不说": "", "相信大家": "你们",
+        "谁都知道": "", "大家都清楚": "", "网上都炸了": "引发关注",
+        "网友吵翻了": "引发争议", "大家都在讨论": "引发讨论",
+        "先说": "", "再来看": "", "说到底": "",
+        "说白了": "", "所以啊": "",
+        "确实": "", "其实": "",
+        "好多人": "许多人", "好多": "许多",
+        "巧的是": "", "关键是": "",
+        "重点": "核心", "重点:": "核心:",
         # 模糊限定词
         "比较": "", "相对": "", "一定程度上": "",
         "某种程度上": "", "某种程度上说": "",
@@ -1056,7 +1087,7 @@ def _de_ai_process_zh(text):
         # 开头废话
         "最近": "", "近日": "", "日前": "", "近期": "",
         "近来": "", "最近一段时间": "", "最近网上": "",
-        "标题：": "", "标题:": "",
+        "标题:": "", "标题:": "",
     }
     for old, new in replacements.items():
         text = text.replace(old, new)
@@ -1065,25 +1096,31 @@ def _de_ai_process_zh(text):
     text = re.sub(r'\n{3,}', '\n\n', text)
     # v4.0 新增 - 删除空括号
     text = re.sub(r'\(\s*\)', '', text)
-    text = re.sub(r'（\s*）', '', text)
+    text = re.sub(r'(\s*)', '', text)
     return text
 
 def _de_ai_title_zh(title):
-    """中文标题优化"""
-    if len(title) < 8 or title.startswith("关于") or title.startswith("对于"):
-        prefixes = ["突发!", "重磅!", "刚刚!", "速看!", "震惊!", "刚刚曝光!", "出大事了!"]
-        title = random.choice(prefixes) + title
+    """中文标题优化 - 专业版,不加标题党前缀"""
+    # 去除标题党前缀
+    for prefix in ["震惊!", "重磅!", "刚刚!", "速看!", "出大事了!", "刚刚曝光!", "突发!", "紧急!", "震撼!", "炸锅!", "怒了!", "沸腾!"]:
+        if title.startswith(prefix):
+            title = title[len(prefix):].strip()
     if len(title) > 30:
         title = title[:28] + "..."
+    if len(title) < 8:
+        title = f"深度解读: {title}"
     return title
 
 def _de_ai_title_en(title):
-    """英文标题优化"""
-    if len(title) < 10:
-        prefixes = ["Breaking:", "Just In:", "Must Read:", "Shocking:", "Revealed:"]
-        title = random.choice(prefixes) + " " + title
+    """英文标题优化 - 专业版,不加标题党前缀"""
+    # 去除标题党前缀
+    for prefix in ["Breaking:", "Just In:", "Must Read:", "Shocking:", "Revealed:", "Breaking News:", "Alert:", "Urgent:"]:
+        if title.startswith(prefix):
+            title = title[len(prefix):].strip()
     if len(title) > 70:
         title = title[:67] + "..."
+    if len(title) < 10:
+        title = f"Analysis: {title}"
     return title
 
 def _de_ai_process_en(text):
@@ -1163,7 +1200,7 @@ VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
     try:
         token = get_zhipu_token()
         headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-        data = {"model": MODEL, "messages": [{"role": "user", "content": strict_prompt}], "temperature": 0.85, "max_tokens": 2000}
+        data = {"model": MODEL, "messages": [{"role": "user", "content": strict_prompt}], "temperature": 0.4, "max_tokens": 2000}
         resp = requests.post(API_URL, headers=headers, json=data, timeout=90)
         result = resp.json()
         if "choices" not in result:
@@ -1480,7 +1517,7 @@ p{{margin-bottom:15px;text-align:justify}}
 </nav>
 <article>
 <h1 class="article-title">{title}</h1>
-<div class="meta"><span>📅 {date_str}</span> <span>👤 每日热点速递编辑部</span> <span>🔄 更新：{date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
+<div class="meta"><span>📅 {date_str}</span> <span>👤 每日热点速递编辑部</span> <span>🔄 更新:{date_str}</span> <span>{cat_icon} {cat_name}</span> {reading_time_html}</div>
 {hero_block}
 {mindmap_block}
 {html_body}
