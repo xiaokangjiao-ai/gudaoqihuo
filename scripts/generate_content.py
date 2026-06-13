@@ -2132,8 +2132,7 @@ def main():
     OUTPUT_DIR.mkdir(exist_ok=True)
     EN_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 0. 清理旧文章(保留15天)
-    clean_old_articles(days=15)
+    removed_zh, removed_en = clean_old_articles(days=10)
 
     # 1. 抓热点(中英文分离:中文用国内源,英文用国外源)
     topics_zh = get_hot_topics()
@@ -2191,8 +2190,8 @@ def main():
         else:
             print(f"  ⏭ [EN {i+1}/{len(topics_en)}] 跳过(重复)")
 
-    # 3. 重建站点
-    if zh_generated > 0 or en_generated > 0:
+    # 3. 重建站点(有新文章或清理了旧文章时都要重建)
+    if zh_generated > 0 or en_generated > 0 or removed_zh > 0 or removed_en > 0:
         print("\n📐 重建站点页面...")
         rebuild_index_zh()
         rebuild_index_en()
@@ -2202,7 +2201,7 @@ def main():
         rebuild_sitemap()
 
     # 4. Ping搜索引擎
-    if zh_generated > 0 or en_generated > 0:
+    if zh_generated > 0 or en_generated > 0 or removed_zh > 0 or removed_en > 0:
         ping_search_engines()
 
     # 5. 百度主动推送
