@@ -395,7 +395,7 @@ FALLBACK_TOPICS = [
 
 # ==================== 热点抓取 ====================
 
-def fetch_with_retry(url, headers=None, timeout=10, retries=2):
+def fetch_with_retry(url, headers=None, timeout=5, retries=1):
     for attempt in range(retries + 1):
         try:
             resp = requests.get(url, headers=headers or {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}, timeout=timeout)
@@ -587,7 +587,7 @@ def fetch_huxiu_hot():
 def get_hot_topics():
     print("📡 开始抓取热点话题...")
     all_topics = []
-    sources = [fetch_finance_hot, fetch_36kr_hot, fetch_huxiu_hot, fetch_thepaper_hot, fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot]
+    sources = [fetch_finance_hot, fetch_36kr_hot, fetch_huxiu_hot, fetch_thepaper_hot]
     for source in sources:
         try:
             topics = source()
