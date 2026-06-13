@@ -1785,7 +1785,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
 <p>&copy; 2025-2026 {SITE_NAME}</p>
-<p><a href="/">首页</a><a href="/articles/hot.html">社会热点</a><a href="/articles/tech.html">科技数码</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a><a href="/articles/finance.html">财经投资</a></p>
+<p><a href="/">首页</a><a href="/articles/finance.html">财经投资</a><a href="/articles/tech.html">科技数码</a><a href="/articles/hot.html">社会热点</a><a href="/treasure.html">宝藏网站</a><a href="/articles/health.html">健康养生</a><a href="/articles/life.html">生活百科</a><a href="/articles/entertainment.html">娱乐八卦</a></p>
 <p><a href="/about-en.html">About</a> | <a href="/privacy-policy-en.html">Privacy</a> | <a href="/terms-en.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
 </div>
 </body>
@@ -1916,7 +1916,7 @@ def rebuild_index_zh():
     cat_links += '\n<details class="cat-more"><summary>📋 更多</summary>'
     cat_links += "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in archive_cats.items())
     cat_links += '</details>'
-    cat_links += '\n<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 宝藏网址</a>'
+    cat_links += '\n<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 宝藏网站</a>'
 
     html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -1972,6 +1972,8 @@ a:hover{{color:#ff6b35}}
 .timeline-header{{font-size:1em;font-weight:bold;color:#333;padding:15px 0 8px;border-bottom:2px solid #ff6b35;margin-bottom:5px}}
 .timeline-header span{{color:#999;font-weight:normal;font-size:.85em;margin-left:10px}}
 .thumb{{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}}
+@media(max-width:600px){{body{{padding:10px;max-width:100%}}.site-header{{padding:15px 0 12px}}.site-header h1{{font-size:1.3em}}.header-actions{{position:static;margin-top:6px;justify-content:center;flex-wrap:wrap;gap:6px}}.lang-btn,.contact-btn{{padding:5px 12px;font-size:.82em}}.cat-nav{{gap:5px;padding:8px}}.cat-link,.cat-more summary{{font-size:.8em;padding:4px 10px}}.timeline-header{{font-size:.9em}}.cat-section-header{{padding:10px 12px}}.cat-article-list li{{padding:8px 12px}}li{{padding:7px 2px;gap:4px;font-size:.88em;flex-wrap:nowrap}}li a{{word-break:break-all}}a{{white-space:normal;word-break:break-word}}.cat{{min-width:55px;font-size:.75em}}.date{{min-width:65px}}.ad-slot{{margin:15px 0}}
+}}
 </style>
 {GA4_CODE}
 </head>
