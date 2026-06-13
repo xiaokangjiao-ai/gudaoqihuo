@@ -2125,31 +2125,59 @@ def clean_old_articles(days=15):
 
     removed_zh, removed_en = 0, 0
 
-    # 清理中文文章
+    # 清理中文文章 - 按日期+质量双重过滤
     if MANIFEST_FILE.exists():
         manifest = json.loads(MANIFEST_FILE.read_text(encoding='utf-8'))
         new_manifest = []
         for item in manifest:
+            title = item.get('title', '')
+            should_remove = False
+            # 日期过期
             if item.get('date', '9999-99-99') < cutoff_str:
-                # 删除文件
+                should_remove = True
+            # 质量过滤: 删除带模板套话的标题
+            if title.startswith('标题：') or title.startswith('标题:') or 'AI赋能金融' in title:
+                should_remove = True
+            # 质量过滤: hot分类中明显非金融/科技的垃圾
+            if item.get('category') == 'hot' and not any(kw in title for kw in [
+                '股','金','币','期','债','汇','基金','经济','央行','利率','AI','芯片','算力','大模型',
+                '科技','创新','数据','新能源','电动','电池','光伏','航天','火箭','数字',
+                '美联储','通胀','GDP','财报','投资','融资','上市','并购','独角兽',
+                ]):
+                should_remove = True
+            if should_remove:
                 file_path = OUTPUT_DIR / item['filename']
                 if file_path.exists():
                     file_path.unlink()
-                    removed_zh += 1
+                removed_zh += 1
             else:
                 new_manifest.append(item)
         MANIFEST_FILE.write_text(json.dumps(new_manifest, ensure_ascii=False, indent=2), encoding='utf-8')
 
-    # 清理英文文章
+    # 清理英文文章 - 按日期+质量双重过滤
     if EN_MANIFEST_FILE.exists():
         manifest = json.loads(EN_MANIFEST_FILE.read_text(encoding='utf-8'))
         new_manifest = []
         for item in manifest:
+            title = item.get('title', '')
+            should_remove = False
             if item.get('date', '9999-99-99') < cutoff_str:
+                should_remove = True
+            # 质量过滤: 删除英文模板套话
+            if title.startswith('Title:') or title.startswith('Title：') or title.startswith('标题:') or title.startswith('标题：') or 'AI Empowers Finance' in title or 'AI empowers finance' in title or 'AI赋能金融' in title:
+                should_remove = True
+            # hot分类中明显非金融/科技的垃圾
+            if item.get('category') == 'hot' and not any(kw.lower() in title.lower() for kw in [
+                'stock','invest','crypto','bitcoin','ethereum','market','economy','AI','chip','GPU','tech',
+                'startup','VC','IPO','fund','Fed','rate','inflation','bond','gold','oil','commodity',
+                'Nvidia','OpenAI','DeepSeek','model','LLM','robot','EV','battery','solar','space',
+                ]):
+                should_remove = True
+            if should_remove:
                 file_path = EN_OUTPUT_DIR / item['filename']
                 if file_path.exists():
                     file_path.unlink()
-                    removed_en += 1
+                removed_en += 1
             else:
                 new_manifest.append(item)
         EN_MANIFEST_FILE.write_text(json.dumps(new_manifest, ensure_ascii=False, indent=2), encoding='utf-8')
@@ -2164,7 +2192,7 @@ def main():
         print("❌ 未设置 ZHIPU_API_KEY 环境变量")
         return
 
-    print(f"🚀 双语内容生成器 v5.0 (金融垂直版) 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🚀 双语内容生成器 v5.0.1 (金融垂直版+质量清理) 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     OUTPUT_DIR.mkdir(exist_ok=True)
     EN_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
