@@ -1101,10 +1101,19 @@ def _de_ai_process_zh(text):
 
 def _de_ai_title_zh(title):
     """中文标题优化 - 专业版,不加标题党前缀"""
+    # 去除"标题："/"标题:"前缀(GLM常见输出格式问题)
+    if title.startswith("标题："):
+        title = title[3:].strip()
+    if title.startswith("标题:"):
+        title = title[3:].strip()
     # 去除标题党前缀
-    for prefix in ["震惊!", "重磅!", "刚刚!", "速看!", "出大事了!", "刚刚曝光!", "突发!", "紧急!", "震撼!", "炸锅!", "怒了!", "沸腾!"]:
+    for prefix in ["震惊!", "重磅!", "刚刚!", "速看!", "出大事了!", "刚刚曝光!", "突发!", "紧急!", "震撼!", "炸锅!", "怒了!", "沸腾!", "震惊众人!", "震惊了!"]:
         if title.startswith(prefix):
             title = title[len(prefix):].strip()
+    # 去除标题党后缀
+    for suffix in ["震惊众人！", "震惊所有人！", "让人震惊！"]:
+        if title.endswith(suffix):
+            title = title[:-len(suffix)].strip()
     if len(title) > 30:
         title = title[:28] + "..."
     if len(title) < 8:
@@ -1113,6 +1122,11 @@ def _de_ai_title_zh(title):
 
 def _de_ai_title_en(title):
     """英文标题优化 - 专业版,不加标题党前缀"""
+    # 去除"Title:"/"Title :"前缀
+    if title.lower().startswith("title:"):
+        title = title[6:].strip()
+    if title.lower().startswith("title :"):
+        title = title[7:].strip()
     # 去除标题党前缀
     for prefix in ["Breaking:", "Just In:", "Must Read:", "Shocking:", "Revealed:", "Breaking News:", "Alert:", "Urgent:"]:
         if title.startswith(prefix):
