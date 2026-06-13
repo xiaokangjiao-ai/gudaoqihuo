@@ -1387,15 +1387,31 @@ def topic_to_slug_en(topic):
 
 def _md2html(text):
     html = text
-    html = re.sub(r"^## (.+)$", r"<h2>\1</h2>", html, flags=re.MULTILINE)
-    html = re.sub(r"^### (.+)$", r"<h3>\1</h3>", html, flags=re.MULTILINE)
+    # 兼容 ##标题(无空格) 和 ## 标题(有空格)
+    html = re.sub(r"^##\s*(.+)$", r"<h2>\1</h2>", html, flags=re.MULTILINE)
+    html = re.sub(r"^###\s*(.+)$", r"<h3>\1</h3>", html, flags=re.MULTILINE)
     html = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html)
-    paragraphs = html.split("\n\n")
+    # 段落处理: 先按双换行分块,单换行块内用<br>换行
+    # 若无双换行(整篇一段),则按句子边界(。！？. 后面跟中文/大写字母)强制分段
+    blocks = re.split(r"\n\n+", html)
+    if len(blocks) <= 1:
+        # 无双换行,按句子边界分段
+        sentences = re.split(r"([。！？!?]\s*)", html)
+        paragraphs = []
+        current = ""
+        for i, s in enumerate(sentences):
+            current += s
+            if len(current) > 120 and re.search(r"[。！？!?]$", current):
+                paragraphs.append(current.strip())
+                current = ""
+        if current.strip():
+            paragraphs.append(current.strip())
+        blocks = paragraphs if len(paragraphs) > 1 else [html]
     result = []
-    for p in paragraphs:
+    for p in blocks:
         p = p.strip()
         if not p: continue
-        if p.startswith("<h"): result.append(p)
+        if re.match(r"<h[23]>", p): result.append(p)
         else:
             lines = p.split("\n")
             p_html = "<br>".join(l.strip() for l in lines if l.strip())
