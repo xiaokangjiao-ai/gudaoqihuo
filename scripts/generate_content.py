@@ -71,8 +71,9 @@ gtag('config', '{GA4_ID}');
 # 中文分类
 CATEGORIES = {
     "finance":      {"name": "财经投资",   "icon": "📈"},
-    "hot":          {"name": "社会热点",   "icon": "🔥"},
     "tech":         {"name": "科技数码",   "icon": "📱"},
+    "hot":          {"name": "社会热点",   "icon": "🔥"},
+    # 以下分类不再生成新内容,仅保留旧页面防死链
     "health":       {"name": "健康养生",   "icon": "🏥"},
     "life":         {"name": "生活百科",   "icon": "💡"},
     "entertainment":{"name": "娱乐八卦",   "icon": "🎬"},
@@ -81,8 +82,9 @@ CATEGORIES = {
 # 英文分类
 EN_CATEGORIES = {
     "finance":      {"name": "Finance",      "icon": "📈"},
-    "hot":          {"name": "Trending",     "icon": "🔥"},
     "tech":         {"name": "Tech",         "icon": "📱"},
+    "hot":          {"name": "Trending",     "icon": "🔥"},
+    # 以下分类不再生成新内容,仅保留旧页面防死链
     "health":       {"name": "Health",       "icon": "🏥"},
     "life":         {"name": "Lifestyle",    "icon": "💡"},
     "entertainment":{"name": "Entertainment","icon": "🎬"},
@@ -378,14 +380,17 @@ All content in this section is for informational and educational purposes only a
 
 # 备用常青话题(AI+金融偏向)
 FALLBACK_TOPICS = [
-    # AI+金融方向
-    "AI概念股投资机会", "大模型厂商财报分析", "英伟达产业链投资", "DeepSeek对金融市场影响",
-    "量化交易策略入门", "智能投顾发展趋势", "数字人民币应用场景", "AI赋能金融科技",
-    "AI芯片股配置逻辑", "算力概念股投资分析", "金融AI大模型应用", "FinTech人工智能前沿",
-    # 科技数码
-    "人工智能发展趋势", "AI手机怎么选", "大模型应用实测", "智能穿戴设备",
-    # 生活健康
-    "健康养生小知识", "职场生存指南", "理财投资入门",
+    # 股票/基金/A股
+    "A股大盘走势分析", "科创板AI公司投资价值", "外资流入A股趋势", "港股通南向资金动态",
+    # 币圈/数字货币
+    "比特币减半后行情分析", "以太坊升级影响", "DeFi赛道投资机会", "加密货币监管政策",
+    # 期货/大宗
+    "黄金价格突破新高分析", "白银工业需求与价格走势", "原油期货OPEC产量影响", "铜价与新能源需求",
+    # AI+金融
+    "AI概念股投资机会", "大模型厂商财报分析", "英伟达产业链投资", "量化交易AI策略",
+    "智能投顾发展趋势", "金融AI大模型应用", "AI芯片股配置逻辑", "算力概念股投资分析",
+    # 科技
+    "人工智能发展趋势", "大模型应用实测", "AI芯片竞争格局",
 ]
 
 # ==================== 热点抓取 ====================
@@ -439,16 +444,32 @@ def fetch_zhihu_hot():
 
 def fetch_finance_hot():
     print("    抓取财经热点...")
-    # 东方财富热门话题
+    # === 垂直金融站点 ===
+    # 东方财富 - 热门个股
     sources = []
     try:
         resp = fetch_with_retry("https://push2.eastmoney.com/api/qt/clist/get?cb=jQuery&pn=1&pz=20&po=1&np=1&ut=bd1d9ddb04089700cf9c27f6f7426281&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23,m:0+t:81+s:2048&fields=f1,f2,f3,f12,f14&_=1")
         if resp:
             text = resp.text
-            # 提取股票名称
             names = re.findall(r'"f14":"([^"]+)"', text)
             topics = [f"{n}股票" for n in names if n][:10]
             sources.extend(topics)
+    except: pass
+    # 金融界 - 热门资讯
+    try:
+        resp = fetch_with_retry("https://www.jrj.com.cn/", timeout=15)
+        if resp:
+            titles = re.findall(r'<a[^>]+href[^>]*>([^<]{4,60})</a>', resp.text)
+            titles = [t.strip() for t in titles if any(kw in t for kw in ["股","金","币","期","债","汇","基金","经济","央行","利率"])]
+            sources.extend(list(set(titles))[:15])
+    except: pass
+    # 同花顺 - 热门概念
+    try:
+        resp = fetch_with_retry("https://q.10jqka.com.cn/", timeout=15)
+        if resp:
+            titles = re.findall(r'<a[^>]+>([^<]{4,50})</a>', resp.text)
+            titles = [t.strip() for t in titles if any(kw in t for kw in ["股","金","币","期","概念","板块","涨","跌"])]
+            sources.extend(list(set(titles))[:15])
     except: pass
     # 全球热门股票与大宗商品点评
     global_market_topics = [
@@ -456,19 +477,20 @@ def fetch_finance_hot():
         "微软市值走势分析", "谷歌AI战略布局",
         "阿里巴巴港股走势", "腾讯控股投资价值分析", "比亚迪新能源汽车市场",
         "贵州茅台股价点评", "中国平安投资策略",
-        "黄金价格走势与避险情绪", "原油价格分析OPEC产量",
+        "黄金价格走势与避险情绪", "白银工业需求与价格分析", "原油价格分析OPEC产量",
         "比特币以太坊行情分析", "铜价走势与新能源需求",
         "美联储利率决议影响", "人民币对美元汇率",
     ]
     sources.extend(global_market_topics)
-    # 补充财经固定热点词(AI+金融垂直偏向)
+    # 补充财经常青话题
     finance_keywords = [
         "AI概念股投资机会", "大模型厂商财报", "英伟达产业链分析", "DeepSeek概念股",
-        "算力概念股行情", "AI芯片板块走势", "金融AI大模型应用", "智能投顾发展趋势",
-        "量化交易策略动态", "数字货币行情", "比特币以太坊走势", "AI赋能券商概念",
-        "科技股最新动态", "新能源汽车板块", "半导体行业分析", "美联储加息",
-        "人民币汇率走势", "黄金价格走势", "A股大盘分析", "科创板AI公司",
-        "AI+金融跨界投资", "FinTech人工智能前沿", "数字人民币最新进展",
+        "算力概念股行情", "AI芯片板块走势", "量化交易策略动态",
+        "数字货币行情", "比特币以太坊走势",
+        "黄金白银期货走势", "原油期货分析",
+        "A股大盘分析", "科创板AI公司",
+        "期货套利策略", "期权交易入门",
+        "数字人民币最新进展",
     ]
     sources.extend(finance_keywords)
     # 去重
@@ -565,7 +587,7 @@ def fetch_huxiu_hot():
 def get_hot_topics():
     print("📡 开始抓取热点话题...")
     all_topics = []
-    sources = [fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot, fetch_zhihu_hot, fetch_finance_hot, fetch_sohu_hot, fetch_163_hot, fetch_qq_hot, fetch_sina_hot, fetch_thepaper_hot, fetch_cctv_hot, fetch_36kr_hot, fetch_huxiu_hot]
+    sources = [fetch_finance_hot, fetch_36kr_hot, fetch_huxiu_hot, fetch_thepaper_hot, fetch_baidu_hot, fetch_weibo_hot, fetch_toutiao_hot]
     for source in sources:
         try:
             topics = source()
@@ -585,14 +607,15 @@ def get_hot_topics():
 
     print(f"  共抓取 {len(all_topics)} 条,去重后 {len(unique)} 条")
 
-    # === 强制分类比例: 财经50% + 科技20% + 其他30% ===
+    # === 强制分类比例: 财经60% + 科技25% + 热点15% ===
+    # 健康养生/生活百科/娱乐八卦不再生成
     finance_topics = [t for t in unique if classify_topic(t) == "finance"]
     tech_topics = [t for t in unique if classify_topic(t) == "tech"]
-    other_topics = [t for t in unique if classify_topic(t) not in ("finance", "tech")]
+    hot_topics = [t for t in unique if classify_topic(t) == "hot"]
 
-    target_finance = max(4, ARTICLES_PER_RUN // 2)  # 至少4篇财经
-    target_tech = max(2, ARTICLES_PER_RUN // 5)     # 至少2篇科技
-    target_other = ARTICLES_PER_RUN - target_finance - target_tech
+    target_finance = max(5, int(ARTICLES_PER_RUN * 0.6))  # 60%财经
+    target_tech = max(2, int(ARTICLES_PER_RUN * 0.25))     # 25%科技
+    target_hot = ARTICLES_PER_RUN - target_finance - target_tech  # 15%热点(限金融/经济相关)
 
     # 财经不足时从FALLBACK补充
     if len(finance_topics) < target_finance:
@@ -601,16 +624,24 @@ def get_hot_topics():
         finance_topics.extend(extra_finance[:target_finance - len(finance_topics)])
         print(f"  财经热点不足,补充常青话题到 {len(finance_topics)} 条")
 
+    # 科技不足时从FALLBACK补充
+    if len(tech_topics) < target_tech:
+        extra_tech = [t for t in FALLBACK_TOPICS if t not in seen and classify_topic(t) == "tech"]
+        random.shuffle(extra_tech)
+        tech_topics.extend(extra_tech[:target_tech - len(tech_topics)])
+        print(f"  科技热点不足,补充常青话题到 {len(tech_topics)} 条")
+
     selected = []
     selected.extend(finance_topics[:target_finance])
     selected.extend(tech_topics[:target_tech])
-    remaining = [t for t in other_topics if t not in selected]
-    selected.extend(remaining[:target_other])
+    # 热点只选金融/经济相关的
+    hot_finance = [t for t in hot_topics if any(kw in t for kw in ["经济","GDP","央行","利率","通胀","房价","就业","消费","贸易","关税","制裁","美联储","债券","债务"])]
+    selected.extend((hot_finance or hot_topics)[:target_hot])
 
-    # 如果还不够,从所有话题补
+    # 如果还不够,从财经/科技补充
     if len(selected) < ARTICLES_PER_RUN:
         need = ARTICLES_PER_RUN - len(selected)
-        pool = [t for t in unique if t not in selected and t not in seen]
+        pool = [t for t in finance_topics + tech_topics if t not in selected]
         selected.extend(pool[:need])
 
     random.shuffle(selected)
@@ -868,9 +899,9 @@ def generate_article_zh(topic):
     cat = classify_topic(topic)
     angle_hint = ""
     if cat == "finance":
-        angle_hint = "\n【写作角度】本篇属于财经/投资类内容,请从以下角度切入:结合AI技术对金融行业的影响,分析投资机会与风险,可引用具体数据或案例,结尾引导读者对AI+金融趋势的思考。"
+        angle_hint = "\n【写作角度】本篇属于财经/投资类内容,请从投资价值分析、风险评估、市场趋势角度切入。如涉及AI技术,自然提及影响即可;如不涉及,不必强行关联AI。禁止在标题中使用'AI赋能金融'等万能套话。"
     elif cat == "tech":
-        angle_hint = "\n【写作角度】本篇涉及科技/AI领域,请侧重AI应用场景、技术落地进展、行业竞争格局等角度,让读者感受到AI技术的真实影响力。"
+        angle_hint = "\n【写作角度】本篇涉及科技/AI领域,请侧重技术落地进展、商业化前景、行业竞争格局等角度。"
 
     prompt = f"""{style}
 
@@ -940,9 +971,9 @@ def generate_article_en(topic_zh):
     cat_en = classify_topic_en(topic_zh)
     angle_hint = ""
     if cat_en == "finance":
-        angle_hint = "\n[WRITING ANGLE] This is a finance/investment topic - focus on AI's impact on financial markets, investment opportunities, and risk analysis. Use specific data or cases, and end by prompting readers to think about AI+Finance trends."
+        angle_hint = "\n[WRITING ANGLE] This is a finance/investment topic - focus on investment value, risk assessment, and market trends. If AI is relevant, mention it naturally; if not, do not force an AI angle. DO NOT use generic phrases like 'AI empowers finance' in the title."
     elif cat_en == "tech":
-        angle_hint = "\n[WRITING ANGLE] This is a tech/AI topic - emphasize AI application scenarios, real-world impact, and industry competition dynamics. Make readers feel the tangible power of AI technology."
+        angle_hint = "\n[WRITING ANGLE] This is a tech/AI topic - emphasize commercialization progress, industry competition, and real-world impact."
 
     prompt = f"""{style}
 
@@ -1283,13 +1314,10 @@ def _mindmap_html_block(mindmap_text, slug="mm", lang="zh"):
 # ==================== 分类 ====================
 
 def classify_topic(topic):
-    """中文分类 - 关键词扩充版"""
+    """中文分类 - 金融+科技为主,其他归入热点"""
     keywords = {
-        "finance":    ["股票", "期货", "基金", "黄金", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "P2P", "网贷", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所", "AI概念股", "DeepSeek概念", "大模型", "ChatGPT概念", "人工智能", "科技股", "芯片股", "英伟达", "GPU", "算力", "算力股", "数据中心", "云服务", "SaaS", "软件股", "半导体", "光刻机", "国产替代", "科技自主", "科创板", "专精特新"],
-        "tech":       ["AI", "人工智能", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能", "机器人", "自动驾驶", "量子", "云计算", "大数据", "区块链", "元宇宙", "VR", "AR", "GPU", "CPU", "半导体", "光刻", "华为", "苹果", "小米", "特斯拉", "微软", "谷歌", "OpenAI", "GPT", "大模型", "算法", "模型", "深度学习", "机器学习", "神经网络", "服务器", "数据中心", "算力", "光模块", "服务器", "新能源", "电动车", "充电桩", "电池", "光伏", "钠离子", "核聚变", "可控核", "航天", "火箭", "卫星", "空间站", "神舟", "月球", "火星", "太空", "无人机", "大疆", "操作系统", "鸿蒙", "Android", "iOS", "WiFi", "6G", "宽带", "光纤", "IOT", "物联网", "穿戴", "智能手表", "折叠屏", "OLED", "Micro LED", "面板", "京东方", "龙芯", "麒麟", "信创", "DeepSeek", "Kimi", "通义千问", "豆包", "文心一言", "GPT-5", "Claude", "Gemini", "AI应用", "AI工具", "AI生成", "AIGC", "AI绘画", "AI视频", "AI写作", "AI搜索", "AI助手", "AI模型", "开源模型", "AI芯片", "NPU", "AI算力", "边缘AI", "端侧AI", "具身智能", "人形机器人", "AppleIntelligence", "AI手机", "AI电脑", "Copilot", "Cursor", "Windsurf", "Perplexity", "Grok", "AI眼镜", "AI耳机", "AI教育", "AI医疗", "AI办公"],
-        "health":     ["健康", "养生", "医疗", "医院", "疫情", "病毒", "疫苗", "减肥", "健身", "营养", "睡眠", "心理", "医生", "手术", "药物", "中药", "西药", "体检", "癌症", "肿瘤", "糖尿病", "血压", "血糖", "心脏", "肝脏", "肾脏", "肺", "骨", "眼科", "牙科", "中医", "针灸", "艾灸", "推拿", "食疗", "维生素", "蛋白", "益生菌", "过敏", "流感", "感冒", "发烧", "抗生素", "靶向", "免疫", "基因", "DNA", "干细胞", "长寿", "抗衰老", "更年期", "孕产", "婴儿", "儿童", "老年", "痴呆", "阿尔茨海默", "帕金森", "抑郁", "焦虑", "自闭", "戒烟", "戒酒", "救护", "急救", "中毒", "食安", "食品安全", "微塑料", "辐射", "卫生", "疾控", "卫健委", "世卫"],
-        "life":       ["生活", "美食", "旅游", "房产", "汽车", "教育", "职场", "购物", "家居", "亲子", "烧烤", "火锅", "奶茶", "咖啡", "外卖", "小吃", "特产", "水果", "蔬菜", "海鲜", "泡菜", "做饭", "食谱", "景点", "签证", "机票", "酒店", "民宿", "自驾", "高铁", "飞机", "出国", "留学", "移民", "租房", "房价", "楼市", "物业", "装修", "家电", "家具", "清洗", "收纳", "宠物", "猫", "狗", "花", "园艺", "运动", "跑步", "游泳", "瑜伽", "钓鱼", "登山", "露营", "天气", "暴雨", "台风", "高温", "寒潮", "防汛", "抗旱", "高考", "考研", "公务员", "招聘", "简历", "面试", "工资", "社保", "公积金", "养老金", "退休", "离婚", "结婚", "生育", "幼儿园", "学区"],
-        "entertainment": ["娱乐", "明星", "电影", "电视剧", "综艺", "音乐", "游戏", "网红", "八卦", "偶像", "演员", "歌手", "导演", "票房", "上映", "开播", "收官", "综艺", "选秀", "脱口秀", "相声", "小品", "喜剧", "动画", "动漫", "番剧", "漫画", "小说", "网文", "直播", "带货", "短视频", "抖音", "快手", "B站", "微博热搜", "话题", "粉丝", "CP", "塌房", "出轨", "恋情", "婚变", "离婚", "复婚", "代言", "品牌", "时装", "红毯", "颁奖", "奥斯卡", "金鸡", "金马", "跑男", "偶像", "练习生", "粉丝团", "应援", "打榜", "超话", "世界杯", "欧洲杯", "亚洲杯", "国足", "足球", "篮球", "NBA", "CBA", "中超", "英超", "西甲", "意甲", "球迷", "裁判", "教练", "转会", "球员", "梅西", "C罗"],
+        "finance":    ["股票", "期货", "基金", "黄金", "白银", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "以太坊", "币圈", "DeFi", "NFT", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所", "AI概念股", "DeepSeek概念", "大模型", "ChatGPT概念", "人工智能", "科技股", "芯片股", "英伟达", "GPU", "算力", "算力股", "数据中心", "云服务", "SaaS", "软件股", "半导体", "光刻机", "国产替代", "科技自主", "科创板", "专精特新", "原油", "OPEC", "铜价", "铁矿石", "大豆", "农产品", "商品期货", "股指期货", "国债期货", "量化", "对冲", "杠杆", "保证金", "做空", "做多", "牛市", "熊市", "震荡", "回调", "反弹", "破位", "支撑位", "压力位", "K线", "均线", "MACD", "RSI", "布林带", "技术分析", "基本面", "价值投资", "成长股", "蓝筹股", "白马股", "黑马股", "龙头股", "题材股", "庄股", "游资", "主力资金", "北向资金", "南向资金", "外资", "QFII", "沪港通", "深港通", "注册制", "打新", "中签", "IPO", "定增", "可转债", "ETF", "LOF", "REITs", "MSCI", "富时", "沪股通", "深股通", "融资融券", "转融通", "股权激励", "限售股", "解禁", "锁定期", "合规", "监管", "证监会", "银保监", "金融监管", "反洗钱", "内幕交易", "操纵市场", "非法集资", "P2P", "网贷", "BTC", "ETH", "USDT", "稳定币", "挖矿", "矿机", "减半", "链上", "钱包", "交易所", "合约", "杠杆交易", "永续合约", "爆仓", "清算", "法币", "通证", "代币", "空投", "质押", "Staking", "LSD", "Layer2", "Rollup", "侧链", "跨链", "公链", "联盟链", "CBDC", "数字人民币", "DCEP", "合规交易所", "现货", "交割", "持仓", "移仓", "展期", "套利", "跨期", "跨市", "期现", "基差", "升水", "贴水"],
+        "tech":       ["AI", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能", "机器人", "自动驾驶", "量子", "云计算", "大数据", "区块链", "元宇宙", "VR", "AR", "CPU", "新能源", "电动车", "充电桩", "电池", "光伏", "钠离子", "核聚变", "航天", "火箭", "卫星", "空间站", "无人机", "大疆", "操作系统", "鸿蒙", "Android", "iOS", "WiFi", "6G", "物联网", "穿戴", "智能手表", "折叠屏", "OLED", "京东方", "龙芯", "麒麟", "信创", "DeepSeek", "Kimi", "通义千问", "豆包", "文心一言", "GPT-5", "Claude", "Gemini", "AIGC", "AI眼镜", "AI耳机", "AI教育", "AI医疗", "AI办公", "具身智能", "人形机器人", "Copilot", "Cursor", "Perplexity", "Grok"],
     }
     for cat, kws in keywords.items():
         if any(kw in topic for kw in kws):
@@ -1297,13 +1325,10 @@ def classify_topic(topic):
     return "hot"
 
 def classify_topic_en(topic):
-    """英文分类 - 独立英文关键词表"""
+    """英文分类 - 金融+科技为主,其他归入热点"""
     keywords = {
-        "finance":    ["stock", "market", "invest", "crypto", "bitcoin", "fund", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "IPO", "VC", "startup valuation", "merger", "acquisition", "hedge fund", "private equity", "forex", "currency", "dollar", "euro", "yuan", "commodity", "oil price", "gold price", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "S&P", "Nasdaq", "Dow", "Wall Street", "AI stock", "Nvidia", "AMD", "Palantir", "Snowflake", "Datadog", "Arm", "Super Micro", "AI chip", "tech stock", "Magnificent 7", "FAANG", "Meme stock", "short squeeze", "options trading", "day trading", "retail investor", "institutional investor", "hedge fund strategy", "ETF flow", "bond yield", "yield curve", "Fed rate cut", "earnings report", "SEC filing", "antitrust", "tech regulation", "OpenAI", "Microsoft", "Google", "Meta", "Amazon", "Apple", "Tesla", "deepseek", "llm", "AI model", "AI earnings", "AI valuation", "AI IPO"],
-        "tech":       ["AI", "artificial intelligence", "machine learning", "deep learning", "GPT", "LLM", "OpenAI", "Google", "Apple", "Microsoft", "Tesla", "chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "robot", "autonomous", "EV", "electric vehicle", "battery", "solar", "nuclear", "space", "rocket", "satellite", "ISS", "moon", "Mars", "drone", "VR", "AR", "metaverse", "blockchain", "cybersecurity", "hacker", "malware", "app", "software", "hardware", "phone", "laptop", "tablet", "wearable", "IoT", "WiFi", "broadband", "fiber", "operating system", "coding", "developer", "API", "open source", "GitHub", "startup", "unicorn", "DeepSeek", "Claude", "Gemini", "Copilot", "Cursor", "Windsurf", "Perplexity", "Grok", "ChatGPT", "AIGC", "AI video", "AI image", "AI writing", "AI search", "AI agent", "AI assistant", "edge AI", "on-device AI", "AI model", "open weight model", "multimodal", "reasoning", "context window", "token", "fine-tuning", "RAG", "agentic", "robotics", "humanoid robot", "autonomous driving", "Waymo", "Figure robot", "Boston Dynamics"],
-        "health":     ["health", "medical", "hospital", "doctor", "surgery", "vaccine", "virus", "pandemic", "COVID", "flu", "cancer", "tumor", "diabetes", "heart", "mental health", "depression", "anxiety", "fitness", "diet", "nutrition", "obesity", "weight loss", "sleep", "therapy", "pharma", "drug", "FDA", "clinical trial", "gene therapy", "stem cell", "anti-aging", "longevity", "Alzheimer", "Parkinson", "autism", "allergy", "antibiotic", "supplement", "vitamin", "probiotic", "microplastic", "radiation", "WHO", "CDC", "wellness", "mindful", "meditation", "yoga", "rehab", "emergency", "first aid", "poison", "food safety"],
-        "life":       ["life", "food", "recipe", "restaurant", "coffee", "travel", "flight", "hotel", "vacation", "tourism", "visa", "home", "house", "rent", "mortgage rate", "decor", "furniture", "pet", "dog", "cat", "garden", "weather", "storm", "hurricane", "heatwave", "flood", "education", "school", "college", "university", "scholarship", "job", "career", "salary", "resume", "interview", "retirement", "pension", "marriage", "divorce", "parenting", "baby", "kids", "elder", "commute", "housing", "lifestyle", "hobby", "camping", "hiking", "fishing", "cooking", "baking", "BBQ"],
-        "entertainment": ["entertainment", "movie", "film", "TV", "series", "show", "music", "song", "album", "concert", "game", "gaming", "esports", "streamer", "YouTube", "TikTok", "influencer", "celebrity", "actor", "actress", "singer", "director", "box office", "Oscar", "Emmy", "Grammy", "comic", "anime", "manga", "novel", "book", "podcast", "Netflix", "Disney", "Marvel", "DC", "Star Wars", "sport", "football", "soccer", "NBA", "NFL", "MLB", "FIFA", "World Cup", "Olympic", "championship", "player", "coach", "transfer", "fan", "stadium", "draft", "MVP"],
+        "finance":    ["stock", "market", "invest", "crypto", "bitcoin", "ethereum", "fund", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "IPO", "VC", "startup valuation", "merger", "acquisition", "hedge fund", "private equity", "forex", "currency", "dollar", "euro", "yuan", "commodity", "oil price", "gold price", "silver", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "S&P", "Nasdaq", "Dow", "Wall Street", "AI stock", "Nvidia", "AMD", "Palantir", "tech stock", "Magnificent 7", "FAANG", "Meme stock", "options trading", "day trading", "retail investor", "institutional", "ETF flow", "bond yield", "yield curve", "Fed rate", "earnings report", "SEC", "antitrust", "tech regulation", "OpenAI", "Microsoft", "Google", "Meta", "Amazon", "Apple", "Tesla", "deepseek", "llm", "AI model", "AI earnings", "AI valuation", "AI IPO", "futures", "crude oil", "OPEC", "copper", "commodities", "margin", "leverage", "short", "long position", "stop loss", "technical analysis", "fundamental", "value investing", "blue chip", "dividend yield", "market cap", "whale", "whale alert", "on-chain", "airdrop", "staking", "layer2", "CBDC", "stablecoin", "altcoin", "memecoin", "DEX", "CEX", "perpetual", "funding rate", "liquidation", "open interest", "CPI", "PPI", "non-farm", "jobless", "quantitative", "taper", "yield", "spread", "basis", "contango", "backwardation", "roll yield"],
+        "tech":       ["AI", "artificial intelligence", "machine learning", "deep learning", "GPT", "LLM", "OpenAI", "chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "robot", "autonomous", "EV", "electric vehicle", "battery", "solar", "nuclear", "space", "rocket", "satellite", "drone", "VR", "AR", "metaverse", "blockchain", "cybersecurity", "hacker", "app", "software", "hardware", "phone", "laptop", "wearable", "IoT", "operating system", "coding", "developer", "API", "open source", "GitHub", "startup", "unicorn", "DeepSeek", "Claude", "Gemini", "Copilot", "Cursor", "Perplexity", "Grok", "ChatGPT", "AIGC", "edge AI", "on-device AI", "multimodal", "reasoning", "fine-tuning", "RAG", "agentic", "robotics", "humanoid", "Waymo", "Boston Dynamics"],
     }
     topic_lower = topic.lower()
     for cat, kws in keywords.items():
@@ -1839,7 +1864,7 @@ def rebuild_index_zh():
         by_cat[cat].append(a)
 
     # Category sections HTML - show top 5 per category
-    CATEGORIES_PRESENT = ["finance","hot","tech","health","life","entertainment"]
+    CATEGORIES_PRESENT = ["finance","tech","hot"]  # 只展示核心分类,旧分类页面保留但不展示在首页
     cat_sections_html = ""
     for cat_key in CATEGORIES_PRESENT:
         cat_articles = by_cat.get(cat_key, [])
@@ -1868,7 +1893,13 @@ def rebuild_index_zh():
         f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
         for a in timeline
     )
-    cat_links = "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in CATEGORIES.items())
+    # 核心分类 + 更多(旧分类防死链)
+    core_cats = {k: v for k, v in CATEGORIES.items() if k in ("finance", "tech", "hot")}
+    archive_cats = {k: v for k, v in CATEGORIES.items() if k not in ("finance", "tech", "hot")}
+    cat_links = "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in core_cats.items())
+    cat_links += '\n<details class="cat-more"><summary>📋 更多</summary>'
+    cat_links += "\n".join(f'<a href="/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in archive_cats.items())
+    cat_links += '</details>'
     cat_links += '\n<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 宝藏网址</a>'
 
     html = f"""<!DOCTYPE html>
@@ -1905,7 +1936,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 .contact-overlay.show{{display:block}}
 .cat-nav{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#fff;border-radius:10px}}
 .cat-link{{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}}
-.cat-link:hover{{background:#ff6b35;color:#fff}}
+.cat-link:hover{{background:#ff6b35;color:#fff}} .cat-more{{display:inline;margin-left:8px}} .cat-more summary{{cursor:pointer;padding:6px 16px;border-radius:20px;background:#f0f0f0;color:#888;font-size:.85em;border:1px solid #ddd;display:inline}} .cat-more[open] summary{{margin-bottom:8px}}
 ul{{list-style:none}}
 li{{padding:10px 8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;font-size:.93em}}
 li:hover{{background:#f5f5f5}}
@@ -1970,7 +2001,12 @@ def rebuild_index_en():
         return
     articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
     list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
-    cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in EN_CATEGORIES.items())
+    core_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k in ("finance", "tech", "hot")}
+    archive_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k not in ("finance", "tech", "hot")}
+    cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in core_cats_en.items())
+    cat_links += '\n<details class="cat-more"><summary>📋 More</summary>'
+    cat_links += "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in archive_cats_en.items())
+    cat_links += '</details>'
     cat_links += '\n<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 Treasure</a>'
 
     html = f"""<!DOCTYPE html>
@@ -2007,7 +2043,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 .contact-overlay.show{{display:block}}
 .cat-nav{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#fff;border-radius:10px}}
 .cat-link{{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}}
-.cat-link:hover{{background:#ff6b35;color:#fff}}
+.cat-link:hover{{background:#ff6b35;color:#fff}} .cat-more{{display:inline;margin-left:8px}} .cat-more summary{{cursor:pointer;padding:6px 16px;border-radius:20px;background:#f0f0f0;color:#888;font-size:.85em;border:1px solid #ddd;display:inline}} .cat-more[open] summary{{margin-bottom:8px}}
 ul{{list-style:none}}
 li{{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px}}
 li:hover{{background:#fff}}
@@ -2128,7 +2164,7 @@ def main():
         print("❌ 未设置 ZHIPU_API_KEY 环境变量")
         return
 
-    print(f"🚀 双语内容生成器 v4.0 (含脑图) 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🚀 双语内容生成器 v5.0 (金融垂直版) 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     OUTPUT_DIR.mkdir(exist_ok=True)
     EN_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
