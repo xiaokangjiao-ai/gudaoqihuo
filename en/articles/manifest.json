@@ -1,5 +1,59 @@
 [
   {
+    "slug": "article-4a7d1ed414",
+    "title": "**X Up 15% vs Y Down 8%: The Logic Behind It**",
+    "category": "hot",
+    "date": "2026-06-14",
+    "timestamp": "2026-06-14 05:32:38",
+    "filename": "article-4a7d1ed414.html",
+    "cover_url": "https://picsum.photos/seed/26850/800/400"
+  },
+  {
+    "slug": "article-e1b67e39c3",
+    "title": "5 Key Data Points About Python 3.14 Garbage Collection Rigamarole i...",
+    "category": "tech",
+    "date": "2026-06-14",
+    "timestamp": "2026-06-14 05:31:53",
+    "filename": "article-e1b67e39c3.html",
+    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/c3349e3aa2f7474abc744114493d1313.png"
+  },
+  {
+    "slug": "article-72c7db0acd",
+    "title": "2026 Outlook: The Impact of Noise Infusion Ban on China's Statistic...",
+    "category": "hot",
+    "date": "2026-06-14",
+    "timestamp": "2026-06-14 05:30:35",
+    "filename": "article-72c7db0acd.html",
+    "cover_url": "https://picsum.photos/seed/80707/800/400"
+  },
+  {
+    "slug": "article-8b3479364d",
+    "title": "China's Software Architecture Guide: Charting the Course for Commer...",
+    "category": "tech",
+    "date": "2026-06-14",
+    "timestamp": "2026-06-14 05:29:56",
+    "filename": "article-8b3479364d.html",
+    "cover_url": "https://picsum.photos/seed/35175/800/400"
+  },
+  {
+    "slug": "article-75a31c2b29",
+    "title": "**China's Tech Talent Exodus: The Great Brain Drain and Its Implica...",
+    "category": "hot",
+    "date": "2026-06-14",
+    "timestamp": "2026-06-14 05:29:12",
+    "filename": "article-75a31c2b29.html",
+    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/3d00b1ee89b140078ce3d3827633de0a.png"
+  },
+  {
+    "slug": "article-c3a2fa3f57",
+    "title": "Rent Control in China: A Game-Changer in Housing Wealth Redistribution",
+    "category": "hot",
+    "date": "2026-06-14",
+    "timestamp": "2026-06-14 05:28:22",
+    "filename": "article-c3a2fa3f57.html",
+    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/7f228d7e49b94afaa750d35a681e8c22.png"
+  },
+  {
     "slug": "article-0788cd165a",
     "title": "**Pyodide 314.0: Python Packages' WebAssembly Revolution on PyPI**",
     "category": "hot",
