@@ -1517,7 +1517,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 .header h1{{font-size:1.1em;color:#ff6b35}}
 .breadcrumb{{font-size:.85em;color:#999;margin-bottom:15px}}
 .breadcrumb a{{color:#ff6b35;text-decoration:none}}
-.article-title{font-size:1.6em;font-weight:bold;margin-bottom:8px;color:#1a1a1a}article p{text-indent:2em;margin-bottom:1em}
+.article-title{{font-size:1.6em;font-weight:bold;margin-bottom:8px;color:#1a1a1a}}article p{{text-indent:2em;margin-bottom:1em}}
 .meta{{color:#888;font-size:.88em;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #eee}}
 h2{{font-size:1.3em;margin:25px 0 10px;color:#2c2c2c;border-left:4px solid #ff6b35;padding-left:10px}}
 p{{margin-bottom:15px;text-align:justify}}
@@ -1640,7 +1640,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 .header h1{{font-size:1.1em;color:#ff6b35}}
 .breadcrumb{{font-size:.85em;color:#999;margin-bottom:15px}}
 .breadcrumb a{{color:#ff6b35;text-decoration:none}}
-.article-title{font-size:1.6em;font-weight:bold;margin-bottom:8px;color:#1a1a1a}article p{text-indent:2em;margin-bottom:1em}
+.article-title{{font-size:1.6em;font-weight:bold;margin-bottom:8px;color:#1a1a1a}}article p{{text-indent:2em;margin-bottom:1em}}
 .meta{{color:#888;font-size:.88em;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #eee}}
 h2{{font-size:1.3em;margin:25px 0 10px;color:#2c2c2c;border-left:4px solid #ff6b35;padding-left:10px}}
 p{{margin-bottom:15px;text-align:justify}}
