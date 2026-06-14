@@ -380,17 +380,34 @@ All content in this section is for informational and educational purposes only a
 
 # 备用常青话题(AI+金融偏向)
 FALLBACK_TOPICS = [
-    # 股票/基金/A股
+    # 股票/基金/A股 (20)
     "A股大盘走势分析", "科创板AI公司投资价值", "外资流入A股趋势", "港股通南向资金动态",
-    # 币圈/数字货币
+    "北交所新兴产业投资", "沪深300指数波动解读", "红利股投资策略", "中小盘成长股筛选",
+    "ETF轮动策略", "量化基金业绩对比", "券商股周期性投资", "银行股估值修复",
+    "消费股复苏机会", "医药股政策驱动", "新能源车产业链", "光伏储能投资逻辑",
+    "半导体国产替代", "军工股订单预期", "保险股利润拐点", "REITs分红收益",
+    # 币圈/数字货币 (15)
     "比特币减半后行情分析", "以太坊升级影响", "DeFi赛道投资机会", "加密货币监管政策",
-    # 期货/大宗
+    "Solana生态发展与投资", "NFT市场回暖分析", "Layer2扩容方案对比", "稳定币监管趋势",
+    "Web3社交赛道机会", "DAO治理与投资", "加密矿企盈利分析", "交易所合规进展",
+    "RWA代币化趋势", "链上数据分析方法", " meme币投机与风险",
+    # 期货/大宗 (12)
     "黄金价格突破新高分析", "白银工业需求与价格走势", "原油期货OPEC产量影响", "铜价与新能源需求",
-    # AI+金融
+    "铁矿石供需格局", "农产品期货季节性", "天然气价格波动", "铂金投资价值",
+    "锂矿价格与电动车", "稀土战略资源投资", "碳交易市场分析", "股指期货对冲策略",
+    # AI+金融 (15)
     "AI概念股投资机会", "大模型厂商财报分析", "英伟达产业链投资", "量化交易AI策略",
     "智能投顾发展趋势", "金融AI大模型应用", "AI芯片股配置逻辑", "算力概念股投资分析",
-    # 科技
+    "AI风控系统演进", "机器人投研助手", "金融大模型开源进展", "AI监管合规科技",
+    "自然语言处理选股", "AI驱动的信用评分", "机器学习量化因子",
+    # 科技 (12)
     "人工智能发展趋势", "大模型应用实测", "AI芯片竞争格局",
+    "自动驾驶商业化", "人形机器人投资", "脑机接口进展",
+    "量子计算商用前景", "6G通信技术布局", "AR/VR产业复苏",
+    "卫星互联网投资", "低空经济政策解读", "智慧城市与物联网",
+    # 黄金白银专题 (8)
+    "黄金ETF持仓变化", "白银工业与投资双驱动", "央行购金趋势", "金矿股投资对比",
+    "金银比交易策略", "数字黄金产品分析", "贵金属避险属性", "上海金溢价解读",
 ]
 
 # ==================== 热点抓取 ====================
@@ -617,23 +634,37 @@ def get_hot_topics():
     target_tech = max(2, int(ARTICLES_PER_RUN * 0.25))     # 25%科技
     target_hot = ARTICLES_PER_RUN - target_finance - target_tech  # 15%热点(限金融/经济相关)
 
-    # 财经不足时从FALLBACK补充
+    # 财经不足时从FALLBACK补充(加日期标记防slug重复)
+    today_str = datetime.now().strftime("%m月%d日")
     if len(finance_topics) < target_finance:
-        extra_finance = [t for t in FALLBACK_TOPICS if t not in seen and classify_topic(t) == "finance"]
+        extra_finance = [t for t in FALLBACK_TOPICS if classify_topic(t) == "finance"]
         random.shuffle(extra_finance)
+        extra_finance = [f"{today_str}{t}" for t in extra_finance[:target_finance - len(finance_topics)]]
+        # 过滤掉已存在的slug
+        extra_finance = [t for t in extra_finance if not slug_exists(topic_to_slug(t), "zh")]
         finance_topics.extend(extra_finance[:target_finance - len(finance_topics)])
         print(f"  财经热点不足,补充常青话题到 {len(finance_topics)} 条")
 
-    # 科技不足时从FALLBACK补充
+    # 科技不足时从FALLBACK补充(加日期标记防slug重复)
     if len(tech_topics) < target_tech:
-        extra_tech = [t for t in FALLBACK_TOPICS if t not in seen and classify_topic(t) == "tech"]
+        extra_tech = [t for t in FALLBACK_TOPICS if classify_topic(t) == "tech"]
         random.shuffle(extra_tech)
+        extra_tech = [f"{today_str}{t}" for t in extra_tech[:target_tech - len(tech_topics)]]
+        extra_tech = [t for t in extra_tech if not slug_exists(topic_to_slug(t), "zh")]
         tech_topics.extend(extra_tech[:target_tech - len(tech_topics)])
         print(f"  科技热点不足,补充常青话题到 {len(tech_topics)} 条")
 
     selected = []
     selected.extend(finance_topics[:target_finance])
     selected.extend(tech_topics[:target_tech])
+    # 热点不足时也从FALLBACK补充(加日期标记)
+    if len(hot_topics) < target_hot:
+        extra_hot = [t for t in FALLBACK_TOPICS if classify_topic(t) == "hot"]
+        random.shuffle(extra_hot)
+        extra_hot = [f"{today_str}{t}" for t in extra_hot[:target_hot - len(hot_topics)]]
+        extra_hot = [t for t in extra_hot if not slug_exists(topic_to_slug(t), "zh")]
+        hot_topics.extend(extra_hot[:target_hot - len(hot_topics)])
+
     # 热点只选金融/经济相关的
     hot_finance = [t for t in hot_topics if any(kw in t for kw in ["经济","GDP","央行","利率","通胀","房价","就业","消费","贸易","关税","制裁","美联储","债券","债务"])]
     selected.extend((hot_finance or hot_topics)[:target_hot])
@@ -817,27 +848,41 @@ def get_hot_topics_en():
 
     print(f"  [EN] 共抓取 {len(all_topics)} 条,去重后 {len(unique)} 条")
 
+    en_fallback = [
+        "How AI is Transforming Financial Services",
+        "Stock Market Outlook: Key Trends This Month",
+        "Cryptocurrency Regulation Updates Around the World",
+        "Electric Vehicle Market Trends and Investment Impact",
+        "Gold Price Analysis: Drivers and Outlook",
+        "Cybersecurity Stocks: Growth and Risk Assessment",
+        "Quantitative Trading Strategies with Machine Learning",
+        "Fintech Disruption: Digital Banking Revolution",
+        "NVIDIA Earnings Impact on AI Stock Valuations",
+        "Federal Reserve Rate Decision: Market Implications",
+        "Oil Price Volatility: OPEC and Supply Factors",
+        "Silver Industrial Demand and Price Forecast",
+        "DeFi Protocol Analysis: Yield and Risk",
+        "China Tech Giants: Earnings and Regulatory Outlook",
+        "Bond Market Signals: Yield Curve Implications",
+        "Housing Market Trends: Prices and Mortgage Rates",
+        "AI Chip Competition: AMD vs NVIDIA vs Intel",
+        "Semiconductor Supply Chain Investment Opportunities",
+        "IPO Market Analysis: Notable Listings This Year",
+        "Central Bank Digital Currencies: Progress and Impact",
+        "Private Credit Market Growth and Default Risks",
+        "Rare Earth Metals: Strategic Investment Analysis",
+        "Carbon Credit Trading: Market and Policy",
+        "Autonomous Driving Commercialization Timeline",
+        "Quantum Computing Investment: Who Is Leading",
+    ]
     if len(unique) < ARTICLES_PER_RUN:
         needed = ARTICLES_PER_RUN - len(unique)
-        # 英文常青话题(如果热点不足时补充)
-        en_fallback = [
-            "How AI is Transforming Healthcare in 2026",
-            "Top 10 Tech Gadgets You Need This Year",
-            "Stock Market Outlook: What Investors Should Know",
-            "Remote Work Revolution: Future of Employment",
-            "Electric Vehicle Market Trends and Predictions",
-            "Cybersecurity Threats Everyone Should Be Aware Of",
-            "Cryptocurrency Regulation Updates Around the World",
-            "Best Programming Languages to Learn in 2026",
-            "Climate Change: Latest Research and Solutions",
-            "Social Media Impact on Mental Health",
-            "Space Exploration Milestones This Year",
-            "5G vs 6G: The Future of Connectivity",
-        ]
-        extra = [t for t in en_fallback if t not in seen]
+        today_str_en = datetime.now().strftime("%b %d")
+        extra = [f"{today_str_en}: {t}" for t in en_fallback]
+        extra = [t for t in extra if not slug_exists(topic_to_slug_en(t), "en")]
         random.shuffle(extra)
         unique.extend(extra[:needed])
-        print(f"  [EN] 热点不足,补充 {needed} 条常青话题")
+        print(f"  [EN] 热点不足,补充 {min(needed, len(extra))} 条常青话题")
 
     random.shuffle(unique)
     return unique[:ARTICLES_PER_RUN]
