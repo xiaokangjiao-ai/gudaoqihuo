@@ -3,136 +3,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GuDu Finance &amp; Tech Insights | AI-Powered Global Market Intelligence</title>
-<meta name="description" content="GuDu Finance - AI-powered global market insights & investment knowledge">
+<title>AI Verticals — AI Applications Across Industries</title>
+<meta name="description" content="Discover how artificial intelligence is transforming Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR, and Media. Real applications, real companies, real impact.">
 <link rel="canonical" href="https://gudaoqihuo.com/">
+<meta property="og:title" content="AI Verticals — AI Applications Across Industries">
+<meta property="og:description" content="Discover how AI is transforming industries. Real applications, real companies, real impact.">
+<meta property="og:type" content="website">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:960px;margin:0 auto;padding:15px;background:#fafafa}
-.site-header{position:relative;text-align:center;padding:40px 0 20px}
-.site-header h1{font-size:2.4em;color:#1a1a1a;margin-bottom:8px;letter-spacing:-0.5px}
-.site-header p{color:#666;font-size:1em;max-width:600px;margin:0 auto 20px}
-.cat-nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:15px;background:#fff;border-radius:16px;margin-bottom:30px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-.cat-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 28px;border-radius:14px;text-decoration:none;font-weight:700;font-size:1em;transition:all .2s;border:2px solid transparent;min-width:120px}
-.cat-btn:hover{transform:translateY(-2px)}
-.cat-btn .cat-icon{font-size:1.8em;line-height:1}
-.cat-btn .cat-label{font-size:0.85em;font-weight:600}
-.cat-btn.finance{background:#1a73e8;color:#fff}
-.cat-btn.finance:hover{background:#1557b0}
-.cat-btn.tech{background:#34a853;color:#fff}
-.cat-btn.tech:hover{background:#1e8a3e}
-.cat-btn.ai{background:#ea4335;color:#fff}
-.cat-btn.ai:hover{background:#c5221f}
-.cat-section{background:#fff;border-radius:14px;margin-bottom:24px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-.cat-section-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:2px solid #f0f0f0}
-.cat-section-title{font-size:1.15em;font-weight:700;color:#333;display:flex;align-items:center;gap:8px}
-.cat-badge{padding:3px 10px;border-radius:20px;font-size:0.75em;font-weight:700;white-space:nowrap}
-.cat-badge.finance-bg{background:#1a73e8;color:#fff}
-.cat-badge.tech-bg{background:#34a853;color:#fff}
-.cat-badge.ai-bg{background:#ea4335;color:#fff}
-.view-all{font-size:0.82em;color:#1a73e8;text-decoration:none;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid #1a73e8;transition:all .2s}
-.view-all:hover{background:#1a73e8;color:#fff}
-.article-list{list-style:none;padding:0;margin:0}
-.article-list li{padding:14px 20px;border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:12px}
-.article-list li:last-child{border-bottom:none}
-.article-list li:hover{background:#fafafa}
-.art-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0;color:#fff;font-weight:700}
-.art-date{color:#999;font-size:0.82em;min-width:75px;flex-shrink:0}
-.art-title{flex:1;font-size:0.95em;color:#222;text-decoration:none;line-height:1.5}
-.art-title:hover{color:#1a73e8}
-.art-cat{font-size:0.72em;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
-.art-cat.finance{background:#e8f0fe;color:#1a73e8}
-.art-cat.tech{background:#e6f4ea;color:#34a853}
-.art-cat.ai{background:#fce8e6;color:#ea4335}
-.footer{margin-top:40px;text-align:center;color:#999;font-size:0.82em;padding-top:15px;border-top:1px solid #eee}
-.footer a{color:#999;text-decoration:none;margin:0 8px}
-.footer a:hover{color:#666}
+:root{
+  --bg:#0a0a0f;--surface:#13131a;--border:#1e1e2e;--text:#e8e8f0;--muted:#8888a0;
+  --accent:#6c63ff;--accent2:#00d4aa;--gold:#f5c842;
+  --f:#4fc3f7;--h:#ef5350;--l:#ce93d8;--e:#81c784;--m:#ffb74d;--r:#4dd0e1;--hr:#a5d6a7;--c:#ff8a65;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+/* HERO */
+.hero{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center;padding:60px 0 50px}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a1a 0%,#1a1040 40%,#0d2030 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.06) 1px,transparent 1px);background-size:60px 60px}
+.hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(108,99,255,.25) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 24px;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);border-radius:30px;padding:6px 16px;font-size:.78em;color:#a099ff;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+.hero-eyebrow span{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.2em,6vw,3.8em);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:14px}
+.hero h1 .accent{background:linear-gradient(90deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .dim{color:#555870;-webkit-text-fill-color:#555870}
+.hero-desc{font-size:1.08em;color:var(--muted);max-width:620px;margin:0 auto 32px;line-height:1.8}
+.hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:1.6em;font-weight:800;color:var(--accent2)}
+.hero-stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.hero-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin:40px auto}
+/* CATEGORIES */
+.section{padding:50px 24px;max-width:1100px;margin:0 auto}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:8px}
+.section-title{font-size:1.5em;font-weight:800}
+.section-title span{color:var(--muted);font-weight:400;font-size:.8em}
+.section-link{font-size:.85em;color:var(--accent);text-decoration:none;font-weight:600}
+.section-link:hover{text-decoration:underline}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.cat-card{display:block;text-decoration:none;border-radius:16px;padding:22px;background:var(--surface);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;transition:height .25s}
+.cat-card:hover{transform:translateY(-4px);border-color:rgba(108,99,255,.4);box-shadow:0 12px 40px rgba(108,99,255,.15)}
+.cat-card:hover::before{height:4px}
+.cat-card.finance::before{background:#4fc3f7}
+.cat-card.healthcare::before{background:#ef5350}
+.cat-card.legal::before{background:#ce93d8}
+.cat-card.education::before{background:#81c784}
+.cat-card.manufacturing::before{background:#ffb74d}
+.cat-card.retail::before{background:#4dd0e1}
+.cat-card.hr::before{background:#a5d6a7}
+.cat-card.media::before{background:#ff8a65}
+.cat-icon{font-size:2em;margin-bottom:10px;display:block}
+.cat-name{font-size:1.05em;font-weight:700;color:var(--text);margin-bottom:6px}
+.cat-desc{font-size:.78em;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.cat-tags{display:flex;flex-wrap:wrap;gap:5px}
+.cat-tag{font-size:.68em;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.06);color:var(--muted)}
+/* ARTICLES */
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.art-card{display:block;text-decoration:none;border-radius:14px;background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .25s}
+.art-card:hover{transform:translateY(-3px);border-color:rgba(108,99,255,.35);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.art-thumb{width:100%;height:160px;object-fit:cover;display:block;background:linear-gradient(135deg,#1e1e30,#2a2a40)}
+.art-body{padding:16px}
+.art-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.art-cat-badge{font-size:.68em;padding:2px 9px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.art-cat-badge.finance{background:rgba(79,195,247,.15);color:#4fc3f7}
+.art-cat-badge.healthcare{background:rgba(239,83,80,.15);color:#ef5350}
+.art-cat-badge.legal{background:rgba(206,147,216,.15);color:#ce93d8}
+.art-cat-badge.education{background:rgba(129,199,132,.15);color:#81c784}
+.art-cat-badge.manufacturing{background:rgba(255,183,77,.15);color:#ffb74d}
+.art-cat-badge.retail{background:rgba(77,208,225,.15);color:#4dd0e1}
+.art-cat-badge.hr{background:rgba(165,214,167,.15);color:#a5d6a7}
+.art-cat-badge.media{background:rgba(255,138,101,.15);color:#ff8a65}
+.art-date{font-size:.72em;color:var(--muted)}
+.art-title{font-size:.92em;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.art-excerpt{font-size:.78em;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.art-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)}
+.art-read{font-size:.75em;color:var(--accent);font-weight:600}
+.art-time{font-size:.7em;color:var(--muted)}
+/* FOOTER */
+.footer{max-width:1100px;margin:0 auto;padding:40px 24px;text-align:center;border-top:1px solid var(--border)}
+.footer-brand{font-size:1.1em;font-weight:800;margin-bottom:8px}
+.footer p{color:var(--muted);font-size:.8em}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{color:var(--accent)}
+.footer-links{margin-top:12px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 @media(max-width:600px){
-.site-header h1{font-size:1.8em}
-.cat-btn{min-width:100px;padding:12px 16px}
-.cat-btn .cat-icon{font-size:1.5em}
-.article-list li{flex-wrap:wrap;gap:6px}
-.art-date{min-width:60px}
-.art-title{font-size:0.88em}
+.hero{min-height:420px;padding:40px 0 30px}
+.hero h1{font-size:2em}
+.hero-stats{gap:20px}
+.cat-grid{grid-template-columns:repeat(2,1fr)}
+.articles-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<header class="site-header">
-<h1>📊 GuDu Finance & Tech</h1>
-<div class="lang-switch" style="position:absolute;top:15px;right:15px;display:flex;gap:8px">
-<a href="/en/" class="lang-btn" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;text-decoration:none;font-weight:600;font-size:.85em;background:#1a73e8;color:#fff">🇺🇸 English</a>
+
+<!-- HERO -->
+<header class="hero">
+<div class="hero-bg"></div>
+<div class="hero-grid"></div>
+<div class="hero-glow"></div>
+<div class="hero-content">
+<div class="hero-eyebrow"><span></span> AI Applications Across Industries</div>
+<h1>Where <span class="accent">AI</span> Meets<br><span class="dim">Every Industry</span></h1>
+<p class="hero-desc">Real-world artificial intelligence applications across 8 verticals. No hype, no fluff — just concrete use cases, actual companies, and measurable impact.</p>
+<div class="hero-stats">
+<div class="hero-stat"><div class="num">8</div><div class="label">Industries</div></div>
+<div class="hero-stat"><div class="num">Daily</div><div class="label">Updates</div></div>
+<div class="hero-stat"><div class="num">100%</div><div class="label">English</div></div>
 </div>
-<p>AI-powered global market insights, technology trends & investment intelligence</p>
-<nav class="cat-nav">
-<a href="/en/articles/finance.html" class="cat-btn finance">
-<span class="cat-icon">💹</span>
-<span class="cat-label">Finance</span>
-</a>
-<a href="/en/articles/tech.html" class="cat-btn tech">
-<span class="cat-icon">💻</span>
-<span class="cat-label">Tech</span>
-</a>
-<a href="/en/articles/ai.html" class="cat-btn ai">
-<span class="cat-icon">🤖</span>
-<span class="cat-label">AI</span>
-</a>
-</nav>
+</div>
 </header>
 
-<section class="cat-section" id="finance">
-<div class="cat-section-header">
-<span class="cat-section-title">💹 Finance <span class="cat-badge finance-bg">Markets</span></span>
-<a href="/en/articles/finance.html" class="view-all">View All →</a>
+<!-- INDUSTRIES -->
+<section class="section">
+<div class="section-head">
+<div class="section-title">Explore by Industry <span>— 8 verticals, one destination</span></div>
 </div>
-<ul class="article-list">
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-16</span><a class="art-title" href="/en/articles/article-b624510f60.html">Codex for Open Source: A Game-Changer in Investment Value and Risk</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-3c4e7b1715.html">China Tech Giants Dominate: 2026 Q1 Growth at 35%</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-13</span><a class="art-title" href="/en/articles/article-3abfbcab2d.html">2026 AI Finance Outlook: 3 Changes & Investment Directions</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-13</span><a class="art-title" href="/en/articles/article-1da3f737e7.html">When an AI Agent Takes Control, Financial Markets Face a Wild Ride</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-11</span><a class="art-title" href="/en/articles/article-4590733ee0.html">"Booking AI in Financial Markets: Opportunity Knocking or Risk Rising"</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-10</span><a class="art-title" href="/en/articles/article-802b790485.html">The Global Economic Impact: A Comprehensive Overview</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-10</span><a class="art-title" href="/en/articles/article-e4d458835d.html">The AI Finance Revolution: When PgDog Meets the Market</a><span class="art-cat finance">Finance</span></li>
-<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-09</span><a class="art-title" href="/en/articles/article-7f92e69f98.html">1.5 Million CAD Designs in a Day: How AI Text-to-CAD is Revolutionizing</a><span class="art-cat finance">Finance</span></li>
-</ul>
+<div class="cat-grid">
+<a href="/en/articles/finance.html" class="cat-card finance">
+<span class="cat-icon">💰</span>
+<div class="cat-name">Finance & Banking</div>
+<div class="cat-desc">AI in risk assessment, algorithmic trading, fraud detection, and intelligent financial advisory.</div>
+<div class="cat-tags">
+<span class="cat-tag">Fraud Detection</span>
+<span class="cat-tag">Algo Trading</span>
+<span class="cat-tag">Credit Scoring</span>
+</div>
+</a>
+<a href="/en/articles/healthcare.html" class="cat-card healthcare">
+<span class="cat-icon">🏥</span>
+<div class="cat-name">Healthcare & MedTech</div>
+<div class="cat-desc">AI diagnostic tools, drug discovery, medical imaging analysis, and personalized treatment planning.</div>
+<div class="cat-tags">
+<span class="cat-tag">Diagnostics</span>
+<span class="cat-tag">Drug Discovery</span>
+<span class="cat-tag">MedAI</span>
+</div>
+</a>
+<a href="/en/articles/legal.html" class="cat-card legal">
+<span class="cat-icon">⚖️</span>
+<div class="cat-name">Legal Services</div>
+<div class="cat-desc">Contract review automation, legal research AI, due diligence acceleration, and dispute prediction.</div>
+<div class="cat-tags">
+<span class="cat-tag">Contract AI</span>
+<span class="cat-tag">eDiscovery</span>
+<span class="cat-tag">Legal Research</span>
+</div>
+</a>
+<a href="/en/articles/education.html" class="cat-card education">
+<span class="cat-icon">🎓</span>
+<div class="cat-name">Education & EdTech</div>
+<div class="cat-desc">Personalized learning paths, AI tutoring, automated grading, and accessibility tools for education.</div>
+<div class="cat-tags">
+<span class="cat-tag">Adaptive Learning</span>
+<span class="cat-tag">AI Tutors</span>
+<span class="cat-tag">EdTech</span>
+</div>
+</a>
+<a href="/en/articles/manufacturing.html" class="cat-card manufacturing">
+<span class="cat-icon">🏭</span>
+<div class="cat-name">Manufacturing</div>
+<div class="cat-desc">Predictive maintenance, quality control vision systems, digital twin optimization, and smart robotics.</div>
+<div class="cat-tags">
+<span class="cat-tag">Predictive Maint.</span>
+<span class="cat-tag">Quality Vision</span>
+<span class="cat-tag">Robotics</span>
+</div>
+</a>
+<a href="/en/articles/retail.html" class="cat-card retail">
+<span class="cat-icon">🛒</span>
+<div class="cat-name">Retail & E-commerce</div>
+<div class="cat-desc">Recommendation engines, dynamic pricing, inventory AI, supply chain optimization, and visual search.</div>
+<div class="cat-tags">
+<span class="cat-tag">Recommenders</span>
+<span class="cat-tag">Dynamic Pricing</span>
+<span class="cat-tag">Supply Chain</span>
+</div>
+</a>
+<a href="/en/articles/hr.html" class="cat-card hr">
+<span class="cat-icon">👥</span>
+<div class="cat-name">Human Resources</div>
+<div class="cat-desc">AI-powered resume screening, interview analysis, employee retention models, and skills gap mapping.</div>
+<div class="cat-tags">
+<span class="cat-tag">Talent Acquisition</span>
+<span class="cat-tag">People Analytics</span>
+<span class="cat-tag">HR Automation</span>
+</div>
+</a>
+<a href="/en/articles/media.html" class="cat-card media">
+<span class="cat-icon">🎬</span>
+<div class="cat-name">Media & Content</div>
+<div class="cat-desc">AI-generated content, video editing automation, deepfake detection, personalized news feeds, and copyright AI.</div>
+<div class="cat-tags">
+<span class="cat-tag">Content Gen</span>
+<span class="cat-tag">Video AI</span>
+<span class="cat-tag">Deepfake Detection</span>
+</div>
+</a>
+</div>
 </section>
 
-<section class="cat-section" id="tech">
-<div class="cat-section-header">
-<span class="cat-section-title">💻 Tech <span class="cat-badge tech-bg">Technology</span></span>
-<a href="/en/articles/tech.html" class="view-all">View All →</a>
+<!-- RECENT ARTICLES -->
+<section class="section">
+<div class="section-head">
+<div class="section-title">Latest Articles <span>— fresh from our AI vertical editors</span></div>
+<a href="/en/articles/" class="section-link">View all →</a>
 </div>
-<ul class="article-list">
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-16</span><a class="art-title" href="/en/articles/article-3c4e7b1715.html">TinyWind: Navigating the Winds of Sailing Game Innovation</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-2a644c79e5.html">The Tech Revolution Unleashed: OpenRouter Fusion API's Commercialization</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-3a38457008.html">The Battery Revolution: How "Even More Batteries Included" with Emac</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-460367b4f9.html">**Foreign Business Owners in Japan: The Capital Rush Amid Tech</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-5714425bc5.html">The Rise of the "Everything Console": A Deep Dive into China's Tech</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-3df719ca2f.html">Every Frame Perfect: AI-Driven Video Enhancement Reshapes the Market</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-8fb82e3bee.html">China's Software Architecture Guide: Charting the Course for Commerce</a><span class="art-cat tech">Tech</span></li>
-<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-f8ce2e2433.html">Hon Da Civics and the AI Value: The $1B Commercialization Leap</a><span class="art-cat tech">Tech</span></li>
-</ul>
+<div class="articles-grid" id="recent-articles">
+<p style="color:var(--muted);padding:20px 0">Loading recent articles...</p>
+</div>
 </section>
 
-<section class="cat-section" id="ai">
-<div class="cat-section-header">
-<span class="cat-section-title">🤖 AI <span class="cat-badge ai-bg">Artificial Intelligence</span></span>
-<a href="/en/articles/ai.html" class="view-all">View All →</a>
-</div>
-<ul class="article-list">
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-16</span><a class="art-title" href="/en/articles/article-265e6a43b7.html">The Future of China's Economic Landscape in 2027: 2 Key Scenarios</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-4a7d1ed414.html">2026 China Tech Outlook: 3 Trends & Investment Directions</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-f549cfc593.html">2023: The Audio Revolution: China's Podcast Market Grows 50% in a Year</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-91cdc0094a.html">2023 ePub Outlook: 3 Changes & Investment Directions</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-e74bce4197.html">**Cadre Compatibility Revolution: How ZeroServe Achieved 3x Through</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-c9f531b6fe.html">**Hond A Civics and the AI Value: The $1B Commercialization Leap</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-cdd927c9ea.html">**Match Schedule Revolutionizes Sports Industry: 3 Predictions</a><span class="art-cat ai">AI</span></li>
-<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-54f5d7a33e.html">GLM 5.2 Unveiled: China's AI Leap Forward</a><span class="art-cat ai">AI</span></li>
-</ul>
+<!-- ABOUT -->
+<section class="section" style="text-align:center;padding-bottom:60px">
+<div class="hero-divider"></div>
+<div class="section-title" style="margin-bottom:12px">About AI Verticals</div>
+<p style="color:var(--muted);max-width:580px;margin:0 auto;font-size:.92em;line-height:1.9">
+We cover one thing thoroughly: <strong style="color:var(--text)">how artificial intelligence is reshaping every major industry</strong>. 
+Every article is grounded in real deployments, named vendors, and measurable outcomes. 
+No speculative fluff — just the signal from the noise.
+</p>
 </section>
 
 <footer class="footer">
-<p>© 2025-2026 GuDu Finance & Tech · <a href="/en/">Home</a> · <a href="/en/articles/finance.html">Finance</a> · <a href="/en/articles/tech.html">Tech</a> · <a href="/en/articles/ai.html">AI</a></p>
+<div class="footer-brand">AI Verticals</div>
+<p>© 2025–2026 · <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
+<div class="footer-links">
+<a href="/en/articles/finance.html">Finance</a>
+<a href="/en/articles/healthcare.html">Healthcare</a>
+<a href="/en/articles/legal.html">Legal</a>
+<a href="/en/articles/education.html">Education</a>
+<a href="/en/articles/manufacturing.html">Manufacturing</a>
+<a href="/en/articles/retail.html">Retail</a>
+<a href="/en/articles/hr.html">HR</a>
+<a href="/en/articles/media.html">Media</a>
+</div>
 </footer>
+
+<script>
+// Load recent articles from manifest
+(async function(){
+  try {
+    const r = await fetch('/en/articles/manifest.json');
+    if(!r.ok) return;
+    const data = await r.json();
+    const recent = data.slice(-12).reverse();
+    const container = document.getElementById('recent-articles');
+    container.innerHTML = recent.map(a => `
+      <a href="/en/articles/${a.file}" class="art-card">
+        <img class="art-thumb" src="${a.cover || 'https://picsum.photos/seed/'+a.slug+'/600/320'}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'">
+        <div class="art-body">
+          <div class="art-meta">
+            <span class="art-cat-badge ${a.category}">${a.category}</span>
+            <span class="art-date">${a.date||''}</span>
+          </div>
+          <div class="art-title">${a.title}</div>
+        </div>
+        <div class="art-footer">
+          <span class="art-read">Read →</span>
+          <span class="art-time">${a.category}</span>
+        </div>
+      </a>`).join('');
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
