@@ -321,7 +321,7 @@ def generate_svg_hero(title, category, lang="zh"):
     else:
         display_title = title[:38] + ("..." if len(title) > 38 else "")
     display_title = display_title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
-    cat_info = CATEGORIES.get(category, CATEGORIES["hot"]) if lang == "zh" else EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
+    cat_info = CATEGORIES.get(category, CATEGORIES["hot"]) if lang == "zh" else EN_CATEGORIES.get(category, EN_CATEGORIES["tech"])
     cat_name = cat_info["name"]
     cat_icon = cat_info["icon"]
     site_label = SITE_NAME if lang == "zh" else EN_SITE_NAME
@@ -1371,7 +1371,7 @@ def classify_topic(topic):
     for cat, kws in keywords.items():
         if any(kw in topic for kw in kws):
             return cat
-    return "hot"
+    return "tech"  # 默认归tech
 
 def classify_topic_en(topic):
     """英文分类 - Finance / Tech / AI (无热点)"""
@@ -1469,7 +1469,7 @@ def _md2html(text):
     return "\n".join(result)
 
 def _cps_block(category, lang="zh"):
-    links = CPS_LINKS.get(category, CPS_LINKS["hot"]) if lang == "zh" else EN_CPS_LINKS.get(category, EN_CPS_LINKS["hot"])
+    links = CPS_LINKS.get(category, CPS_LINKS["hot"]) if lang == "zh" else EN_CPS_LINKS.get(category, EN_CPS_LINKS["tech"])
     if lang == "zh":
         html = '<div class="cps-box"><h3>🛒 猜你也感兴趣</h3><ul>'
     else:
@@ -1647,7 +1647,7 @@ p{{margin-bottom:15px;text-align:justify}}
 </html>"""
 
 def generate_article_html_en(title, body, category, slug, related_articles, mindmap_text="", cover_url=""):
-    cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
+    cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["tech"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
     date_str = datetime.now(BJ_TZ).strftime("%Y-%m-%d")
     date_iso = datetime.now(BJ_TZ).strftime("%Y-%m-%dT%H:%M:%S+08:00")
@@ -1774,7 +1774,7 @@ p{{margin-bottom:15px;text-align:justify}}
 def generate_category_page_zh(category):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
-    cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
+    cat_color = THUMB_COLORS.get(category, THUMB_COLORS["tech"])
     articles = sorted([a for a in load_manifest("zh") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     def _zh_card_html(a):
         cover = a.get("cover_url", "")
@@ -1842,9 +1842,9 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 </html>"""
 
 def generate_category_page_en(category):
-    cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
+    cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["tech"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
-    cat_color = THUMB_COLORS.get(category, THUMB_COLORS["hot"])
+    cat_color = THUMB_COLORS.get(category, THUMB_COLORS["tech"])
     articles = sorted([a for a in load_manifest("en") if a["category"] == category], key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:50]
     def _en_card_html(a):
         cover = a.get("cover_url", "")
@@ -2068,7 +2068,7 @@ def rebuild_index_en():
         print("  英文首页:暂无文章")
         return
     articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
-    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
+    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","tech"),THUMB_COLORS["tech"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["tech"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["tech"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
     core_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k in ("finance", "tech", "ai")}
     archive_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k not in ("finance", "tech", "hot")}
     cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in core_cats_en.items())
