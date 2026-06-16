@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 全自动双语热点流量站内容生成器 v4.0
 ================================
@@ -1236,7 +1236,9 @@ def _de_ai_title_en(title):
     # 其他模板格式: "N Changes & Predictions"
     if re.search(r'^\d+\s+(Changes|Predictions|Impacts|Trends|Lessons|Ways|Strategies|Steps|Tips)\s+[&]', title, re.IGNORECASE):
         title = re.sub(r'^\d+\s+(Changes|Predictions|Impacts|Trends|Lessons|Ways|Strategies|Steps|Tips)\s+[&]\s+', '', title, flags=re.IGNORECASE).strip()
-    return titledef _de_ai_process_en(text):
+    return title
+
+def _de_ai_process_en(text):
     """英文去AI味 - v4.0 严格版"""
     replacements = {
         "In today's society": "Today", "in today's society": "today",
