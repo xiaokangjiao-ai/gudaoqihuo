@@ -83,16 +83,26 @@ CATEGORIES = {
 
 # 英文分类 - Finance / Tech / AI
 EN_CATEGORIES = {
-    "finance": {"name": "Finance", "icon": "📈"},
-    "tech":    {"name": "Tech",    "icon": "📱"},
-    "ai":      {"name": "AI",      "icon": "🤖"},
+    "finance":      {"name": "Finance and Banking", "icon": "💰"},
+    "healthcare":   {"name": "Healthcare and MedTech", "icon": "🏥"},
+    "legal":        {"name": "Legal Services", "icon": "⚖️"},
+    "education":    {"name": "Education and EdTech", "icon": "🎓"},
+    "manufacturing":{"name": "Manufacturing", "icon": "🏭"},
+    "retail":       {"name": "Retail and E-commerce", "icon": "🛒"},
+    "hr":           {"name": "Human Resources", "icon": "👥"},
+    "media":        {"name": "Media and Content", "icon": "🎬"},
 }
 
 # Category thumbnail colors
 THUMB_COLORS = {
-    "finance": "#1a73e8",
-    "tech":    "#7c3aed",
-    "ai":      "#ea4335",
+    "finance":      "#4fc3f7",
+    "healthcare":   "#ef5350",
+    "legal":        "#ce93d8",
+    "education":    "#81c784",
+    "manufacturing":"#ffb74d",
+    "retail":       "#4dd0e1",
+    "hr":           "#a5d6a7",
+    "media":        "#ff8a65",
 }
 
 # 中文CPS推广链接(亚马逊)
@@ -362,35 +372,60 @@ All content in this section is for informational and educational purposes only a
 
 # 备用常青话题(AI+金融偏向)
 FALLBACK_TOPICS = [
-    # 股票/基金/A股 (20)
-    "A股大盘走势分析", "科创板AI公司投资价值", "外资流入A股趋势", "港股通南向资金动态",
-    "北交所新兴产业投资", "沪深300指数波动解读", "红利股投资策略", "中小盘成长股筛选",
-    "ETF轮动策略", "量化基金业绩对比", "券商股周期性投资", "银行股估值修复",
-    "消费股复苏机会", "医药股政策驱动", "新能源车产业链", "光伏储能投资逻辑",
-    "半导体国产替代", "军工股订单预期", "保险股利润拐点", "REITs分红收益",
-    # 币圈/数字货币 (15)
-    "比特币减半后行情分析", "以太坊升级影响", "DeFi赛道投资机会", "加密货币监管政策",
-    "Solana生态发展与投资", "NFT市场回暖分析", "Layer2扩容方案对比", "稳定币监管趋势",
-    "Web3社交赛道机会", "DAO治理与投资", "加密矿企盈利分析", "交易所合规进展",
-    "RWA代币化趋势", "链上数据分析方法", " meme币投机与风险",
-    # 期货/大宗 (12)
-    "黄金价格突破新高分析", "白银工业需求与价格走势", "原油期货OPEC产量影响", "铜价与新能源需求",
-    "铁矿石供需格局", "农产品期货季节性", "天然气价格波动", "铂金投资价值",
-    "锂矿价格与电动车", "稀土战略资源投资", "碳交易市场分析", "股指期货对冲策略",
-    # AI+金融 (15)
-    "AI概念股投资机会", "大模型厂商财报分析", "英伟达产业链投资", "量化交易AI策略",
-    "智能投顾发展趋势", "金融AI大模型应用", "AI芯片股配置逻辑", "算力概念股投资分析",
-    "AI风控系统演进", "机器人投研助手", "金融大模型开源进展", "AI监管合规科技",
-    "自然语言处理选股", "AI驱动的信用评分", "机器学习量化因子",
-    # 科技 (12)
-    "人工智能发展趋势", "大模型应用实测", "AI芯片竞争格局",
-    "自动驾驶商业化", "人形机器人投资", "脑机接口进展",
-    "量子计算商用前景", "6G通信技术布局", "AR/VR产业复苏",
-    "卫星互联网投资", "低空经济政策解读", "智慧城市与物联网",
-    # 黄金白银专题 (8)
-    "黄金ETF持仓变化", "白银工业与投资双驱动", "央行购金趋势", "金矿股投资对比",
-    "金银比交易策略", "数字黄金产品分析", "贵金属避险属性", "上海金溢价解读",
+    "How AI Is Transforming Fraud Detection in Banking",
+    "AI-Powered Algorithmic Trading Performance in 2026",
+    "The Rise of AI Consultants in Wealth Management",
+    "How Banks Use AI to Detect Money Laundering",
+    "AI in Credit Scoring: Beyond Traditional Methods",
+    "The Impact of AI on Hedge Fund Strategies",
+    "Digital Banking: How AI Is Reshaping Retail Finance",
+    "AI in Insurance: From Underwriting to Claims",
+    "How AI Diagnostics Are Outperforming Human Doctors",
+    "AI in Drug Discovery: Cutting Development Time in Half",
+    "The Promise of AI in Early Cancer Detection",
+    "AI-Powered Medical Imaging: A New Standard of Care",
+    "How AI Is Helping Rare Disease Research",
+    "The Role of AI in Mental Health Apps and Treatment",
+    "How AI Is Changing Contract Review at Law Firms",
+    "AI in eDiscovery: Saving Law Firms Thousands of Hours",
+    "The Rise of AI Legal Research Assistants",
+    "How AI Is Being Used in Courtroom Strategy",
+    "AI Compliance Tools for Financial Regulations",
+    "How AI Tutors Are Personalizing Learning at Scale",
+    "The Impact of AI on Student Performance Metrics",
+    "AI in Online Learning: Adaptive Course Platforms",
+    "How Schools Use AI to Detect Learning Disabilities",
+    "AI Grading Systems: Fairness and Accuracy Debate",
+    "How AI Predictive Maintenance Is Saving Factories Millions",
+    "AI Vision Systems in Quality Control: Real Results",
+    "The Rise of AI-Powered Cobots on Assembly Lines",
+    "Digital Twins in Manufacturing: AI Simulation",
+    "How AI Is Optimizing Supply Chain Logistics",
+    "AI in 3D Printing: From Prototyping to Production",
+    "The Impact of AI on Semiconductor Manufacturing Yield",
+    "How AI Recommendation Engines Drive E-commerce Sales",
+    "AI in Retail: Dynamic Pricing Strategies That Work",
+    "The Role of AI in Retail Inventory Management",
+    "How AI Is Transforming the In-Store Shopping Experience",
+    "Visual Search and AI: The Future of Online Retail",
+    "How AI Chatbots Are Replacing Customer Service",
+    "How AI Resume Screening Is Changing Talent Acquisition",
+    "AI in Employee Retention: Predictive Analytics",
+    "The Role of AI in Performance Management Systems",
+    "How AI Is Being Used in Workforce Planning",
+    "AI Interview Tools: What HR Professionals Need to Know",
+    "The Impact of AI on Learning and Development Programs",
+    "How AI Is Helping Companies Close the Skills Gap",
+    "How AI Is Being Used to Generate News Content",
+    "AI in Video Editing: From Raw Footage to Final Cut",
+    "The Rise of AI-Generated Content in Publishing",
+    "How Streaming Platforms Use AI for Recommendations",
+    "Deepfake Detection: AI Battle Against Synthetic Media",
+    "The Role of AI in Music Production and Composition",
+    "How AI Is Changing Game Development Studios",
+    "AI in Journalism: Objectivity, Bias and the Future",
 ]
+
 
 # ==================== 热点抓取 ====================
 
@@ -1374,19 +1409,16 @@ def classify_topic(topic):
     return "tech"  # 默认归tech
 
 def classify_topic_en(topic):
-    """英文分类 - Finance / Tech / AI (无热点)"""
-    keywords = {
-        "ai":   ["AI", "artificial intelligence", "AGI", "artificial general intelligence", "machine learning", "deep learning", "neural network", "GPT", "LLM", "large language model", "OpenAI", "ChatGPT", "Claude", "Gemini", "Grok", "DeepSeek", "Perplexity", "Copilot", "Cursor", "Kimi", "ERNIE", "Wenxin", "GLM", "LLM training", "LLM inference", "AI model", "AI agent", "agentic", "AI chip", "AI infrastructure", "AI commercialization", "AI regulation", "AI ethics", "AI safety", "AI robotics", "humanoid robot", "multimodal AI", "text-to-image", "text-to-video", "AI-generated", "AIGC", "generative AI", "foundation model", "AI startup", "AI funding", "AI stock", "AI IPO", "AI valuation", "AI earnings", "AI competition", "AI partnership", "edge AI", "on-device AI", "AI accelerator", "NPU", "AI framework", "PyTorch", "TensorFlow", "LangChain", "RAG", "fine-tuning", "AI SDK", "AI API", "reasoning model", "o1", "o3", "reasoning", "thinking model", "world model", "robotics", "autonomous", "self-driving", "Waymo", "Tesla FSD", "Figure", "Boston Dynamics", "Unitree", "具身智能", "大模型", "AI眼镜", "AI耳机"],
-        "tech":  ["chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "fiber optic", "broadband", "IoT", "wearable", "smartwatch", "AR", "VR", "MR", "metaverse", "cyber security", "hacker", "app", "software", "hardware", "phone", "laptop", "tablet", "device", "operating system", "Android", "iOS", "Linux", "Windows", "macOS", "API", "open source", "GitHub", "developer", "coding", "programming", "startup", "unicorn", "IPO", "funding", "venture capital", "merger", "acquisition", "Big Tech", "FAANG", "Magnificent 7", "Microsoft", "Google", "Meta", "Amazon", "Apple", "Tesla", "Samsung", "Huawei", "ByteDance", "TikTok"],
-        "finance": ["stock", "market", "invest", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "Wall Street", "Nasdaq", "Dow", "S&P", "forex", "currency", "dollar", "euro", "yuan", "yen", "commodity", "oil", "crude", "gold", "silver", "copper", "OPEC", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "crypto", "bitcoin", "ethereum", "solana", "blockchain", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "CPI", "PPI", "non-farm", "jobs report", "central bank", "ECB", "BOJ", "PBOC", "margin", "leverage", "short", "long", "futures", "options", "ETF flow", "whale", "whale alert", "on-chain", "airdrop", "staking", "stablecoin", "altcoin", "DEX", "CEX", "CBDC", "private credit", "hedge fund", "PE fund", "VC", "M&A", "antitrust", "SEC regulation"],
-    }
-    topic_lower = topic.lower()
-    for cat, kws in keywords.items():
-        if any(kw.lower() in topic_lower for kw in kws):
-            return cat
-    return "tech"  # 默认归tech
-
-# ==================== Manifest管理 ====================
+    t = topic.lower()
+    if any(k in t for k in ["bank","stock","finance","invest","market","trading","credit","loan","risk","payment","insurance","fund","bond","capital","wealth","fintech","hedge","portfolio","dividend","economy"]): return "finance"
+    if any(k in t for k in ["health","medical","hospital","patient","drug","clinic","diagnos","cancer","therapy","genomic","biotech","medicine","treatment","clinical","pharma","vaccine"]): return "healthcare"
+    if any(k in t for k in ["legal","law","court","compliance","regulation","contract","privacy","litigation","intellectual","patent","GDPR"]): return "legal"
+    if any(k in t for k in ["education","learn","student","school","teacher","course","training","academic","university","edtech"]): return "education"
+    if any(k in t for k in ["manufactur","factory","industrial","robot","machine","supply chain","logistics","hardware","semiconductor","automation","production","quality control","predictive maintenance","3d print"]): return "manufacturing"
+    if any(k in t for k in ["retail","shop","customer","store","e-commerce","shopping","consumer","recommend","inventory","brand","merchant"]): return "retail"
+    if any(k in t for k in ["hr","human resource","talent","recruit","hire","employee","workforce","job","resume","interview","people analytics"]): return "hr"
+    if any(k in t for k in ["media","content","video","social","entertainment","streaming","news","music","game","publish","journalism","film","creator","podcast"]): return "media"
+    return "manufacturing"
 
 def load_manifest(lang="zh"):
     fp = MANIFEST_FILE if lang == "zh" else EN_MANIFEST_FILE
