@@ -1647,7 +1647,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <body>
 <div class="header">
 <h1>📰 {SITE_NAME}</h1>
-<div><a href="/">中文</a> | <a href="/en/">English</a></div>
+
 </div>
 <nav class="breadcrumb">
 <a href="/">首页</a> &gt; <a href="/articles/{category}.html">{cat_icon} {cat_name}</a> &gt; {title}
@@ -1770,7 +1770,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <body>
 <div class="header">
 <h1>📰 {EN_SITE_NAME}</h1>
-<div><a href="/">中文</a> | <a href="/en/">English</a></div>
+
 </div>
 <nav class="breadcrumb">
 <a href="/en/">Home</a> &gt; <a href="/en/articles/{category}.html">{cat_icon} {cat_name}</a> &gt; {title}
@@ -1857,7 +1857,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans
 <body>
 <div class="header">
 <h1>&#x1F4F0; {SITE_NAME}</h1>
-<div><a href="/">中文</a> | <a href="/en/">English</a></div>
+
 </div>
 <nav class="breadcrumb"><a href="/">首页</a> &gt; {cat_icon} {cat_name}</nav>
 <h2 class="cat-title">{cat_icon} {cat_name}</h2>
@@ -1927,7 +1927,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 <body>
 <div class="header">
 <h1>&#x1F4F0; {EN_SITE_NAME}</h1>
-<div><a href="/">中文</a> | <a href="/en/">English</a></div>
+
 </div>
 <nav class="breadcrumb"><a href="/en/">Home</a> &gt; {cat_icon} {cat_name}</nav>
 <h2 class="cat-title">{cat_icon} {cat_name}</h2>
