@@ -81,25 +81,18 @@ CATEGORIES = {
     "entertainment":{"name": "娱乐八卦",   "icon": "🎬"},
 }
 
-# 英文分类
+# 英文分类 - Finance / Tech / AI
 EN_CATEGORIES = {
-    "finance":      {"name": "Finance",      "icon": "📈"},
-    "tech":         {"name": "Tech",         "icon": "📱"},
-    "hot":          {"name": "Trending",     "icon": "🔥"},
-    # 以下分类不再生成新内容,仅保留旧页面防死链
-    "health":       {"name": "Health",       "icon": "🏥"},
-    "life":         {"name": "Lifestyle",    "icon": "💡"},
-    "entertainment":{"name": "Entertainment","icon": "🎬"},
+    "finance": {"name": "Finance", "icon": "📈"},
+    "tech":    {"name": "Tech",    "icon": "📱"},
+    "ai":      {"name": "AI",      "icon": "🤖"},
 }
 
 # Category thumbnail colors
 THUMB_COLORS = {
     "finance": "#1a73e8",
-    "hot": "#ff6b35",
-    "tech": "#7c3aed",
-    "health": "#10b981",
-    "life": "#f59e0b",
-    "entertainment": "#ec4899",
+    "tech":    "#7c3aed",
+    "ai":      "#ea4335",
 }
 
 # 中文CPS推广链接(亚马逊)
@@ -134,36 +127,23 @@ CPS_LINKS["finance"] = [
 
 # 英文CPS推广链接(Amazon.com)
 EN_CPS_LINKS = {
+    "finance": [
+        {"text": "Finance & Investment Books", "url": "https://www.amazon.com/s?k=finance+books&tag=gudaoqihuo-20", "desc": "Money Smart"},
+    ],
     "tech": [
         {"text": "Best Selling Electronics 2025", "url": "https://www.amazon.com/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "Top Rated"},
     ],
-    "health": [
-        {"text": "Health & Wellness Picks", "url": "https://www.amazon.com/s?k=health+wellness&tag=gudaoqihuo-20", "desc": "Stay Healthy"},
-    ],
-    "life": [
-        {"text": "Home Essentials", "url": "https://www.amazon.com/s?k=home+essentials&tag=gudaoqihuo-20", "desc": "Quality Living"},
-    ],
-    "entertainment": [
-        {"text": "Movie & TV Merchandise", "url": "https://www.amazon.com/s?k=movie+merchandise&tag=gudaoqihuo-20", "desc": "Fan Favorites"},
-    ],
-    "hot": [
-        {"text": "Today's Deals", "url": "https://www.amazon.com/gp/goldbox?tag=gudaoqihuo-20", "desc": "Limited Time"},
+    "ai": [
+        {"text": "AI & Tech Books", "url": "https://www.amazon.com/s?k=AI+artificial+intelligence&tag=gudaoqihuo-20", "desc": "AI Insights"},
     ],
 }
 
-EN_CPS_LINKS["finance"] = [
-    {"text": "Finance & Investment Books", "url": "https://www.amazon.com/s?k=finance+books&tag=gudaoqihuo-20", "desc": "Money Smart"},
-]
-
 # 广告位配置(中英文共用)
-AD_CODE_TOP = '''<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="fluid" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
+AD_CODE_TOP = ''
 
-AD_CODE_MIDDLE = '''<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="fluid" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
+AD_CODE_MIDDLE = ''
 
-AD_CODE_BOTTOM = '''<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'''
+AD_CODE_BOTTOM = ''
 
 # ==================== 免费图片源(多级降级)====================
 # 优先级:Unsplash -> Pixabay -> Lorem Picsum -> SVG兜底
@@ -851,31 +831,29 @@ def get_hot_topics_en():
     print(f"  [EN] 共抓取 {len(all_topics)} 条,去重后 {len(unique)} 条")
 
     en_fallback = [
-        "How AI is Transforming Financial Services",
-        "Stock Market Outlook: Key Trends This Month",
-        "Cryptocurrency Regulation Updates Around the World",
-        "Electric Vehicle Market Trends and Investment Impact",
-        "Gold Price Analysis: Drivers and Outlook",
-        "Cybersecurity Stocks: Growth and Risk Assessment",
-        "Quantitative Trading Strategies with Machine Learning",
-        "Fintech Disruption: Digital Banking Revolution",
-        "NVIDIA Earnings Impact on AI Stock Valuations",
-        "Federal Reserve Rate Decision: Market Implications",
-        "Oil Price Volatility: OPEC and Supply Factors",
-        "Silver Industrial Demand and Price Forecast",
-        "DeFi Protocol Analysis: Yield and Risk",
-        "China Tech Giants: Earnings and Regulatory Outlook",
-        "Bond Market Signals: Yield Curve Implications",
-        "Housing Market Trends: Prices and Mortgage Rates",
-        "AI Chip Competition: AMD vs NVIDIA vs Intel",
-        "Semiconductor Supply Chain Investment Opportunities",
-        "IPO Market Analysis: Notable Listings This Year",
-        "Central Bank Digital Currencies: Progress and Impact",
-        "Private Credit Market Growth and Default Risks",
-        "Rare Earth Metals: Strategic Investment Analysis",
-        "Carbon Credit Trading: Market and Policy",
-        "Autonomous Driving Commercialization Timeline",
-        "Quantum Computing Investment: Who Is Leading",
+        # AI
+        "How AI Agents Are Reshaping Software Development",
+        "The Race to Build AGI: Key Milestones and Timelines",
+        "AI Chip Wars: NVIDIA vs AMD vs Intel vs Custom Silicon",
+        "How LLMs Are Transforming Financial Analysis and Trading",
+        "The Rise of Edge AI: On-Device Intelligence in 2026",
+        "AI Safety and Regulation: Global Policy Landscape",
+        "Multimodal AI: Beyond Text to Video and 3D",
+        "Open Source AI Models: Who Is Winning the Open Race",
+        "AI Robotics: Humanoid Bots Enter Commercial Phase",
+        "How AI Is Killing Traditional Search and Discovery",
+        # Tech
+        "Semiconductor Supply Chain: Investment Opportunities",
+        "Quantum Computing: Commercial Applications Finally Arrive",
+        "Big Tech Earnings: Who Is Winning the AI Race",
+        "EV Market Consolidation: Winners and Losers",
+        "Cybersecurity in the AI Era: New Threats and Defenses",
+        # Finance
+        "Fed Rate Policy and Its Impact on Global Markets",
+        "Gold and Silver: Safe Haven Assets in 2026",
+        "Bitcoin Halving Aftermath: What the Data Shows",
+        "DeFi Renaissance: Institutional Capital Enters",
+        "S&P 500 Performance: AI Stocks vs Traditional Sectors",
     ]
     if len(unique) < ARTICLES_PER_RUN:
         needed = ARTICLES_PER_RUN - len(unique)
@@ -1396,16 +1374,17 @@ def classify_topic(topic):
     return "hot"
 
 def classify_topic_en(topic):
-    """英文分类 - 金融+科技为主,其他归入热点"""
+    """英文分类 - Finance / Tech / AI (无热点)"""
     keywords = {
-        "finance":    ["stock", "market", "invest", "crypto", "bitcoin", "ethereum", "fund", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "IPO", "VC", "startup valuation", "merger", "acquisition", "hedge fund", "private equity", "forex", "currency", "dollar", "euro", "yuan", "commodity", "oil price", "gold price", "silver", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "S&P", "Nasdaq", "Dow", "Wall Street", "AI stock", "Nvidia", "AMD", "Palantir", "tech stock", "Magnificent 7", "FAANG", "Meme stock", "options trading", "day trading", "retail investor", "institutional", "ETF flow", "bond yield", "yield curve", "Fed rate", "earnings report", "SEC", "antitrust", "tech regulation", "OpenAI", "Microsoft", "Google", "Meta", "Amazon", "Apple", "Tesla", "deepseek", "llm", "AI model", "AI earnings", "AI valuation", "AI IPO", "futures", "crude oil", "OPEC", "copper", "commodities", "margin", "leverage", "short", "long position", "stop loss", "technical analysis", "fundamental", "value investing", "blue chip", "dividend yield", "market cap", "whale", "whale alert", "on-chain", "airdrop", "staking", "layer2", "CBDC", "stablecoin", "altcoin", "memecoin", "DEX", "CEX", "perpetual", "funding rate", "liquidation", "open interest", "CPI", "PPI", "non-farm", "jobless", "quantitative", "taper", "yield", "spread", "basis", "contango", "backwardation", "roll yield"],
-        "tech":       ["AI", "artificial intelligence", "machine learning", "deep learning", "GPT", "LLM", "OpenAI", "chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "robot", "autonomous", "EV", "electric vehicle", "battery", "solar", "nuclear", "space", "rocket", "satellite", "drone", "VR", "AR", "metaverse", "blockchain", "cybersecurity", "hacker", "app", "software", "hardware", "phone", "laptop", "wearable", "IoT", "operating system", "coding", "developer", "API", "open source", "GitHub", "startup", "unicorn", "DeepSeek", "Claude", "Gemini", "Copilot", "Cursor", "Perplexity", "Grok", "ChatGPT", "AIGC", "edge AI", "on-device AI", "multimodal", "reasoning", "fine-tuning", "RAG", "agentic", "robotics", "humanoid", "Waymo", "Boston Dynamics"],
+        "ai":   ["AI", "artificial intelligence", "AGI", "artificial general intelligence", "machine learning", "deep learning", "neural network", "GPT", "LLM", "large language model", "OpenAI", "ChatGPT", "Claude", "Gemini", "Grok", "DeepSeek", "Perplexity", "Copilot", "Cursor", "Kimi", "ERNIE", "Wenxin", "GLM", "LLM training", "LLM inference", "AI model", "AI agent", "agentic", "AI chip", "AI infrastructure", "AI commercialization", "AI regulation", "AI ethics", "AI safety", "AI robotics", "humanoid robot", "multimodal AI", "text-to-image", "text-to-video", "AI-generated", "AIGC", "generative AI", "foundation model", "AI startup", "AI funding", "AI stock", "AI IPO", "AI valuation", "AI earnings", "AI competition", "AI partnership", "edge AI", "on-device AI", "AI accelerator", "NPU", "AI framework", "PyTorch", "TensorFlow", "LangChain", "RAG", "fine-tuning", "AI SDK", "AI API", "reasoning model", "o1", "o3", "reasoning", "thinking model", "world model", "robotics", "autonomous", "self-driving", "Waymo", "Tesla FSD", "Figure", "Boston Dynamics", "Unitree", "具身智能", "大模型", "AI眼镜", "AI耳机"],
+        "tech":  ["chip", "semiconductor", "GPU", "CPU", "quantum", "cloud", "server", "data center", "5G", "6G", "fiber optic", "broadband", "IoT", "wearable", "smartwatch", "AR", "VR", "MR", "metaverse", "cyber security", "hacker", "app", "software", "hardware", "phone", "laptop", "tablet", "device", "operating system", "Android", "iOS", "Linux", "Windows", "macOS", "API", "open source", "GitHub", "developer", "coding", "programming", "startup", "unicorn", "IPO", "funding", "venture capital", "merger", "acquisition", "Big Tech", "FAANG", "Magnificent 7", "Microsoft", "Google", "Meta", "Amazon", "Apple", "Tesla", "Samsung", "Huawei", "ByteDance", "TikTok"],
+        "finance": ["stock", "market", "invest", "ETF", "Fed", "interest rate", "inflation", "GDP", "economy", "fiscal", "monetary", "bond", "treasury", "dividend", "earning", "revenue", "profit", "Wall Street", "Nasdaq", "Dow", "S&P", "forex", "currency", "dollar", "euro", "yuan", "yen", "commodity", "oil", "crude", "gold", "silver", "copper", "OPEC", "real estate", "mortgage", "bank", "insurance", "fintech", "DeFi", "NFT", "crypto", "bitcoin", "ethereum", "solana", "blockchain", "trading", "portfolio", "bull", "bear", "recession", "stimulus", "tariff", "trade war", "CPI", "PPI", "non-farm", "jobs report", "central bank", "ECB", "BOJ", "PBOC", "margin", "leverage", "short", "long", "futures", "options", "ETF flow", "whale", "whale alert", "on-chain", "airdrop", "staking", "stablecoin", "altcoin", "DEX", "CEX", "CBDC", "private credit", "hedge fund", "PE fund", "VC", "M&A", "antitrust", "SEC regulation"],
     }
     topic_lower = topic.lower()
     for cat, kws in keywords.items():
         if any(kw.lower() in topic_lower for kw in kws):
             return cat
-    return "hot"
+    return "tech"  # 默认归tech
 
 # ==================== Manifest管理 ====================
 
@@ -1576,7 +1555,7 @@ def generate_article_html_zh(title, body, category, slug, related_articles, mind
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+
 <title>{title} - {SITE_NAME}</title>
 <meta name="description" content="{title},{cat_name}深度解读">
 <link rel="canonical" href="{SITE_URL}/articles/{slug}.html">
@@ -1699,7 +1678,7 @@ def generate_article_html_en(title, body, category, slug, related_articles, mind
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+
 <title>{title} - {EN_SITE_NAME}</title>
 <meta name="description" content="{title} - in-depth analysis">
 <link rel="canonical" href="{EN_SITE_URL}/en/articles/{slug}.html">
@@ -1812,7 +1791,7 @@ def generate_category_page_zh(category):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+
 <title>{cat_icon} {cat_name} - {SITE_NAME}</title>
 <link rel="canonical" href="{SITE_URL}/articles/{category}.html">
 <style>
@@ -1882,7 +1861,7 @@ def generate_category_page_en(category):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+
 <title>{cat_icon} {cat_name} - {EN_SITE_NAME}</title>
 <link rel="canonical" href="{EN_SITE_URL}/en/articles/{category}.html">
 <style>
@@ -1994,7 +1973,7 @@ def rebuild_index_zh():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+
 <title>{SITE_NAME} - {SITE_DESC}</title>
 <meta name="description" content="{SITE_DESC}">
 <link rel="canonical" href="{SITE_URL}/">
@@ -2090,12 +2069,9 @@ def rebuild_index_en():
         return
     articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
     list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["hot"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
-    core_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k in ("finance", "tech", "hot")}
+    core_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k in ("finance", "tech", "ai")}
     archive_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k not in ("finance", "tech", "hot")}
     cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in core_cats_en.items())
-    cat_links += '\n<details class="cat-more"><summary>📋 More</summary>'
-    cat_links += "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in archive_cats_en.items())
-    cat_links += '</details>'
     cat_links += '\n<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 Treasure</a>'
 
     html = f"""<!DOCTYPE html>
@@ -2103,7 +2079,7 @@ def rebuild_index_en():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
+
 <title>{EN_SITE_NAME} - {EN_SITE_DESC}</title>
 <meta name="description" content="{EN_SITE_DESC}">
 <link rel="canonical" href="{EN_SITE_URL}/en/">
@@ -2295,29 +2271,27 @@ def main():
     # 2. 逐篇生成
     zh_generated, en_generated = 0, 0
 
-    # 2a. 中文循环(使用国内热点:百度/微博/头条/知乎/财经)
-    for i, topic in enumerate(topics_zh):
-        slug_zh = topic_to_slug(topic)
-
-        if not slug_exists(slug_zh, "zh"):
-            print(f"  ✍️ [ZH {i+1}/{len(topics_zh)}] {topic}")
-            title_zh, body_zh = generate_article_zh(topic)
-            if title_zh and body_zh:
-                category = classify_topic(topic)
-                filename_zh = f"{slug_zh}.html"
-                related_zh = get_related_articles(category, slug_zh, "zh")
-                print(f"    🧠 生成脑图...")
-                mindmap_zh = generate_mindmap_zh(title_zh, body_zh)
-                # Fetch Unsplash cover image
-                cover_url_zh = fetch_unsplash_image(title_zh)
-                html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh, mindmap_zh, cover_url_zh)
-                (OUTPUT_DIR / filename_zh).write_text(html_zh, encoding="utf-8")
-                add_to_manifest(slug_zh, title_zh, category, filename_zh, "zh", cover_url_zh)
-                zh_generated += 1
-                print(f"    ✅ 中文完成: {filename_zh}")
-            time.sleep(1)
-        else:
-            print(f"  ⏭ [ZH {i+1}/{len(topics_zh)}] 跳过(重复): {topic}")
+    # === 中文生成已禁用 - 仅英文 ===
+    # (保留代码以便将来恢复)
+    # for i, topic in enumerate(topics_zh):
+    #     slug_zh = topic_to_slug(topic)
+    #     if not slug_exists(slug_zh, "zh"):
+    #         print(f"  ✍️ [ZH {i+1}/{len(topics_zh)}] {topic}")
+    #         title_zh, body_zh = generate_article_zh(topic)
+    #         if title_zh and body_zh:
+    #             category = classify_topic(topic)
+    #             filename_zh = f"{slug_zh}.html"
+    #             related_zh = get_related_articles(category, slug_zh, "zh")
+    #             mindmap_zh = generate_mindmap_zh(title_zh, body_zh)
+    #             cover_url_zh = fetch_unsplash_image(title_zh)
+    #             html_zh = generate_article_html_zh(title_zh, body_zh, category, slug_zh, related_zh, mindmap_zh, cover_url_zh)
+    #             (OUTPUT_DIR / filename_zh).write_text(html_zh, encoding="utf-8")
+    #             add_to_manifest(slug_zh, title_zh, category, filename_zh, "zh", cover_url_zh)
+    #             zh_generated += 1
+    #             print(f"    ✅ 中文完成: {filename_zh}")
+    #         time.sleep(1)
+    #     else:
+    #         print(f"  ⏭ [ZH {i+1}/{len(topics_zh)}] 跳过(重复): {topic}")
 
     # 2b. 英文循环(使用国外热点:Reddit/HN/Twitter)
     for i, topic in enumerate(topics_en):
@@ -2343,23 +2317,17 @@ def main():
         else:
             print(f"  ⏭ [EN {i+1}/{len(topics_en)}] 跳过(重复)")
 
-    # 3. 重建站点(有新文章或清理了旧文章时都要重建)
-    if zh_generated > 0 or en_generated > 0 or removed_zh > 0 or removed_en > 0:
+    # 3. 重建站点(仅英文,仅3个分类)
+    if en_generated > 0 or removed_en > 0:
         print("\n📐 重建站点页面...")
-        rebuild_index_zh()
         rebuild_index_en()
-        for cat in CATEGORIES:
-            (OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page_zh(cat), encoding="utf-8")
+        for cat in ("finance", "tech", "ai"):
             (EN_OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page_en(cat), encoding="utf-8")
         rebuild_sitemap()
 
     # 4. Ping搜索引擎
-    if zh_generated > 0 or en_generated > 0 or removed_zh > 0 or removed_en > 0:
+    if en_generated > 0 or removed_en > 0:
         ping_search_engines()
-
-    # 5. 百度主动推送
-    if zh_generated > 0 or en_generated > 0:
-        push_to_baidu()
 
     print(f"\n🏁 完成! 本次生成: 中文 {zh_generated} 篇, 英文 {en_generated} 篇")
 
