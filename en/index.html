@@ -3,182 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GuDu Finance - GuDu Finance - AI-powered global market insights & investment knowledge</title>
-<meta name="description" content="GuDu Finance - AI-powered global market insights & investment knowledge">
+<title>AI Verticals — AI Applications Across Industries</title>
+<meta name="description" content="AI transforming Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR and Media. Real applications, actual companies, measurable impact.">
+<meta property="og:title" content="AI Verticals — AI Applications Across Industries">
 <link rel="canonical" href="https://gudaoqihuo.com/en/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
-.site-header{position:relative;text-align:center;padding:25px 0 20px}
-.site-header h1{font-size:1.8em;color:#1a1a1a;margin-bottom:5px}
-.site-header p{color:#888;font-size:.95em}
-.header-actions{position:absolute;top:15px;right:0;display:flex;gap:10px;align-items:center}
-.lang-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:.95em;transition:all .2s;border:2px solid #ff6b35;color:#ff6b35}
-.lang-btn:hover{background:#ff6b35;color:#fff;transform:scale(1.05)}
-.lang-btn.active{background:#ff6b35;color:#fff}
-.contact-btn{color:#2e7d32;text-decoration:none;font-size:.9em;cursor:pointer;border:1px solid #a5d6a7;padding:8px 16px;border-radius:20px;background:#e8f5e9}
-.contact-btn:hover{background:#43a047;color:#fff}
-.contact-box{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:25px 30px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.18);z-index:1000;min-width:300px}
-.contact-box.show{display:block}
-.contact-box h3{margin:0 0 18px;font-size:1.1em;color:#333}
-.contact-item{margin:10px 0;padding:10px 14px;background:#f5f5f5;border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.contact-item code{font-size:.9em;color:#555;word-break:break-all}
-.contact-item button{padding:4px 12px;border-radius:6px;background:#ff6b35;color:#fff;border:none;cursor:pointer;font-size:.85em;white-space:nowrap}
-.contact-item button:hover{background:#e65100}
-.contact-close{margin-top:18px;padding:8px 20px;border-radius:8px;background:#eee;color:#666;border:none;cursor:pointer;font-size:.9em}
-.contact-close:hover{background:#ddd}
-.contact-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);z-index:999}
-.contact-overlay.show{display:block}
-.cat-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#fff;border-radius:10px}
-.cat-link{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}
-.cat-link:hover{background:#ff6b35;color:#fff} .cat-more{display:inline;margin-left:8px} .cat-more summary{cursor:pointer;padding:6px 16px;border-radius:20px;background:#f0f0f0;color:#888;font-size:.85em;border:1px solid #ddd;display:inline} .cat-more[open] summary{margin-bottom:8px}
-ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px}
-li:hover{background:#fff}
-.date{color:#999;font-size:.85em;white-space:nowrap;min-width:85px}
-.cat{color:#ff6b35;font-size:.8em;white-space:nowrap;min-width:75px}
-a{color:#333;text-decoration:none}
-a:hover{color:#ff6b35}
-.footer{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}
-.footer a{color:#999;text-decoration:none;margin:0 8px}
-.ad-slot{margin:20px 0;text-align:center}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
+:root{--bg:#0a0a0f;--surface:#13131a;--border:#1e1e2e;--text:#e8e8f0;--muted:#8888a0;--accent:#6c63ff;--accent2:#00d4aa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{background:linear-gradient(135deg,#0a0a1a,#1a1040);padding:50px 24px 40px;text-align:center;border-bottom:3px solid #1e1e2e;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.05) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+header{position:relative;z-index:1}
+header h1{font-size:clamp(2em,5vw,3em);font-weight:800;letter-spacing:-0.5px}
+.sub{color:var(--muted);margin-top:10px;font-size:.95em;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cat-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+.pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:.8em;color:var(--muted);text-decoration:none;transition:all .2s}
+.pill:hover{background:rgba(108,99,255,.15);border-color:rgba(108,99,255,.4);color:#e8e8f0}
+.stats{margin-top:20px;font-size:.8em;color:var(--muted)}
+.stats span{font-weight:700;color:var(--accent2)}
+.main{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;color:var(--muted);font-size:.8em}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media(max-width:600px){.stats{gap:12px}}
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XE3F4GQQM5');
-</script>
 </head>
 <body>
-<div class="site-header">
-<h1>📰 GuDu Finance</h1>
-<p>GuDu Finance - AI-powered global market insights & investment knowledge</p>
-<div class="header-actions">
-<a href="/" class="lang-btn">&#x1F1E8;&#x1F1F3; 中文</a>
-<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">&#x2709;&#xFE0F; Contact Us</a>
+<header>
+<h1><span style="background:linear-gradient(90deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AI Verticals</span></h1>
+<p class="sub">AI Applications Across Industries — real use cases, actual companies, measurable impact across Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR and Media</p>
+<div class="cat-pills">
+<a href="/en/articles/finance.html" class="pill">💰 Finance</a><a href="/en/articles/healthcare.html" class="pill">🏥 Healthcare</a><a href="/en/articles/legal.html" class="pill">⚖️ Legal Services</a><a href="/en/articles/education.html" class="pill">🎓 Education</a><a href="/en/articles/manufacturing.html" class="pill">🏭 Manufacturing</a><a href="/en/articles/retail.html" class="pill">🛒 Retail</a><a href="/en/articles/hr.html" class="pill">👥 Human Resources</a><a href="/en/articles/media.html" class="pill">🎬 Media</a>
 </div>
-</div>
-<div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
-<div class="contact-box" id="contactBox">
-<h3>&#x2709;&#xFE0F; Contact Us</h3>
-<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='Copied'">Copy</button></div>
-<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='Copied'">Copy</button></div>
-<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">Close</button>
-</div>
-<nav class="cat-nav"><a href="/en/articles/finance.html" class="cat-link">📈 Finance</a>
-<a href="/en/articles/tech.html" class="cat-link">📱 Tech</a>
-<a href="/en/articles/ai.html" class="cat-link">🤖 AI</a>
-<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 Treasure</a></nav>
-<div class="ad-slot"></div>
-<ul><li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-16</span><span class="cat">[AI]</span><a href="/en/articles/article-a5878cb581.html">Tech Tensions Escalate: Feds Freak Over Fable 5's 'Fix This Code' P...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-0d5fee1e30.html">2026 Fashion & Beauty Outlook: Tech-Driven Transformation and Inves...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-1efd5a4cb7.html">Tech/AI Lifestyle: 3 Predictions Reshaping the Industry</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-9a46116ced.html">John Carmack on Fabrice Bellard: The Tech Titans' Collision in AI C...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-471f6a46e0.html">Amazon's Missouri Data Center: A Catalyst for Tech and AI Commercia...</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-16</span><span class="cat">[AI]</span><a href="/en/articles/article-c02b046c28.html">"Local Models Revolutionize Coding: 3 Predictions for the Future"</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><span class="cat">[Finance]</span><a href="/en/articles/article-219219841e.html">What China's Tech Giants' Investment in AI Means for Future Market ...</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-16</span><span class="cat">[AI]</span><a href="/en/articles/article-94369ae8ba.html">Why I Email Complete Strangers: The Data-Driven Insight</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-71aca55268.html">A Cybersecurity Breach in China: LinkedIn Job Offer as a Backdoor</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-265e6a43b7.html">The Future of China's Economic Landscape in 2027: 2 Key Scenarios</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[Tech]</span><a href="/en/articles/article-3c4e7b1715.html">TinyWind: Navigating the Winds of Sailing Game Innovation (380k+ km...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[Finance]</span><a href="/en/articles/article-4a7d1ed414.html">2026 China Tech Outlook: 3 Trends & Investment Directions</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[Finance]</span><a href="/en/articles/article-f549cfc593.html">2023: The Audio Revolution: China's Podcast Market Grows 50% in a Year</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[Finance]</span><a href="/en/articles/article-91cdc0094a.html">2023 ePub Outlook: 3 Changes & Investment Directions</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[Tech]</span><a href="/en/articles/article-460367b4f9.html">**Foreign Business Owners in Japan: The Capital Rush Amidst Tech an...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[Tech]</span><a href="/en/articles/article-2a644c79e5.html">The Tech Revolution Unleashed: OpenRouter Fusion API's Commercializ...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[Tech]</span><a href="/en/articles/article-63b86ca3ef.html">**China's Visual Economy: The Rise of 'In Pictures' and Its 5 Impac...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[Tech]</span><a href="/en/articles/article-6eefbe89c2.html">**China's Tech Sector's Unstoppable Growth: How Startups Are Naviga...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[Tech]</span><a href="/en/articles/article-3a38457008.html">The Battery Revolution: How "Even More Batteries Included with Emac...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[Finance]</span><a href="/en/articles/article-4ad0604c61.html">2026 China Market Outlook: 3 Changes & Investment Directions</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[Tech]</span><a href="/en/articles/article-f96d0b937d.html">**China's Tech Giants: The Silent Shift Reshaping the Industry**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-e74bce4197.html">**Caddy Compatibility Revolution: How ZeroServe Achieves 3x Through...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-7e0c76353f.html">**Honda Civics and the AI Valet: The $10B Commercialization Leap in...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-c9f531b6fe.html">**Match Schedule Revolutionizes Sports Industry: 3 Predictions for ...</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-14</span><span class="cat">[AI]</span><a href="/en/articles/article-54f5d7a33e.html">GLM 5.2 Unveiled: China's AI Leap Forward</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-14</span><span class="cat">[AI]</span><a href="/en/articles/article-82771293cf.html">"China's Entertainment Sector Soars 50%: 4 Strategic Choices for In...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[Finance]</span><a href="/en/articles/article-373c3d9148.html">2026 Editorials Outlook: 3 Changes & Investment Directions</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-5714425bc5.html">The Rise of the "Everything Console": A Deep Dive into China's Tech...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-3df719ca2f.html">Every Frame Perfect: AI-Driven Video Enhancement Reshapes the Enter...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-f189aff761.html">2026 Outlook: The Tech Breakthrough That Could Rewrite Cancer Treat...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-8b3479364d.html">China's Software Architecture Guide: Charting the Course for Commer...</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-14</span><span class="cat">[AI]</span><a href="/en/articles/article-75a31c2b29.html">**China's Tech Talent Exodus: The Great Brain Drain and Its Implica...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-0788cd165a.html">**Pyodide 314.0: Python Packages' WebAssembly Revolution on PyPI**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[Finance]</span><a href="/en/articles/article-e14008cf4e.html">Tech Giants Dominate China's Market: 2026 Q1 Growth at 35%</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[Finance]</span><a href="/en/articles/article-b624510f60.html">Codex for Open Source: A Game-Changer in Investment Value and Risk ...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[Tech]</span><a href="/en/articles/article-ade28dea48.html">**"China's Tech Giant Picks: A Decisive Shift in E-Commerce Dominan...</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-13</span><span class="cat">[AI]</span><a href="/en/articles/article-06eb606255.html">The Cultural Renaissance: China's New Economic Engine</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-9549274cd6.html">**Xeon 6 Unveiled: The Game-Changing Impact on China's Tech Market**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-0baec076fe.html">Arch Linux's Malware Incident: A Wake-Up Call for Open Source Security</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-80660ce508.html">More Features Reshapes China's Tech Industry: 3 Predictions</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-7e87052edf.html">Retired Phones to Low-Carbon Computing Powerhouses: The Emerging Ma...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-98f770b0af.html">China's Tech Sector Soars 35% in Q1: 3 Key Trends Driving Growth</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-d0f9507613.html">**China's 9ca3af: A Game-Changer for the Tech Industry**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-7faefb4f59.html">2026 Outlook: The BBC's Global Language Strategy & Its Implications</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-ae38c4f7e4.html">CRISPR Tech: Revolutionizing Cancer Treatment with Selective Cell S...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-2d31a9042c.html">2026 China Tech Outlook: 3 Changes & Investment Directions</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-13</span><span class="cat">[AI]</span><a href="/en/articles/article-877b2a5139.html">Tech Disruption in China: The Rise of AI-Driven Startups</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-648bed6995.html">CPU Physics and CPU Cycles Reshape Tech Industry: 3 Predictions</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-3abb72f9bc.html">2026 Fable Investment Outlook: Risk, Value, and Market Trends</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-13f6944f46.html">The 2563eb Event: 4 Impacts on China's Tech Industry Worth Over $100B</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-bf1fda4c5e.html">"Investment Surge vs. Ticket Scarcity: Decoding the 2026 FIFA World...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-4fb85be88d.html">**No Rare Earths, Full Steam Ahead: The Commercialization of Electr...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-a15b5d245e.html">Open Source AI's Ascendancy: Commercialization Progress, Industry C...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-343d9040a6.html">FFF Revolutionizes China's Digital Landscape: 5 Transformative Impacts</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-fa6c60481d.html">Cyber Espionage: The Commercialization of Nuclear and Biological Th...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-ea96be9e75.html">China's Love Economy: The Impact of Technology on Relationships</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-52a3e59c4f.html">2026 Outlook: The Rise of Local Coding Agents on macOS - Commercial...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-01cb582a37.html">US Government Directive on Fable 5 and Mythos 5: A Strategic Shift ...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-802b790485.html">Tectonic: Revolutionizing LaTeX with Commercialization and Industry...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-8fb82e3bee.html">**The Tech Talent Exodus: Why China's Tech Giants Are Losing Their ...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-fa77ab23e1.html">Open Source AI Must Win: The Commercialization Race in China</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-708b162d2f.html">2026 AI Finance Outlook: 3 Changes & Investment Directions</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-33a9aed665.html">**AI-Driven Mini Golf: How Putt.day Reshapes the Gaming Industry**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-34afe6fdaa.html">"AI Front End Efficiency Gains: A 20% Rise in Precision vs 5% Decli...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-39f87ccec0.html">AI-Powered Realism: The Real-World Impact of Pirates, a Naval Warfa...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[Tech]</span><a href="/en/articles/article-2fa725eb21.html">**2026 Outlook: Renault's Game-Changing Electric Motors and the AI ...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[Finance]</span><a href="/en/articles/article-b8c23e57ac.html">2026 Lifestyle Evolution: 5 Key Trends & Strategic Implications</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-5778a6659c.html">"Don't You Just Upload It to ChatGPT?" - The AI Revolution Unleashed</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-f8ce2e2433.html">AI's Transformational Role in China's Tech Sector: The Fable Tokens...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-6eaefb316a.html">**Expert Reveals The Secret to Beating the Climate Crisis**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-a587cd88c5.html">How to Harness AI's Power in RaisingKanan: A Complete Guide</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-997ad0b679.html">Homebrew 6.0.0 Just Announced, And It's a Game Changer for Homebrew...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-b929857132.html">**The Digital Sovereignty Dilemma: When AI Reads Your Emails Withou...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-80d6311392.html">How to Build a Fable Without a Single Line of Code: The FablePool G...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-40f5f8cf9a.html">**Claude Fable's Proactive AI Revolutionizes Industry Dynamics**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-e45e11552e.html">When Chatbots Engage, Human Touch Delivers Trust</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-eef471fc3e.html">Petition to Withdraw Canada's Bill C-22: A Boon or a Bane for China...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[Tech]</span><a href="/en/articles/article-6e1b75c6df.html">How to Harness AI's Power Without Losing Sight of the Human Touch: ...</a></li>
-<li><span class="thumb" style="background:#ea4335">🤖</span><span class="date">2026-06-12</span><span class="cat">[AI]</span><a href="/en/articles/article-be41988095.html">Inside the Magic: The Creation of the Hit Video Game "Prince of Per...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-11</span><span class="cat">[Tech]</span><a href="/en/articles/article-9f4275cabe.html">**People Are Speaking Up About AI - Here Is What They Say**</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-11</span><span class="cat">[Finance]</span><a href="/en/articles/article-4590733ee0.html">"Booming AI in Financial Markets: Opportunity Knocking or Risk Rais...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-11</span><span class="cat">[Finance]</span><a href="/en/articles/article-fdf1b10538.html">"When an AI Agent Takes Control, Financial Markets Face a Wild Ride"</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-11</span><span class="cat">[Tech]</span><a href="/en/articles/article-896785035c.html">1.3 Million Viewers: The NBA Finals' Global Appeal</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-11</span><span class="cat">[Tech]</span><a href="/en/articles/article-df430c1374.html">China's Tech Giant Just Dropped a Bombshell: AI Applications Are th...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-ca07e2665a.html">"HTML-First Revolution: How a Simple Change Doubled Our Users Overn...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-10</span><span class="cat">[Finance]</span><a href="/en/articles/article-804018bbf2.html">The Global Economic Impact: A Comprehensive Overview</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-c1b819d1b1.html">**Speedrunning 'SpongeBob' Faster: Smudging the Game Disc, But Is I...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-10</span><span class="cat">[Finance]</span><a href="/en/articles/article-e4d458835d.html">The AI Finance Revolution: When PgDog Meets the Market</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-3159fc9dfb.html">**Tech Trends in China: Unveiling the Mystery Behind Deeply Read**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-3881739a90.html">When a Century-Old Film Resurfaces, A New Era of Animation Begins</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-37f2a62dbc.html">6B7280: The Rise of China's Digital Identity Revolution - 100 Milli...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-0c27633621.html">How to Transform Your Documentary with AI: A Complete Guide</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-10</span><span class="cat">[Finance]</span><a href="/en/articles/article-730a727926.html">When China's Tech Giants Collide, The Market Shakes</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-141aff35ed.html">1.5 Million Developers Embrace macOS Container Machines - Here's Why</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-3cd3d83f73.html">People Are Speaking Up About More Sport in China - Here Is What The...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-2ab53d3187.html">**The 2D89ef Trend: A Tech Phenomenon But the Future Feels a Bit Un...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-c05d6c0ad7.html">The Chinese Streaming Revolution: What to Watch and What It Means f...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-9693babb84.html">"The Health & Fitness Hype: What’s All the Buzz About?"</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-661d931e3f.html">"The Rise of Domestic Mobile Web Homepage: But Is It Really Getting...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-10</span><span class="cat">[Tech]</span><a href="/en/articles/article-a4e5df9371.html">China's Tech Revolution: AI's Take Part Changes the Game</a></li></ul>
-<div class="ad-slot"></div>
-<div class="footer">
-<p>© 2025-2026 GuDu Finance</p>
-<p><a href="/en/">Home</a><a href="/en/articles/finance.html">Finance</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/ai.html">AI</a><a href="/treasure.html">Treasure</a></p>
-</div>
+<div class="stats"><span>155</span> articles &nbsp;&bull;&nbsp; <span>8</span> industries &nbsp;&bull;&nbsp; Updated daily</div>
+</header>
+<main class="main">
+
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>💰</span>Finance and Banking
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(34)</span>
+      </h2>
+      <a href="/en/articles/finance.html" style="color:#4fc3f7;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-c030459652.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">When Aeronautical Engineering Shakes Up Finance, AI Takes Flight</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-ceaa7294ed.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">**"AI Is Taking the Tech World by Storm – and Your Job Could Be Nex...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-fbd225fe81.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">**"Google's $920M Monthly Deal with SpaceX: A Gold Rush for AI or a...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-9915caa7ea.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">**S&P 500 Rejects SpaceX, Blocks OpenAI and Anthropic: The AI Inves...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-1da3f737e7.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">The Smart TV in Your Living Room Just Announced It's a Node in the ...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-6ee11ad33c.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Invest in AI's Impact on Financial Markets Without Risking E...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🏥</span>Healthcare and MedTech
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(15)</span>
+      </h2>
+      <a href="/en/articles/healthcare.html" style="color:#ef5350;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-be41988095.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-12</span><span style="flex:1;font-size:.88em;line-height:1.4">Inside the Magic: The Creation of the Hit Video Game "Prince of Per...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-9693babb84.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">"The Health & Fitness Hype: What’s All the Buzz About?"</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-b4ca0bb33f.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-09</span><span style="flex:1;font-size:.88em;line-height:1.4">1,000 Developers Are Now Rewriting Git in Rust with Agents - Here I...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-4a0ff7688e.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">From Despair to Renaissance: The Miraculous Transformation of Convi...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-ba2b7d9d1b.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">Catapulting Human-Like Neural Nets: China's Bold Leap into the Future</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-e1c2ba8b12.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">The Silent Pandemic: Home Alone, Remote Work, and Mental Health</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🎓</span>Education and EdTech
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(1)</span>
+      </h2>
+      <a href="/en/articles/education.html" style="color:#81c784;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-8b3479364d.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#81c784;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-14</span><span style="flex:1;font-size:.88em;line-height:1.4">China's Software Architecture Guide: Charting the Course for Commer...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🏭</span>Manufacturing
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(83)</span>
+      </h2>
+      <a href="/en/articles/manufacturing.html" style="color:#ffb74d;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-2af60cb11d.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">Are We Heading for the Agentic PC Era Yet? A Deep Dive into Compute...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-7086ebdfe2.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">Azure Linux Desktop: Revolutionizing Workstation Computing in China</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-b1dfd0d318.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Save Space Missions Without Losing Ground: A Complete Guide ...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-9ae940388f.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">"Zig Zen Update: China's New Digital Frontier, And It's Changing Ev...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-e3b30766fc.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Tackle Increased Bugs in Rsync Without Claude: A Deep Dive i...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-88d2c067ab.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">Unraveling the "Oh Shit" Moment with GenAI: A Dive into AI's Real-W...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🛒</span>Retail and E-commerce
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(3)</span>
+      </h2>
+      <a href="/en/articles/retail.html" style="color:#4dd0e1;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-0d5fee1e30.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4dd0e1;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-16</span><span style="flex:1;font-size:.88em;line-height:1.4">2026 Fashion & Beauty Outlook: Tech-Driven Transformation and Inves...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-471f6a46e0.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4dd0e1;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-16</span><span style="flex:1;font-size:.88em;line-height:1.4">Amazon's Missouri Data Center: A Catalyst for Tech and AI Commercia...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-ade28dea48.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4dd0e1;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-14</span><span style="flex:1;font-size:.88em;line-height:1.4">**"China's Tech Giant Picks: A Decisive Shift in E-Commerce Dominan...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>👥</span>Human Resources
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(9)</span>
+      </h2>
+      <a href="/en/articles/hr.html" style="color:#a5d6a7;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-9f4275cabe.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-11</span><span style="flex:1;font-size:.88em;line-height:1.4">**People Are Speaking Up About AI - Here Is What They Say**</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-3cd3d83f73.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">People Are Speaking Up About More Sport in China - Here Is What The...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-0206040313.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-09</span><span style="flex:1;font-size:.88em;line-height:1.4">**The Future Isn't about Replacing People - It's about Empowering T...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-6247994b53.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-09</span><span style="flex:1;font-size:.88em;line-height:1.4">1.5 Million Jobs Transformed by AI: The Real-World Impact of Artifi...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-e3eee5146d.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-08</span><span style="flex:1;font-size:.88em;line-height:1.4">People Are Diving into Performative-UI - Here's What It Means for A...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-da7bb9b11b.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-08</span><span style="flex:1;font-size:.88em;line-height:1.4">**2.5B People Are Now Harnessing Zig Structs of Arrays - Here's Why...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🎬</span>Media and Content
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(10)</span>
+      </h2>
+      <a href="/en/articles/media.html" style="color:#ff8a65;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-997ad0b679.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-12</span><span style="flex:1;font-size:.88em;line-height:1.4">Homebrew 6.0.0 Just Announced, And It's a Game Changer for Homebrew...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-c1b819d1b1.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">**Speedrunning 'SpongeBob' Faster: Smudging the Game Disc, But Is I...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-3881739a90.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">When a Century-Old Film Resurfaces, A New Era of Animation Begins</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-c05d6c0ad7.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">The Chinese Streaming Revolution: What to Watch and What It Means f...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-a4e5df9371.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">China's Tech Revolution: AI's Take Part Changes the Game</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-cdd927c9ea.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Navigate China's AP NEWS GAMES Phenomenon Without Losing You...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>© 2025&ndash;2026 <a href="/">AI Verticals</a> &middot; <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
+</footer>
 </body>
 </html>
