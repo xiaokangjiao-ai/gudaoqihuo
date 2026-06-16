@@ -4,271 +4,162 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Verticals — AI Applications Across Industries</title>
-<meta name="description" content="Discover how artificial intelligence is transforming Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR, and Media. Real applications, real companies, real impact.">
-<link rel="canonical" href="https://gudaoqihuo.com/">
+<meta name="description" content="AI transforming Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR and Media. Real applications, actual companies, measurable impact.">
 <meta property="og:title" content="AI Verticals — AI Applications Across Industries">
-<meta property="og:description" content="Discover how AI is transforming industries. Real applications, real companies, real impact.">
-<meta property="og:type" content="website">
+<link rel="canonical" href="https://gudaoqihuo.com/en/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0a0f;--surface:#13131a;--border:#1e1e2e;--text:#e8e8f0;--muted:#8888a0;
-  --accent:#6c63ff;--accent2:#00d4aa;--gold:#f5c842;
-  --f:#4fc3f7;--h:#ef5350;--l:#ce93d8;--e:#81c784;--m:#ffb74d;--r:#4dd0e1;--hr:#a5d6a7;--c:#ff8a65;
-}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
-/* HERO */
-.hero{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center;padding:60px 0 50px}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a1a 0%,#1a1040 40%,#0d2030 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.06) 1px,transparent 1px);background-size:60px 60px}
-.hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(108,99,255,.25) 0%,transparent 70%);pointer-events:none}
-.hero-content{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 24px;text-align:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);border-radius:30px;padding:6px 16px;font-size:.78em;color:#a099ff;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
-.hero-eyebrow span{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(2.2em,6vw,3.8em);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:14px}
-.hero h1 .accent{background:linear-gradient(90deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero h1 .dim{color:#555870;-webkit-text-fill-color:#555870}
-.hero-desc{font-size:1.08em;color:var(--muted);max-width:620px;margin:0 auto 32px;line-height:1.8}
-.hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat .num{font-size:1.6em;font-weight:800;color:var(--accent2)}
-.hero-stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.hero-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin:40px auto}
-/* CATEGORIES */
-.section{padding:50px 24px;max-width:1100px;margin:0 auto}
-.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:8px}
-.section-title{font-size:1.5em;font-weight:800}
-.section-title span{color:var(--muted);font-weight:400;font-size:.8em}
-.section-link{font-size:.85em;color:var(--accent);text-decoration:none;font-weight:600}
-.section-link:hover{text-decoration:underline}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.cat-card{display:block;text-decoration:none;border-radius:16px;padding:22px;background:var(--surface);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
-.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;transition:height .25s}
-.cat-card:hover{transform:translateY(-4px);border-color:rgba(108,99,255,.4);box-shadow:0 12px 40px rgba(108,99,255,.15)}
-.cat-card:hover::before{height:4px}
-.cat-card.finance::before{background:#4fc3f7}
-.cat-card.healthcare::before{background:#ef5350}
-.cat-card.legal::before{background:#ce93d8}
-.cat-card.education::before{background:#81c784}
-.cat-card.manufacturing::before{background:#ffb74d}
-.cat-card.retail::before{background:#4dd0e1}
-.cat-card.hr::before{background:#a5d6a7}
-.cat-card.media::before{background:#ff8a65}
-.cat-icon{font-size:2em;margin-bottom:10px;display:block}
-.cat-name{font-size:1.05em;font-weight:700;color:var(--text);margin-bottom:6px}
-.cat-desc{font-size:.78em;color:var(--muted);line-height:1.5;margin-bottom:12px}
-.cat-tags{display:flex;flex-wrap:wrap;gap:5px}
-.cat-tag{font-size:.68em;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.06);color:var(--muted)}
-/* ARTICLES */
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.art-card{display:block;text-decoration:none;border-radius:14px;background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .25s}
-.art-card:hover{transform:translateY(-3px);border-color:rgba(108,99,255,.35);box-shadow:0 8px 30px rgba(0,0,0,.4)}
-.art-thumb{width:100%;height:160px;object-fit:cover;display:block;background:linear-gradient(135deg,#1e1e30,#2a2a40)}
-.art-body{padding:16px}
-.art-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.art-cat-badge{font-size:.68em;padding:2px 9px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.art-cat-badge.finance{background:rgba(79,195,247,.15);color:#4fc3f7}
-.art-cat-badge.healthcare{background:rgba(239,83,80,.15);color:#ef5350}
-.art-cat-badge.legal{background:rgba(206,147,216,.15);color:#ce93d8}
-.art-cat-badge.education{background:rgba(129,199,132,.15);color:#81c784}
-.art-cat-badge.manufacturing{background:rgba(255,183,77,.15);color:#ffb74d}
-.art-cat-badge.retail{background:rgba(77,208,225,.15);color:#4dd0e1}
-.art-cat-badge.hr{background:rgba(165,214,167,.15);color:#a5d6a7}
-.art-cat-badge.media{background:rgba(255,138,101,.15);color:#ff8a65}
-.art-date{font-size:.72em;color:var(--muted)}
-.art-title{font-size:.92em;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.art-excerpt{font-size:.78em;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.art-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)}
-.art-read{font-size:.75em;color:var(--accent);font-weight:600}
-.art-time{font-size:.7em;color:var(--muted)}
-/* FOOTER */
-.footer{max-width:1100px;margin:0 auto;padding:40px 24px;text-align:center;border-top:1px solid var(--border)}
-.footer-brand{font-size:1.1em;font-weight:800;margin-bottom:8px}
-.footer p{color:var(--muted);font-size:.8em}
-.footer a{color:var(--muted);text-decoration:none}
-.footer a:hover{color:var(--accent)}
-.footer-links{margin-top:12px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-@media(max-width:600px){
-.hero{min-height:420px;padding:40px 0 30px}
-.hero h1{font-size:2em}
-.hero-stats{gap:20px}
-.cat-grid{grid-template-columns:repeat(2,1fr)}
-.articles-grid{grid-template-columns:1fr}
-}
+:root{--bg:#0a0a0f;--surface:#13131a;--border:#1e1e2e;--text:#e8e8f0;--muted:#8888a0;--accent:#6c63ff;--accent2:#00d4aa}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{background:linear-gradient(135deg,#0a0a1a,#1a1040);padding:50px 24px 40px;text-align:center;border-bottom:3px solid #1e1e2e;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.05) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+header{position:relative;z-index:1}
+header h1{font-size:clamp(2em,5vw,3em);font-weight:800;letter-spacing:-0.5px}
+.sub{color:var(--muted);margin-top:10px;font-size:.95em;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cat-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+.pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:.8em;color:var(--muted);text-decoration:none;transition:all .2s}
+.pill:hover{background:rgba(108,99,255,.15);border-color:rgba(108,99,255,.4);color:#e8e8f0}
+.stats{margin-top:20px;font-size:.8em;color:var(--muted)}
+.stats span{font-weight:700;color:var(--accent2)}
+.main{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;color:var(--muted);font-size:.8em}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--accent)}
+@media(max-width:600px){.stats{gap:12px}}
 </style>
 </head>
 <body>
-
-<!-- HERO -->
-<header class="hero">
-<div class="hero-bg"></div>
-<div class="hero-grid"></div>
-<div class="hero-glow"></div>
-<div class="hero-content">
-<div class="hero-eyebrow"><span></span> AI Applications Across Industries</div>
-<h1>Where <span class="accent">AI</span> Meets<br><span class="dim">Every Industry</span></h1>
-<p class="hero-desc">Real-world artificial intelligence applications across 8 verticals. No hype, no fluff — just concrete use cases, actual companies, and measurable impact.</p>
-<div class="hero-stats">
-<div class="hero-stat"><div class="num">8</div><div class="label">Industries</div></div>
-<div class="hero-stat"><div class="num">Daily</div><div class="label">Updates</div></div>
-<div class="hero-stat"><div class="num">100%</div><div class="label">English</div></div>
+<header>
+<h1><span style="background:linear-gradient(90deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AI Verticals</span></h1>
+<p class="sub">AI Applications Across Industries — real use cases, actual companies, measurable impact across Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR and Media</p>
+<div class="cat-pills">
+<a href="/en/articles/finance.html" class="pill">💰 Finance</a><a href="/en/articles/healthcare.html" class="pill">🏥 Healthcare</a><a href="/en/articles/legal.html" class="pill">⚖️ Legal Services</a><a href="/en/articles/education.html" class="pill">🎓 Education</a><a href="/en/articles/manufacturing.html" class="pill">🏭 Manufacturing</a><a href="/en/articles/retail.html" class="pill">🛒 Retail</a><a href="/en/articles/hr.html" class="pill">👥 Human Resources</a><a href="/en/articles/media.html" class="pill">🎬 Media</a>
 </div>
-</div>
+<div class="stats"><span>155</span> articles &nbsp;&bull;&nbsp; <span>8</span> industries &nbsp;&bull;&nbsp; Updated daily</div>
 </header>
+<main class="main">
 
-<!-- INDUSTRIES -->
-<section class="section">
-<div class="section-head">
-<div class="section-title">Explore by Industry <span>— 8 verticals, one destination</span></div>
-</div>
-<div class="cat-grid">
-<a href="/en/articles/finance.html" class="cat-card finance">
-<span class="cat-icon">💰</span>
-<div class="cat-name">Finance & Banking</div>
-<div class="cat-desc">AI in risk assessment, algorithmic trading, fraud detection, and intelligent financial advisory.</div>
-<div class="cat-tags">
-<span class="cat-tag">Fraud Detection</span>
-<span class="cat-tag">Algo Trading</span>
-<span class="cat-tag">Credit Scoring</span>
-</div>
-</a>
-<a href="/en/articles/healthcare.html" class="cat-card healthcare">
-<span class="cat-icon">🏥</span>
-<div class="cat-name">Healthcare & MedTech</div>
-<div class="cat-desc">AI diagnostic tools, drug discovery, medical imaging analysis, and personalized treatment planning.</div>
-<div class="cat-tags">
-<span class="cat-tag">Diagnostics</span>
-<span class="cat-tag">Drug Discovery</span>
-<span class="cat-tag">MedAI</span>
-</div>
-</a>
-<a href="/en/articles/legal.html" class="cat-card legal">
-<span class="cat-icon">⚖️</span>
-<div class="cat-name">Legal Services</div>
-<div class="cat-desc">Contract review automation, legal research AI, due diligence acceleration, and dispute prediction.</div>
-<div class="cat-tags">
-<span class="cat-tag">Contract AI</span>
-<span class="cat-tag">eDiscovery</span>
-<span class="cat-tag">Legal Research</span>
-</div>
-</a>
-<a href="/en/articles/education.html" class="cat-card education">
-<span class="cat-icon">🎓</span>
-<div class="cat-name">Education & EdTech</div>
-<div class="cat-desc">Personalized learning paths, AI tutoring, automated grading, and accessibility tools for education.</div>
-<div class="cat-tags">
-<span class="cat-tag">Adaptive Learning</span>
-<span class="cat-tag">AI Tutors</span>
-<span class="cat-tag">EdTech</span>
-</div>
-</a>
-<a href="/en/articles/manufacturing.html" class="cat-card manufacturing">
-<span class="cat-icon">🏭</span>
-<div class="cat-name">Manufacturing</div>
-<div class="cat-desc">Predictive maintenance, quality control vision systems, digital twin optimization, and smart robotics.</div>
-<div class="cat-tags">
-<span class="cat-tag">Predictive Maint.</span>
-<span class="cat-tag">Quality Vision</span>
-<span class="cat-tag">Robotics</span>
-</div>
-</a>
-<a href="/en/articles/retail.html" class="cat-card retail">
-<span class="cat-icon">🛒</span>
-<div class="cat-name">Retail & E-commerce</div>
-<div class="cat-desc">Recommendation engines, dynamic pricing, inventory AI, supply chain optimization, and visual search.</div>
-<div class="cat-tags">
-<span class="cat-tag">Recommenders</span>
-<span class="cat-tag">Dynamic Pricing</span>
-<span class="cat-tag">Supply Chain</span>
-</div>
-</a>
-<a href="/en/articles/hr.html" class="cat-card hr">
-<span class="cat-icon">👥</span>
-<div class="cat-name">Human Resources</div>
-<div class="cat-desc">AI-powered resume screening, interview analysis, employee retention models, and skills gap mapping.</div>
-<div class="cat-tags">
-<span class="cat-tag">Talent Acquisition</span>
-<span class="cat-tag">People Analytics</span>
-<span class="cat-tag">HR Automation</span>
-</div>
-</a>
-<a href="/en/articles/media.html" class="cat-card media">
-<span class="cat-icon">🎬</span>
-<div class="cat-name">Media & Content</div>
-<div class="cat-desc">AI-generated content, video editing automation, deepfake detection, personalized news feeds, and copyright AI.</div>
-<div class="cat-tags">
-<span class="cat-tag">Content Gen</span>
-<span class="cat-tag">Video AI</span>
-<span class="cat-tag">Deepfake Detection</span>
-</div>
-</a>
-</div>
-</section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>💰</span>Finance and Banking
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(34)</span>
+      </h2>
+      <a href="/en/articles/finance.html" style="color:#4fc3f7;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-c030459652.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">When Aeronautical Engineering Shakes Up Finance, AI Takes Flight</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-ceaa7294ed.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">**"AI Is Taking the Tech World by Storm – and Your Job Could Be Nex...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-fbd225fe81.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">**"Google's $920M Monthly Deal with SpaceX: A Gold Rush for AI or a...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-9915caa7ea.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">**S&P 500 Rejects SpaceX, Blocks OpenAI and Anthropic: The AI Inves...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-1da3f737e7.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">The Smart TV in Your Living Room Just Announced It's a Node in the ...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-6ee11ad33c.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4fc3f7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Invest in AI's Impact on Financial Markets Without Risking E...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
 
-<!-- RECENT ARTICLES -->
-<section class="section">
-<div class="section-head">
-<div class="section-title">Latest Articles <span>— fresh from our AI vertical editors</span></div>
-<a href="/en/articles/" class="section-link">View all →</a>
-</div>
-<div class="articles-grid" id="recent-articles">
-<p style="color:var(--muted);padding:20px 0">Loading recent articles...</p>
-</div>
-</section>
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🏥</span>Healthcare and MedTech
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(15)</span>
+      </h2>
+      <a href="/en/articles/healthcare.html" style="color:#ef5350;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-be41988095.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-12</span><span style="flex:1;font-size:.88em;line-height:1.4">Inside the Magic: The Creation of the Hit Video Game "Prince of Per...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-9693babb84.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">"The Health & Fitness Hype: What’s All the Buzz About?"</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-b4ca0bb33f.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-09</span><span style="flex:1;font-size:.88em;line-height:1.4">1,000 Developers Are Now Rewriting Git in Rust with Agents - Here I...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-4a0ff7688e.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">From Despair to Renaissance: The Miraculous Transformation of Convi...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-ba2b7d9d1b.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-07</span><span style="flex:1;font-size:.88em;line-height:1.4">Catapulting Human-Like Neural Nets: China's Bold Leap into the Future</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-e1c2ba8b12.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ef5350;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">The Silent Pandemic: Home Alone, Remote Work, and Mental Health</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
 
-<!-- ABOUT -->
-<section class="section" style="text-align:center;padding-bottom:60px">
-<div class="hero-divider"></div>
-<div class="section-title" style="margin-bottom:12px">About AI Verticals</div>
-<p style="color:var(--muted);max-width:580px;margin:0 auto;font-size:.92em;line-height:1.9">
-We cover one thing thoroughly: <strong style="color:var(--text)">how artificial intelligence is reshaping every major industry</strong>. 
-Every article is grounded in real deployments, named vendors, and measurable outcomes. 
-No speculative fluff — just the signal from the noise.
-</p>
-</section>
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🎓</span>Education and EdTech
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(1)</span>
+      </h2>
+      <a href="/en/articles/education.html" style="color:#81c784;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-8b3479364d.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#81c784;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-14</span><span style="flex:1;font-size:.88em;line-height:1.4">China's Software Architecture Guide: Charting the Course for Commer...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
 
-<footer class="footer">
-<div class="footer-brand">AI Verticals</div>
-<p>© 2025–2026 · <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
-<div class="footer-links">
-<a href="/en/articles/finance.html">Finance</a>
-<a href="/en/articles/healthcare.html">Healthcare</a>
-<a href="/en/articles/legal.html">Legal</a>
-<a href="/en/articles/education.html">Education</a>
-<a href="/en/articles/manufacturing.html">Manufacturing</a>
-<a href="/en/articles/retail.html">Retail</a>
-<a href="/en/articles/hr.html">HR</a>
-<a href="/en/articles/media.html">Media</a>
-</div>
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🏭</span>Manufacturing
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(83)</span>
+      </h2>
+      <a href="/en/articles/manufacturing.html" style="color:#ffb74d;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-2af60cb11d.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">Are We Heading for the Agentic PC Era Yet? A Deep Dive into Compute...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-7086ebdfe2.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">Azure Linux Desktop: Revolutionizing Workstation Computing in China</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-b1dfd0d318.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Save Space Missions Without Losing Ground: A Complete Guide ...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-9ae940388f.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">"Zig Zen Update: China's New Digital Frontier, And It's Changing Ev...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-e3b30766fc.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Tackle Increased Bugs in Rsync Without Claude: A Deep Dive i...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-88d2c067ab.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ffb74d;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-06</span><span style="flex:1;font-size:.88em;line-height:1.4">Unraveling the "Oh Shit" Moment with GenAI: A Dive into AI's Real-W...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🛒</span>Retail and E-commerce
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(3)</span>
+      </h2>
+      <a href="/en/articles/retail.html" style="color:#4dd0e1;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-0d5fee1e30.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4dd0e1;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-16</span><span style="flex:1;font-size:.88em;line-height:1.4">2026 Fashion & Beauty Outlook: Tech-Driven Transformation and Inves...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-471f6a46e0.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4dd0e1;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-16</span><span style="flex:1;font-size:.88em;line-height:1.4">Amazon's Missouri Data Center: A Catalyst for Tech and AI Commercia...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-ade28dea48.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#4dd0e1;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-14</span><span style="flex:1;font-size:.88em;line-height:1.4">**"China's Tech Giant Picks: A Decisive Shift in E-Commerce Dominan...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>👥</span>Human Resources
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(9)</span>
+      </h2>
+      <a href="/en/articles/hr.html" style="color:#a5d6a7;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-9f4275cabe.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-11</span><span style="flex:1;font-size:.88em;line-height:1.4">**People Are Speaking Up About AI - Here Is What They Say**</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-3cd3d83f73.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">People Are Speaking Up About More Sport in China - Here Is What The...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-0206040313.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-09</span><span style="flex:1;font-size:.88em;line-height:1.4">**The Future Isn't about Replacing People - It's about Empowering T...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-6247994b53.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-09</span><span style="flex:1;font-size:.88em;line-height:1.4">1.5 Million Jobs Transformed by AI: The Real-World Impact of Artifi...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-e3eee5146d.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-08</span><span style="flex:1;font-size:.88em;line-height:1.4">People Are Diving into Performative-UI - Here's What It Means for A...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-da7bb9b11b.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#a5d6a7;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-08</span><span style="flex:1;font-size:.88em;line-height:1.4">**2.5B People Are Now Harnessing Zig Structs of Arrays - Here's Why...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+  <section style="margin-bottom:44px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+      <h2 style="font-size:1.15em;font-weight:800;display:flex;align-items:center;gap:8px">
+        <span>🎬</span>Media and Content
+        <span style="font-size:.68em;color:#8888a0;font-weight:400;margin-left:4px">(10)</span>
+      </h2>
+      <a href="/en/articles/media.html" style="color:#ff8a65;font-size:.8em;font-weight:600;text-decoration:none">View all &rarr;</a>
+    </div>
+    <ul style="list-style:none;padding:0;margin:0;background:#13131a;border-radius:12px;border:1px solid #1e1e2e;padding:0 16px">
+      <li><a href="/en/articles/article-997ad0b679.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-12</span><span style="flex:1;font-size:.88em;line-height:1.4">Homebrew 6.0.0 Just Announced, And It's a Game Changer for Homebrew...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-c1b819d1b1.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">**Speedrunning 'SpongeBob' Faster: Smudging the Game Disc, But Is I...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-3881739a90.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">When a Century-Old Film Resurfaces, A New Era of Animation Begins</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-c05d6c0ad7.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">The Chinese Streaming Revolution: What to Watch and What It Means f...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-a4e5df9371.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">China's Tech Revolution: AI's Take Part Changes the Game</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+<li><a href="/en/articles/article-cdd927c9ea.html" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e1e2e"><span style="color:#ff8a65;font-size:.8em;font-weight:700;min-width:75px;flex-shrink:0">2026-06-10</span><span style="flex:1;font-size:.88em;line-height:1.4">How to Navigate China's AP NEWS GAMES Phenomenon Without Losing You...</span><span style="color:#6c63ff;font-size:.75em;white-space:nowrap;flex-shrink:0">Read &rarr;</span></a></li>
+
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>© 2025&ndash;2026 <a href="/">AI Verticals</a> &middot; <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
 </footer>
-
-<script>
-// Load recent articles from manifest
-(async function(){
-  try {
-    const r = await fetch('/en/articles/manifest.json');
-    if(!r.ok) return;
-    const data = await r.json();
-    const recent = data.slice(-12).reverse();
-    const container = document.getElementById('recent-articles');
-    container.innerHTML = recent.map(a => `
-      <a href="/en/articles/${a.file}" class="art-card">
-        <img class="art-thumb" src="${a.cover || 'https://picsum.photos/seed/'+a.slug+'/600/320'}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'">
-        <div class="art-body">
-          <div class="art-meta">
-            <span class="art-cat-badge ${a.category}">${a.category}</span>
-            <span class="art-date">${a.date||''}</span>
-          </div>
-          <div class="art-title">${a.title}</div>
-        </div>
-        <div class="art-footer">
-          <span class="art-read">Read →</span>
-          <span class="art-time">${a.category}</span>
-        </div>
-      </a>`).join('');
-  } catch(e) {}
-})();
-</script>
 </body>
 </html>
