@@ -4,21 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Legal Services AI — AI Verticals</title>
-<meta name="description" content="AI in Legal Services. Real applications, actual companies, measurable impact on AI Verticals.">
+<meta name="description" content="AI applications in Legal Services. Real use cases, actual companies, measurable impact.">
 <link rel="canonical" href="https://gudaoqihuo.com/en/articles/legal.html">
 <style>
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0a0a0f;color:#e8e8f0;margin:0;padding:0;min-height:100vh}
-header{background:linear-gradient(135deg,#0a0a1a,#13132a);padding:40px 24px 30px;border-bottom:3px solid #ce93d8}
+header{background:linear-gradient(135deg,#0a0a1a,#13132a);padding:36px 24px 28px;border-bottom:3px solid #ce93d8;position:relative}
 .breadcrumb{color:#8888a0;font-size:.8em;margin-bottom:12px}
 .breadcrumb a{color:#8888a0;text-decoration:none}
 .breadcrumb a:hover{color:#ce93d8}
 h1{font-size:clamp(1.8em,4vw,2.6em);font-weight:800;margin-bottom:6px;color:#fff}
 h1 span{margin-right:10px}
-.subtitle{color:#8888a0;font-size:.95em;margin-bottom:0}
-.back-link{display:inline-block;margin-top:16px;font-size:.82em;color:#ce93d8;text-decoration:none;font-weight:600}
+.subtitle{color:#8888a0;font-size:.95em}
+.back-link{display:inline-block;margin-top:14px;font-size:.82em;color:#ce93d8;text-decoration:none;font-weight:600}
 .back-link:hover{text-decoration:underline}
 .container{max-width:1100px;margin:0 auto;padding:40px 24px}
-.cat-label{display:inline-flex;align-items:center;gap:6px;background:rgba(206,147,216,.15);color:#ce93d8;padding:4px 14px;border-radius:20px;font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:24px}
 .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
 .art-card{display:block;text-decoration:none;border-radius:14px;background:#13131a;border:1px solid #1e1e2e;overflow:hidden;transition:all .25s}
 .art-card:hover{transform:translateY(-3px);border-color:rgba(108,99,255,.35);box-shadow:0 8px 30px rgba(0,0,0,.4)}
@@ -33,26 +32,27 @@ h1 span{margin-right:10px}
 .footer{max-width:1100px;margin:0 auto;padding:40px 24px;text-align:center;border-top:1px solid #1e1e2e;color:#8888a0;font-size:.8em}
 .footer a{color:#8888a0;text-decoration:none}
 .footer a:hover{color:#6c63ff}
-.empty{text-align:center;padding:80px 0;color:#8888a0}
-.empty-icon{font-size:3em;margin-bottom:12px}
+.empty{text-align:center;padding:80px 0;color:#555870}
+.empty-icon{font-size:3em;margin-bottom:12px;display:block}
 @media(max-width:600px){.articles-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
 <div class="container" style="padding-bottom:0">
-<div class="breadcrumb"><a href="/">Home</a> &rsaquo; AI Verticals</div>
+<div class="breadcrumb"><a href="/">Home</a> &rsaquo; AI Verticals &rsaquo; Legal Services</div>
 <h1><span>⚖️</span>Legal Services</h1>
-<p class="subtitle">AI in Legal Services</p>
-<a href="/" class="back-link">← Back to AI Verticals Home</a>
+<p class="subtitle">AI applications in legal services</p>
+<a href="/" class="back-link">&larr; Back to AI Verticals</a>
 </div>
 </header>
 <main class="container">
-<div class="cat-label">⚖️ Legal Services</div>
-<div class="articles-grid" id="articles"><p class="empty"><span class="empty-icon">📭</span><br>No articles yet in this category.<br>Check back soon.</p></div>
+<div class="articles-grid" id="articles">
+<div class="empty"><span class="empty-icon">⚖️</span>No articles in this category yet.<br><a href="/" style="color:#6c63ff">Browse all verticals &rarr;</a></div>
+</div>
 </main>
 <footer class="footer">
-<p>© 2025–2026 <a href="/">AI Verticals</a> · <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
+<p>© 2025–2026 <a href="/">AI Verticals</a> &middot; <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
 </footer>
 <script>
 (async function(){
@@ -70,7 +70,7 @@ h1 span{margin-right:10px}
           <div class="art-meta"><span class="art-date">${a.date||''}</span></div>
           <div class="art-title">${a.title}</div>
         </div>
-        <div class="art-footer"><span class="art-read">Read →</span></div>
+        <div class="art-footer"><span class="art-read">Read &rarr;</span></div>
       </a>`).join('');
   }catch(e){}
 })();
