@@ -1,5 +1,32 @@
 [
   {
+    "slug": "article-1efd5a4cb7",
+    "title": "Tech/AI Lifestyle: 3 Predictions Reshaping the Industry",
+    "category": "tech",
+    "date": "2026-06-16",
+    "timestamp": "2026-06-16 15:47:11",
+    "filename": "article-1efd5a4cb7.html",
+    "cover_url": "https://picsum.photos/seed/54050/800/400"
+  },
+  {
+    "slug": "article-9a46116ced",
+    "title": "John Carmack on Fabrice Bellard: The Tech Titans' Collision in AI C...",
+    "category": "tech",
+    "date": "2026-06-16",
+    "timestamp": "2026-06-16 15:45:42",
+    "filename": "article-9a46116ced.html",
+    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/351d19e589b0419f9e75e77436d10ed4.png"
+  },
+  {
+    "slug": "article-471f6a46e0",
+    "title": "Amazon's Missouri Data Center: A Catalyst for Tech and AI Commercia...",
+    "category": "tech",
+    "date": "2026-06-16",
+    "timestamp": "2026-06-16 15:43:49",
+    "filename": "article-471f6a46e0.html",
+    "cover_url": "https://picsum.photos/seed/27922/800/400"
+  },
+  {
     "slug": "article-c02b046c28",
     "title": "\"Local Models Revolutionize Coding: 3 Predictions for the Future\"",
     "category": "ai",
