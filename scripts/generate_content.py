@@ -12,8 +12,10 @@ import os, sys, re, json, time, random, hashlib, requests
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+BJ_TZ = timezone(timedelta(hours=8))  # Beijing Time
 
 try:
     import jwt
@@ -343,7 +345,7 @@ def generate_svg_hero(title, category, lang="zh"):
     cat_name = cat_info["name"]
     cat_icon = cat_info["icon"]
     site_label = SITE_NAME if lang == "zh" else EN_SITE_NAME
-    date_label = datetime.now().strftime("%Y-%m-%d")
+    date_label = datetime.now(BJ_TZ).strftime("%Y-%m-%d")
     svg = (
         '<div class="hero-svg"><svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">'
         '<defs><linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">'
@@ -635,7 +637,7 @@ def get_hot_topics():
     target_hot = ARTICLES_PER_RUN - target_finance - target_tech  # 15%热点(限金融/经济相关)
 
     # 财经不足时从FALLBACK补充(加日期标记防slug重复)
-    today_str = datetime.now().strftime("%m月%d日")
+    today_str = datetime.now(BJ_TZ).strftime("%m月%d日")
     if len(finance_topics) < target_finance:
         extra_finance = [t for t in FALLBACK_TOPICS if classify_topic(t) == "finance"]
         random.shuffle(extra_finance)
@@ -877,7 +879,7 @@ def get_hot_topics_en():
     ]
     if len(unique) < ARTICLES_PER_RUN:
         needed = ARTICLES_PER_RUN - len(unique)
-        today_str_en = datetime.now().strftime("%b %d")
+        today_str_en = datetime.now(BJ_TZ).strftime("%b %d")
         extra = [f"{today_str_en}: {t}" for t in en_fallback]
         extra = [t for t in extra if not slug_exists(topic_to_slug_en(t), "en")]
         random.shuffle(extra)
@@ -927,13 +929,13 @@ EN_STYLE_PROMPTS = [
 ]
 
 EN_TITLE_STYLES = [
-    "Use a data-driven headline with specific numbers (like 'X Sector Grows 35% in Q1: 3 Key Trends') for credibility, under 60 characters",
+    "Use a data-driven headline with specific numbers (like 'X Sector Grows 35% in Q1: 3 Core Trends') for credibility, under 60 characters",
     "Use a policy/event + impact headline (like 'X Decision: 3 Impacts on Y Market Worth Z Billion') under 60 characters",
-    "Use a year + trend headline (like '2026 X Outlook: 3 Changes & Investment Directions') under 60 characters",
+    "Use a year + trend headline (like '2026 X Outlook: 3 Changes and Investment Directions') under 60 characters",
     "Use an industry + data insight headline (like 'X Sector Slowdown: How Top Players Are Responding') under 60 characters",
     "Use a contrast data headline (like 'X Up 15% vs Y Down 8%: The Logic Behind It') under 60 characters",
-    "Use a list + data headline (like '5 Key Data Points About X Investors Must Know') under 60 characters",
     "Use a causal logic headline (like 'X Reshapes Y Industry: 3 Predictions') under 60 characters",
+    "Use a future-looking headline (like 'What X Means for Y in 2027: 2 Key Scenarios') under 60 characters",
 ]
 
 def generate_article_zh(topic):
@@ -998,7 +1000,7 @@ def generate_article_zh(topic):
 
         content = result["choices"][0]["message"]["content"]
         lines = content.strip().split("\n")
-        title = lines[0].strip().strip("#").strip()
+        title = lines[0].strip().strip("#").strip().strip("*").strip()
         body = "\n".join(lines[1:]).strip()
 
         title = _de_ai_title_zh(title)
@@ -1208,6 +1210,9 @@ def _de_ai_title_zh(title):
 
 def _de_ai_title_en(title):
     """英文标题优化 - 专业版,不加标题党前缀"""
+    # 去除Markdown加粗标记
+    while title.startswith('*') or title.endswith('*'):
+        title = title.strip('*').strip()
     # 去除"Title:"/"Title :"前缀
     if title.lower().startswith("title:"):
         title = title[6:].strip()
@@ -1221,12 +1226,17 @@ def _de_ai_title_en(title):
         title = title[:67] + "..."
     if len(title) < 10:
         title = f"Analysis: {title}"
-    # 去除英文模板化标题
-    if re.search(r'^\d+\s*(Key|Critical|Essential)\s+(Data|Facts|Insights)', title, re.IGNORECASE):
-        title = re.sub(r'^\d+\s*(Key|Critical|Essential)\s+(Data|Facts|Insights)[：:]\s*', '', title, flags=re.IGNORECASE).strip()
-    return title
-
-def _de_ai_process_en(text):
+    # 去除英文模板化标题: "N Key/Critical/Essential Data/Facts/Insights About X"
+    if re.search(r'\d+\s*(Key|Critical|Essential)\s+(Data|Facts|Insights|Points)\s+(About|On|For|In|That)', title, re.IGNORECASE):
+        parts = re.split(r'\d+\s*(Key|Critical|Essential)\s+(Data|Facts|Insights|Points)', title, maxsplit=1, flags=re.IGNORECASE)
+        if len(parts) > 1 and len(parts[1].strip()) > 5:
+            title = parts[1].strip().lstrip('":,:; ')
+        else:
+            title = re.sub(r'^\d+\s*(Key|Critical|Essential)\s+(Data|Facts|Insights|Points)[:,\s]+', '', title, flags=re.IGNORECASE).strip()
+    # 其他模板格式: "N Changes & Predictions"
+    if re.search(r'^\d+\s+(Changes|Predictions|Impacts|Trends|Lessons|Ways|Strategies|Steps|Tips)\s+[&]', title, re.IGNORECASE):
+        title = re.sub(r'^\d+\s+(Changes|Predictions|Impacts|Trends|Lessons|Ways|Strategies|Steps|Tips)\s+[&]\s+', '', title, flags=re.IGNORECASE).strip()
+    return titledef _de_ai_process_en(text):
     """英文去AI味 - v4.0 严格版"""
     replacements = {
         "In today's society": "Today", "in today's society": "today",
@@ -1374,8 +1384,9 @@ def _mindmap_html_block(mindmap_text, slug="mm", lang="zh"):
 def classify_topic(topic):
     """中文分类 - 金融+科技为主,其他归入热点"""
     keywords = {
-        "finance":    ["股票", "期货", "基金", "黄金", "白银", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "以太坊", "币圈", "DeFi", "NFT", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所", "AI概念股", "DeepSeek概念", "大模型", "ChatGPT概念", "人工智能", "科技股", "芯片股", "英伟达", "GPU", "算力", "算力股", "数据中心", "云服务", "SaaS", "软件股", "半导体", "光刻机", "国产替代", "科技自主", "科创板", "专精特新", "原油", "OPEC", "铜价", "铁矿石", "大豆", "农产品", "商品期货", "股指期货", "国债期货", "量化", "对冲", "杠杆", "保证金", "做空", "做多", "牛市", "熊市", "震荡", "回调", "反弹", "破位", "支撑位", "压力位", "K线", "均线", "MACD", "RSI", "布林带", "技术分析", "基本面", "价值投资", "成长股", "蓝筹股", "白马股", "黑马股", "龙头股", "题材股", "庄股", "游资", "主力资金", "北向资金", "南向资金", "外资", "QFII", "沪港通", "深港通", "注册制", "打新", "中签", "IPO", "定增", "可转债", "ETF", "LOF", "REITs", "MSCI", "富时", "沪股通", "深股通", "融资融券", "转融通", "股权激励", "限售股", "解禁", "锁定期", "合规", "监管", "证监会", "银保监", "金融监管", "反洗钱", "内幕交易", "操纵市场", "非法集资", "P2P", "网贷", "BTC", "ETH", "USDT", "稳定币", "挖矿", "矿机", "减半", "链上", "钱包", "交易所", "合约", "杠杆交易", "永续合约", "爆仓", "清算", "法币", "通证", "代币", "空投", "质押", "Staking", "LSD", "Layer2", "Rollup", "侧链", "跨链", "公链", "联盟链", "CBDC", "数字人民币", "DCEP", "合规交易所", "现货", "交割", "持仓", "移仓", "展期", "套利", "跨期", "跨市", "期现", "基差", "升水", "贴水"],
         "tech":       ["AI", "手机", "电脑", "科技", "数码", "互联网", "软件", "芯片", "5G", "编程", "APP", "智能", "机器人", "自动驾驶", "量子", "云计算", "大数据", "区块链", "元宇宙", "VR", "AR", "CPU", "新能源", "电动车", "充电桩", "电池", "光伏", "钠离子", "核聚变", "航天", "火箭", "卫星", "空间站", "无人机", "大疆", "操作系统", "鸿蒙", "Android", "iOS", "WiFi", "6G", "物联网", "穿戴", "智能手表", "折叠屏", "OLED", "京东方", "龙芯", "麒麟", "信创", "DeepSeek", "Kimi", "通义千问", "豆包", "文心一言", "GPT-5", "Claude", "Gemini", "AIGC", "AI眼镜", "AI耳机", "AI教育", "AI医疗", "AI办公", "具身智能", "人形机器人", "Copilot", "Cursor", "Perplexity", "Grok"],
+        "finance":    ["股票", "期货", "基金", "黄金", "白银", "汇率", "美联储", "加息", "降息", "A股", "大盘", "指数", "板块", "涨停", "跌停", "期权", "数字货币", "比特币", "以太坊", "币圈", "DeFi", "NFT", "理财", "投资", "融资", "上市", "债券", "大宗商品", "油价", "人民币", "美元", "欧元", "央行", "经济", "通胀", "GDP", "财报", "营收", "利润", "银行", "保险", "证券", "退市", "并购", "独角兽", "估值", "私募", "风投", "创业板", "科创", "纳斯达克", "标普", "道琼斯", "港股", "中概股", "减持", "增持", "回购", "分红", "派息", "通货", "贬值", "升值", "国债", "地方债", "城投", "信托", "消费贷", "房贷利率", "LPR", "降准", "MLF", "逆回购", "注册制", "北交所", "AI概念股", "DeepSeek概念", "大模型", "ChatGPT概念", "人工智能", "科技股", "芯片股", "英伟达", "GPU", "算力", "算力股", "数据中心", "云服务", "SaaS", "软件股", "半导体", "光刻机", "国产替代", "科技自主", "科创板", "专精特新", "原油", "OPEC", "铜价", "铁矿石", "大豆", "农产品", "商品期货", "股指期货", "国债期货", "量化", "对冲", "杠杆", "保证金", "做空", "做多", "牛市", "熊市", "震荡", "回调", "反弹", "破位", "支撑位", "压力位", "K线", "均线", "MACD", "RSI", "布林带", "技术分析", "基本面", "价值投资", "成长股", "蓝筹股", "白马股", "黑马股", "龙头股", "题材股", "庄股", "游资", "主力资金", "北向资金", "南向资金", "外资", "QFII", "沪港通", "深港通", "注册制", "打新", "中签", "IPO", "定增", "可转债", "ETF", "LOF", "REITs", "MSCI", "富时", "沪股通", "深股通", "融资融券", "转融通", "股权激励", "限售股", "解禁", "锁定期", "合规", "监管", "证监会", "银保监", "金融监管", "反洗钱", "内幕交易", "操纵市场", "非法集资", "P2P", "网贷", "BTC", "ETH", "USDT", "稳定币", "挖矿", "矿机", "减半", "链上", "钱包", "交易所", "合约", "杠杆交易", "永续合约", "爆仓", "清算", "法币", "通证", "代币", "空投", "质押", "Staking", "LSD", "Layer2", "Rollup", "侧链", "跨链", "公链", "联盟链", "CBDC", "数字人民币", "DCEP", "合规交易所", "现货", "交割", "持仓", "移仓", "展期", "套利", "跨期", "跨市", "期现", "基差", "升水", "贴水"],
+
     }
     for cat, kws in keywords.items():
         if any(kw in topic for kw in kws):
@@ -1418,9 +1429,9 @@ def slug_exists(slug, lang="zh"):
 def add_to_manifest(slug, title, category, filename, lang="zh", cover_url=""):
     manifest = load_manifest(lang)
     # 用精确到秒的时间戳确保新文章永远排在最前面
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now(BJ_TZ).strftime("%Y-%m-%d %H:%M:%S")
     # 插入到列表头部(最新的在最前面)
-    entry = {"slug": slug, "title": title, "category": category, "date": datetime.now().strftime("%Y-%m-%d"), "timestamp": timestamp, "filename": filename}
+    entry = {"slug": slug, "title": title, "category": category, "date": datetime.now(BJ_TZ).strftime("%Y-%m-%d"), "timestamp": timestamp, "filename": filename}
     if cover_url:
         entry["cover_url"] = cover_url
     manifest.insert(0, entry)
@@ -1534,8 +1545,8 @@ def _jsonld_article(title, cat_name, date_iso, slug, category, lang="zh"):
 def generate_article_html_zh(title, body, category, slug, related_articles, mindmap_text="", cover_url=""):
     cat_info = CATEGORIES.get(category, CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
+    date_str = datetime.now(BJ_TZ).strftime("%Y-%m-%d")
+    date_iso = datetime.now(BJ_TZ).strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "zh")
     # 封面图:优先用Unsplash真实图片,无图则用SVG兜底
@@ -1657,8 +1668,8 @@ p{{margin-bottom:15px;text-align:justify}}
 def generate_article_html_en(title, body, category, slug, related_articles, mindmap_text="", cover_url=""):
     cat_info = EN_CATEGORIES.get(category, EN_CATEGORIES["hot"])
     cat_name, cat_icon = cat_info["name"], cat_info["icon"]
-    date_str = datetime.now().strftime("%Y-%m-%d")
-    date_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+08:00")
+    date_str = datetime.now(BJ_TZ).strftime("%Y-%m-%d")
+    date_iso = datetime.now(BJ_TZ).strftime("%Y-%m-%dT%H:%M:%S+08:00")
     html_body = _md2html(body)
     svg_hero = generate_svg_hero(title, category, "en")
     # Cover image: prefer Unsplash, fallback to SVG
@@ -2196,7 +2207,7 @@ def rebuild_sitemap():
 def clean_old_articles(days=15):
     """清理N天前的旧文章,保持仓库轻量"""
     from datetime import datetime, timedelta
-    cutoff_date = datetime.now() - timedelta(days=days)
+    cutoff_date = datetime.now(BJ_TZ) - timedelta(days=days)
     cutoff_str = cutoff_date.strftime('%Y-%m-%d')
 
     removed_zh, removed_en = 0, 0
@@ -2268,7 +2279,7 @@ def main():
         print("❌ 未设置 ZHIPU_API_KEY 环境变量")
         return
 
-    print(f"🚀 双语内容生成器 v5.0.1 (金融垂直版+质量清理) 启动 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"🚀 双语内容生成器 v5.0.1 (金融垂直版+质量清理) 启动 - {datetime.now(BJ_TZ).strftime('%Y-%m-%d %H:%M:%S')}")
     OUTPUT_DIR.mkdir(exist_ok=True)
     EN_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
