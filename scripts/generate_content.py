@@ -1764,7 +1764,7 @@ p{{margin-bottom:15px;text-align:justify}}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
 <p>© 2025-2026 {EN_SITE_NAME}</p>
-<p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
+<p><a href="/en/">Home</a><a href="/en/articles/finance.html">Finance</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/ai.html">AI</a><a href="/treasure.html">Treasure</a></p>
 </div>
 </body>
 </html>"""
@@ -2145,7 +2145,7 @@ a:hover{{color:#ff6b35}}
 <div class="ad-slot">{AD_CODE_BOTTOM}</div>
 <div class="footer">
 <p>© 2025-2026 {EN_SITE_NAME}</p>
-<p><a href="/en/">Home</a><a href="/en/articles/hot.html">Trending</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/health.html">Health</a><a href="/en/articles/life.html">Lifestyle</a><a href="/en/articles/entertainment.html">Entertainment</a></p>
+<p><a href="/en/">Home</a><a href="/en/articles/finance.html">Finance</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/ai.html">AI</a><a href="/treasure.html">Treasure</a></p>
 </div>
 </body>
 </html>"""
