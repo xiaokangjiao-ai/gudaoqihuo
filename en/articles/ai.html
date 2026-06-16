@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI | GuDu Finance & Tech Insights</title>
+<meta name="description" content="Latest artificial intelligence insights, AI trends and investment analysis">
+<link rel="canonical" href="https://gudaoqihuo.com/en/articles/ai.html">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:900px;margin:0 auto;padding:15px;background:#fafafa}
+.back-bar{padding:12px 0;margin-bottom:10px}
+.back-bar a{color:#1a73e8;text-decoration:none;font-size:0.9em;font-weight:600}
+.back-bar a:hover{text-decoration:underline}
+.cat-hero{background:#fff;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:5px solid #ea4335}
+.cat-hero h1{font-size:1.8em;color:#222;margin-bottom:6px}
+.cat-hero p{color:#666;font-size:0.95em}
+.cat-hero .art-count{color:#999;font-size:0.82em;margin-top:8px}
+.article-list{list-style:none;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.article-item{padding:16px 24px;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:14px}
+.article-item:last-child{border-bottom:none}
+.article-item:hover{background:#fafafa}
+.art-meta{display:flex;flex-direction:column;gap:4px;min-width:80px}
+.art-date{color:#999;font-size:0.82em}
+.art-cat{background:#fce8e6;color:#ea4335;font-size:0.72em;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block}
+.art-title{flex:1;font-size:1em;color:#222;text-decoration:none;line-height:1.5}
+.art-title:hover{color:#ea4335}
+.art-title span{color:#999;font-weight:400;font-size:0.88em}
+.footer{margin-top:30px;text-align:center;color:#999;font-size:0.82em;padding-top:15px;border-top:1px solid #eee}
+.footer a{color:#999;text-decoration:none;margin:0 8px}
+.footer a:hover{color:#666}
+</style>
+</head>
+<body>
+<div class="back-bar"><a href="/">← Back to Home</a></div>
+<div class="cat-hero">
+<h1>🤖 Artificial Intelligence</h1>
+<p>Latest AI insights, trends and investment analysis</p>
+<div class="art-count">Loading articles...</div>
+</div>
+<ul class="article-list" id="articleList"></ul>
+<footer class="footer">
+<p>© 2025-2026 GuDu Finance & Tech · <a href="/">Home</a> · <a href="/en/articles/finance.html">Finance</a> · <a href="/en/articles/tech.html">Tech</a></p>
+</footer>
+<script>
+(async function(){
+  const res = await fetch('/en/articles/manifest.json');
+  const data = await res.json();
+  const ai = data.articles.filter(a => a.category === 'ai').sort((a,b) => new Date(b.date) - new Date(a.date));
+  document.querySelector('.art-count').textContent = ai.length + ' articles';
+  const list = document.getElementById('articleList');
+  if(ai.length === 0){
+    list.innerHTML = '<li style="padding:20px;color:#999">No AI articles yet.</li>';
+    return;
+  }
+  ai.forEach(a => {
+    const d = new Date(a.date).toISOString().slice(0,10);
+    list.innerHTML += `<li class="article-item"><div class="art-meta"><span class="art-date">${d}</span><span class="art-cat">AI</span></div><a class="art-title" href="${a.url}">${a.title}</a></li>`;
+  });
+})();
+</script>
+</body>
+</html>
