@@ -1,240 +1,135 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
-<title>孤岛财经 - 孤岛财经 - AI聚合全球股票、期货、币圈与AI金融资讯</title>
-<meta name="description" content="孤岛财经 - AI聚合全球股票、期货、币圈与AI金融资讯">
+<title>GuDu Finance &amp; Tech Insights | AI-Powered Global Market Intelligence</title>
+<meta name="description" content="GuDu Finance - AI-powered global market insights & investment knowledge">
 <link rel="canonical" href="https://gudaoqihuo.com/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;line-height:1.8;color:#333;max-width:960px;margin:0 auto;padding:15px;background:#fafafa}
-.site-header{position:relative;text-align:center;padding:25px 0 20px}
-.site-header h1{font-size:1.8em;color:#1a1a1a;margin-bottom:5px}
-.site-header p{color:#888;font-size:.95em}
-.header-actions{position:absolute;top:15px;right:0;display:flex;gap:10px;align-items:center}
-.lang-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:.95em;transition:all .2s;border:2px solid #ff6b35;color:#ff6b35}
-.lang-btn:hover{background:#ff6b35;color:#fff;transform:scale(1.05)}
-.lang-btn.active{background:#ff6b35;color:#fff}
-.contact-btn{color:#2e7d32;text-decoration:none;font-size:.9em;cursor:pointer;border:1px solid #a5d6a7;padding:8px 16px;border-radius:20px;background:#e8f5e9}
-.contact-btn:hover{background:#43a047;color:#fff}
-.contact-box{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:25px 30px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.18);z-index:1000;min-width:300px}
-.contact-box.show{display:block}
-.contact-box h3{margin:0 0 18px;font-size:1.1em;color:#333}
-.contact-item{margin:10px 0;padding:10px 14px;background:#f5f5f5;border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.contact-item code{font-size:.9em;color:#555;word-break:break-all}
-.contact-item button{padding:4px 12px;border-radius:6px;background:#ff6b35;color:#fff;border:none;cursor:pointer;font-size:.85em;white-space:nowrap}
-.contact-item button:hover{background:#e65100}
-.contact-close{margin-top:18px;padding:8px 20px;border-radius:8px;background:#eee;color:#666;border:none;cursor:pointer;font-size:.9em}
-.contact-close:hover{background:#ddd}
-.contact-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.3);z-index:999}
-.contact-overlay.show{display:block}
-.cat-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#fff;border-radius:10px}
-.cat-link{padding:6px 16px;border-radius:20px;background:#fff5ed;color:#d4680a;text-decoration:none;font-size:.9em;border:1px solid #ffe0c0}
-.cat-link:hover{background:#ff6b35;color:#fff} .cat-more{display:inline;margin-left:8px} .cat-more summary{cursor:pointer;padding:6px 16px;border-radius:20px;background:#f0f0f0;color:#888;font-size:.85em;border:1px solid #ddd;display:inline} .cat-more[open] summary{margin-bottom:8px}
-ul{list-style:none}
-li{padding:10px 8px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:8px;font-size:.93em}
-li:hover{background:#f5f5f5}
-.date{color:#999;font-size:.82em;white-space:nowrap;min-width:80px}
-.cat{color:#ff6b35;font-size:.78em;white-space:nowrap;min-width:70px}
-a{color:#333;text-decoration:none}
-a:hover{color:#ff6b35}
-.footer{margin-top:30px;text-align:center;color:#aaa;font-size:.82em;padding-top:15px;border-top:1px solid #eee}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#333;max-width:960px;margin:0 auto;padding:15px;background:#fafafa}
+.site-header{position:relative;text-align:center;padding:40px 0 20px}
+.site-header h1{font-size:2.4em;color:#1a1a1a;margin-bottom:8px;letter-spacing:-0.5px}
+.site-header p{color:#666;font-size:1em;max-width:600px;margin:0 auto 20px}
+.cat-nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:15px;background:#fff;border-radius:16px;margin-bottom:30px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.cat-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 28px;border-radius:14px;text-decoration:none;font-weight:700;font-size:1em;transition:all .2s;border:2px solid transparent;min-width:120px}
+.cat-btn:hover{transform:translateY(-2px)}
+.cat-btn .cat-icon{font-size:1.8em;line-height:1}
+.cat-btn .cat-label{font-size:0.85em;font-weight:600}
+.cat-btn.finance{background:#1a73e8;color:#fff}
+.cat-btn.finance:hover{background:#1557b0}
+.cat-btn.tech{background:#34a853;color:#fff}
+.cat-btn.tech:hover{background:#1e8a3e}
+.cat-btn.ai{background:#ea4335;color:#fff}
+.cat-btn.ai:hover{background:#c5221f}
+.cat-section{background:#fff;border-radius:14px;margin-bottom:24px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.cat-section-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:2px solid #f0f0f0}
+.cat-section-title{font-size:1.15em;font-weight:700;color:#333;display:flex;align-items:center;gap:8px}
+.cat-badge{padding:3px 10px;border-radius:20px;font-size:0.75em;font-weight:700;white-space:nowrap}
+.cat-badge.finance-bg{background:#1a73e8;color:#fff}
+.cat-badge.tech-bg{background:#34a853;color:#fff}
+.cat-badge.ai-bg{background:#ea4335;color:#fff}
+.view-all{font-size:0.82em;color:#1a73e8;text-decoration:none;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid #1a73e8;transition:all .2s}
+.view-all:hover{background:#1a73e8;color:#fff}
+.article-list{list-style:none;padding:0;margin:0}
+.article-list li{padding:14px 20px;border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:12px}
+.article-list li:last-child{border-bottom:none}
+.article-list li:hover{background:#fafafa}
+.art-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0;color:#fff;font-weight:700}
+.art-date{color:#999;font-size:0.82em;min-width:75px;flex-shrink:0}
+.art-title{flex:1;font-size:0.95em;color:#222;text-decoration:none;line-height:1.5}
+.art-title:hover{color:#1a73e8}
+.art-cat{font-size:0.72em;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.art-cat.finance{background:#e8f0fe;color:#1a73e8}
+.art-cat.tech{background:#e6f4ea;color:#34a853}
+.art-cat.ai{background:#fce8e6;color:#ea4335}
+.footer{margin-top:40px;text-align:center;color:#999;font-size:0.82em;padding-top:15px;border-top:1px solid #eee}
 .footer a{color:#999;text-decoration:none;margin:0 8px}
-.ad-slot{margin:20px 0;text-align:center}
-.cat-section{background:#fff;border-radius:12px;margin-bottom:18px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.cat-section-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f0f0}
-.cat-section-title{font-size:1em;font-weight:bold;color:#333}
-.cat-more{font-size:.82em;color:#ff6b35;text-decoration:none;white-space:nowrap}
-.cat-more:hover{text-decoration:underline}
-.cat-article-list li{padding:9px 18px}
-.timeline-header{font-size:1em;font-weight:bold;color:#333;padding:15px 0 8px;border-bottom:2px solid #ff6b35;margin-bottom:5px}
-.timeline-header span{color:#999;font-weight:normal;font-size:.85em;margin-left:10px}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
-@media(max-width:600px){body{padding:10px;max-width:100%}.site-header{padding:15px 0 12px}.site-header h1{font-size:1.3em}.header-actions{position:static;margin-top:6px;justify-content:center;flex-wrap:wrap;gap:6px}.lang-btn,.contact-btn{padding:5px 12px;font-size:.82em}.cat-nav{gap:5px;padding:8px}.cat-link,.cat-more summary{font-size:.8em;padding:4px 10px}.timeline-header{font-size:.9em}.cat-section-header{padding:10px 12px}.cat-article-list li{padding:8px 12px}li{padding:7px 2px;gap:4px;font-size:.88em;flex-wrap:nowrap}li a{word-break:break-all}a{white-space:normal;word-break:break-word}.cat{min-width:55px;font-size:.75em}.date{min-width:65px}.ad-slot{margin:15px 0}
+.footer a:hover{color:#666}
+@media(max-width:600px){
+.site-header h1{font-size:1.8em}
+.cat-btn{min-width:100px;padding:12px 16px}
+.cat-btn .cat-icon{font-size:1.5em}
+.article-list li{flex-wrap:wrap;gap:6px}
+.art-date{min-width:60px}
+.art-title{font-size:0.88em}
 }
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XE3F4GQQM5');
-</script>
 </head>
 <body>
-<div class="site-header">
-<h1>&#x1F4F0; 孤岛财经</h1>
-<p>孤岛财经 - AI聚合全球股票、期货、币圈与AI金融资讯</p>
-<div class="header-actions">
-<a href="/en/" class="lang-btn">&#x1F1FA;&#x1F1F8; English</a>
-<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">&#x2709;&#xFE0F; &#x8054;&#x7CFB;&#x6211;&#x4EEC;</a>
-</div>
-</div>
-<div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
-<div class="contact-box" id="contactBox">
-<h3>&#x2709;&#xFE0F; &#x8054;&#x7CFB;&#x6211;&#x4EEC;</h3>
-<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='&#x5DF2;&#x590D;&#x5236;'">&#x590D;&#x5236;</button></div>
-<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='&#x5DF2;&#x590D;&#x5236;'">&#x590D;&#x5236;</button></div>
-<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">&#x5173;&#x95ED;</button>
-</div>
-<nav class="cat-nav"><a href="/articles/finance.html" class="cat-link">📈 财经投资</a>
-<a href="/articles/tech.html" class="cat-link">📱 科技数码</a>
-<a href="/articles/hot.html" class="cat-link">🔥 社会热点</a>
-<details class="cat-more"><summary>📋 更多</summary><a href="/articles/health.html" class="cat-link">🏥 健康养生</a>
-<a href="/articles/life.html" class="cat-link">💡 生活百科</a>
-<a href="/articles/entertainment.html" class="cat-link">🎬 娱乐八卦</a></details>
-<a href="/treasure.html" class="cat-link" style="color:#ff6b35;font-weight:bold">💎 宝藏网站</a></nav>
-<div class="ad-slot"><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="fluid" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+<header class="site-header">
+<h1>📊 GuDu Finance & Tech</h1>
+<p>AI-powered global market insights, technology trends & investment intelligence</p>
+<nav class="cat-nav">
+<a href="/en/articles/finance.html" class="cat-btn finance">
+<span class="cat-icon">💹</span>
+<span class="cat-label">Finance</span>
+</a>
+<a href="/en/articles/tech.html" class="cat-btn tech">
+<span class="cat-icon">💻</span>
+<span class="cat-label">Tech</span>
+</a>
+<a href="/en/articles/ai.html" class="cat-btn ai">
+<span class="cat-icon">🤖</span>
+<span class="cat-label">AI</span>
+</a>
+</nav>
+</header>
 
-<section class="cat-section">
-  <div class="cat-section-header">
-    <span class="cat-section-title">📈 财经投资</span>
-    <a href="/articles/finance.html" class="cat-more">更多 财经投资 &rarr;</a>
-  </div>
-  <ul class="cat-article-list"><li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><a href="/articles/06月16日算力概念股投资分析-8deb089d5b.html">06月16日算力概念股投资分析：深度解析与风险规避</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><a href="/articles/06月16日银行股估值修复-4c518118b6.html">银行股估值修复背后的逻辑与风险</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><a href="/articles/06月16日RWA代币化趋势-b46aa08403.html">RWA代币化趋势：投资价值、风险与市场展望</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><a href="/articles/06月15日卫星互联网投资-f4ae052ad2.html">卫星互联网投资热潮涌动，三大因素重塑行业格局</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><a href="/articles/06月15日AI芯片股配置逻辑-e6ce6f8f3c.html">06月15日芯片股配置逻辑：市场机遇与风险解析</a></li>
-  </ul>
-</section>
-<section class="cat-section">
-  <div class="cat-section-header">
-    <span class="cat-section-title">📱 科技数码</span>
-    <a href="/articles/tech.html" class="cat-more">更多 科技数码 &rarr;</a>
-  </div>
-  <ul class="cat-article-list"><li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><a href="/articles/字母AI-8604b10d06.html">2023年字母AI技术落地进展与商业化前景分析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><a href="/articles/06月16日铜价与新能源需求-4e730fe85c.html">铜价波动与新能源需求：技术落地、商业化前景及行业竞争格局分析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><a href="/articles/06月15日ARVR产业复苏-5c921677d2.html">AR/VR产业复苏：技术落地进展与商业化前景洞察</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><a href="/articles/06月15日6G通信技术布局-be1d42a59e.html">6G通信技术布局：技术落地、商业化前...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><a href="/articles/06月15日AI芯片竞争格局-b4961c82c8.html">AI芯片竞争格局：技术落地与商业化前景洞察</a></li>
-  </ul>
-</section>
-<section class="cat-section">
-  <div class="cat-section-header">
-    <span class="cat-section-title">🔥 社会热点</span>
-    <a href="/articles/hot.html" class="cat-more">更多 社会热点 &rarr;</a>
-  </div>
-  <ul class="cat-article-list"><li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><a href="/articles/数字生命卡兹克-a0a059ea28.html">数字生命卡兹克：虚拟世界的崛起与挑战</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><a href="/articles/06月15日meme币投机与风-2f65c01463.html">Meme币投机与风险深度分析</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><a href="/articles/新周刊-12bbf27783.html">新周刊行业洞察：数字时代下的内容创新与挑战</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><a href="/articles/邢书博-a6e3f8584f.html">邢书博：科技巨头背后的“影子”投资家</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-14</span><a href="/articles/未尽研究-bbcb291f04.html">【行业+数据洞察：未尽研究领域的深度剖析】</a></li>
-  </ul>
-</section>
-<div class="ad-slot"><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="fluid" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-<div class="timeline-header">&#x1F4C5; &#x6700;&#x65B0;&#x6587;&#x7AE0; <span>&#x5171; 100 &#x7BC7;</span></div>
-<ul><li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><span class="cat">[财经投资]</span><a href="/articles/06月16日算力概念股投资分析-8deb089d5b.html">06月16日算力概念股投资分析：深度解析与风险规避</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[科技数码]</span><a href="/articles/字母AI-8604b10d06.html">2023年字母AI技术落地进展与商业化前景分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><span class="cat">[财经投资]</span><a href="/articles/06月16日银行股估值修复-4c518118b6.html">银行股估值修复背后的逻辑与风险</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-16</span><span class="cat">[财经投资]</span><a href="/articles/06月16日RWA代币化趋势-b46aa08403.html">RWA代币化趋势：投资价值、风险与市场展望</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-16</span><span class="cat">[科技数码]</span><a href="/articles/06月16日铜价与新能源需求-4e730fe85c.html">铜价波动与新能源需求：技术落地、商业化前景及行业竞争格局分析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/06月15日ARVR产业复苏-5c921677d2.html">AR/VR产业复苏：技术落地进展与商业化前景洞察</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/06月15日6G通信技术布局-be1d42a59e.html">6G通信技术布局：技术落地、商业化前...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日卫星互联网投资-f4ae052ad2.html">卫星互联网投资热潮涌动，三大因素重塑行业格局</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日AI芯片股配置逻辑-e6ce6f8f3c.html">06月15日芯片股配置逻辑：市场机遇与风险解析</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><span class="cat">[社会热点]</span><a href="/articles/数字生命卡兹克-a0a059ea28.html">数字生命卡兹克：虚拟世界的崛起与挑战</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日金融大模型开源进展-10c5405453.html">金融大模型开源进展：投资价值与风险分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日大模型应用实测-9fcc4fe871.html">06月15日大模型应用实测：涨跌背后的投资逻辑</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日A股大盘走势分析-8c8bee9d87.html">06月15日A股大盘走势分析：投资价值与风险预警</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日光伏储能投资逻辑-98249a8e66.html">光伏储能投资价值：涨势显著，潜力巨大</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/06月15日AI芯片竞争格局-b4961c82c8.html">AI芯片竞争格局：技术落地与商业化前景洞察</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日铜价与新能源需求-0be0451102.html">铜价波动与新能源需求投资分析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/06月15日量子计算商用前景-eea176cd2f.html">量子计算商用前景：2023年Q2市场洞察与趋势解读</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><span class="cat">[社会热点]</span><a href="/articles/06月15日meme币投机与风-2f65c01463.html">Meme币投机与风险深度分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日英伟达产业链投资-505b1e5158.html">英伟达产业链投资激增：涨幅超30%，背后逻辑深度解析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日原油期货OPEC产-e5b7ef1357.html">OPEC产量调整：原油期货市场的多重影响</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/06月15日机器人投研助手-d8c543e805.html">机器人投研助手崛起，AI驱动金融行业格局重塑，三大趋势判断</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日REITs分红收益-a11cd1cf36.html">REITs分红收益：投资价值、风险与...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日交易所合规进展-b98783571e.html">交易所合规进展：影响逾百万投资者，千亿市场规模</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日央行购金趋势-a10f9a365a.html">央行购金趋势：投资价值、风险评估与市场动向深度分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日铂金投资价值-ecd03fb79b.html">06月15日铂金投资价值分析：市场趋势与风险评估</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日股指期货对冲策略-4560684100.html">06月15日股指期货对冲策略深度分析：风险可控，收益可期</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><span class="cat">[社会热点]</span><a href="/articles/新周刊-12bbf27783.html">新周刊行业洞察：数字时代下的内容创新与挑战</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/06月15日AI驱动的信用评分-94960e9624.html">AI驱动的信用评分：技术落地、商业化前景与行业竞争格局深...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日数字黄金产品分析-0bdfe5e98a.html">数字黄金产品涨跌背后的逻辑分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日金矿股投资对比-da4f28c2d3.html">06月15日金矿股投资对比：投资价值、风险与市场趋势深度分析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-15</span><span class="cat">[科技数码]</span><a href="/articles/我们ZAI科技-633d5398a7.html">2026年AI技术落地趋势：三大变化及投资方向</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日黄金价格突破新高分-50b1895bb9.html">6月15日黄金价格突破新高：投资价值、风险与市场趋势分析</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-15</span><span class="cat">[社会热点]</span><a href="/articles/邢书博-a6e3f8584f.html">邢书博：科技巨头背后的“影子”投资家</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日Solana生态发-c02b0af366.html">Solana生态发展与投资：机遇与挑...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-15</span><span class="cat">[财经投资]</span><a href="/articles/06月15日铁矿石供需格局-a327e184af.html">铁矿石供需格局突变：价格涨跌背后的逻辑</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日ETF轮动策略-eaeb634edd.html">06月14日ETF轮动策略：涨跌背后的逻辑分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日黄金价格突破新高分-8eef5e3fce.html">06月14日黄金价格突破新高：投资价值、风险评估与市场趋...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日比特币减半后行情分-f84e557420.html">比特币减半引发市场波动，投资价值与风险如何权衡？</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[科技数码]</span><a href="/articles/06月14日自动驾驶商业化-14abf1a1fa.html">技术突破驱动，自动驾驶商业化加速，行业竞争格局重塑，三个判断</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[科技数码]</span><a href="/articles/06月14日AI风控系统演进-bb8117ae7a.html">AI风控系统演进：技术落地、商业化前景与行业竞争格局深度分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日Solana生态发-2b1bea12f4.html">Solana生态发展：投资价值与风险解析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[科技数码]</span><a href="/articles/06月14日6G通信技术布局-e6f33d2968.html">2023年6月14日6G通信技术布局：技术落地进展、商业...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日外资流入A股趋势-a90ae678f4.html">2023年6月14日外资流入A股趋势分析：机遇与挑战并存</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日RWA代币化趋势-da78f8b270.html">RWA代币化趋势：投资价值、风险与市场展望</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[科技数码]</span><a href="/articles/06月14日机器人投研助手-364ce0ddad.html">机器人投研助手亮相：科技赋能金融领域的创新与挑战</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-14</span><span class="cat">[社会热点]</span><a href="/articles/未尽研究-bbcb291f04.html">【行业+数据洞察：未尽研究领域的深度剖析】</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-14</span><span class="cat">[科技数码]</span><a href="/articles/06月14日ARVR产业复苏-3b620e7fc7.html">AR/VR产业复苏：技术落地、商业化前景与竞争格局深度分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日铜价与新能源需求-8d87e982e7.html">铜价飙升：新能源需求激增背后的投资机遇与风险</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日稳定币监管趋势-aee8fe4df5.html">稳定币监管趋势加剧，投资价值与风险并存</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日卫星互联网投资-c0cd40e6bc.html">06月14日卫星互联网投资：市场潜力与风险解析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/06月14日DeFi赛道投资机-1812fadd69.html">DeFi赛道投资机会：涨跌背后的逻辑与应对策略</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/黄金价格突破新高分析-f5b29b078f.html">黄金价格突破新高：投资价值、风险与市场趋势深度分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/经济观察网-1d1c0d597a.html">经济观察网：投资价值与风险解析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-14</span><span class="cat">[财经投资]</span><a href="/articles/铜价与新能源需求-88efb1a71f.html">铜价波动与新能源需求：投资价值分析、风险评估及市场趋势</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/科创板AI公司投资价值-1c873b52c5.html">科创板AI公司投资价值分析：市场趋势与风险评估</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/英伟达产业链投资-779626016a.html">英伟达产业链投资：价值、风险与趋势洞察</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/加密货币监管政策-eb8a4390b5.html">2023年加密货币监管政策：三大变化及投资方向</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/人工智能发展趋势-41f617d7e0.html">人工智能投资价值与风险解析：市场趋势与应对策略</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/港股通南向资金动态-db3eb69dca.html">港股通南向资金动态：投资价值分析、风险评估与市场趋势洞察</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/A股大盘走势分析-113a3dddad.html">A股大盘震荡上行，投资价值与风险并存</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/量化交易AI策略-010415fbc7.html">2023年量化交易策略：三大趋势与风险应对</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/史上最大的IPO来了-c0ab5df63d.html">史上最大IPO：投资价值、风险与市场趋势深度分析</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-13</span><span class="cat">[社会热点]</span><a href="/articles/每经头条-c216dace8a.html">2026年金融科技趋势：三大变化及投资方向</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/比特币减半后行情分析-b5f0fc02af.html">比特币减半事件：对加密货币市场的多重影响</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/算力概念股投资分析-30b1866031.html">2023年算力概念股投资分析：趋势、风险与策略</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/AI概念股投资机会-886e1b02e5.html">AI概念股投资价值分析：三大趋势与风险预警</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/投资双行线-4d402fd679.html">2026年投资双行线趋势：三大变化及投资方向</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/凤凰网科技-b1887c8b55.html">凤凰网科技：AI技术落地进展、商业化前景与行业竞争格局分析</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-13</span><span class="cat">[社会热点]</span><a href="/articles/娱乐硬糖-9f35bd312e.html">2023年娱乐硬糖市场：三大变化及投资方向</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/投资界-057bd9767d.html">2023年Q2全球投资市场动态：规模达3.5万亿美元，风...</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/AI芯片股配置逻辑-0db1d42d7e.html">芯片股配置逻辑：政策催化下的市场机遇与风险</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/外资流入A股趋势-c782375898.html">外资流入A股趋势：投资价值、风险与市场展望</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/AI芯片竞争格局-2c700dbe11.html">AI芯片竞争格局：中国厂商崛起与全球布局</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-13</span><span class="cat">[社会热点]</span><a href="/articles/商业消费-61e5dfd2d9.html">商业消费新趋势：数字化赋能下的万亿市场变革</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/白银工业需求与价格走势-55523231e7.html">白银工业需求与价格走势：涨跌背后的逻辑与投资策略</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/燃油车反击新能源车成本催升订单-fc7318de45.html">燃油车反击新能源车，成本催升订单：技术落地与商业化前景分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/大模型应用实测-68a1022056.html">大模型应用实测：投资价值分析、风险评估与市场趋势洞察</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/以太坊升级影响-e8b668267d.html">以太坊2.0升级：投资价值、风险评估与市场趋势深度分析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/大模型厂商财报分析-3c681dd1ac.html">大模型厂商财报分析：投资价值、风险与市场趋势</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/张杰工作室就公布他人手机号码道-bb7f404c37.html">AI应用场景拓展：张杰工作室手机号码事件揭示隐私保护新挑战</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/经济观察报-66508f9a34.html">AI技术对金融行业的影响：投资机会与风险分析</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/尺寸加长广州车展首发奥迪A5L-873a4ef4ff.html">2023年AI应用场景深度分析：奥迪A5L搭载华为智驾技...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/前沿科技-7b1b585c3a.html">AI应用场景拓展：重塑行业格局</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-13</span><span class="cat">[科技数码]</span><a href="/articles/AIX财经-9832809b54.html">AI应用场景拓展：技术落地与行业竞争格局深度解析</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-13</span><span class="cat">[财经投资]</span><a href="/articles/美防长美国将向乌克兰提供25亿-51f6d00db2.html">2023年美防长宣布2.5亿军事援助：AI金融投资机会与...</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[科技数码]</span><a href="/articles/搭载华为乾崑智驾ADS30全新-3df8189ef0.html">华为乾崑智驾ADS 3.0引领智能驾驶行业变革，重塑竞争格局</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-12</span><span class="cat">[社会热点]</span><a href="/articles/午评沪指涨104两市半日成交额-7f79ac025c.html">午评：沪指涨1.04%的背后，A股市场发生了什么？</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-12</span><span class="cat">[社会热点]</span><a href="/articles/一本居住证含金量有多高-0e7674b514.html">一本居住证含金量有多高？</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-12</span><span class="cat">[财经投资]</span><a href="/articles/A股三大指数集体上涨沪指涨11-2a3d759212.html">A股三大指数集体上涨，沪指涨1.12%！AI时代，投资机...</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-12</span><span class="cat">[社会热点]</span><a href="/articles/缪斯夫人-42c901dc61.html">缪斯夫人：揭开网红经济的神秘面纱</a></li>
-<li><span class="thumb" style="background:#ff6b35">🔥</span><span class="date">2026-06-12</span><span class="cat">[社会热点]</span><a href="/articles/6小时前-dd4e219976.html">6小时前，一场科技盛宴的落幕：揭秘AI赋能的未来</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-12</span><span class="cat">[科技数码]</span><a href="/articles/美国ITC发布对电子设备包括手-c228f0bf84.html">专家解读：美国ITC发布对电子设备关税，AI应用场景、技...</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-06-12</span><span class="cat">[娱乐八卦]</span><a href="/articles/盘点游戏中那些被完美还原的城市-c74ed304c1.html">5大游戏中的城市：完美还原，令人叹为观止</a></li>
-<li><span class="thumb" style="background:#1a73e8">📈</span><span class="date">2026-06-11</span><span class="cat">[财经投资]</span><a href="/articles/造星记丨三年亏了54易方达基金-c70bfd5a5a.html">AI时代下的金融变革：易方达基金固收老将转型路在何方？</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-11</span><span class="cat">[科技数码]</span><a href="/articles/互联网怪盗团-e04fe7341d.html">男子深夜收到神秘短信，AI“怪盗团”究竟是谁？</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-06-11</span><span class="cat">[娱乐八卦]</span><a href="/articles/世界杯开幕式明星阵容公布-5f325dfa5e.html">世界杯开幕式明星阵容公布：揭秘背后的商业逻辑与影响</a></li>
-<li><span class="thumb" style="background:#ec4899">🎬</span><span class="date">2026-06-11</span><span class="cat">[娱乐八卦]</span><a href="/articles/世界杯球队巡礼墨西哥队-f4729177b6.html">【世界杯球队巡礼：墨西哥队，你需要知道的事】</a></li>
-<li><span class="thumb" style="background:#10b981">🏥</span><span class="date">2026-06-11</span><span class="cat">[健康养生]</span><a href="/articles/医生的共同首选沃尔沃S90为何-6350b6d7ce.html">**医生圈的新宠：沃尔沃S90在医院停车场的刷屏现象**</a></li>
-<li><span class="thumb" style="background:#7c3aed">📱</span><span class="date">2026-06-11</span><span class="cat">[科技数码]</span><a href="/articles/建行沾了长鑫科技的光-35187fed95.html">建行乘风长鑫科技，AI应用领航新航向</a></li>
-<li><span class="thumb" style="background:#f59e0b">💡</span><span class="date">2026-06-11</span><span class="cat">[生活百科]</span><a href="/articles/马宁亮相世界杯花开富贵版宣传片-131904b5d4.html">马宁亮相世界杯花开富贵版宣传片，我们看到了什么？</a></li></ul>
-<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9935054113253833" data-ad-slot="4353278167" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-<div class="footer">
-<p>&copy; 2025-2026 孤岛财经</p>
-<p><a href="/">&#x9996;&#x9875;</a><a href="/articles/hot.html">&#x793E;&#x4F1A;&#x70ED;&#x70B9;</a><a href="/articles/tech.html">&#x79D1;&#x6280;&#x6570;&#x7801;</a><a href="/articles/health.html">&#x5065;&#x5EB7;&#x517B;&#x751F;</a><a href="/articles/life.html">&#x751F;&#x6D3B;&#x767E;&#x79D1;</a><a href="/articles/entertainment.html">&#x5A1C;&#x4E50;&#x516B;&#x7591;</a><a href="/articles/finance.html">&#x8D22;&#x7ECF;&#x6295;&#x8D44;</a></p>
-<p><a href="/about-en.html">About</a> | <a href="/privacy-policy-en.html">Privacy</a> | <a href="/terms-en.html">Terms</a> | <a href="/dmca.html">DMCA</a> | <a href="/cookies.html">Cookies</a></p>
+<section class="cat-section" id="finance">
+<div class="cat-section-header">
+<span class="cat-section-title">💹 Finance <span class="cat-badge finance-bg">Markets</span></span>
+<a href="/en/articles/finance.html" class="view-all">View All →</a>
 </div>
+<ul class="article-list">
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-16</span><a class="art-title" href="/en/articles/article-b624510f60.html">Codex for Open Source: A Game-Changer in Investment Value and Risk</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-3c4e7b1715.html">China Tech Giants Dominate: 2026 Q1 Growth at 35%</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-13</span><a class="art-title" href="/en/articles/article-3abfbcab2d.html">2026 AI Finance Outlook: 3 Changes & Investment Directions</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-13</span><a class="art-title" href="/en/articles/article-1da3f737e7.html">When an AI Agent Takes Control, Financial Markets Face a Wild Ride</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-11</span><a class="art-title" href="/en/articles/article-4590733ee0.html">"Booking AI in Financial Markets: Opportunity Knocking or Risk Rising"</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-10</span><a class="art-title" href="/en/articles/article-802b790485.html">The Global Economic Impact: A Comprehensive Overview</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-10</span><a class="art-title" href="/en/articles/article-e4d458835d.html">The AI Finance Revolution: When PgDog Meets the Market</a><span class="art-cat finance">Finance</span></li>
+<li><span class="art-icon" style="background:#1a73e8">F</span><span class="art-date">2026-06-09</span><a class="art-title" href="/en/articles/article-7f92e69f98.html">1.5 Million CAD Designs in a Day: How AI Text-to-CAD is Revolutionizing</a><span class="art-cat finance">Finance</span></li>
+</ul>
+</section>
+
+<section class="cat-section" id="tech">
+<div class="cat-section-header">
+<span class="cat-section-title">💻 Tech <span class="cat-badge tech-bg">Technology</span></span>
+<a href="/en/articles/tech.html" class="view-all">View All →</a>
+</div>
+<ul class="article-list">
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-16</span><a class="art-title" href="/en/articles/article-3c4e7b1715.html">TinyWind: Navigating the Winds of Sailing Game Innovation</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-2a644c79e5.html">The Tech Revolution Unleashed: OpenRouter Fusion API's Commercialization</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-3a38457008.html">The Battery Revolution: How "Even More Batteries Included" with Emac</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-460367b4f9.html">**Foreign Business Owners in Japan: The Capital Rush Amid Tech</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-5714425bc5.html">The Rise of the "Everything Console": A Deep Dive into China's Tech</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-3df719ca2f.html">Every Frame Perfect: AI-Driven Video Enhancement Reshapes the Market</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-8fb82e3bee.html">China's Software Architecture Guide: Charting the Course for Commerce</a><span class="art-cat tech">Tech</span></li>
+<li><span class="art-icon" style="background:#34a853">T</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-f8ce2e2433.html">Hon Da Civics and the AI Value: The $1B Commercialization Leap</a><span class="art-cat tech">Tech</span></li>
+</ul>
+</section>
+
+<section class="cat-section" id="ai">
+<div class="cat-section-header">
+<span class="cat-section-title">🤖 AI <span class="cat-badge ai-bg">Artificial Intelligence</span></span>
+<a href="/en/articles/ai.html" class="view-all">View All →</a>
+</div>
+<ul class="article-list">
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-16</span><a class="art-title" href="/en/articles/article-265e6a43b7.html">The Future of China's Economic Landscape in 2027: 2 Key Scenarios</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-4a7d1ed414.html">2026 China Tech Outlook: 3 Trends & Investment Directions</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-f549cfc593.html">2023: The Audio Revolution: China's Podcast Market Grows 50% in a Year</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-15</span><a class="art-title" href="/en/articles/article-91cdc0094a.html">2023 ePub Outlook: 3 Changes & Investment Directions</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-e74bce4197.html">**Cadre Compatibility Revolution: How ZeroServe Achieved 3x Through</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-c9f531b6fe.html">**Hond A Civics and the AI Value: The $1B Commercialization Leap</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-cdd927c9ea.html">**Match Schedule Revolutionizes Sports Industry: 3 Predictions</a><span class="art-cat ai">AI</span></li>
+<li><span class="art-icon" style="background:#ea4335">A</span><span class="art-date">2026-06-14</span><a class="art-title" href="/en/articles/article-54f5d7a33e.html">GLM 5.2 Unveiled: China's AI Leap Forward</a><span class="art-cat ai">AI</span></li>
+</ul>
+</section>
+
+<footer class="footer">
+<p>© 2025-2026 GuDu Finance & Tech · <a href="/en/">Home</a> · <a href="/en/articles/finance.html">Finance</a> · <a href="/en/articles/tech.html">Tech</a> · <a href="/en/articles/ai.html">AI</a></p>
+</footer>
 </body>
 </html>
