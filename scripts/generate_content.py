@@ -138,13 +138,28 @@ CPS_LINKS["finance"] = [
 # 英文CPS推广链接(Amazon.com)
 EN_CPS_LINKS = {
     "finance": [
-        {"text": "Finance & Investment Books", "url": "https://www.amazon.com/s?k=finance+books&tag=gudaoqihuo-20", "desc": "Money Smart"},
+        {"text": "Finance & Investment Books", "url": "https://www.amazon.com/s?k=finance+books&tag=gudaoqihuo-20", "desc": "Curated finance reads"},
     ],
-    "tech": [
-        {"text": "Best Selling Electronics 2025", "url": "https://www.amazon.com/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "Top Rated"},
+    "healthcare": [
+        {"text": "Healthcare & Medical Books", "url": "https://www.amazon.com/s?k=healthcare+AI&tag=gudaoqihuo-20", "desc": "Healthcare AI reads"},
     ],
-    "ai": [
-        {"text": "AI & Tech Books", "url": "https://www.amazon.com/s?k=AI+artificial+intelligence&tag=gudaoqihuo-20", "desc": "AI Insights"},
+    "legal": [
+        {"text": "Legal Tech Books", "url": "https://www.amazon.com/s?k=legal+technology+AI&tag=gudaoqihuo-20", "desc": "Legal tech reads"},
+    ],
+    "education": [
+        {"text": "EdTech & AI in Education", "url": "https://www.amazon.com/s?k=education+AI&tag=gudaoqihuo-20", "desc": "EdTech reading list"},
+    ],
+    "manufacturing": [
+        {"text": "Best Selling Electronics 2025", "url": "https://www.amazon.com/gp/bestsellers/electronics?tag=gudaoqihuo-20", "desc": "Top electronics"},
+    ],
+    "retail": [
+        {"text": "E-Commerce & Retail Tech", "url": "https://www.amazon.com/s?k=retail+technology&tag=gudaoqihuo-20", "desc": "Retail tech reads"},
+    ],
+    "hr": [
+        {"text": "HR & Management Books", "url": "https://www.amazon.com/s?k=human+resources+management&tag=gudaoqihuo-20", "desc": "HR management reads"},
+    ],
+    "media": [
+        {"text": "Media & Content Creation", "url": "https://www.amazon.com/s?k=digital+media&tag=gudaoqihuo-20", "desc": "Media tech reads"},
     ],
 }
 
