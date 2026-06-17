@@ -1360,51 +1360,13 @@ VIOLATION: If ANY Chinese character appears in output, it is WRONG."""
 # ==================== 思维导图生成 ====================
 
 def generate_mindmap_zh(title, body):
-    """禁用脑图生成 - 直接返回空字符串"""
-    return ""
-
+    return ""  # DISABLED
 def generate_mindmap_en(title, body):
-    """禁用脑图生成 - 直接返回空字符串"""
-    return ""
+    return ""  # DISABLED
 def _fallback_mindmap(body, lang="zh"):
-    """从文章##/###标题提取脑图(免费兜底)"""
-    headings = re.findall(r'^#{2,3}\s+(.+)$', body, re.MULTILINE)
-    if not headings:
-        return "# 本文要点\n## 核心内容\n### 详情见正文" if lang == "zh" else "# Key Points\n## Main Content\n### See Article"
-    root = "# 文章要点" if lang == "zh" else "# Article Overview"
-    lines = [root]
-    for h in headings[:8]:
-        h = h.strip()
-        if len(h) > 25:
-            h = h[:23] + ".."
-        lines.append(f"## {h}" if re.match(r'^##\s', f"## {h}") else f"### {h}")
-    return "\n".join(lines)
-
+    return ""  # DISABLED
 def _mindmap_html_block(mindmap_text, slug="mm", lang="zh"):
-    """将markdown脑图转成CSS树状HTML(零依赖)"""
-    if not mindmap_text or not mindmap_text.strip():
-        return ""
-    label = "🧠 文章思维导图" if lang == "zh" else "🧠 Article Mind Map"
-    lines = mindmap_text.strip().split('\n')
-    nodes = []
-    for line in lines:
-        m = re.match(r'^(#+)\s+(.+)$', line)
-        if not m:
-            continue
-        level = len(m.group(1))
-        content = m.group(2).strip()
-        content = content.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
-        indent_px = max(0, (level - 2) * 24)
-        if level == 1:
-            nodes.append(f'<div class="mm-root"><span class="mm-dot"></span>{content}</div>')
-        elif level == 2:
-            nodes.append(f'<div class="mm-node mm-l2" style="--indent:{indent_px}px"><span class="mm-dot"></span>{content}</div>')
-        else:
-            nodes.append(f'<div class="mm-node mm-l3" style="--indent:{indent_px}px"><span class="mm-dot"></span>{content}</div>')
-    if not nodes:
-        return ""
-    tree = '\n'.join(nodes)
-    return f'''<div class="mindmap-section">
+    return ""  # DISABLED
 <h3>{label}</h3>
 <div class="mm-tree">{tree}</div>
 </div>'''
@@ -1582,7 +1544,7 @@ def generate_article_html_zh(title, body, category, slug, related_articles, mind
         hero_block = f'''<div class="hero-image"><img src="{cover_url}" alt="{title.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')}" loading="lazy" onerror="this.parentElement.style.display='none'"><p style="text-align:center;font-size:0.75rem;color:#999;margin-top:4px">Image Source: Internet</p></div>'''
     else:
         hero_block = f'<div class="hero-svg">{svg_hero}</div>'
-    mindmap_block = _mindmap_html_block(mindmap_text, slug, "zh") if mindmap_text else ""
+    mindmap_block = ""  # DISABLED
     # Reading time: Chinese ~500 chars/min
     zh_chars = len(re.findall(r'[\u4e00-\u9fff]', body))
     reading_minutes = max(1, round(zh_chars / 500))
@@ -1706,7 +1668,7 @@ def generate_article_html_en(title, body, category, slug, related_articles, mind
         hero_block = '<div class="hero-image"><img src="' + cover_url + '" alt="' + safe_title + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'"/><p style="text-align:center;font-size:0.75rem;color:#999;margin-top:4px">Image Source: Internet</p></div>'
     else:
         hero_block = '<div class="hero-svg">' + svg_hero + '</div>'
-    mindmap_block = _mindmap_html_block(mindmap_text, slug, "en") if mindmap_text else ""
+    mindmap_block = ""  # DISABLED
     # Reading time: English ~238 words/min
     en_words = len(body.split())
     reading_minutes = max(1, round(en_words / 238))
