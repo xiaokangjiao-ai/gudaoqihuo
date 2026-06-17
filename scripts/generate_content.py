@@ -33,7 +33,7 @@ AGNES_API_KEY = os.environ.get("AGNES_API_KEY", "")
 AGNES_API_URL = "https://apihub.agnes-ai.com/v1/images/generations"
 AGNES_MODEL = "agnes-image-2.1-flash"
 
-ARTICLES_PER_RUN = 8  # 每次生成20个话题,每个话题中英文各一篇 = 40篇
+ARTICLES_PER_RUN = 20  # 每次生成20个话题,每个话题中英文各一篇 = 40篇
 
 # SEO Ping服务
 PING_SERVICES = [
