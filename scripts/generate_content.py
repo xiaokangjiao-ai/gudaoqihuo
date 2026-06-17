@@ -915,6 +915,44 @@ def get_hot_topics_en():
         print(f"  [EN] 热点不足,补充 {min(needed, len(extra))} 条常青话题")
 
     random.shuffle(unique)
+
+    # Balance: ensure all 8 categories are represented
+    fallback_by_cat = {
+        "finance":      ["AI in Investment: Robo-Advisors and the Future of Wealth Management 2026",
+                         "Digital Yuan Adoption: CBDC Usage Hits 500M Active Users in China",
+                         "Blockchain Trade Finance: Banks Pilot DLT Settlement Systems"],
+        "healthcare":   ["AI Diagnostics: Machine Learning Detects Early-Stage Pancreatic Cancer",
+                         "Telemedicine Platforms: Regulatory Changes Reshaping Virtual Care",
+                         "Hospital AI: How Big Data Reduces Readmission Rates by 18%"],
+        "legal":        ["AI Contract Review: How NLP Is Replacing Junior Associates at Law Firms",
+                         "Algorithmic Sentencing: Courts Weigh Ethics of AI Risk Assessment Tools",
+                         "E-Discovery Automation: Cutting Litigation Costs with Machine Learning"],
+        "education":    ["Adaptive Learning: AI Tutors Personalize Curriculum for Struggling Students",
+                         "EdTech Investment: Global Spending on AI Education Tools Reaches $80B",
+                         "Credential Verification: Blockchain Diplomas Fight Degree Fraud"],
+        "manufacturing":["Predictive Maintenance: IoT Sensors Cut Factory Downtime by 35%",
+                         "Industrial Robotics: Human-Robot Collaboration Reaches New Efficiency Records",
+                         "Additive Manufacturing: 3D Printing Cuts Aerospace Part Lead Times 60%"],
+        "retail":       ["Visual Search: Image Recognition Drives 25% More E-Commerce Conversions",
+                         "Last-Mile AI: Route Optimization Algorithms Enable Same-Day Delivery at Scale",
+                         "Retail Personalization: AI Recommendation Engines Account for 40% of Sales"],
+        "hr":           ["AI Resume Screening: Bias Audits Reveal Hidden Discrimination in Hiring Bots",
+                         "Remote Work Analytics: Productivity Tools Monitor 10M+ Distributed Workers",
+                         "Skills-Based Hiring: AI Assessment Platforms Replace Traditional Resumes"],
+        "media":        ["AI-Generated Content: Newsrooms Weigh Ethics of Automated Journalism",
+                         "Streaming Algorithms: How Recommendation Systems Shape Cultural Consumption",
+                         "Deepfake Detection: Fight Against Synthetic Media Gets AI Boost"]
+    }
+    import random
+    # Add fallback topics for categories with few or no topics
+    for cat, topics in fallback_by_cat.items():
+        cat_topics = [t for t in all_topics if classify_topic_en(t) == cat]
+        if len(cat_topics) < 2:
+            for t in topics[:3]:
+                if t not in all_topics:
+                    all_topics.append(t)
+    random.shuffle(all_topics)
+
     return unique[:ARTICLES_PER_RUN]
 
 
@@ -2368,7 +2406,7 @@ def main():
     if en_generated > 0 or removed_en > 0:
         print("\n📐 重建站点页面...")
         rebuild_index_en()
-        for cat in ("finance", "tech", "ai"):
+        for cat in EN_CATEGORIES:
             (EN_OUTPUT_DIR / f"{cat}.html").write_text(generate_category_page_en(cat), encoding="utf-8")
         rebuild_sitemap()
 
