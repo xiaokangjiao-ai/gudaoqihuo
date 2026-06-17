@@ -6,6 +6,7 @@
 版本更新: v4.0 - 大幅提升内容质量,去除AI套话,强制数据支撑
 """
 
+import random
 import os, sys, re, json, time, random, hashlib, requests
 
 # Windows GBK 终端兼容
