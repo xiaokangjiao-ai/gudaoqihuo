@@ -1,74 +1,130 @@
 [
   {
-    "slug": "article-0988553f13",
-    "title": "AI and the Decline of Self-Help Nonfiction: Has the Era of Self-Imp...",
-    "category": "media",
+    "slug": "ai-fraud-detection-banking-2026",
+    "title": "AI Fraud Detection in Banking: How Machine Learning Stopped $12B in Losses",
+    "category": "finance",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:30:09",
-    "filename": "article-0988553f13.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/82a6f1194e3a420fb88b931b93ab6e6d.png"
+    "file": "article-ai-fraud-detection.html",
+    "cover": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-3159fc9dfb",
-    "title": "China's Deeply Read Initiative: 5 Impacts on the Digital Education ...",
+    "slug": "ai-algorithmic-trading-strategies",
+    "title": "Algorithmic Trading in 2026: AI Strategies That Outperform the Market",
+    "category": "finance",
+    "date": "2026-06-17",
+    "file": "article-algo-trading.html",
+    "cover": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-medical-imaging-diagnosis",
+    "title": "AI Medical Imaging: Deep Learning Models That Match Radiologist Accuracy",
+    "category": "healthcare",
+    "date": "2026-06-17",
+    "file": "article-medical-imaging.html",
+    "cover": "https://images.unsplash.com/photo-1551601651-05b5e9d0e3db?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-drug-discovery-acceleration",
+    "title": "Drug Discovery Accelerated: How AI Cut Development Time from Years to Months",
+    "category": "healthcare",
+    "date": "2026-06-17",
+    "file": "article-drug-discovery.html",
+    "cover": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-contract-review-legal-tech",
+    "title": "Contract Review Automation: NLP Models That Read Legal Documents Faster Than Humans",
+    "category": "legal",
+    "date": "2026-06-17",
+    "file": "article-contract-review.html",
+    "cover": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-legal-research-ediscovery",
+    "title": "Legal Research Revolution: AI-Powered eDiscovery and Case Prediction Tools",
+    "category": "legal",
+    "date": "6-06-17",
+    "file": "article-legal-research.html",
+    "cover": "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-personalized-learning-platforms",
+    "title": "Personalized Learning at Scale: Adaptive AI Tutoring Systems in Education",
     "category": "education",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:28:49",
-    "filename": "article-3159fc9dfb.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/0ff3f33aa7af49aa98d5b57ff251ac99.png"
+    "file": "article-adaptive-learning.html",
+    "cover": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-80660ce508",
-    "title": "The Future of China's Tech Industry: What \"More Features\" Means for...",
-    "category": "media",
+    "slug": "ai-automated-grading-assessment",
+    "title": "Automated Assessment: How AI Grading Systems Are Transforming Classrooms",
+    "category": "education",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:27:46",
-    "filename": "article-80660ce508.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/927f4c6e78734b188ac6cf1607a4f904.png"
+    "file": "article-auto-grading.html",
+    "cover": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-265e6a43b7",
-    "title": "More Opinion Reshapes China's Media Industry: 3 Predictions",
-    "category": "media",
+    "slug": "ai-predictive-maintenance-manufacturing",
+    "title": "Predictive Maintenance: IoT and AI That Prevent Equipment Failures Before They Happen",
+    "category": "manufacturing",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:26:32",
-    "filename": "article-265e6a43b7.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/dfe43b2c650e4f9e8757e31c39ac1c36.png"
+    "file": "article-predictive-maint.html",
+    "cover": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-219219841e",
-    "title": "China's E-Commerce Sector Grows 35% in Q1 2026: 5 Key Trends Drivin...",
+    "slug": "ai-quality-control-vision-systems",
+    "title": "Computer Vision Quality Control: Automated Defect Detection on Production Lines",
+    "category": "manufacturing",
+    "date": "2026-06-17",
+    "file": "article-quality-vision.html",
+    "cover": "https://images.unsplash.com/photo-1565514020176-6c22df6bb196?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-recommendation-engines-retail",
+    "title": "Recommendation Engines Exposed: The AI Behind Amazon's Product Suggestions",
     "category": "retail",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:25:14",
-    "filename": "article-219219841e.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/af82f662c25c4e20aa09711d5ecc80f1.png"
+    "file": "article-rec-engines.html",
+    "cover": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-2d31a9042c",
-    "title": "2026 China Tech Outlook: 3 Changes and Investment Directions",
-    "category": "finance",
+    "slug": "ai-dynamic-pricing-inventory",
+    "title": "Dynamic Pricing AI: How Retailers Use Algorithms to Maximize Revenue",
+    "category": "retail",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:23:22",
-    "filename": "article-2d31a9042c.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/ec55fdf763e1499a8deb14160bbd9d71.png"
+    "file": "article-dynamic-pricing.html",
+    "cover": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-13f6944f46",
-    "title": "Tech Innovation in China: 2563eb's Impact on the Market - A 35% Gro...",
-    "category": "finance",
+    "slug": "ai-resume-screening-hiring",
+    "title": "AI Resume Screening: How Companies Filter Thousands of Applications in Seconds",
+    "category": "hr",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:22:12",
-    "filename": "article-13f6944f46.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/50e962d56d5c43f3ae61741a33bf316c.png"
+    "file": "article-resume-screening.html",
+    "cover": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=320&fit=crop"
   },
   {
-    "slug": "article-7165adf0c1",
-    "title": "\"But Yak Shaving is Fun: China's Tech Industry's Obsession with the...",
+    "slug": "ai-employee-analytics-retention",
+    "title": "People Analytics: Using AI to Predict Employee Turnover and Improve Retention",
+    "category": "hr",
+    "date": "2026-06-17",
+    "file": "article-people-analytics.html",
+    "cover": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-content-generation-media",
+    "title": "AI Content Generation: How Publishers Are Automating News and Marketing Copy",
     "category": "media",
     "date": "2026-06-17",
-    "timestamp": "2026-06-17 11:20:50",
-    "filename": "article-7165adf0c1.html",
-    "cover_url": "https://platform-outputs.agnes-ai.space/images/text-to-image/2026/06/76d685d8d7f24b43901d94b6485f31c3.png"
+    "file": "article-content-gen.html",
+    "cover": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=320&fit=crop"
+  },
+  {
+    "slug": "ai-deepfake-detection-journalism",
+    "title": "Deepfake Detection in Journalism: Tools That Identify Synthetic Media",
+    "category": "media",
+    "date": "2026-06-17",
+    "file": "article-deepfake-detect.html",
+    "cover": "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=600&h=320&fit=crop"
   }
 ]
