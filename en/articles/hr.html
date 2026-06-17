@@ -3,77 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Human Resources AI — AI Verticals</title>
-<meta name="description" content="AI applications in Human Resources. Real use cases, actual companies, measurable impact.">
+<title>Human Resources | AI Verticals</title>
+<meta name="description" content="AI tools for talent management and HR operations. Real-world AI applications, case studies, and industry insights.">
 <link rel="canonical" href="https://gudaoqihuo.com/en/articles/hr.html">
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0a0a0f;color:#e8e8f0;margin:0;padding:0;min-height:100vh}
-header{background:linear-gradient(135deg,#0a0a1a,#13132a);padding:36px 24px 28px;border-bottom:3px solid #a5d6a7;position:relative}
-.breadcrumb{color:#8888a0;font-size:.8em;margin-bottom:12px}
-.breadcrumb a{color:#8888a0;text-decoration:none}
-.breadcrumb a:hover{color:#a5d6a7}
-h1{font-size:clamp(1.8em,4vw,2.6em);font-weight:800;margin-bottom:6px;color:#fff}
-h1 span{margin-right:10px}
-.subtitle{color:#8888a0;font-size:.95em}
-.back-link{display:inline-block;margin-top:14px;font-size:.82em;color:#a5d6a7;text-decoration:none;font-weight:600}
-.back-link:hover{text-decoration:underline}
-.container{max-width:1100px;margin:0 auto;padding:40px 24px}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#13131a;--border:#1e1e2e;--text:#e8e8f0;--muted:#8888a0;--accent:#6c63ff;--cc:#a5d6a7}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+.header{background:linear-gradient(135deg,#0a0a1a 0%,#1a1040 40%,#0d2030 100%);padding:60px 24px 50px;text-align:center;border-bottom:1px solid var(--border)}
+.header-icon{font-size:3em;display:block;margin-bottom:12px}
+.header h1{font-size:clamp(1.8em,4vw,2.6em);font-weight:800;margin-bottom:8px}
+.header p{color:var(--muted);max-width:500px;margin:0 auto;font-size:.95em}
+.container{max-width:1100px;margin:0 auto;padding:40px 24px 60px}
+.section-title{font-size:1.3em;font-weight:700;margin-bottom:20px;color:var(--text)}
 .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.art-card{display:block;text-decoration:none;border-radius:14px;background:#13131a;border:1px solid #1e1e2e;overflow:hidden;transition:all .25s}
+.art-card{display:block;text-decoration:none;border-radius:14px;background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .25s}
 .art-card:hover{transform:translateY(-3px);border-color:rgba(108,99,255,.35);box-shadow:0 8px 30px rgba(0,0,0,.4)}
-.art-thumb{width:100%;height:160px;object-fit:cover;background:linear-gradient(135deg,#1e1e30,#2a2a40);display:block}
+.art-thumb{width:100%;height:160px;object-fit:cover;display:block;background:linear-gradient(135deg,#1e1e30,#2a2a40)}
 .art-body{padding:16px}
 .art-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.art-date{font-size:.72em;color:#8888a0}
-.art-title{font-size:.92em;font-weight:700;color:#e8e8f0;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.art-excerpt{font-size:.78em;color:#8888a0;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.art-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid #1e1e2e}
-.art-read{font-size:.75em;color:#6c63ff;font-weight:600}
-.footer{max-width:1100px;margin:0 auto;padding:40px 24px;text-align:center;border-top:1px solid #1e1e2e;color:#8888a0;font-size:.8em}
-.footer a{color:#8888a0;text-decoration:none}
-.footer a:hover{color:#6c63ff}
-.empty{text-align:center;padding:80px 0;color:#555870}
-.empty-icon{font-size:3em;margin-bottom:12px;display:block}
-@media(max-width:600px){.articles-grid{grid-template-columns:1fr}}
+.art-cat-badge{font-size:.68em;padding:2px 9px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:rgba(a5d6a7,.15);color:#a5d6a7}
+.art-date{font-size:.72em;color:var(--muted)}
+.art-title{font-size:.92em;font-weight:700;color:var(--text);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.art-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)}
+.art-read{font-size:.75em;color:var(--accent);font-weight:700}
+.art-time{font-size:.7em;color:var(--muted)}
+.footer{max-width:1100px;margin:0 auto;padding:30px 24px;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:.82em}
+.footer a{color:var(--accent);text-decoration:none}.footer a:hover{text-decoration:underline}
+.nav-links{margin-top:12px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+@media(max-width:600px){.articles-grid{grid-template-columns:1fr}.header{padding:40px 20px 30px}}
 </style>
 </head>
 <body>
-<header>
-<div class="container" style="padding-bottom:0">
-<div class="breadcrumb"><a href="/">Home</a> &rsaquo; AI Verticals &rsaquo; Human Resources</div>
-<h1><span>👥</span>Human Resources</h1>
-<p class="subtitle">AI applications in human resources</p>
-<a href="/" class="back-link">&larr; Back to AI Verticals</a>
-</div>
+<header class="header">
+<span class="header-icon">👥</span>
+<h1>Human Resources</h1>
+<p>AI tools for talent management and HR operations</p>
 </header>
-<main class="container">
-<div class="articles-grid" id="articles">
-<div class="empty"><span class="empty-icon">👥</span>No articles in this category yet.<br><a href="/" style="color:#6c63ff">Browse all verticals &rarr;</a></div>
+<div class="container">
+<div class="section-title">Articles in Human Resources</div>
+<div class="articles-grid">
+<a href="/en/articles/article-resume-screening.html" class="art-card">
+<img class="art-thumb" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=320&fit=crop" alt="AI Resume Screening: How Companies Filter Thousands of Applications in Seconds" loading="lazy" onerror="this.style.display='none'">
+<div class="art-body">
+<div class="art-meta">
+<span class="art-cat-badge hr">hr</span>
+<span class="art-date">2026-06-17</span>
 </div>
-</main>
+<div class="art-title">AI Resume Screening: How Companies Filter Thousands of Applications in Seconds</div>
+</div>
+<div class="art-footer"><span class="art-read">Read &rarr;</span><span class="art-time">hr</span></div>
+</a>
+<a href="/en/articles/article-people-analytics.html" class="art-card">
+<img class="art-thumb" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=320&fit=crop" alt="People Analytics: Using AI to Predict Employee Turnover and Improve Retention" loading="lazy" onerror="this.style.display='none'">
+<div class="art-body">
+<div class="art-meta">
+<span class="art-cat-badge hr">hr</span>
+<span class="art-date">2026-06-17</span>
+</div>
+<div class="art-title">People Analytics: Using AI to Predict Employee Turnover and Improve Retention</div>
+</div>
+<div class="art-footer"><span class="art-read">Read &rarr;</span><span class="art-time">hr</span></div>
+</a>
+</div>
+</div>
 <footer class="footer">
-<p>© 2025–2026 <a href="/">AI Verticals</a> &middot; <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
+<p>&copy; 2025&ndash;2026 <a href="/">AI Verticals</a></p>
+<div class="nav-links">
+<a href="/">Home</a>
+<a href="/en/articles/finance.html">Finance</a>
+<a href="/en/articles/healthcare.html">Healthcare</a>
+<a href="/en/articles/legal.html">Legal</a>
+<a href="/en/articles/education.html">Education</a>
+<a href="/en/articles/manufacturing.html">Manufacturing</a>
+<a href="/en/articles/retail.html">Retail</a>
+<a href="/en/articles/hr.html">HR</a>
+<a href="/en/articles/media.html">Media</a>
+</div>
 </footer>
-<script>
-(async function(){
-  try{
-    const r = await fetch('/en/articles/manifest.json');
-    if(!r.ok) return;
-    const data = await r.json();
-    const filtered = data.filter(a => a.category === 'hr').reverse();
-    const container = document.getElementById('articles');
-    if(!filtered.length) return;
-    container.innerHTML = filtered.map(a => `
-      <a href="/en/articles/${a.file}" class="art-card">
-        <img class="art-thumb" src="${a.cover || 'https://picsum.photos/seed/'+a.slug+'/600/320'}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'">
-        <div class="art-body">
-          <div class="art-meta"><span class="art-date">${a.date||''}</span></div>
-          <div class="art-title">${a.title}</div>
-        </div>
-        <div class="art-footer"><span class="art-read">Read &rarr;</span></div>
-      </a>`).join('');
-  }catch(e){}
-})();
-</script>
-</body>
-</html>
+</body></html>
