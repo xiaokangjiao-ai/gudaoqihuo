@@ -944,7 +944,6 @@ def get_hot_topics_en():
                          "Streaming Algorithms: How Recommendation Systems Shape Cultural Consumption",
                          "Deepfake Detection: Fight Against Synthetic Media Gets AI Boost"]
     }
-    import random
     # Add fallback topics for categories with few or no topics
     for cat, topics in fallback_by_cat.items():
         cat_topics = [t for t in all_topics if classify_topic_en(t) == cat]
