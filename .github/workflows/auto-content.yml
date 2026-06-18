@@ -10,6 +10,15 @@ on:
     - cron: '0 11 * * *'  # 北京 19:00（主）
     - cron: '0 14 * * *'  # 北京 22:00（当日收尾）
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode: generate (default) or polish (rewrite 16 articles)'
+        required: false
+        default: 'generate'
+        type: choice
+        options:
+          - generate
+          - polish
 
 jobs:
   generate-and-deploy:
@@ -39,7 +48,12 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
 
-        run: python scripts/generate_content.py
+        run: |
+          if [ "${{ github.event.inputs.mode || 'generate' }}" = 'polish' ]; then
+            python scripts/polish_articles.py
+          else
+            python scripts/generate_content.py
+          fi
 
       - name: Configure Git
         run: |
