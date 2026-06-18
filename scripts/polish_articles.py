@@ -66,7 +66,7 @@ def call_ai(prompt, max_tokens=3000, temperature=0.7):
         "temperature": temperature,
         "max_tokens": max_tokens
     }
-    resp = requests.post(API_URL, headers=headers, json=data, timeout=180)
+    resp = requests.post(API_URL, headers=headers, json=data, timeout=240)
     result = resp.json()
     if "choices" not in result:
         raise RuntimeError(f"AI API error: {result.get('error', result)}")
@@ -218,7 +218,7 @@ def main():
         slug = article["slug"]
         file = article["file"]
 
-        print(f"\n[{idx}/{total}] {cat}: {title}")
+        print(f"\n[{idx}/{total}] {cat}: {title}", flush=True)
 
         # Generate content
         try:
@@ -228,7 +228,7 @@ def main():
                 time.sleep(2)
                 body_html = generate_topic_content(title, cat, slug)
         except Exception as e:
-            print(f"  FAILED generation: {e}", file=sys.stderr)
+            print(f"  FAILED generation: {e}", file=sys.stderr, flush=True)
             continue
 
         # Build HTML
@@ -239,7 +239,7 @@ def main():
         article_path = f"en/articles/{file}"
         sha, _ = read_file_sha(article_path)
         ok = push_file(article_path, html, sha, f"Polish: {title} ({word_count} words)")
-        print(f"  {'OK' if ok else 'FAIL'} push — ~{word_count} words")
+        print(f"  {'OK' if ok else 'FAIL'} push — ~{word_count} words", flush=True)
 
         # Rate limit respect
         time.sleep(1.5)
