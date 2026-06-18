@@ -14,7 +14,7 @@ BRANCH = "main"
 
 ARTICLES_PATH = "en/articles"
 MANIFEST_PATH = "en/articles/manifest.json"
-GH_TOKEN = os.environ.get("GH_TOKEN", os.environ.get("GITHUB_TOKEN", ""))
+GH_TOKEN = os.environ.get("GH_TOKEN", os.environ.get("OPENCLAW_GITHUB_TOKEN", ""))
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
