@@ -2,134 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GuDu Finance - GuDu Finance - AI-powered global market insights & investment knowledge</title>
-<meta name="description" content="GuDu Finance - AI-powered global market insights & investment knowledge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Verticals — AI Applications Across Industries</title>
+<meta name="description" content="Expert analysis of artificial intelligence transforming finance, healthcare, legal, education, manufacturing, retail, HR and media industries.">
 <link rel="canonical" href="https://gudaoqihuo.com/en/">
+<meta property="og:title" content="AI Verticals — AI Applications Across Industries">
+<meta property="og:description" content="In-depth analysis of AI applications across 8 major industries.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gudaoqihuo.com/en/">
+<link rel="sitemap" href="/sitemap.xml">
 <style>
+:root{--bg:#0a0a0f;--surface:#13131a;--surface2:#1a1a25;--accent:#6c63ff;--accent2:#ff6584;--text:#e8e8ed;--text2:#9898a8;--radius:12px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#e8e8f0;max-width:900px;margin:0 auto;padding:15px;background:#0a0a0f}
-.site-header{position:relative;text-align:center;padding:25px 0 20px}
-.site-header h1{font-size:1.8em;color:#e8e8f0;margin-bottom:5px}
-.site-header p{color:#8888a0;font-size:.95em}
-.header-actions{position:absolute;top:15px;right:0;display:flex;gap:10px;align-items:center}
-.lang-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:.95em;transition:all .2s;border:2px solid #6c63ff;color:#6c63ff}
-.lang-btn:hover{background:#6c63ff;color:#fff;transform:scale(1.05)}
-.lang-btn.active{background:#6c63ff;color:#fff}
-.contact-btn{color:#00d4aa;text-decoration:none;font-size:.9em;cursor:pointer;border:1px solid rgba(0,212,170,.3);padding:8px 16px;border-radius:20px;background:rgba(0,212,170,.08)}
-.contact-btn:hover{background:#00d4aa;color:#0a0a0f}
-.contact-box{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#13131a;padding:25px 30px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.18);z-index:1000;min-width:300px}
-.contact-box.show{display:block}
-.contact-box h3{margin:0 0 18px;font-size:1.1em;color:#e8e8f0}
-.contact-item{margin:10px 0;padding:10px 14px;background:#1a1a28;border-radius:8px;border:1px solid #1e1e2e;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.contact-item code{font-size:.9em;color:#a0a0b8;word-break:break-all}
-.contact-item button{padding:4px 12px;border-radius:6px;background:#6c63ff;color:#fff;border:none;cursor:pointer;font-size:.85em;white-space:nowrap}
-.contact-item button:hover{background:#5a54d4}
-.contact-close{margin-top:18px;padding:8px 20px;border-radius:8px;background:#1e1e2e;color:#8888a0;border:none;cursor:pointer;font-size:.9em}
-.contact-close:hover{background:#2a2a3a}
-.contact-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999}
-.contact-overlay.show{display:block}
-.cat-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#13131a;border-radius:10px;border:1px solid #1e1e2e}
-.cat-link{padding:6px 16px;border-radius:20px;background:rgba(108,99,255,.12);color:#6c63ff;text-decoration:none;font-size:.9em;border:1px solid rgba(108,99,255,.25)}
-.cat-link:hover{background:#6c63ff;color:#fff} .cat-more{display:inline;margin-left:8px} .cat-more summary{cursor:pointer;padding:6px 16px;border-radius:20px;background:rgba(108,99,255,.08);color:#8888a0;font-size:.85em;border:1px solid #1e1e2e;display:inline} .cat-more[open] summary{margin-bottom:8px}
-ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #1e1e2e;display:flex;align-items:center;gap:8px}
-li:hover{background:#13131a}
-.date{color:#8888a0;font-size:.85em;white-space:nowrap;min-width:85px}
-.cat{color:#6c63ff;font-size:.8em;white-space:nowrap;min-width:75px}
-a{color:#e8e8f0;text-decoration:none}
-a:hover{color:#6c63ff}
-.footer{margin-top:30px;text-align:center;color:#8888a0;font-size:.82em;padding-top:15px;border-top:1px solid #1e1e2e}
-.footer a{color:#8888a0;text-decoration:none;margin:0 8px}
-.ad-slot{margin:20px 0;text-align:center}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Header */
+header{background:var(--surface);border-bottom:1px solid rgba(108,99,255,.15);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav a{color:var(--text2);margin-left:24px;font-size:.9rem;transition:color .2s}
+nav a:hover{color:var(--accent)}
+
+/* Hero */
+.hero{padding:80px 0 40px;text-align:center}
+.hero h1{font-size:2.8rem;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;color:var(--text2);max-width:700px;margin:0 auto}
+
+/* Category nav */
+.cat-nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:32px 0;padding:16px;background:var(--surface);border-radius:var(--radius)}
+.cat-link{padding:8px 18px;border-radius:20px;background:var(--surface2);color:var(--text2);font-size:.85rem;transition:all .2s}
+.cat-link:hover{background:var(--accent);color:#fff}
+
+/* Sections */
+.category-section{margin:48px 0}
+.section-title{font-size:1.5rem;margin-bottom:24px;padding-left:16px;border-left:4px solid var(--accent)}
+.section-title a{color:var(--text)}
+.section-title a:hover{color:var(--accent)}
+
+/* Article grid */
+.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+
+/* Cards */
+.card{background:var(--surface);border-radius:var(--radius);overflow:hidden;transition:transform .3s,box-shadow .3s;border:1px solid rgba(108,99,255,.1)}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(108,99,255,.2)}
+.card a{display:block;color:var(--text)}
+.card-image{height:200px;overflow:hidden}
+.card-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.card:hover .card-image img{transform:scale(1.05)}
+.card-body{padding:20px}
+.cat-badge{display:inline-block;padding:4px 12px;border-radius:12px;background:rgba(108,99,255,.15);color:var(--accent);font-size:.75rem;margin-bottom:12px}
+.card-body h3{font-size:1.1rem;margin-bottom:8px;line-height:1.4}
+.card-body p{color:var(--text2);font-size:.9rem;line-height:1.5}
+
+/* Footer */
+footer{background:var(--surface);border-top:1px solid rgba(108,99,255,.15);margin-top:80px;padding:40px 0;text-align:center;color:var(--text2);font-size:.85rem}
+footer a{color:var(--text2);margin:0 12px}
+footer a:hover{color:var(--accent)}
+
+@media(max-width:768px){
+.hero h1{font-size:1.8rem}
+.article-grid{grid-template-columns:1fr}
+nav{display:none}
+}
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XE3F4GQQM5');
-</script>
 </head>
 <body>
-<div class="site-header">
-<h1>📰 GuDu Finance</h1>
-<p>GuDu Finance - AI-powered global market insights & investment knowledge</p>
-<div class="header-actions">
-<a href="/" class="lang-btn">&#x1F1E8;&#x1F1F3; 中文</a>
-<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">&#x2709;&#xFE0F; Contact Us</a>
-</div>
-</div>
-<div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
-<div class="contact-box" id="contactBox">
-<h3>&#x2709;&#xFE0F; Contact Us</h3>
-<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='Copied'">Copy</button></div>
-<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='Copied'">Copy</button></div>
-<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">Close</button>
-</div>
-<nav class="cat-nav"><a href="/en/articles/finance.html" class="cat-link">💰 Finance and Banking</a>
-<a href="/en/articles/healthcare.html" class="cat-link">🏥 Healthcare and MedTech</a>
-<a href="/en/articles/legal.html" class="cat-link">⚖️ Legal Services</a>
-<a href="/en/articles/education.html" class="cat-link">🎓 Education and EdTech</a>
-<a href="/en/articles/manufacturing.html" class="cat-link">🏭 Manufacturing</a>
-<a href="/en/articles/retail.html" class="cat-link">🛒 Retail and E-commerce</a>
-<a href="/en/articles/hr.html" class="cat-link">👥 Human Resources</a>
-<a href="/en/articles/media.html" class="cat-link">🎬 Media and Content</a>
+<header>
+<div class="container">
+<span class="logo">AI Verticals</span>
+<nav>
+<a href="/en/">Home</a>
+<a href="/en/articles/finance.html">Finance</a>
+<a href="/en/articles/healthcare.html">Healthcare</a>
+<a href="/en/articles/legal.html">Legal</a>
+<a href="/en/articles/education.html">Education</a>
+<a href="/en/articles/manufacturing.html">Manufacturing</a>
+<a href="/en/articles/retail.html">Retail</a>
+<a href="/en/articles/hr.html">HR</a>
+<a href="/en/articles/media.html">Media</a>
+<a href="/about-en.html">About</a>
 </nav>
-<div class="ad-slot"></div>
-<ul><li><span class="thumb" style="background:#ce93d8">⚖️</span><span class="date">6-06-17</span><span class="cat">[Legal Services]</span><a href="/en/articles/article-legal-research.html">Legal Research Revolution: AI-Powered eDiscovery and Case Prediction Tools</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-37f2a62dbc.html">2026 China Tech Outlook: 3 Changes and Investment Directions</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-1efd5a4cb7.html">The Future of Lifestyle in China: 2 Key Scenarios by 2027</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-dd7603124c.html">Swiss Parliament Lifts Ban on New Nuclear Power Plants: A Game-Chan...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-f549cfc593.html">"Podcast Mania: China's Audio Content Market Soars 50% in 2023: 5 K...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-df430c1374.html">China's Most Popular Trend: A Deep Dive into Its Economic Impact</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-7e62514482.html">The AirPods Effect: Revolutionizing Consumer Behavior in 2027: 2 Ke...</a></li>
-<li><span class="thumb" style="background:#a5d6a7">👥</span><span class="date">2026-06-19</span><span class="cat">[Human Resources]</span><a href="/en/articles/article-5d9c19520d.html">Korean Telecom Giant's Controversy: A 20% Growth vs 5% Decline Paradox</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-6eaefb316a.html">"Renewable Energy Investment Up 30% vs Traditional Fossil Fuels Dow...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-e14008cf4e.html">Tech Talent Exodus: China's Tech Giants Face a 35% Talent Loss in Q...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-d0f9507613.html">2026 China Tech Outlook: 3 Changes and Investment Directions</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-12718b3ba9.html">China's Economic Recovery: Navigating Results and Schedules Amidst ...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-ea96be9e75.html">The Future of Relationships in China: 2 Key Scenarios for 2027</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-2d31a9042c.html">China's Tech Giant Layoffs: A Deep Dive into the Underlying Causes ...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-7faefb4f59.html">The BBC's Multilingual Triumph: A Global Media Powerhouse</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-3cd3d83f73.html">The Sports Revolution: What China's Growing Passion Means for Globa...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-82afcea0b4.html">10K GitHub Repositories Distributing Trojan Malware: A Deep Dive</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-19</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-d04ccf61ae.html">The Digital Renaissance of Newsletters: 3 Predictions for China's M...</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-19</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-cdd927c9ea.html">The Future of Esports in China: 2 Key Scenarios by 2027</a></li>
-<li><span class="thumb" style="background:#ef5350">🏥</span><span class="date">2026-06-19</span><span class="cat">[Healthcare and MedTech]</span><a href="/en/articles/article-107d8f9943.html">2026 China Outlook: Drug Repurposing Revolution in Hospitals & Univ...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-f680f2d1d4.html">The Token Compression Illusion: Why I'm Skeptical of RTK</a></li>
-<li><span class="thumb" style="background:#4fc3f7">💰</span><span class="date">2026-06-17</span><span class="cat">[Finance and Banking]</span><a href="/en/articles/article-ai-fraud-detection.html">AI Fraud Detection in Banking: How Machine Learning Stopped $12B in Losses</a></li>
-<li><span class="thumb" style="background:#4fc3f7">💰</span><span class="date">2026-06-17</span><span class="cat">[Finance and Banking]</span><a href="/en/articles/article-algo-trading.html">Algorithmic Trading in 2026: AI Strategies That Outperform the Market</a></li>
-<li><span class="thumb" style="background:#ef5350">🏥</span><span class="date">2026-06-17</span><span class="cat">[Healthcare and MedTech]</span><a href="/en/articles/article-medical-imaging.html">AI Medical Imaging: Deep Learning Models That Match Radiologist Accuracy</a></li>
-<li><span class="thumb" style="background:#ef5350">🏥</span><span class="date">2026-06-17</span><span class="cat">[Healthcare and MedTech]</span><a href="/en/articles/article-drug-discovery.html">Drug Discovery Accelerated: How AI Cut Development Time from Years to Months</a></li>
-<li><span class="thumb" style="background:#ce93d8">⚖️</span><span class="date">2026-06-17</span><span class="cat">[Legal Services]</span><a href="/en/articles/article-contract-review.html">Contract Review Automation: NLP Models That Read Legal Documents Faster Than Humans</a></li>
-<li><span class="thumb" style="background:#81c784">🎓</span><span class="date">2026-06-17</span><span class="cat">[Education and EdTech]</span><a href="/en/articles/article-adaptive-learning.html">Personalized Learning at Scale: Adaptive AI Tutoring Systems in Education</a></li>
-<li><span class="thumb" style="background:#81c784">🎓</span><span class="date">2026-06-17</span><span class="cat">[Education and EdTech]</span><a href="/en/articles/article-auto-grading.html">Automated Assessment: How AI Grading Systems Are Transforming Classrooms</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-17</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-predictive-maint.html">Predictive Maintenance: IoT and AI That Prevent Equipment Failures Before They Happen</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-17</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-quality-vision.html">Computer Vision Quality Control: Automated Defect Detection on Production Lines</a></li>
-<li><span class="thumb" style="background:#4dd0e1">🛒</span><span class="date">2026-06-17</span><span class="cat">[Retail and E-commerce]</span><a href="/en/articles/article-rec-engines.html">Recommendation Engines Exposed: The AI Behind Amazon's Product Suggestions</a></li>
-<li><span class="thumb" style="background:#4dd0e1">🛒</span><span class="date">2026-06-17</span><span class="cat">[Retail and E-commerce]</span><a href="/en/articles/article-dynamic-pricing.html">Dynamic Pricing AI: How Retailers Use Algorithms to Maximize Revenue</a></li>
-<li><span class="thumb" style="background:#a5d6a7">👥</span><span class="date">2026-06-17</span><span class="cat">[Human Resources]</span><a href="/en/articles/article-resume-screening.html">AI Resume Screening: How Companies Filter Thousands of Applications in Seconds</a></li>
-<li><span class="thumb" style="background:#a5d6a7">👥</span><span class="date">2026-06-17</span><span class="cat">[Human Resources]</span><a href="/en/articles/article-people-analytics.html">People Analytics: Using AI to Predict Employee Turnover and Improve Retention</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-17</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-content-gen.html">AI Content Generation: How Publishers Are Automating News and Marketing Copy</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-17</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-deepfake-detect.html">Deepfake Detection in Journalism: Tools That Identify Synthetic Media</a></li></ul>
-<div class="ad-slot"></div>
-<div class="footer">
-<p>© 2025-2026 GuDu Finance</p>
-<p><a href="/en/">Home</a><a href="/en/articles/finance.html">Finance</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/ai.html">AI</a><a href="/treasure.html">Treasure</a></p>
 </div>
-</body>
-</html<main class="container">
+</header>
+
+<main class="container">
 <section class="hero">
 <h1>AI Applications Across Industries</h1>
-<p>Expert analysis of artificial intelligence transforming business operations, from Wall Street trading floors to hospital operating rooms.</p>
+<p>In-depth analysis of how artificial intelligence is reshaping finance, healthcare, legal, education, manufacturing, retail, HR and media — backed by real company data and expert insights.</p>
 </section>
 
+<div class="cat-nav">
+<a href="/en/articles/finance.html" class="cat-link">💰 Finance</a>
+<a href="/en/articles/healthcare.html" class="cat-link">🏥 Healthcare</a>
+<a href="/en/articles/legal.html" class="cat-link">⚖️ Legal</a>
+<a href="/en/articles/education.html" class="cat-link">🎓 Education</a>
+<a href="/en/articles/manufacturing.html" class="cat-link">🏭 Manufacturing</a>
+<a href="/en/articles/retail.html" class="cat-link">🛒 Retail</a>
+<a href="/en/articles/hr.html" class="cat-link">👥 HR</a>
+<a href="/en/articles/media.html" class="cat-link">🎬 Media</a>
+</div>
+
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/finance.html">Finance</a></h2>
+<h2 class="section-title"><a href="/en/articles/finance.html">💰 Finance</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -156,7 +133,7 @@ gtag('config', 'G-XE3F4GQQM5');
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/healthcare.html">Healthcare</a></h2>
+<h2 class="section-title"><a href="/en/articles/healthcare.html">🏥 Healthcare</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -183,7 +160,7 @@ gtag('config', 'G-XE3F4GQQM5');
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/legal.html">Legal</a></h2>
+<h2 class="section-title"><a href="/en/articles/legal.html">⚖️ Legal</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -196,10 +173,21 @@ gtag('config', 'G-XE3F4GQQM5');
 </div>
 </a>
 </article>
+
+<article class="card">
+<a href="/en/articles/article-deepfake-detect.html">
+<div class="card-image"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4c18c5f?w=800&h=400&fit=crop" alt="Deepfake Detection in Journalism: Tools That Identify Synthetic Media" loading="lazy"></div>
+<div class="card-body">
+<span class="cat-badge">Legal</span>
+<h3>Deepfake Detection in Journalism: Tools That Identify Synthetic Media</h3>
+<p>Tools and techniques for identifying AI-generated synthetic media in journalism.</p>
+</div>
+</a>
+</article>
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/education.html">Education</a></h2>
+<h2 class="section-title"><a href="/en/articles/education.html">🎓 Education</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -215,7 +203,7 @@ gtag('config', 'G-XE3F4GQQM5');
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/manufacturing.html">Manufacturing</a></h2>
+<h2 class="section-title"><a href="/en/articles/manufacturing.html">🏭 Manufacturing</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -242,7 +230,7 @@ gtag('config', 'G-XE3F4GQQM5');
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/retail.html">Retail</a></h2>
+<h2 class="section-title"><a href="/en/articles/retail.html">🛒 Retail</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -251,14 +239,25 @@ gtag('config', 'G-XE3F4GQQM5');
 <div class="card-body">
 <span class="cat-badge">Retail</span>
 <h3>Recommendation Engines: The $40 Billion Algorithm That Knows What You Want Before You Do</h3>
-<p>How Amazon, Netflix, Spotify, and Stitch Fix built recommendation engines that drive 35% of all e-commerce revenue and r</p>
+<p>How Amazon, Netflix, Spotify, and Stitch Fix built recommendation engines that drive 35% of all e-commerce revenue and reshape consumer behavior.</p>
+</div>
+</a>
+</article>
+
+<article class="card">
+<a href="/en/articles/article-content-gen.html">
+<div class="card-image"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="AI Content Generation: The Machines Are Writing the News — and Most Readers Can't Tell the Difference" loading="lazy"></div>
+<div class="card-body">
+<span class="cat-badge">Retail</span>
+<h3>AI Content Generation: The Machines Are Writing the News — and Most Readers Can't Tell the Difference</h3>
+<p>How OpenAI, Jasper, Bloomberg, The Associated Press, and The Washington Post are using AI to generate news, marketing copy, and product content at ind</p>
 </div>
 </a>
 </article>
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/hr.html">HR</a></h2>
+<h2 class="section-title"><a href="/en/articles/hr.html">👥 HR</a></h2>
 <div class="article-grid">
 
 <article class="card">
@@ -267,7 +266,7 @@ gtag('config', 'G-XE3F4GQQM5');
 <div class="card-body">
 <span class="cat-badge">HR</span>
 <h3>AI Resume Screening: Your Next Employer Will Decide Your Fate in 6 Seconds — Using an Algorithm</h3>
-<p>How HireVue, Pymetrics, Eightfold AI, and LinkedIn Talent Insights are replacing human recruiters with AI that screens t</p>
+<p>How HireVue, Pymetrics, Eightfold AI, and LinkedIn Talent Insights are replacing human recruiters with AI that screens thousands of resumes in seconds</p>
 </div>
 </a>
 </article>
@@ -278,26 +277,15 @@ gtag('config', 'G-XE3F4GQQM5');
 <div class="card-body">
 <span class="cat-badge">HR</span>
 <h3>People Analytics: Your Boss Has a Flight-Risk Score on You — Here's How They Calculated It</h3>
-<p>How companies use AI to predict employee turnover, monitor burnout, and score flight risk — with data from Google, Workd</p>
+<p>How companies use AI to predict employee turnover, monitor burnout, and score flight risk — with data from Google, Workday, Microsoft, and Culture Amp</p>
 </div>
 </a>
 </article>
 </div></section>
 
 <section class="category-section">
-<h2 class="section-title"><a href="/en/articles/media.html">Media</a></h2>
+<h2 class="section-title"><a href="/en/articles/media.html">🎬 Media</a></h2>
 <div class="article-grid">
-
-<article class="card">
-<a href="/en/articles/article-content-gen.html">
-<div class="card-image"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="AI Content Generation: The Machines Are Writing the News — and Most Readers Can't Tell the Difference" loading="lazy"></div>
-<div class="card-body">
-<span class="cat-badge">Media</span>
-<h3>AI Content Generation: The Machines Are Writing the News — and Most Readers Can't Tell the Difference</h3>
-<p>How OpenAI, Jasper, Bloomberg, The Associated Press, and The Washington Post are using AI to generate news, marketing co</p>
-</div>
-</a>
-</article>
 
 <article class="card">
 <a href="/en/articles/article-deepfake-detect.html">
@@ -309,129 +297,31 @@ gtag('config', 'G-XE3F4GQQM5');
 </div>
 </a>
 </article>
-</div></section>
-</main>YPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GuDu Finance - GuDu Finance - AI-powered global market insights & investment knowledge</title>
-<meta name="description" content="GuDu Finance - AI-powered global market insights & investment knowledge">
-<link rel="canonical" href="https://gudaoqihuo.com/en/">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.8;color:#e8e8f0;max-width:900px;margin:0 auto;padding:15px;background:#0a0a0f}
-.site-header{position:relative;text-align:center;padding:25px 0 20px}
-.site-header h1{font-size:1.8em;color:#e8e8f0;margin-bottom:5px}
-.site-header p{color:#8888a0;font-size:.95em}
-.header-actions{position:absolute;top:15px;right:0;display:flex;gap:10px;align-items:center}
-.lang-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:.95em;transition:all .2s;border:2px solid #6c63ff;color:#6c63ff}
-.lang-btn:hover{background:#6c63ff;color:#fff;transform:scale(1.05)}
-.lang-btn.active{background:#6c63ff;color:#fff}
-.contact-btn{color:#00d4aa;text-decoration:none;font-size:.9em;cursor:pointer;border:1px solid rgba(0,212,170,.3);padding:8px 16px;border-radius:20px;background:rgba(0,212,170,.08)}
-.contact-btn:hover{background:#00d4aa;color:#0a0a0f}
-.contact-box{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#13131a;padding:25px 30px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.18);z-index:1000;min-width:300px}
-.contact-box.show{display:block}
-.contact-box h3{margin:0 0 18px;font-size:1.1em;color:#e8e8f0}
-.contact-item{margin:10px 0;padding:10px 14px;background:#1a1a28;border-radius:8px;border:1px solid #1e1e2e;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.contact-item code{font-size:.9em;color:#a0a0b8;word-break:break-all}
-.contact-item button{padding:4px 12px;border-radius:6px;background:#6c63ff;color:#fff;border:none;cursor:pointer;font-size:.85em;white-space:nowrap}
-.contact-item button:hover{background:#5a54d4}
-.contact-close{margin-top:18px;padding:8px 20px;border-radius:8px;background:#1e1e2e;color:#8888a0;border:none;cursor:pointer;font-size:.9em}
-.contact-close:hover{background:#2a2a3a}
-.contact-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:999}
-.contact-overlay.show{display:block}
-.cat-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0 25px;padding:15px;background:#13131a;border-radius:10px;border:1px solid #1e1e2e}
-.cat-link{padding:6px 16px;border-radius:20px;background:rgba(108,99,255,.12);color:#6c63ff;text-decoration:none;font-size:.9em;border:1px solid rgba(108,99,255,.25)}
-.cat-link:hover{background:#6c63ff;color:#fff} .cat-more{display:inline;margin-left:8px} .cat-more summary{cursor:pointer;padding:6px 16px;border-radius:20px;background:rgba(108,99,255,.08);color:#8888a0;font-size:.85em;border:1px solid #1e1e2e;display:inline} .cat-more[open] summary{margin-bottom:8px}
-ul{list-style:none}
-li{padding:12px 10px;border-bottom:1px solid #1e1e2e;display:flex;align-items:center;gap:8px}
-li:hover{background:#13131a}
-.date{color:#8888a0;font-size:.85em;white-space:nowrap;min-width:85px}
-.cat{color:#6c63ff;font-size:.8em;white-space:nowrap;min-width:75px}
-a{color:#e8e8f0;text-decoration:none}
-a:hover{color:#6c63ff}
-.footer{margin-top:30px;text-align:center;color:#8888a0;font-size:.82em;padding-top:15px;border-top:1px solid #1e1e2e}
-.footer a{color:#8888a0;text-decoration:none;margin:0 8px}
-.ad-slot{margin:20px 0;text-align:center}
-.thumb{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;margin-right:8px;font-size:14px;flex-shrink:0;color:#fff}
-</style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XE3F4GQQM5"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XE3F4GQQM5');
-</script>
-</head>
-<body>
-<div class="site-header">
-<h1>📰 GuDu Finance</h1>
-<p>GuDu Finance - AI-powered global market insights & investment knowledge</p>
-<div class="header-actions">
-<a href="/" class="lang-btn">&#x1F1E8;&#x1F1F3; 中文</a>
-<a class="contact-btn" onclick="document.getElementById('contactBox').classList.add('show');document.getElementById('contactOverlay').classList.add('show')">&#x2709;&#xFE0F; Contact Us</a>
+<article class="card">
+<a href="/en/articles/article-content-gen.html">
+<div class="card-image"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop" alt="AI Content Generation: The Machines Are Writing the News — and Most Readers Can't Tell the Difference" loading="lazy"></div>
+<div class="card-body">
+<span class="cat-badge">Media</span>
+<h3>AI Content Generation: The Machines Are Writing the News — and Most Readers Can't Tell the Difference</h3>
+<p>How OpenAI, Jasper, Bloomberg, The Associated Press, and The Washington Post are using AI to generate news, marketing copy, and product content at ind</p>
 </div>
+</a>
+</article>
+</div></section>
+
+</main>
+
+<footer>
+<div class="container">
+<p>&copy; 2026 AI Verticals. All rights reserved.</p>
+<p>
+<a href="/about-en.html">About</a>
+<a href="/privacy-policy-en.html">Privacy</a>
+<a href="/terms-en.html">Terms</a>
+<a href="/cookies.html">Cookies</a>
+</p>
 </div>
-<div class="contact-overlay" id="contactOverlay" onclick="this.classList.remove('show');document.getElementById('contactBox').classList.remove('show')"></div>
-<div class="contact-box" id="contactBox">
-<h3>&#x2709;&#xFE0F; Contact Us</h3>
-<div class="contact-item"><code>543837216@qq.com</code><button onclick="navigator.clipboard.writeText('543837216@qq.com');this.textContent='Copied'">Copy</button></div>
-<div class="contact-item"><code>xiaokangjiao@gmail.com</code><button onclick="navigator.clipboard.writeText('xiaokangjiao@gmail.com');this.textContent='Copied'">Copy</button></div>
-<button class="contact-close" onclick="document.getElementById('contactBox').classList.remove('show');document.getElementById('contactOverlay').classList.remove('show')">Close</button>
-</div>
-<nav class="cat-nav"><a href="/en/articles/finance.html" class="cat-link">💰 Finance and Banking</a>
-<a href="/en/articles/healthcare.html" class="cat-link">🏥 Healthcare and MedTech</a>
-<a href="/en/articles/legal.html" class="cat-link">⚖️ Legal Services</a>
-<a href="/en/articles/education.html" class="cat-link">🎓 Education and EdTech</a>
-<a href="/en/articles/manufacturing.html" class="cat-link">🏭 Manufacturing</a>
-<a href="/en/articles/retail.html" class="cat-link">🛒 Retail and E-commerce</a>
-<a href="/en/articles/hr.html" class="cat-link">👥 Human Resources</a>
-<a href="/en/articles/media.html" class="cat-link">🎬 Media and Content</a>
-</nav>
-<div class="ad-slot"></div>
-<ul><li><span class="thumb" style="background:#ce93d8">⚖️</span><span class="date">6-06-17</span><span class="cat">[Legal Services]</span><a href="/en/articles/article-legal-research.html">Legal Research Revolution: AI-Powered eDiscovery and Case Prediction Tools</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-37f2a62dbc.html">2026 China Tech Outlook: 3 Changes and Investment Directions</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-1efd5a4cb7.html">The Future of Lifestyle in China: 2 Key Scenarios by 2027</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-dd7603124c.html">Swiss Parliament Lifts Ban on New Nuclear Power Plants: A Game-Chan...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-f549cfc593.html">"Podcast Mania: China's Audio Content Market Soars 50% in 2023: 5 K...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-df430c1374.html">China's Most Popular Trend: A Deep Dive into Its Economic Impact</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-7e62514482.html">The AirPods Effect: Revolutionizing Consumer Behavior in 2027: 2 Ke...</a></li>
-<li><span class="thumb" style="background:#a5d6a7">👥</span><span class="date">2026-06-19</span><span class="cat">[Human Resources]</span><a href="/en/articles/article-5d9c19520d.html">Korean Telecom Giant's Controversy: A 20% Growth vs 5% Decline Paradox</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-6eaefb316a.html">"Renewable Energy Investment Up 30% vs Traditional Fossil Fuels Dow...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-e14008cf4e.html">Tech Talent Exodus: China's Tech Giants Face a 35% Talent Loss in Q...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-d0f9507613.html">2026 China Tech Outlook: 3 Changes and Investment Directions</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-12718b3ba9.html">China's Economic Recovery: Navigating Results and Schedules Amidst ...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-ea96be9e75.html">The Future of Relationships in China: 2 Key Scenarios for 2027</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-2d31a9042c.html">China's Tech Giant Layoffs: A Deep Dive into the Underlying Causes ...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-7faefb4f59.html">The BBC's Multilingual Triumph: A Global Media Powerhouse</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-3cd3d83f73.html">The Sports Revolution: What China's Growing Passion Means for Globa...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-82afcea0b4.html">10K GitHub Repositories Distributing Trojan Malware: A Deep Dive</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-19</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-d04ccf61ae.html">The Digital Renaissance of Newsletters: 3 Predictions for China's M...</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-19</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-cdd927c9ea.html">The Future of Esports in China: 2 Key Scenarios by 2027</a></li>
-<li><span class="thumb" style="background:#ef5350">🏥</span><span class="date">2026-06-19</span><span class="cat">[Healthcare and MedTech]</span><a href="/en/articles/article-107d8f9943.html">2026 China Outlook: Drug Repurposing Revolution in Hospitals & Univ...</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-19</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-f680f2d1d4.html">The Token Compression Illusion: Why I'm Skeptical of RTK</a></li>
-<li><span class="thumb" style="background:#4fc3f7">💰</span><span class="date">2026-06-17</span><span class="cat">[Finance and Banking]</span><a href="/en/articles/article-ai-fraud-detection.html">AI Fraud Detection in Banking: How Machine Learning Stopped $12B in Losses</a></li>
-<li><span class="thumb" style="background:#4fc3f7">💰</span><span class="date">2026-06-17</span><span class="cat">[Finance and Banking]</span><a href="/en/articles/article-algo-trading.html">Algorithmic Trading in 2026: AI Strategies That Outperform the Market</a></li>
-<li><span class="thumb" style="background:#ef5350">🏥</span><span class="date">2026-06-17</span><span class="cat">[Healthcare and MedTech]</span><a href="/en/articles/article-medical-imaging.html">AI Medical Imaging: Deep Learning Models That Match Radiologist Accuracy</a></li>
-<li><span class="thumb" style="background:#ef5350">🏥</span><span class="date">2026-06-17</span><span class="cat">[Healthcare and MedTech]</span><a href="/en/articles/article-drug-discovery.html">Drug Discovery Accelerated: How AI Cut Development Time from Years to Months</a></li>
-<li><span class="thumb" style="background:#ce93d8">⚖️</span><span class="date">2026-06-17</span><span class="cat">[Legal Services]</span><a href="/en/articles/article-contract-review.html">Contract Review Automation: NLP Models That Read Legal Documents Faster Than Humans</a></li>
-<li><span class="thumb" style="background:#81c784">🎓</span><span class="date">2026-06-17</span><span class="cat">[Education and EdTech]</span><a href="/en/articles/article-adaptive-learning.html">Personalized Learning at Scale: Adaptive AI Tutoring Systems in Education</a></li>
-<li><span class="thumb" style="background:#81c784">🎓</span><span class="date">2026-06-17</span><span class="cat">[Education and EdTech]</span><a href="/en/articles/article-auto-grading.html">Automated Assessment: How AI Grading Systems Are Transforming Classrooms</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-17</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-predictive-maint.html">Predictive Maintenance: IoT and AI That Prevent Equipment Failures Before They Happen</a></li>
-<li><span class="thumb" style="background:#ffb74d">🏭</span><span class="date">2026-06-17</span><span class="cat">[Manufacturing]</span><a href="/en/articles/article-quality-vision.html">Computer Vision Quality Control: Automated Defect Detection on Production Lines</a></li>
-<li><span class="thumb" style="background:#4dd0e1">🛒</span><span class="date">2026-06-17</span><span class="cat">[Retail and E-commerce]</span><a href="/en/articles/article-rec-engines.html">Recommendation Engines Exposed: The AI Behind Amazon's Product Suggestions</a></li>
-<li><span class="thumb" style="background:#4dd0e1">🛒</span><span class="date">2026-06-17</span><span class="cat">[Retail and E-commerce]</span><a href="/en/articles/article-dynamic-pricing.html">Dynamic Pricing AI: How Retailers Use Algorithms to Maximize Revenue</a></li>
-<li><span class="thumb" style="background:#a5d6a7">👥</span><span class="date">2026-06-17</span><span class="cat">[Human Resources]</span><a href="/en/articles/article-resume-screening.html">AI Resume Screening: How Companies Filter Thousands of Applications in Seconds</a></li>
-<li><span class="thumb" style="background:#a5d6a7">👥</span><span class="date">2026-06-17</span><span class="cat">[Human Resources]</span><a href="/en/articles/article-people-analytics.html">People Analytics: Using AI to Predict Employee Turnover and Improve Retention</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-17</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-content-gen.html">AI Content Generation: How Publishers Are Automating News and Marketing Copy</a></li>
-<li><span class="thumb" style="background:#ff8a65">🎬</span><span class="date">2026-06-17</span><span class="cat">[Media and Content]</span><a href="/en/articles/article-deepfake-detect.html">Deepfake Detection in Journalism: Tools That Identify Synthetic Media</a></li></ul>
-<div class="ad-slot"></div>
-<div class="footer">
-<p>© 2025-2026 GuDu Finance</p>
-<p><a href="/en/">Home</a><a href="/en/articles/finance.html">Finance</a><a href="/en/articles/tech.html">Tech</a><a href="/en/articles/ai.html">AI</a><a href="/treasure.html">Treasure</a></p>
-</div>
+</footer>
 </body>
 </html>
