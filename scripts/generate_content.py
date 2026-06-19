@@ -1576,7 +1576,7 @@ def _related_block(related_articles, lang="zh"):
         html = '<div class="related"><h3>📖 Related Articles</h3><ul>'
     for a in related_articles:
         prefix = "/articles/" if lang == "zh" else "/en/articles/"
-        html += f'<li><a href="{prefix}{a["filename"]}">{a["title"]}</a><span class="date">{a.get("date","")}</span></li>'
+        html += f'<li><a href="{prefix}{a.get("filename", a.get("file", ""))}">{a["title"]}</a><span class="date">{a.get("date","")}</span></li>'
     html += "</ul></div>"
     return html
 
@@ -1867,7 +1867,7 @@ def generate_category_page_zh(category):
             thumb = f'<span class="card-thumb" style="background:{cat_color};padding:0;overflow:hidden"><img src="{cover}" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy"/></span>'
         else:
             thumb = f'<span class="card-thumb" style="background:{cat_color}">{cat_icon}</span>'
-        return f'<article class="card">{thumb}<div class="card-content"><a href="/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>'
+        return f'<article class="card">{thumb}<div class="card-content"><a href="/articles/{a.get("filename", a.get("file", ""))}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>'
     card_items = "\n".join(_zh_card_html(a) for a in articles) or '<div style="color:#999;text-align:center;padding:40px">暂无文章...</div>'
     cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>免责声明:</strong>本频道内容仅供学习参考,不构成任何投资建议。市场有风险,投资需谨慎。</div>' if category == "finance" else ""
 
@@ -1937,7 +1937,7 @@ def generate_category_page_en(category):
             thumb = f'<span class="card-thumb" style="background:{cat_color};padding:0;overflow:hidden"><img src="{cover}" alt="" style="width:100%;height:100%;object-fit:cover" loading="lazy"/></span>'
         else:
             thumb = f'<span class="card-thumb" style="background:{cat_color}">{cat_icon}</span>'
-        return f'<article class="card">{thumb}<div class="card-content"><a href="/en/articles/{a["filename"]}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>'
+        return f'<article class="card">{thumb}<div class="card-content"><a href="/en/articles/{a.get("filename", a.get("file", ""))}" class="card-title">{a["title"]}</a><div class="card-meta"><span>{a.get("date","")}</span></div></div></article>'
     card_items = "\n".join(_en_card_html(a) for a in articles) or '<div style="color:#999;text-align:center;padding:40px">No articles yet...</div>'
     cat_disclaimer = '<div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:14px 18px;margin:25px 0;font-size:.85em;color:#8d6e63;text-align:center">&#9888; <strong>Disclaimer:</strong> Content is for informational purposes only and does not constitute investment advice. Invest at your own risk.</div>' if category == "finance" else ""
 
@@ -2024,7 +2024,7 @@ def rebuild_index_zh():
         top5 = cat_articles[:5]
         cat_info = CATEGORIES.get(cat_key, CATEGORIES["hot"])
         items_html = "\n".join(
-            f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+            f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><a href="/articles/{a.get("filename", a.get("file", ""))}">{a["title"]}</a></li>'
             for a in top5
         )
         more_link = f'<a href="/articles/{cat_key}.html" class="cat-more">更多 {cat_info["name"]} &rarr;</a>'
@@ -2041,7 +2041,7 @@ def rebuild_index_zh():
     # Full timeline - latest 100
     timeline = articles[:100]
     list_items = "\n".join(
-        f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a["filename"]}">{a["title"]}</a></li>'
+        f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","hot"),THUMB_COLORS["hot"])}">{CATEGORIES.get(a["category"],CATEGORIES["hot"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{CATEGORIES.get(a["category"],CATEGORIES["hot"])["name"]}]</span><a href="/articles/{a.get("filename", a.get("file", ""))}">{a["title"]}</a></li>'
         for a in timeline
     )
     # 核心分类 + 更多(旧分类防死链)
@@ -2153,7 +2153,7 @@ def rebuild_index_en():
         print("  英文首页:暂无文章")
         return
     articles = sorted(manifest, key=lambda x: x.get("timestamp", x.get("date", "") + " 00:00:00"), reverse=True)[:100]
-    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","manufacturing"),THUMB_COLORS["manufacturing"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["manufacturing"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["manufacturing"])["name"]}]</span><a href="/en/articles/{a["filename"]}">{a["title"]}</a></li>' for a in articles)
+    list_items = "\n".join(f'<li><span class="thumb" style="background:{THUMB_COLORS.get(a.get("category","manufacturing"),THUMB_COLORS["manufacturing"])}">{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["manufacturing"])["icon"]}</span><span class="date">{a.get("date","")}</span><span class="cat">[{EN_CATEGORIES.get(a["category"],EN_CATEGORIES["manufacturing"])["name"]}]</span><a href="/en/articles/{a.get("filename", a.get("file", ""))}">{a["title"]}</a></li>' for a in articles)
     core_cats_en = {k: v for k, v in EN_CATEGORIES.items() if k in ("finance", "manufacturing", "healthcare", "media", "hr", "retail", "education", "legal")}
     archive_cats_en = {}  # all 8 categories are core now
     cat_links = "\n".join(f'<a href="/en/articles/{k}.html" class="cat-link">{v["icon"]} {v["name"]}</a>' for k, v in core_cats_en.items())
@@ -2253,10 +2253,10 @@ def rebuild_sitemap():
 
     # 中文文章
     for a in load_manifest("zh"):
-        urls.append(f"<url><loc>{SITE_URL}/articles/{a['filename']}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>")
+        urls.append(f"<url><loc>{SITE_URL}/articles/{a.get('filename', a.get('file', ''))}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>")
     # 英文文章
     for a in load_manifest("en"):
-        urls.append(f"<url><loc>{SITE_URL}/en/articles/{a['filename']}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>")
+        urls.append(f"<url><loc>{SITE_URL}/en/articles/{a.get('filename', a.get('file', ''))}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>")
 
     xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -2296,7 +2296,7 @@ def clean_old_articles(days=15):
                 ]):
                 should_remove = True
             if should_remove:
-                file_path = OUTPUT_DIR / item['filename']
+                file_path = OUTPUT_DIR / item.get('filename', item.get('file', ''))
                 if file_path.exists():
                     file_path.unlink()
                 removed_zh += 1
@@ -2324,7 +2324,7 @@ def clean_old_articles(days=15):
                 ]):
                 should_remove = True
             if should_remove:
-                file_path = EN_OUTPUT_DIR / item['filename']
+                file_path = EN_OUTPUT_DIR / item.get('filename', item.get('file', ''))
                 if file_path.exists():
                     file_path.unlink()
                 removed_en += 1
