@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 512" width="1600" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c63ff"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#a099ff"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Logo mark: 256x256 centered vertically at x=128 -->
+  <g transform="translate(128, 128)">
+    <!-- 8 vertical lines -->
+    <g stroke="url(#grad)" stroke-width="10" stroke-linecap="round" opacity="0.9">
+      <line x1="128" y1="128" x2="128" y2="0"/>
+      <line x1="128" y1="128" x2="218" y2="38"/>
+      <line x1="128" y1="128" x2="256" y2="128"/>
+      <line x1="128" y1="128" x2="218" y2="218"/>
+      <line x1="128" y1="128" x2="128" y2="256"/>
+      <line x1="128" y1="128" x2="38" y2="218"/>
+      <line x1="128" y1="128" x2="0" y2="128"/>
+      <line x1="128" y1="128" x2="38" y2="38"/>
+    </g>
+    <!-- outer ring nodes -->
+    <g fill="#0a0a0f" stroke="url(#grad)" stroke-width="6">
+      <circle cx="128" cy="0" r="16"/>
+      <circle cx="218" cy="38" r="16"/>
+      <circle cx="256" cy="128" r="16"/>
+      <circle cx="218" cy="218" r="16"/>
+      <circle cx="128" cy="256" r="16"/>
+      <circle cx="38" cy="218" r="16"/>
+      <circle cx="0" cy="128" r="16"/>
+      <circle cx="38" cy="38" r="16"/>
+    </g>
+    <!-- inner nodes -->
+    <g fill="url(#grad)">
+      <circle cx="128" cy="0" r="7"/>
+      <circle cx="218" cy="38" r="7"/>
+      <circle cx="256" cy="128" r="7"/>
+      <circle cx="218" cy="218" r="7"/>
+      <circle cx="128" cy="256" r="7"/>
+      <circle cx="38" cy="218" r="7"/>
+      <circle cx="0" cy="128" r="7"/>
+      <circle cx="38" cy="38" r="7"/>
+    </g>
+    <!-- central AI core -->
+    <polygon points="128,70 168,93 168,143 128,166 88,143 88,93" fill="url(#coreGrad)" opacity="0.95"/>
+    <circle cx="128" cy="118" r="20" fill="#0a0a0f"/>
+    <circle cx="128" cy="118" r="11" fill="url(#grad)"/>
+  </g>
+  
+  <!-- Wordmark: AI VERTICALS -->
+  <text x="440" y="236" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="132" font-weight="800" fill="#e8e8f0">AI</text>
+  <text x="440" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="132" font-weight="800" fill="url(#grad)">VERTICALS</text>
+  
+  <!-- Tagline -->
+  <text x="440" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="500" fill="#8888a0">AI Applications Across Industries</text>
+</svg>
