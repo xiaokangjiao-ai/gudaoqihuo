@@ -1,32 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://gudaoqihuo.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-<url><loc>https://gudaoqihuo.com/en/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-<url><loc>https://gudaoqihuo.com/articles/finance.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/articles/tech.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/articles/hot.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/articles/health.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/articles/life.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/articles/entertainment.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/finance.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/healthcare.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/legal.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/education.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/manufacturing.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/retail.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/hr.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/media.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-ai-fraud-detection.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-algo-trading.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-medical-imaging.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-drug-discovery.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-contract-review.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-adaptive-learning.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-predictive-maint.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-quality-vision.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-rec-engines.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-resume-screening.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-people-analytics.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-content-gen.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-deepfake-detect.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url>
+    <loc>https://gudaoqihuo.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Category pages -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/finance.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/healthcare.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/legal.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/education.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/manufacturing.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/retail.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/hr.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/media.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Static pages -->
+  <url>
+    <loc>https://gudaoqihuo.com/about-en.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/privacy-policy-en.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/terms-en.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <!-- Articles: Finance -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-fraud-detection.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-algo-trading.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: Healthcare -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-medical-imaging.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-drug-discovery.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: Legal -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-contract-review.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: Education -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-adaptive-learning.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: Manufacturing -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-predictive-maint.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-quality-vision.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: Retail -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-rec-engines.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-content-personalization.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: HR -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-resume-screening.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-people-analytics.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Articles: Media -->
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-content-gen.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-deepfake-detect.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-deepfake-news-integrity.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
