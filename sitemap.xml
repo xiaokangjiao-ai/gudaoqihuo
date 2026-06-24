@@ -53,17 +53,22 @@
   </url>
   <!-- Static pages -->
   <url>
-    <loc>https://gudaoqihuo.com/about-en.html</loc>
+    <loc>https://gudaoqihuo.com/en/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://gudaoqihuo.com/privacy-policy-en.html</loc>
+    <loc>https://gudaoqihuo.com/en/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://gudaoqihuo.com/terms-en.html</loc>
+    <loc>https://gudaoqihuo.com/en/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

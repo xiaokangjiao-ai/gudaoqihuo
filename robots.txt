@@ -1,14 +1,28 @@
-# 允许所有搜索引擎爬虫访问
-User-agent: *
-Disallow:
+# robots.txt for gudaoqihuo.com
+# Generated for Google AdSense compliance
 
-# 站点地图位置
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
 Sitemap: https://gudaoqihuo.com/sitemap.xml
 
-# 针对百度爬虫的优化
+# Google AdSense bot
+User-agent: Mediapartners-Google
+Allow: /
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Baidu Spider
 User-agent: Baiduspider
 Allow: /
 
-# 针对谷歌爬虫的优化
-User-agent: Googlebot
-Allow: /
+# Disable aggressive crawling
+Crawl-delay: 1
