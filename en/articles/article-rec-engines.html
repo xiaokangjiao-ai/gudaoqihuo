@@ -32,9 +32,13 @@
 
 <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=320&fit=crop" alt="E-commerce platform and recommendation UI" class="article-hero-img" loading="lazy">
 <h2 id="intro">35% of Amazon's Revenue — Powered by Recommendations</h2>
+
+<img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=420&fit=crop" alt="Recommendation engine technology" style="width:100%;border-radius:12px;margin:24px 0;max-height:420px;object-fit:cover" loading="lazy">
 <p>McKinsey's landmark 2021 study revealed a striking fact: up to 35% of what consumers purchase on Amazon comes from product recommendations — not search, not browsing, but algorithmic suggestions. Netflix estimates their recommendation engine saves them $1 bilion annually in retained subscribers who would otherwise churn. Spotify's Discover Weekly playlist, powered by collaborative filtering and audio analysis, drives 40% of all streams on the platform and is cited by 60% of users as their primary music discovery mechanism. YouTube's recommendation algorithm is responsible for 70% of the time users spend watching videos. Yet most people don't understand how these systems actualy work, what trade-offs they make, or how they're evolving. This article demystifies the technology behind the suggestions that shape what we watch, listen to, buy, and read.</p>
 
 <h2 id="how-recsys-works">How Recommendation Engines Work Under the Hood</h2>
+
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=420&fit=crop" alt="Personalized content platform" style="width:100%;border-radius:12px;margin:24px 0;max-height:420px;object-fit:cover" loading="lazy">
 <h3 id="collaborative-filtering">Collaborative Filtering: "People Like You Also Liked"</h3>
 <p>The oldest and stil widely used approach is collaborative filtering. The core insight: if User A and User B have similar purchase/view histories, then items liked by User B but not yet seen by User A are strong recommendations. User-based collaborative filtering finds similar users; item-based collaborative filtering finds similar items. Strengths: interpretable ("because you watched..."), no feature engineering required. Weaknesses: cold start problem (new users have no history), popularity bias (tends to recommend already-popular items), and sparsity (most users have interacted with <1% of the item catalog). Matrix factorization (SVD, ALS) became the dominant technique from 2006-2015, embedding users and items in a shared latent space.</p>
 
@@ -71,6 +75,15 @@
 <tr><td>Spotify</td><td>$4.2B Discover Weekly</td><td>48% save rate</td><td>11% premium conversion</td><td>26 min/day</td></tr>
 <tr><td>TikTok</td><td>$12B ad revenue</td><td>92% watch-through</td><td>6.8% follow</td><td>89 min/day</td></tr>
 </table>
+<table class="dark-table" style="width:100%;border-collapse:collapse;margin:28px 0;background:#1a1a25;border-radius:12px;overflow:hidden">
+<tr><th>Platform</th><th>Recommendation Revenue</th><th>CTR</th><th>Conversion Rate</th><th>Avg User Session</th></tr>
+<tr><td>Amazon</td><td>$38B (35% of revenue)</td><td>34% click-through</td><td>8.2% add-to-cart</td><td>18 minutes</td></tr>
+<tr><td>Netflix</td><td>$15B watch time value</td><td>93% relevance</td><td>N/A (streaming)</td><td>2.3 hours/day</td></tr>
+<tr><td>YouTube</td><td>$22B ad revenue</td><td>76% watch time</td><td>4.1% click ad</td><td>48 min/day</td></tr>
+<tr><td>Spotify</td><td>$4.2B Discover Weekly</td><td>48% save rate</td><td>11% premium conv</td><td>26 min/day</td></tr>
+<tr><td>TikTok</td><td>$12B ad revenue</td><td>92% watch-through</td><td>6.8% follow</td><td>89 min/day</td></tr>
+</table>
+
 <div class="related-articles" style="margin-top:32px;padding:24px;background:rgba(240,98,146,.05);border-radius:14px;border:1px solid rgba(240,98,146,.12)"><h3 style="color:#e8e8f0;margin-bottom:16px;font-size:1.1rem">Related Reading</h3><ul style="list-style:none;padding:0"><li style="margin-bottom:10px"><a href="/en/articles/article-content-personalization.html" style="color:#f06292;text-decoration:none">→ AI Content Personalization: Tailoring Experiences for Every User</a></li></ul></div>
     <div class="amazon-section">
 <h3>🛒 Recommended Resources for Recommendation Systems</h3>
@@ -95,4 +108,5 @@
 </footer>
 </body>
 </html>
+
 
