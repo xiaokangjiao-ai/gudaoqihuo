@@ -405,7 +405,11 @@
             .article-meta { gap: 12px; }
             .table-wrapper { font-size: 0.85rem; }
         }
-    </style>
+    
+.dark-table{background:var(--surface2)}
+.dark-table th{background:rgba(255,101,132,.2);color:var(--accent2)}
+.dark-table td{border-bottom:1px solid rgba(255,255,255,.05)}
+</style>
 </head>
 <body>
 
@@ -488,7 +492,7 @@
             <p>The 7.4-second statistic is particularly chilling. Even when a human does review a resume, the window of attention is so narrow that the decision is often made on pattern recognition rather than substantive evaluation. When you combine machine speed with human speed limitations, you're looking at a system that is fundamentally not designed to find the best candidate—it's designed to filter efficiently.</p>
 
             <div class="table-wrapper">
-                <table>
+                <table class="dark-table">
                     <thead>
                         <tr>
                             <th>AI Screening Platform</th>
@@ -563,7 +567,7 @@
             <p>A 2024 study by the National Bureau of Economic Research (NBER) found that resumes with non-standard formatting were 34% more likely to be flagged for manual review at best-performing ATS systems, and 67% more likely to be auto-rejected at average-performing systems. Among candidates who described themselves as "career changers," the auto-rejection rate was 41% higher than for candidates with conventional linear career trajectories—even when the actual job-relevant competencies were equivalent or superior.</p>
 
             <div class="table-wrapper">
-                <table>
+                <table class="dark-table">
                     <thead>
                         <tr>
                             <th>Candidate Profile Type</th>
