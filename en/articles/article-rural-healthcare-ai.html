@@ -44,6 +44,10 @@ p { color: var(--text); margin-bottom: 20px; }
 .site-footer .inner { max-width: 860px; margin: 0 auto; padding: 0 24px; font-family: Arial, sans-serif; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
 .site-footer a { color: var(--muted); text-decoration: none; }
 .site-footer a:hover { color: var(--text); }
+
+.dark-table{background:var(--surface2)}
+.dark-table th{background:rgba(255,101,132,.2);color:var(--accent2)}
+.dark-table td{border-bottom:1px solid rgba(255,255,255,.05)}
 </style>
 </head>
 <body>
@@ -95,7 +99,7 @@ p { color: var(--text); margin-bottom: 20px; }
 
 
 <div class="datatable-wrap">
-<table class="datatable">
+<table class="dark-table datatable">
 <caption>Table 1 &middot; AI Diagnostic Platform Performance in Rural Settings (2022&ndash;2025)</caption>
 <thead>
 <tr><th>Company / Platform</th><th>Sensitivity</th><th>Specificity</th><th>Rural Sites</th><th>Avg. Diagnoses / Month</th><th>False Negative Rate</th><th>Funding Raised</th></tr>
@@ -112,7 +116,7 @@ p { color: var(--text); margin-bottom: 20px; }
 </div>
 
 <div class="datatable-wrap">
-<table class="datatable">
+<table class="dark-table datatable">
 <caption>Table 2 &middot; $4.1B AI Healthcare Investment Gap: Rural vs. Urban Allocation (2020&ndash;2025)</caption>
 <thead>
 <tr><th>Year</th><th>Total AI Health Investment</th><th>Rural Share</th><th>Rural AI Spending</th><th>Urban AI Spending</th><th>Rural Patient Coverage</th><th>Rural AI Spend per Capita</th></tr>
