@@ -389,7 +389,11 @@
             nav .nav-links { display: none; }
             .cover-image img { height: 280px; }
         }
-    </style>
+    
+.dark-table{background:var(--surface2)}
+.dark-table th{background:rgba(255,101,132,.2);color:var(--accent2)}
+.dark-table td{border-bottom:1px solid rgba(255,255,255,.05)}
+</style>
 </head>
 <body>
 
@@ -494,7 +498,7 @@
 
         <div class="table-wrapper">
             <div class="table-title">Table 1: AI Credit Models vs. Traditional FICO — Key Performance Metrics (2023–2025)</div>
-            <table>
+            <table class="dark-table">
                 <thead>
                     <tr>
                         <th>Metric</th>
@@ -679,7 +683,7 @@
 
         <div class="table-wrapper">
             <div class="table-title">Table 2: BNPL AI Underwriting vs. Traditional Credit Card Issuers — 2024 Performance Comparison</div>
-            <table>
+            <table class="dark-table">
                 <thead>
                     <tr>
                         <th>Company</th>
