@@ -272,7 +272,11 @@
             .pullquote p { font-size: 1.15rem; }
             .case-stats { grid-template-columns: 1fr 1fr; }
         }
-    </style>
+    
+.dark-table{background:var(--surface2)}
+.dark-table th{background:rgba(255,101,132,.2);color:var(--accent2)}
+.dark-table td{border-bottom:1px solid rgba(255,255,255,.05)}
+</style>
 </head>
 <body>
 
@@ -356,7 +360,7 @@
                     <span class="table-caption-icon">Table 1</span>
                     AI Tool Deployment Across U.S. Court Systems, 2024-2026
                 </div>
-                <table>
+                <table class="dark-table">
                     <thead>
                         <tr>
                             <th>System / Jurisdiction</th>
@@ -565,7 +569,7 @@
                     <span class="table-caption-icon">Table 2</span>
                     Performance and Bias Metrics: Major Criminal Justice Risk Assessment Tools
                 </div>
-                <table>
+                <table class="dark-table">
                     <thead>
                         <tr>
                             <th>Tool Name</th>
