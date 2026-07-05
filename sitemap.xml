@@ -91,6 +91,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-bias-in-justice-system.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-brand-safety.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -206,6 +211,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-generative-design.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-insurtech-underwriting.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -222,6 +232,31 @@
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-legal-billing.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-market-manipulation-detection.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-mental-health-diagnostics.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-neuroadaptive-learning.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-omnichannel-orchestration.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-organizational-network-analysis.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -257,6 +292,11 @@
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-surgical-assist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-synthetic-voice-detection.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
