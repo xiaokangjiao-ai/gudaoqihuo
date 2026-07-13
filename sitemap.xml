@@ -221,6 +221,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-journalism-automation.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-language-learning.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -261,12 +266,27 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-patent-analysis.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-patient-readmission.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-performance-management.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-radiology-diagnostics.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-returns-prevention.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -346,7 +366,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ambient-clinical-intelligence.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-automated-essay-grading.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-behavioral-finance-ai.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -412,6 +442,11 @@
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-contract-risk-clause.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-corporate-training-ai.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -507,6 +542,11 @@
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-hr-ai-deep-dive.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-industrial-ai-safety.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -770,12 +810,4 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-behavioral-finance-ai.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-ambient-clinical-intelligence.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-ai-patent-analysis.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-corporate-training-ai.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-industrial-ai-safety.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-ai-returns-prevention.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-ai-performance-management.html</loc></url>
-<url><loc>https://gudaoqihuo.com/en/articles/article-ai-journalism-automation.html</loc></url>
 </urlset>
