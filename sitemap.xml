@@ -86,6 +86,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-adult-reskilling.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-aml-kyc.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -216,6 +221,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-insurance-underwriting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-insurtech-underwriting.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -281,7 +291,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-privacy-compliance.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-ai-radiology-diagnostics.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-ai-remote-patient-monitoring.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -471,12 +491,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-deepfake-media-detect.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://gudaoqihuo.com/en/articles/article-deepfake-news-integrity.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-digital-twin-production.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-digital-twin-quality.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -502,6 +532,11 @@
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-education-ai-deep-dive.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-employee-attrition-ai.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -692,6 +727,11 @@
   </url>
   <url>
     <loc>https://gudaoqihuo.com/en/articles/article-retail-ai-deep-dive.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gudaoqihuo.com/en/articles/article-retail-content-gen.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
