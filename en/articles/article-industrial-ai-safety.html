@@ -12,6 +12,13 @@ img{max-width:100%;height:auto;border-radius:8px;margin:1.5rem 0;display:block;}
 .meta{color:var(--muted);font-size:0.85rem;margin-bottom:2rem;}
 .summary{background:#111827;border:1px solid #1f2937;border-radius:8px;padding:1.5rem;margin-top:2rem;}
 .summary h3{margin-top:0;}
+
+.darktable{width:100%;border-collapse:collapse;margin:30px 0;background:#0a0a0a;border:1px solid #2a3545;border-radius:12px;overflow:hidden;font-size:15px}
+.darktable caption{caption-side:top;text-align:left;color:#9aa3b2;font-size:13px;padding:0 0 10px;letter-spacing:.04em}
+.darktable th{background:#11202e;color:#bfe0ff;text-align:left;padding:13px 14px;font-weight:700;border-bottom:2px solid #1d3346}
+.darktable td{padding:12px 14px;border-bottom:1px solid #1a242f;color:#cfd6e2}
+.darktable tr:last-child td{border-bottom:none}
+.darktable tr:hover td{background:#101722}
 </style></head><body><span class="tag">Manufacturing</span><h1>The Real Reason Industrial AI Safety Systems Keep Failing Workers</h1><p class="meta">Published in Manufacturing | AI Verticals Editorial</p><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80" alt="Article image" loading="lazy">
 <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&q=80" alt="Article image" loading="lazy">
 <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80" alt="Article image" loading="lazy">
@@ -28,8 +35,7 @@ img{max-width:100%;height:auto;border-radius:8px;margin:1.5rem 0;display:block;}
 <p>In practical terms, a facility relying on AWS Panorama PPE monitoring should expect the system to miss approximately 29% of non-compliance events. At a facility with 500 workers and a 95% baseline compliance rate, this implies an average of 7 to 8 unsafe conditions going undetected per day. Over a year, that is approximately 2,000 missed non-compliance events. The system still provides value compared to no monitoring, but the false negative rate creates a false sense of safety coverage that is itself a hazard, because it changes worker and supervisor behavior in ways that may increase risk in unmonitored contexts.</p>
 
 <h2>Industrial Safety AI Accuracy Comparison</h2>
-<table>
-<thead>
+<table class="darktable"><thead>
 <tr><th>System</th><th>False Positive</th><th>False Negative</th><th>Response Time</th><th>Facilities</th><th>Annual Cost</th></tr>
 </thead>
 <tbody>
