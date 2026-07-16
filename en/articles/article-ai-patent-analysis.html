@@ -12,6 +12,13 @@ img{max-width:100%;height:auto;border-radius:8px;margin:1.5rem 0;display:block;}
 .meta{color:var(--muted);font-size:0.85rem;margin-bottom:2rem;}
 .summary{background:#111827;border:1px solid #1f2937;border-radius:8px;padding:1.5rem;margin-top:2rem;}
 .summary h3{margin-top:0;}
+
+.darktable{width:100%;border-collapse:collapse;margin:30px 0;background:#0a0a0a;border:1px solid #2a3545;border-radius:12px;overflow:hidden;font-size:15px}
+.darktable caption{caption-side:top;text-align:left;color:#9aa3b2;font-size:13px;padding:0 0 10px;letter-spacing:.04em}
+.darktable th{background:#11202e;color:#bfe0ff;text-align:left;padding:13px 14px;font-weight:700;border-bottom:2px solid #1d3346}
+.darktable td{padding:12px 14px;border-bottom:1px solid #1a242f;color:#cfd6e2}
+.darktable tr:last-child td{border-bottom:none}
+.darktable tr:hover td{background:#101722}
 </style></head><body><span class="tag">Legal</span><h1>Why AI Patent Analysis Is Breaking the Innovation System It Was Built to Protect</h1><p class="meta">Published in Legal | AI Verticals Editorial</p><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80" alt="Article image" loading="lazy">
 <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80" alt="Article image" loading="lazy">
 <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80" alt="Article image" loading="lazy">
@@ -28,8 +35,7 @@ img{max-width:100%;height:auto;border-radius:8px;margin:1.5rem 0;display:block;}
 <p>The problem is semantic generalization. ClaimMaster NLP model, trained on patent language, identifies documents with similar vocabulary and technical terminology. But patents are written in highly specific technical language that varies significantly between fields, companies, and individual attorneys. A search for prior art in semiconductor manufacturing might legitimately return documents from adjacent fields whose technical descriptions contain relevant prior art without sharing the expected vocabulary. Human examiners know to look laterally across fields. AI systems look where the language matches, and miss the lateral connections that often constitute the most relevant prior art.</p>
 
 <h2>AI Patent Tool Performance Comparison</h2>
-<table>
-<thead>
+<table class="darktable"><thead>
 <tr><th>Tool</th><th>Vendor</th><th>Precision</th><th>Recall</th><th>Avg Search Time</th><th>Exam Coverage</th></tr>
 </thead>
 <tbody>
