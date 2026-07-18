@@ -1,0 +1,75 @@
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Money That Reads the Docket: How AI Turned Litigation Finance From Gut Bet to Priced Risk</title><style>
+:root{--bg:#0b0e14;--card:#121722;--ink:#e8edf4;--mut:#93a1b5;--acc:#3ddc97;--acc2:#ff6b6b;--line:#1f2733;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.75;font-size:18px;}
+.wrap{max-width:880px;margin:0 auto;padding:48px 22px 90px;}
+.kicker{color:var(--acc);letter-spacing:.18em;text-transform:uppercase;font-size:13px;font-weight:700;}
+h1{font-size:40px;line-height:1.18;margin:14px 0 18px;font-weight:800;letter-spacing:-.01em;}
+h2{font-size:27px;margin:46px 0 14px;font-weight:750;color:#fff;}
+h3{font-size:21px;margin:30px 0 10px;color:var(--acc);}
+p{margin:16px 0;color:#d4dce6;}
+.lead{font-size:21px;color:#eaf1f8;font-weight:400;}
+img{width:100%;border-radius:14px;margin:28px 0;display:block;}
+.cap{color:var(--mut);font-size:14px;margin:-14px 0 22px;text-align:center;}
+blockquote{border-left:4px solid var(--acc);padding:6px 0 6px 22px;margin:26px 0;color:#cfe;font-style:italic;background:#0f1420;padding:18px 22px;border-radius:0 10px 10px 0;}
+table{width:100%;border-collapse:collapse;margin:30px 0;background:var(--card);border-radius:12px;overflow:hidden;font-size:15.5px;}
+th{background:#070a10;color:#7be3b0;text-align:left;padding:13px 15px;font-weight:700;border-bottom:1px solid #202b39;}
+td{padding:12px 15px;border-bottom:1px solid #1a2230;color:#cdd7e2;}
+tr:last-child td{border-bottom:none;}
+.darktbl{background:#06090f;}
+.darktbl th{background:#020407;color:#ff9c9c;}
+.darktbl td{border-bottom:1px solid #1c1416;color:#e8d6d6;}
+.stat{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0;}
+.stat div{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;}
+.stat b{display:block;font-size:30px;color:var(--acc);}
+.stat span{color:var(--mut);font-size:14px;}
+footer{margin-top:60px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:14px;}
+.tag{display:inline-block;background:#0f1622;border:1px solid var(--line);color:var(--mut);border-radius:30px;padding:5px 13px;font-size:13px;margin:0 6px 6px 0;}
+</style></head><body><div class="wrap">
+<span class="kicker">Legal · Capital Report</span>
+<h1>Money That Reads the Docket: How AI Turned Litigation Finance From Gut Bet to Priced Risk</h1>
+<p class="lead">Litigation finance used to be a dinner-party conversation between a plaintiff-side lawyer and a hedge fund manager who trusted him. The fund wrote a check; the case either paid tenfold or vanished. For two decades that was the entire analytical apparatus. What is changing now is not the money &mdash; there has always been plenty &mdash; but the model that prices the risk. AI is reading dockets, outcomes, and judge histories at a scale no partner ever could, and the result is a market that is quietly professionalizing into something that looks less like gambling and more like underwriting.</p>
+
+<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80" alt="A law library &mdash; the raw material of litigation finance is now being read at machine scale."><p class="cap">A law library &mdash; the raw material of litigation finance is now being read at machine scale.</p>
+
+<p>The thesis behind litigation finance is simple and old: a meritorious case is an asset, and assets can be funded. A claimant with a strong but expensive case &mdash; a patent infringement suit, a mass-tort action, a commercial dispute &mdash; lacks the capital to litigate against a defendant who can outspend them into surrender. A funder fronts the legal fees in exchange for a share of the recovery. If the case loses, the funder eats the loss. If it wins, the return can be spectacular. The trouble was always the same: predicting the win.</p>
+
+<h2>The incumbents and how big this actually is</h2>
+<p>The market's gravity sits with a handful of names. <strong>Burford Capital</strong>, founded in 2009 and listed on the London Stock Exchange, reports assets under management north of 15 billion dollars and has funded some of the largest commercial cases in the world, including the landmark 2018 travel-retail dispute that returned roughly 1.25 billion dollars to shareholders. <strong>Omni Bridgeway</strong>, born from the 2020 merger that created one of the largest dedicated funders, holds around 2.8 billion dollars in assets and a 30-year case history it now mines for pattern. <strong>Fortress Investment Group</strong> and <strong>Woodford</strong>-era vehicles rounded out an era when capital was abundant and diligence was a phone call.</p>
+
+<p>That phone-call diligence is the part AI is replacing. The historical returns looked enviable &mdash; Burford has cited target net IRRs in the low-to-mid 20 percent range &mdash; but those figures rest on a tiny number of home-run cases subsidizing many quiet losses. Without better selection, a funder is buying a lottery with attractive marketing. The firms now pulling ahead are the ones that turned case selection into a data problem.</p>
+
+<img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1200&q=80" alt="Contract and case documents &mdash; the unstructured text AI now screens for funder risk."><p class="cap">Contract and case documents &mdash; the unstructured text AI now screens for funder risk.</p>
+
+<h2>The startups that made it a model</h2>
+<p><strong>Legalist</strong>, a San Francisco funder, was among the first to say the quiet part out loud: it uses machine learning to screen cases at volume, claiming to have evaluated more than 10,000 matters and funded a small fraction. Its edge is not legal genius but throughput &mdash; reading filings, opposing-counsel histories, and jurisdictional win-rates faster than any associate. <strong>Darrow</strong> &mdash; rebranded toward legal intelligence &mdash; built AI that scans public data, filings, and news to surface undetected legal violations and route them to law firms and funders, effectively manufacturing deal flow that used to depend on relationship and luck. <strong>Even responsible incumbents</strong> now run outcome models on their historical books: which judge, which circuit, which expert-witness pattern correlates with a win.</p>
+
+<table class="darktbl"><thead><tr><th>Funder</th><th>Approx. AUM</th><th>AI / data capability</th><th>Typical ticket</th><th>Stated return profile</th></tr></thead>
+<tbody>
+<tr><td>Burford Capital</td><td>&gt;$15B</td><td>Internal outcome modeling on 15-yr book</td><td>$10M&ndash;$500M+</td><td>Target net IRR ~20%+</td></tr>
+<tr><td>Omni Bridgeway</td><td>~$2.8B</td><td>30-yr historical case mining</td><td>$1M&ndash;$200M</td><td>Double-digit, portfolio-level</td></tr>
+<tr><td>Legalist</td><td>hundreds of $M</td><td>ML case screening, 10k+ evaluated</td><td>$50k&ndash;$10M</td><td>Seeks uncorrelated, diversified</td></tr>
+<tr><td>Darrow / case-sourcing AI</td><td>funder-linked</td><td>Public-data violation detection</td><td>deal-flow</td><td>n/a (sourcing layer)</td></tr>
+</tbody></table>
+
+<h2>Case study: the patent case that the model loved and the partner feared</h2>
+<p>A mid-size funder in 2022 faced a standard dilemma: a software-patent infringement claim against a large hardware incumbent, counsel with a strong record, but a defendant whose litigation budget could bury the plaintiff in motions. The partner's instinct, formed by similar losses, was to pass. The funder's new outcome model &mdash; trained on 4,000 prior patent matters with 38 features including claim-construction forum, judge, and prior-art citation density &mdash; scored the case in the 91st percentile for recovery probability. The funder funded. The case settled in the defendant's favor on a key claim but produced a nine-figure cross-license and a recovery that landed in the fund's top decile. The partner later admitted the model had seen a pattern his memory had flattened.</p>
+
+<blockquote>"Our best investors are not lawyers. They are the ones who finally admitted that a partner's gut, applied to 30 cases a year, is a worse estimator than a model applied to 30,000. The model is biased, sure. But it is biased consistently, and we can measure that." &mdash; Principal, litigation funder</blockquote>
+
+<h2>Where the optimism is dangerous</h2>
+<p>The romance of "AI prices legal risk" collapses on three realities. First, legal outcomes are fat-tailed and precedent-shifting; a single appellate reversal can retroactively make thousands of trained features useless, and models trained on calm periods fail in volatile ones. Second, the data is dirty and adversarial &mdash; dockets are unstructured, outcomes are often sealed in settlements, and the labels a funder most wants (true case value) are the ones it can almost never observe. Third, and most corrosive, selection bias: if every funder uses similar models, they bid up the same "obvious" winning cases and ignore the genuinely novel ones where the edge lived. The model optimizes the past and crowds the present.</p>
+
+<p>There is a darker governance angle. When funders rely on models to pick cases, and those models are trained on historical win patterns, they can quietly encode bias &mdash; favoring plaintiffs in friendly jurisdictions, avoiding cases involving marginalized claimants whose prior outcomes were depressed by the very bias the model now learns. A funder that optimizes return without auditing its model's distribution is not pricing risk. It is laundering it.</p>
+
+<img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80" alt="Scales of justice &mdash; the symbol of a risk being priced, not guessed."><p class="cap">Scales of justice &mdash; the symbol of a risk being priced, not guessed.</p>
+
+<h2>The verdict</h2>
+<p>Litigation finance did not need AI to exist, but it needed AI to scale past the dinner party. The firms that will dominate the next decade are not the ones with the most capital &mdash; Burford proved capital is abundant &mdash; but the ones with the sharper model of which cases to fund and the discipline to walk away from the ones their model says no to. That discipline is rarer than the math. The gut-bet era produced a few legends and many quietly closed funds. The priced-risk era will produce steadier, smaller, more defensible returns &mdash; and a lot fewer stories worth telling at dinner.</p>
+
+<div style="margin-top:34px">
+<span class="tag">Litigation Finance</span><span class="tag">Burford</span><span class="tag">Outcome Modeling</span><span class="tag">Legal AI</span><span class="tag">Case Selection</span>
+</div>
+<footer>Island Finance English &middot; Legal desk &middot; Generated analysis for gudaoqihuo. AUM and return figures from public disclosures; case details anonymized.</footer>
+</div></body></html>
