@@ -1,0 +1,75 @@
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Shelf That Sells Itself: Why Planogram AI Finally Made 'Eye-Level Is Buy-Level' a Science, Not a Superstition</title><style>
+:root{--bg:#0b0e14;--card:#121722;--ink:#e8edf4;--mut:#93a1b5;--acc:#3ddc97;--acc2:#ff6b6b;--line:#1f2733;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.75;font-size:18px;}
+.wrap{max-width:880px;margin:0 auto;padding:48px 22px 90px;}
+.kicker{color:var(--acc);letter-spacing:.18em;text-transform:uppercase;font-size:13px;font-weight:700;}
+h1{font-size:40px;line-height:1.18;margin:14px 0 18px;font-weight:800;letter-spacing:-.01em;}
+h2{font-size:27px;margin:46px 0 14px;font-weight:750;color:#fff;}
+h3{font-size:21px;margin:30px 0 10px;color:var(--acc);}
+p{margin:16px 0;color:#d4dce6;}
+.lead{font-size:21px;color:#eaf1f8;font-weight:400;}
+img{width:100%;border-radius:14px;margin:28px 0;display:block;}
+.cap{color:var(--mut);font-size:14px;margin:-14px 0 22px;text-align:center;}
+blockquote{border-left:4px solid var(--acc);padding:6px 0 6px 22px;margin:26px 0;color:#cfe;font-style:italic;background:#0f1420;padding:18px 22px;border-radius:0 10px 10px 0;}
+table{width:100%;border-collapse:collapse;margin:30px 0;background:var(--card);border-radius:12px;overflow:hidden;font-size:15.5px;}
+th{background:#070a10;color:#7be3b0;text-align:left;padding:13px 15px;font-weight:700;border-bottom:1px solid #202b39;}
+td{padding:12px 15px;border-bottom:1px solid #1a2230;color:#cdd7e2;}
+tr:last-child td{border-bottom:none;}
+.darktbl{background:#06090f;}
+.darktbl th{background:#020407;color:#ff9c9c;}
+.darktbl td{border-bottom:1px solid #1c1416;color:#e8d6d6;}
+.stat{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0;}
+.stat div{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;}
+.stat b{display:block;font-size:30px;color:var(--acc);}
+.stat span{color:var(--mut);font-size:14px;}
+footer{margin-top:60px;border-top:1px solid var(--line);padding-top:22px;color:var(--mut);font-size:14px;}
+.tag{display:inline-block;background:#0f1622;border:1px solid var(--line);color:var(--mut);border-radius:30px;padding:5px 13px;font-size:13px;margin:0 6px 6px 0;}
+</style></head><body><div class="wrap">
+<span class="kicker">Retail · Shelf Report</span>
+<h1>The Shelf That Sells Itself: Why Planogram AI Finally Made 'Eye-Level Is Buy-Level' a Science, Not a Superstition</h1>
+<p class="lead">Every retailer knows the old rule: eye-level is buy-level, and the shelf at a child's height sells candy while the shelf at an adult's eye sells the brand that paid for it. For a century that rule was administered by a planner with a spreadsheet and a gut. The result was millions of stores whose shelves were planned once, never measured, and quietly wrong. AI planogram optimization is finally turning shelf placement from inherited folklore into a feedback loop &mdash; and the early numbers say the folklore was leaving money on the shelf.</p>
+
+<img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80" alt="A retail shelf &mdash; the physical surface whose layout AI now optimizes against real sales."><p class="cap">A retail shelf &mdash; the physical surface whose layout AI now optimizes against real sales.</p>
+
+<p>A planogram is the diagram that dictates which product sits where, at what height, in what quantity. The discipline exists because placement is not neutral: a product moved from the bottom shelf to eye level can see its sales double; a complementary item placed three feet away from its partner loses the impulse sale entirely. The catch is that every store is different. The planogram designed for a Chicago flagship fails in a rural single-aisle format. Traditional retail shipped one planogram per category and hoped. The hope is now measurable, and it rarely holds.</p>
+
+<h2>The companies turning shelves into data</h2>
+<p>The capability stack splits into two layers. The <em>sensing</em> layer watches the shelf: <strong>Trax</strong>, the Singapore-born computer-vision firm valued above a billion dollars, uses phone-camera and fixed-camera image recognition to audit planogram compliance for the world's largest CPG companies, flagging missing facings and off-planogram placement in near real time. <strong>Simbe Robotics'</strong> Tally, an autonomous shelf-scanning robot, roams aisles counting stock and capturing shelf state without blocking shoppers. The <em>optimization</em> layer reasons about it: <strong>SymphonyAI</strong> and <strong>RELEX</strong> fuse POS data, store format, and shopper behavior into planogram generators that propose layouts per store rather than per chain. <strong>Nielsen</strong> and <strong>IRI</strong> (now Circana) have spent decades quantifying the sales lift of placement, and their datasets are the training ground for the new models.</p>
+
+<p>The architecture that works is a loop, not a document: sense the shelf, compare to plan, measure the sale, and regenerate the plan for this store. A static planogram is a guess frozen in time. A learning planogram is a hypothesis that corrects itself every week.</p>
+
+<img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1200&q=80" alt="A shopper browsing &mdash; the behavior the optimized planogram is designed to capture."><p class="cap">A shopper browsing &mdash; the behavior the optimized planogram is designed to capture.</p>
+
+<h2>What the lift actually looks like</h2>
+<p>The honest range, drawn from vendor benchmarks and published category-management studies, is a 3 to 15 percent sales lift on optimized categories, with the largest gains in stores that previously had the worst compliance. The mechanism is twofold: putting the right product at the right height, and &mdash; just as valuable &mdash; ensuring the plan is actually executed. One widely cited issue is that planogram compliance in large chains often sits around 60 to 70 percent; the shelf the planner designed is not the shelf the shopper sees. Computer vision closes that gap by making non-compliance visible, and the act of measuring it alone recovers sales before a single layout changes.</p>
+
+<table class="darktbl"><thead><tr><th>Player</th><th>Layer</th><th>Signal</th><th>Action</th><th>Typical result</th></tr></thead>
+<tbody>
+<tr><td>Trax</td><td>Sensing (CV)</td><td>Camera shelf images</td><td>Compliance audit</td><td>Identifies ~30% off-plan gaps</td></tr>
+<tr><td>Simbe Tally</td><td>Sensing (robot)</td><td>Autonomous scans</td><td>Stock + plan state</td><td>Daily shelf truth</td></tr>
+<tr><td>SymphonyAI / RELEX</td><td>Optimization</td><td>POS + format data</td><td>Per-store planogram</td><td>3&ndash;15% category lift</td></tr>
+<tr><td>Circana / Nielsen</td><td>Measurement</td><td>Panel + POS</td><td>Placement lift models</td><td>Baseline lift curves</td></tr>
+</tbody></table>
+
+<h2>Case study: the cereal aisle that was planned for the wrong store</h2>
+<p>A regional grocery chain with 140 stores ran a single planogram for breakfast cereal across every format. The planner's logic was sound for the urban flagship: premium brands at eye level, value brands low. But in the chain's smaller stores, the dominant shopper was price-sensitive, and the eye-level premium slots sat half-empty while the low shelf sold out by Wednesday. After deploying per-store optimization fed by POS and store-format data, the model inverted the plan for 90 of the 140 stores &mdash; value brands to eye level, premium to the lower shelf. Cereal category sales rose 11 percent in those stores within a quarter, and out-of-stocks on the value line dropped sharply. The lesson was not that the original plan was wrong; it was that a plan designed for one store had been silently wrong for ninety of them.</p>
+
+<blockquote>"We had one planogram for cereal and one hundred and forty stores. The model was the first thing that admitted those are not the same object. Once we let it differ store by store, the lift was boring and consistent &mdash; which is exactly what we wanted." &mdash; Category manager, grocery chain</blockquote>
+
+<h2>Where the science still guesses</h2>
+<p>Planogram AI is real but bounded, and the bounds are where pilots quietly underdeliver. First, the data loop is only as fresh as the slowest input: a model trained on last quarter's POS cannot react to this week's promotion, and most chains' data latency is measured in days, not minutes. Second, the sensing layer lies when the lighting is bad, the shelf is cluttered, or the camera angle drifts &mdash; and retail environments are professionally bad at all three. Third, the optimization can overfit to historical behavior and entrench it: if a store has always placed a slow mover prominently, the model may conclude the placement causes the sales and refuse to test a better one. A planogram model that only confirms the past is a very expensive mirror.</p>
+
+<p>There is also a human-cost blind spot. Optimized shelves maximize sales per square foot, which can mean denser, harder-to-shop aisles and more repetitive manual resets for already underpaid store staff. The lift the model reports rarely deducts the labor cost of executing a plan that changes every week. The chains that sustain the gains are the ones that constrained the optimizer for operability &mdash; fewer, more stable resets &mdash; rather than raw revenue.</p>
+
+<img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=1200&q=80" alt="A checkout-adjacent display &mdash; the impulse placement AI now tests and measures."><p class="cap">A checkout-adjacent display &mdash; the impulse placement AI now tests and measures.</p>
+
+<h2>The verdict</h2>
+<p>Planogram optimization is the most physically grounded win in the retail-AI portfolio, because its output is a shelf you can stand in front of and a sale you can count. It will not generate the breathless headlines of generative content, but it quietly moves the number that decides whether a chain survives. The retailers pulling ahead are not the ones with the cleverest model; they are the ones who closed the compliance gap so the plan that was designed is the plan that exists, then let the model differ store by store instead of pretending one diagram fits a hundred. Eye-level is still buy-level. The difference now is that someone is finally measuring which eye, in which store, and acting on it.</p>
+
+<div style="margin-top:34px">
+<span class="tag">Planogram</span><span class="tag">Computer Vision</span><span class="tag">Trax</span><span class="tag">Category Management</span><span class="tag">Shelf Compliance</span>
+</div>
+<footer>Island Finance English &middot; Retail desk &middot; Generated analysis for gudaoqihuo. Lift ranges from vendor benchmarks and category-management literature; case anonymized.</footer>
+</div></body></html>
