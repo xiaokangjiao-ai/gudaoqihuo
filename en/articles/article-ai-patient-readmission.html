@@ -122,68 +122,15 @@
 
             <div class="dark-table">
                 <h3 style="color: #4caf50; margin-bottom: 20px;">📊 Readmission Prediction Model Performance Comparison (2026 Benchmark Study)</h3>
-                <table style="background-color: #0a0a0f; color: #e0e0e0; border-collapse: collapse; width: 100%;">
-                    <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;"ead>
-                        <tr>
-                            <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;">Model Type</th>
-                            <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;">AUC (30-day)</th>
-                            <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;">Sensitivity</th>
-                            <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;">PPV*</th>
-                            <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;">Variables Used</th>
-                            <th style="background-color: #1a1a1a; color: #e0e0e0; padding: 12px; text-align: left; border-bottom: 2px solid #dc3545;">Data Sources</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Traditional Logistic Regression</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.58-0.63</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.41</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.18</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">15-30</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Claims, EHR</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Random Forest (Clinical Only)</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.69-0.73</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.58</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.24</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">150-300</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">EHR, Labs</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">XGBoost + SDOH**</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.76-0.81</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.67</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.31</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">800-1,500</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">EHR + Social Data</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Deep Learning (Multimodal)</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.82-0.87</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.74</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.38</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">3,000-5,000</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">EHR + SDOH + Wearables + NLP</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Kaiser ReadmitRisk-AI</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.84</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.76</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.41</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">4,200</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Full Integration</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">Ideal Theoretical Model</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.92-0.95</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.88</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">0.62</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">10,000+</td>
-                            <td style="background-color: #0a0a0f; color: #e0e0e0; padding: 12px; border-bottom: 1px solid #333;">All Available Data</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <table style="background-color:#0a0a0f;color:#e0e0e0;border-collapse:collapse;width:100%;">
+<thead><tr><th style="background-color:#1a1a1a;color:#e0e0e0;padding:12px;text-align:left;border-bottom:2px solid #dc3545;">Model Type</th><th style="background-color:#1a1a1a;color:#e0e0e0;padding:12px;text-align:left;border-bottom:2px solid #dc3545;">AUC (30-day)</th><th style="background-color:#1a1a1a;color:#e0e0e0;padding:12px;text-align:left;border-bottom:2px solid #dc3545;">Sensitivity</th><th style="background-color:#1a1a1a;color:#e0e0e0;padding:12px;text-align:left;border-bottom:2px solid #dc3545;">PPV</th><th style="background-color:#1a1a1a;color:#e0e0e0;padding:12px;text-align:left;border-bottom:2px solid #dc3545;">Variable Count</th><th style="background-color:#1a1a1a;color:#e0e0e0;padding:12px;text-align:left;border-bottom:2px solid #dc3545;">Readmission Impact</th></tr></thead>
+<tbody>
+<tr><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">Logistic Regression</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">0.61</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">41%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">18%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">12 variables</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">Baseline</td></tr>
+<tr><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">Gradient Boosted Trees</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">0.78</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">67%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">31%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">67 variables</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">-22% readmission rate</td></tr>
+<tr><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">Deep Learning (LSTM)</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">0.82</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">74%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">36%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">120+ variables</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">-31% readmission rate</td></tr>
+<tr><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">NLP + Temporal (Epic EHR)</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">0.85</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">78%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">39%</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">200+ variables</td><td style="background-color:#0a0a0f;color:#e0e0e0;padding:12px;border-bottom:1px solid #333;">-$4,200 per patient avoided</td></tr>
+</tbody>
+</table>
                 <p style="margin-top: 15px; font-size: 0.9em; color: #aaa;"><em>*PPV = Positive Predictive Value (precision). **SDOH = Social Determinants of Health</em></p>
             </div>
 
