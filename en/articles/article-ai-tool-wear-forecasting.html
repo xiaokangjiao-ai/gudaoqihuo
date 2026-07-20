@@ -45,12 +45,12 @@ footer{margin-top:60px;border-top:1px solid var(--line);padding-top:22px;color:v
 <h2>What the numbers say when someone bothers to measure</h2>
 <p>The public literature is unusually consistent. On the well-known milling datasets &mdash; the UC Berkeley / NASA milling experiments where tool wear was measured to the micron across hundreds of cuts &mdash; modern machine-learning models predict remaining useful life within roughly 10 percent error, far tighter than any fixed-cycle rule. In production, the metrics that matter are operational, not academic: unplanned tool-related downtime, scrap rate attributable to wear, and tool consumption. A mid-size precision shop that moved from time-based to forecast-based replacement typically reports a 15 to 30 percent reduction in tool spend (because good tools stop being discarded early) and a meaningful drop in scrap from out-of-tolerance parts.</p>
 
-<table class="darktbl"><thead><tr><th>Approach / Vendor</th><th>Sensor signal</th><th>Model</th><th>Reported result</th><th>Deployment reality</th></tr></thead>
+<table class="darktbl"><th style="background-color:#1a1a1a;"ead><tr><th style="background-color:#1a1a1a;">Approach / Vendor</th><th style="background-color:#1a1a1a;">Sensor signal</th><th style="background-color:#1a1a1a;">Model</th><th style="background-color:#1a1a1a;">Reported result</th><th style="background-color:#1a1a1a;">Deployment reality</th></tr></thead>
 <tbody>
-<tr><td>Spindle-load monitoring (FANUC/Mazak)</td><td>Servo current, torque</td><td>Threshold + trend</td><td>Catches gross wear early</td><td>Native on new machines</td></tr>
-<tr><td>Vibration / AE (Siemens Edge)</td><td>Accel, acoustic emission</td><td>RF / LSTM RUL</td><td>~10% RUL error (lab)</td><td>Edge gateway needed</td></tr>
-<tr><td>CELOS condition monitoring</td><td>Multi-signal fusion</td><td>Vendor model</td><td>Flags pre-tolerance breach</td><td>DMG MORI installed base</td></tr>
-<tr><td>Maximo / C3.ai RUL</td><td>IIoT telemetry</td><td>Enterprise ML</td><td>Auto work-orders</td><td>Needs data pipeline</td></tr>
+<tr><td style="background-color:#0a0a0f;">Spindle-load monitoring (FANUC/Mazak)</td><td style="background-color:#0a0a0f;">Servo current, torque</td><td style="background-color:#0a0a0f;">Threshold + trend</td><td style="background-color:#0a0a0f;">Catches gross wear early</td><td style="background-color:#0a0a0f;">Native on new machines</td></tr>
+<tr><td style="background-color:#0a0a0f;">Vibration / AE (Siemens Edge)</td><td style="background-color:#0a0a0f;">Accel, acoustic emission</td><td style="background-color:#0a0a0f;">RF / LSTM RUL</td><td style="background-color:#0a0a0f;">~10% RUL error (lab)</td><td style="background-color:#0a0a0f;">Edge gateway needed</td></tr>
+<tr><td style="background-color:#0a0a0f;">CELOS condition monitoring</td><td style="background-color:#0a0a0f;">Multi-signal fusion</td><td style="background-color:#0a0a0f;">Vendor model</td><td style="background-color:#0a0a0f;">Flags pre-tolerance breach</td><td style="background-color:#0a0a0f;">DMG MORI installed base</td></tr>
+<tr><td style="background-color:#0a0a0f;">Maximo / C3.ai RUL</td><td style="background-color:#0a0a0f;">IIoT telemetry</td><td style="background-color:#0a0a0f;">Enterprise ML</td><td style="background-color:#0a0a0f;">Auto work-orders</td><td style="background-color:#0a0a0f;">Needs data pipeline</td></tr>
 </tbody></table>
 
 <h2>Case study: the aerospace bracket that stopped costing $40,000 a month</h2>
