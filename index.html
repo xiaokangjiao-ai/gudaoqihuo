@@ -1,280 +1,526 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9935054113253833" crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Verticals — AI Applications Across Industries</title>
-<meta name="description" content="Discover how artificial intelligence is transforming Finance, Healthcare, Legal, Education, Manufacturing, Retail, HR, and Media. Real applications, real companies, real impact.">
-<link rel="canonical" href="https://gudaoqihuo.com/">
-<meta property="og:title" content="AI Verticals — AI Applications Across Industries">
-<meta property="og:description" content="Discover how AI is transforming industries. Real applications, real companies, real impact.">
-<meta property="og:type" content="website">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-:root{
-  --bg:#0a0a0f;--surface:#13131a;--border:#1e1e2e;--text:#e8e8f0;--muted:#8888a0;
-  --accent:#6c63ff;--accent2:#00d4aa;--gold:#f5c842;
-  --f:#4fc3f7;--h:#ef5350;--l:#ce93d8;--e:#81c784;--m:#ffb74d;--r:#4dd0e1;--hr:#a5d6a7;--c:#ff8a65;
-}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
-/* HERO */
-.hero{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center;padding:60px 0 50px}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a1a 0%,#1a1040 40%,#0d2030 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(108,99,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.06) 1px,transparent 1px);background-size:60px 60px}
-.hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(108,99,255,.25) 0%,transparent 70%);pointer-events:none}
-.hero-content{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 24px;text-align:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);border-radius:30px;padding:6px 16px;font-size:.78em;color:#a099ff;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
-.hero-eyebrow span{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(2.2em,6vw,3.8em);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:14px}
-.hero h1 .accent{background:linear-gradient(90deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero h1 .dim{color:#555870;-webkit-text-fill-color:#555870}
-.hero-desc{font-size:1.08em;color:var(--muted);max-width:620px;margin:0 auto 32px;line-height:1.8}
-.hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat .num{font-size:1.6em;font-weight:800;color:var(--accent2)}
-.hero-stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.hero-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin:40px auto}
-/* CATEGORIES */
-.section{padding:50px 24px;max-width:1100px;margin:0 auto}
-.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:8px}
-.section-title{font-size:1.5em;font-weight:800}
-.section-title span{color:var(--muted);font-weight:400;font-size:.8em}
-.section-link{font-size:.85em;color:var(--accent);text-decoration:none;font-weight:600}
-.section-link:hover{text-decoration:underline}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.cat-card{display:block;text-decoration:none;border-radius:16px;padding:22px;background:var(--surface);border:1px solid var(--border);transition:all .25s;position:relative;overflow:hidden}
-.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;transition:height .25s}
-.cat-card:hover{transform:translateY(-4px);border-color:rgba(108,99,255,.4);box-shadow:0 12px 40px rgba(108,99,255,.15)}
-.cat-card:hover::before{height:4px}
-.cat-card.finance::before{background:#4fc3f7}
-.cat-card.healthcare::before{background:#ef5350}
-.cat-card.legal::before{background:#ce93d8}
-.cat-card.education::before{background:#81c784}
-.cat-card.manufacturing::before{background:#ffb74d}
-.cat-card.retail::before{background:#4dd0e1}
-.cat-card.hr::before{background:#a5d6a7}
-.cat-card.media::before{background:#ff8a65}
-.cat-icon{font-size:2em;margin-bottom:10px;display:block}
-.cat-name{font-size:1.05em;font-weight:700;color:var(--text);margin-bottom:6px}
-.cat-desc{font-size:.78em;color:var(--muted);line-height:1.5;margin-bottom:12px}
-.cat-tags{display:flex;flex-wrap:wrap;gap:5px}
-.cat-tag{font-size:.68em;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.06);color:var(--muted)}
-/* ARTICLES */
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.art-card{display:block;text-decoration:none;border-radius:14px;background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .25s}
-.art-card:hover{transform:translateY(-3px);border-color:rgba(108,99,255,.35);box-shadow:0 8px 30px rgba(0,0,0,.4)}
-.art-thumb{width:100%;height:160px;object-fit:cover;display:block;background:linear-gradient(135deg,#1e1e30,#2a2a40)}
-.art-body{padding:16px}
-.art-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.art-cat-badge{font-size:.68em;padding:2px 9px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.art-cat-badge.finance{background:rgba(79,195,247,.15);color:#4fc3f7}
-.art-cat-badge.healthcare{background:rgba(239,83,80,.15);color:#ef5350}
-.art-cat-badge.legal{background:rgba(206,147,216,.15);color:#ce93d8}
-.art-cat-badge.education{background:rgba(129,199,132,.15);color:#81c784}
-.art-cat-badge.manufacturing{background:rgba(255,183,77,.15);color:#ffb74d}
-.art-cat-badge.retail{background:rgba(77,208,225,.15);color:#4dd0e1}
-.art-cat-badge.hr{background:rgba(165,214,167,.15);color:#a5d6a7}
-.art-cat-badge.media{background:rgba(255,138,101,.15);color:#ff8a65}
-.art-date{font-size:.72em;color:var(--muted)}
-.art-title{font-size:.92em;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.art-excerpt{font-size:.78em;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.art-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--border)}
-.art-read{font-size:.75em;color:var(--accent);font-weight:600}
-.art-time{font-size:.7em;color:var(--muted)}
-/* FOOTER */
-.footer{max-width:1100px;margin:0 auto;padding:40px 24px;text-align:center;border-top:1px solid var(--border)}
-.footer-brand{font-size:1.1em;font-weight:800;margin-bottom:8px}
-.footer p{color:var(--muted);font-size:.8em}
-.footer a{color:var(--muted);text-decoration:none}
-.footer a:hover{color:var(--accent)}
-.footer-links{margin-top:12px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-@media(max-width:600px){
-.hero{min-height:420px;padding:40px 0 30px}
-.hero h1{font-size:2em}
-.hero-stats{gap:20px}
-.cat-grid{grid-template-columns:repeat(2,1fr)}
-.articles-grid{grid-template-columns:1fr}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCWW (CnX4) - AI 时代的去中心化算力+存储基础设施</title>
+    <meta name="description" content="XCWW (CnX4) 是基于 Solana 的 AI 算力与分布式存储基础设施，总量10亿，无VC、无预挖，已放弃铸币权，86% LP 永久锁定。">
+    <meta name="keywords" content="XCWW, CnX4, Solana, AI算力, 去中心化存储, 区块链, 加密货币">
+    <link rel="canonical" href="https://gudaoqihuo.com/">
+    <style>
+        /* --- 基础重置与变量 --- */
+        :root {
+            --bg-color: #0b0b0c;
+            --bg-secondary: #141416;
+            --text-main: #ffffff;
+            --text-muted: #8b8b93;
+            --primary-purple: #8a5cf5;
+            --primary-purple-hover: #7b4fe6;
+            --border-color: #2a2a35;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 语言切换 --- */
+        .lang-switch {
+            position: fixed; top: 20px; right: 20px; z-index: 100;
+            display: flex; gap: 6px; background: var(--bg-secondary);
+            padding: 5px; border-radius: 20px; border: 1px solid var(--border-color);
+        }
+        .lang-btn {
+            background: transparent; border: none; color: var(--text-muted);
+            padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 14px; transition: 0.3s;
+        }
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { background: var(--primary-purple); color: #fff; }
+
+        /* --- Navbar --- */
+        nav {
+            padding: 20px 0; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; }
+        .nav-logo svg { width: 32px; height: 32px; border-radius: 50%; display: block; }
+        .nav-links a { color: var(--text-muted); margin-left: 30px; transition: color 0.3s; font-size: 15px; }
+        .nav-links a:hover { color: var(--primary-purple); }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 100px 0 60px; text-align: center;
+            background: radial-gradient(circle at center top, rgba(138, 92, 245, 0.08) 0%, transparent 60%);
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700;
+            margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero .subtitle { font-size: 20px; color: var(--text-muted); margin-bottom: 40px; }
+        .hero .badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .badge {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            padding: 6px 16px; border-radius: 20px; font-size: 13px; color: var(--text-main);
+        }
+        .badge.success { border-color: var(--primary-purple); color: var(--primary-purple); }
+
+        .data-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px; max-width: 800px; margin: 40px auto; background: var(--bg-secondary);
+            padding: 30px; border-radius: 16px; border: 1px solid var(--border-color);
+        }
+        .data-item h4 { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .data-item p { font-size: 16px; font-weight: 500; word-break: break-all; }
+        .data-item .ca { font-size: 12px; color: var(--primary-purple); cursor: pointer; }
+
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .btn {
+            background: var(--primary-purple); color: #fff; padding: 12px 30px;
+            border-radius: 30px; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; display: inline-block;
+        }
+        .btn:hover { background: var(--primary-purple-hover); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--primary-purple); color: var(--primary-purple); }
+
+        /* --- Section General --- */
+        section { padding: 80px 0; border-bottom: 1px solid var(--border-color); }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 40px; text-align: center; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+
+        .feature-card {
+            background: var(--bg-secondary); padding: 30px; border-radius: 16px;
+            border: 1px solid var(--border-color); transition: 0.3s;
+        }
+        .feature-card:hover { border-color: var(--primary-purple); transform: translateY(-4px); }
+        .feature-card h3 { margin-bottom: 10px; color: #fff; }
+        .feature-card p { color: var(--text-muted); }
+
+        /* --- Tokenomics & Roadmap --- */
+        .tokenomics-list { list-style: none; padding: 0; }
+        .tokenomics-list li { padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 12px; }
+        .tokenomics-list li:last-child { border-bottom: none; }
+
+        .timeline {
+            position: relative; padding-left: 30px; border-left: 2px solid var(--border-color);
+            margin-left: 20px;
+        }
+        .timeline-item { margin-bottom: 30px; position: relative; }
+        .timeline-item::before {
+            content: ''; width: 12px; height: 12px; background: var(--primary-purple);
+            border-radius: 50%; position: absolute; left: -36px; top: 6px;
+        }
+        .timeline-item h4 { font-size: 18px; color: var(--primary-purple); }
+        .timeline-item p { color: var(--text-muted); margin-top: 5px; }
+
+        /* --- FAQ --- */
+        .faq-item {
+            background: var(--bg-secondary); padding: 20px; border-radius: 12px;
+            margin-bottom: 15px; border: 1px solid var(--border-color);
+        }
+        .faq-item h4 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .faq-item p { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-muted); padding-top: 0; }
+        .faq-item.active p { max-height: 400px; padding-top: 15px; }
+        .faq-item.active { border-color: var(--primary-purple); }
+
+        /* --- Footer --- */
+        footer { padding: 40px 0; text-align: center; color: var(--text-muted); border-top: 1px solid var(--border-color); }
+        footer a { color: var(--primary-purple); }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero { padding: 80px 0 40px; }
+            .data-grid { grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
+            .lang-switch { top: 10px; right: 10px; }
+        }
+        @media (max-width: 480px) {
+            .data-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HERO -->
-<header class="hero">
-<div class="hero-bg"></div>
-<div class="hero-grid"></div>
-<div class="hero-glow"></div>
-<div class="hero-content">
-<div class="hero-eyebrow"><span></span> AI Applications Across Industries</div>
-<h1>Where <span class="accent">AI</span> Meets<br><span class="dim">Every Industry</span></h1>
-<p class="hero-desc">Real-world artificial intelligence applications across 8 verticals. No hype, no fluff — just concrete use cases, actual companies, and measurable impact.</p>
-<div class="hero-stats">
-<div class="hero-stat"><div class="num">8</div><div class="label">Industries</div></div>
-<div class="hero-stat"><div class="num">Daily</div><div class="label">Updates</div></div>
-<div class="hero-stat"><div class="num">100%</div><div class="label">English</div></div>
-</div>
-</div>
-</header>
+    <!-- 语言切换 -->
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('zh', this)">中文</button>
+        <button class="lang-btn" onclick="switchLang('ja', this)">日本語</button>
+        <button class="lang-btn" onclick="switchLang('ko', this)">한국어</button>
+        <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
+    </div>
 
-<!-- INDUSTRIES -->
-<section class="section">
-<div class="section-head">
-<div class="section-title">Explore by Industry <span>— 8 verticals, one destination</span></div>
-</div>
-<div class="cat-grid">
-<a href="/en/articles/finance.html" class="cat-card finance">
-<span class="cat-icon">💰</span>
-<div class="cat-name">Finance & Banking</div>
-<div class="cat-desc">AI in risk assessment, algorithmic trading, fraud detection, and intelligent financial advisory.</div>
-<div class="cat-tags">
-<span class="cat-tag">Fraud Detection</span>
-<span class="cat-tag">Algo Trading</span>
-<span class="cat-tag">Credit Scoring</span>
-</div>
-</a>
-<a href="/en/articles/healthcare.html" class="cat-card healthcare">
-<span class="cat-icon">🏥</span>
-<div class="cat-name">Healthcare & MedTech</div>
-<div class="cat-desc">AI diagnostic tools, drug discovery, medical imaging analysis, and personalized treatment planning.</div>
-<div class="cat-tags">
-<span class="cat-tag">Diagnostics</span>
-<span class="cat-tag">Drug Discovery</span>
-<span class="cat-tag">MedAI</span>
-</div>
-</a>
-<a href="/en/articles/legal.html" class="cat-card legal">
-<span class="cat-icon">⚖️</span>
-<div class="cat-name">Legal Services</div>
-<div class="cat-desc">Contract review automation, legal research AI, due diligence acceleration, and dispute prediction.</div>
-<div class="cat-tags">
-<span class="cat-tag">Contract AI</span>
-<span class="cat-tag">eDiscovery</span>
-<span class="cat-tag">Legal Research</span>
-</div>
-</a>
-<a href="/en/articles/education.html" class="cat-card education">
-<span class="cat-icon">🎓</span>
-<div class="cat-name">Education & EdTech</div>
-<div class="cat-desc">Personalized learning paths, AI tutoring, automated grading, and accessibility tools for education.</div>
-<div class="cat-tags">
-<span class="cat-tag">Adaptive Learning</span>
-<span class="cat-tag">AI Tutors</span>
-<span class="cat-tag">EdTech</span>
-</div>
-</a>
-<a href="/en/articles/manufacturing.html" class="cat-card manufacturing">
-<span class="cat-icon">🏭</span>
-<div class="cat-name">Manufacturing</div>
-<div class="cat-desc">Predictive maintenance, quality control vision systems, digital twin optimization, and smart robotics.</div>
-<div class="cat-tags">
-<span class="cat-tag">Predictive Maint.</span>
-<span class="cat-tag">Quality Vision</span>
-<span class="cat-tag">Robotics</span>
-</div>
-</a>
-<a href="/en/articles/retail.html" class="cat-card retail">
-<span class="cat-icon">🛒</span>
-<div class="cat-name">Retail & E-commerce</div>
-<div class="cat-desc">Recommendation engines, dynamic pricing, inventory AI, supply chain optimization, and visual search.</div>
-<div class="cat-tags">
-<span class="cat-tag">Recommenders</span>
-<span class="cat-tag">Dynamic Pricing</span>
-<span class="cat-tag">Supply Chain</span>
-</div>
-</a>
-<a href="/en/articles/hr.html" class="cat-card hr">
-<span class="cat-icon">👥</span>
-<div class="cat-name">Human Resources</div>
-<div class="cat-desc">AI-powered resume screening, interview analysis, employee retention models, and skills gap mapping.</div>
-<div class="cat-tags">
-<span class="cat-tag">Talent Acquisition</span>
-<span class="cat-tag">People Analytics</span>
-<span class="cat-tag">HR Automation</span>
-</div>
-</a>
-<a href="/en/articles/media.html" class="cat-card media">
-<span class="cat-icon">🎬</span>
-<div class="cat-name">Media & Content</div>
-<div class="cat-desc">AI-generated content, video editing automation, deepfake detection, personalized news feeds, and copyright AI.</div>
-<div class="cat-tags">
-<span class="cat-tag">Content Gen</span>
-<span class="cat-tag">Video AI</span>
-<span class="cat-tag">Deepfake Detection</span>
-</div>
-</a>
-</div>
-</section>
+    <!-- 导航 -->
+    <div class="container">
+        <nav>
+            <div class="nav-logo">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="XCWW logo">
+                    <circle cx="16" cy="16" r="16" fill="#8a5cf5"/>
+                    <path d="M10 10 L22 22 M22 10 L10 22" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <span>XCWW</span>
+            </div>
+            <div class="nav-links">
+                <a href="#about" data-i18n="nav_about">介绍</a>
+                <a href="#roadmap" data-i18n="nav_roadmap">路线图</a>
+                <a href="#faq" data-i18n="nav_faq">FAQ</a>
+            </div>
+        </nav>
+    </div>
 
-<!-- RECENT ARTICLES -->
-<section class="section">
-<div class="section-head">
-<div class="section-title">Latest Articles <span>— fresh from our AI vertical editors</span></div>
-<a href="/en/articles/" class="section-link">View all →</a>
-</div>
-<div class="articles-grid" id="recent-articles">
-<p style="color:var(--muted);padding:20px 0">Loading recent articles...</p>
-</div>
-</section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-i18n="hero_title">AI 时代的算力+存储基础设施</h1>
+            <p class="subtitle" data-i18n="hero_subtitle">XCWW (CnX4) · 基于 Solana，0 VC，社区共建</p>
 
-<!-- ABOUT -->
-<section class="section" style="text-align:center;padding-bottom:60px">
-<div class="hero-divider"></div>
-<div class="section-title" style="margin-bottom:12px">About AI Verticals</div>
-<p style="color:var(--muted);max-width:580px;margin:0 auto;font-size:.92em;line-height:1.9">
-We cover one thing thoroughly: <strong style="color:var(--text)">how artificial intelligence is reshaping every major industry</strong>. 
-Every article is grounded in real deployments, named vendors, and measurable outcomes. 
-No speculative fluff — just the signal from the noise.
-</p>
-</section>
+            <div class="badges">
+                <span class="badge success" data-i18n="badge_mint">🔥 铸币权已销毁</span>
+                <span class="badge success" data-i18n="badge_lp">🔒 86% LP 已永久锁定</span>
+                <span class="badge" data-i18n="badge_solana">⚡ Solana</span>
+                <span class="badge" data-i18n="badge_ai">🤖 AI 算力</span>
+            </div>
 
-<footer class="footer">
-<div class="footer-brand">AI Verticals</div>
-<p>© 2025–2026 · <a href="mailto:xiaokangjiao@gmail.com">xiaokangjiao@gmail.com</a></p>
-<div class="footer-links">
-<a href="/en/articles/finance.html">Finance</a>
-<a href="/en/articles/healthcare.html">Healthcare</a>
-<a href="/en/articles/legal.html">Legal</a>
-<a href="/en/articles/education.html">Education</a>
-<a href="/en/articles/manufacturing.html">Manufacturing</a>
-<a href="/en/articles/retail.html">Retail</a>
-<a href="/en/articles/hr.html">HR</a>
-<a href="/en/articles/media.html">Media</a>
-<a href="/en/privacy.html">Privacy Policy</a>
-<a href="/en/terms.html">Terms of Service</a>
-<a href="/en/about.html">About</a>
-<a href="/en/contact.html">Contact</a>
-</div>
-<p style="margin-top:8px;font-size:.8rem;color:#8888a0;opacity:.7">Disclaimer: All insights and analysis provided on AI Verticals are for informational and educational purposes only, and do not constitute professional financial, investment, or legal advice.</p></footer>
+            <div class="data-grid">
+                <div class="data-item">
+                    <h4 data-i18n="ca_label">合约地址 (CA)</h4>
+                    <p class="ca" onclick="copyCA()" title="Click to copy">CnX4Yd85...LPTf</p>
+                </div>
+                <div class="data-item">
+                    <h4 data-i18n="supply_label">总量</h4>
+                    <p>1,000,000,000</p>
+                </div>
+                <div class="data-item">
+                    <h4 data-i18n="liquidity_label">流动性</h4>
+                    <p>~$99 (Raydium)</p>
+                </div>
+                <div class="data-item">
+                    <h4 data-i18n="holders_label">持有人</h4>
+                    <p>7+</p>
+                </div>
+            </div>
 
-<script>
-// Load recent articles from manifest
-(async function(){
-  try {
-    const r = await fetch('/en/articles/manifest.json');
-    if(!r.ok) return;
-    const data = await r.json();
-    const recent = data.slice(-12).reverse();
-    const container = document.getElementById('recent-articles');
-    container.innerHTML = recent.map(a => `
-      <a href="/en/articles/${a.file}" class="art-card">
-        <img class="art-thumb" src="${a.cover || 'https://picsum.photos/seed/'+a.slug+'/600/320'}" alt="${a.title}" loading="lazy" onerror="this.style.display='none'">
-        <div class="art-body">
-          <div class="art-meta">
-            <span class="art-cat-badge ${a.category}">${a.category}</span>
-            <span class="art-date">${a.date||''}</span>
-          </div>
-          <div class="art-title">${a.title}</div>
+            <div class="btn-group">
+                <a href="https://t.me/membound_xcww" target="_blank" class="btn" data-i18n="btn_join">🚀 加入社区 (TG)</a>
+                <a href="https://dexscreener.com/solana/CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf" target="_blank" class="btn btn-outline" data-i18n="btn_dex">📊 DexScreener</a>
+            </div>
         </div>
-        <div class="art-footer">
-          <span class="art-read">Read →</span>
-          <span class="art-time">${a.category}</span>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about_title">为什么选择 XCWW (CnX4)？</h2>
+            <div class="grid-2">
+                <div>
+                    <div class="feature-card">
+                        <h3 data-i18n="feat1_t">去中心化算力</h3>
+                        <p data-i18n="feat1_d">使用 CnX4 支付 AI 训练与推理所需的海量算力，打破巨头垄断。</p>
+                    </div>
+                    <div class="feature-card" style="margin-top: 20px;">
+                        <h3 data-i18n="feat2_t">分布式存储</h3>
+                        <p data-i18n="feat2_d">安全、低成本、永不丢失的数据存储网络，为 Web3 和 AI 提供底层支持。</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="feature-card">
+                        <h3 data-i18n="feat3_t">100% 公平发行</h3>
+                        <p data-i18n="feat3_d">0 VC，0 预挖。铸币权已销毁 (Revoke)，86% LP 已永久销毁 (Burn)。</p>
+                    </div>
+                    <div class="feature-card" style="margin-top: 20px;">
+                        <h3 data-i18n="feat4_t">Solana 速度</h3>
+                        <p data-i18n="feat4_d">享受 Solana 极致的低延迟和微乎其微的 GAS 费用，交易体验丝滑。</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </a>`).join('');
-  } catch(e) {}
-})();
-</script>
+    </section>
+
+    <!-- Tokenomics -->
+    <section>
+        <div class="container">
+            <h2 class="section-title" data-i18n="token_title">代币经济学</h2>
+            <div style="max-width: 600px; margin: 0 auto; background: var(--bg-secondary); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color);">
+                <ul class="tokenomics-list">
+                    <li><span data-i18n="tok_supply">总供应量</span> <b data-i18n="tok_supply_v">10亿 (1B)</b></li>
+                    <li><span data-i18n="tok_tax">转账税</span> <b data-i18n="tok_tax_v">1% (用于项目开发)</b></li>
+                    <li><span data-i18n="tok_mint">铸币权</span> <b style="color: var(--primary-purple);" data-i18n="tok_mint_v">✅ 已 Revoke</b></li>
+                    <li><span data-i18n="tok_lp">LP 锁定</span> <b style="color: var(--primary-purple);" data-i18n="tok_lp_v">✅ 86% 已销毁 (Burned)</b></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="section-title" data-i18n="roadmap_title">发展路线图</h2>
+            <div class="timeline" style="max-width: 600px; margin: 0 auto;">
+                <div class="timeline-item">
+                    <h4>2026 Q3</h4>
+                    <p data-i18n="rm1">上线 Raydium 交易池、Revoke 铸币权、销毁 86% LP</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2026 Q4</h4>
+                    <p data-i18n="rm2">TG 社区达成 1万成员、DexScreener 收录</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2027 Q1</h4>
+                    <p data-i18n="rm3">Galxe 社区任务、早期支持者空投</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2027 Q2</h4>
+                    <p data-i18n="rm4">AI 算力平台 Beta 版发布</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2027 Q3</h4>
+                    <p data-i18n="rm5">分布式存储网络 Beta 版发布</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2027 Q4</h4>
+                    <p data-i18n="rm6">主网正式上线，开启 DAO 治理</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq_title">常见问题</h2>
+            <div style="max-width: 700px; margin: 0 auto;">
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4 data-i18n="faq1_q">1. 怎么买 CnX4？ <span>+</span></h4>
+                    <p data-i18n="faq1_a">下载 Phantom 钱包，充值 SOL，在 Raydium 上搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 进行兑换。</p>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4 data-i18n="faq2_q">2. 在哪可以交易？ <span>+</span></h4>
+                    <p data-i18n="faq2_a">目前去中心化交易所在 Raydium (Solana) 上交易。未来将寻求中心化交易所 (CEX) 上线。</p>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4 data-i18n="faq3_q">3. 1% 转账税是什么？ <span>+</span></h4>
+                    <p data-i18n="faq3_a">这是项目发展的基础设施费用，用于支付开发人员工资、服务器成本以及未来的市场推广活动。</p>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <h4 data-i18n="faq4_q">4. 怎么验证项目不会跑路？ <span>+</span></h4>
+                    <p data-i18n="faq4_a">您可以在 Solscan 上查询合约。铸币权 (Mint Authority) 已显示为 "Revoked"；LP 锁仓量显示 86% 已被 Burn (销毁) 永久锁定。</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-i18n="footer_copy">© 2026 XCWW (CnX4). 基于 Solana 构建。</p>
+            <p style="margin-top: 10px;">
+                <a href="https://t.me/membound_xcww" target="_blank">Telegram</a> ·
+                <a href="https://dexscreener.com/solana/CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf" target="_blank">DexScreener</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 多语言文案 (中 / 日 / 韩 / 英) ---
+        const I18N = {
+            zh: {
+                nav_about: "介绍", nav_roadmap: "路线图", nav_faq: "FAQ",
+                hero_title: "AI 时代的算力+存储基础设施",
+                hero_subtitle: "XCWW (CnX4) · 基于 Solana，0 VC，社区共建",
+                badge_mint: "🔥 铸币权已销毁", badge_lp: "🔒 86% LP 已永久锁定", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 算力",
+                ca_label: "合约地址 (CA)", supply_label: "总量", liquidity_label: "流动性", holders_label: "持有人",
+                btn_join: "🚀 加入社区 (TG)", btn_dex: "📊 DexScreener",
+                about_title: "为什么选择 XCWW (CnX4)？",
+                feat1_t: "去中心化算力", feat1_d: "使用 CnX4 支付 AI 训练与推理所需的海量算力，打破巨头垄断。",
+                feat2_t: "分布式存储", feat2_d: "安全、低成本、永不丢失的数据存储网络，为 Web3 和 AI 提供底层支持。",
+                feat3_t: "100% 公平发行", feat3_d: "0 VC，0 预挖。铸币权已销毁 (Revoke)，86% LP 已永久销毁 (Burn)。",
+                feat4_t: "Solana 速度", feat4_d: "享受 Solana 极致的低延迟和微乎其微的 GAS 费用，交易体验丝滑。",
+                token_title: "代币经济学",
+                tok_supply: "总供应量", tok_supply_v: "10亿 (1B)",
+                tok_tax: "转账税", tok_tax_v: "1% (用于项目开发)",
+                tok_mint: "铸币权", tok_mint_v: "✅ 已 Revoke",
+                tok_lp: "LP 锁定", tok_lp_v: "✅ 86% 已销毁 (Burned)",
+                roadmap_title: "发展路线图",
+                rm1: "上线 Raydium 交易池、Revoke 铸币权、销毁 86% LP",
+                rm2: "TG 社区达成 1万成员、DexScreener 收录",
+                rm3: "Galxe 社区任务、早期支持者空投",
+                rm4: "AI 算力平台 Beta 版发布",
+                rm5: "分布式存储网络 Beta 版发布",
+                rm6: "主网正式上线，开启 DAO 治理",
+                faq_title: "常见问题",
+                faq1_q: "1. 怎么买 CnX4？ <span>+</span>",
+                faq1_a: "下载 Phantom 钱包，充值 SOL，在 Raydium 上搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 进行兑换。",
+                faq2_q: "2. 在哪可以交易？ <span>+</span>",
+                faq2_a: "目前去中心化交易所在 Raydium (Solana) 上交易。未来将寻求中心化交易所 (CEX) 上线。",
+                faq3_q: "3. 1% 转账税是什么？ <span>+</span>",
+                faq3_a: "这是项目发展的基础设施费用，用于支付开发人员工资、服务器成本以及未来的市场推广活动。",
+                faq4_q: "4. 怎么验证项目不会跑路？ <span>+</span>",
+                faq4_a: "您可以在 Solscan 上查询合约。铸币权 (Mint Authority) 已显示为 \"Revoked\"；LP 锁仓量显示 86% 已被 Burn (销毁) 永久锁定。",
+                footer_copy: "© 2026 XCWW (CnX4). 基于 Solana 构建。"
+            },
+            ja: {
+                nav_about: "概要", nav_roadmap: "ロードマップ", nav_faq: "FAQ",
+                hero_title: "AI時代の計算能力＋ストレージインフラ",
+                hero_subtitle: "XCWW (CnX4) · Solana基盤、VCなし、コミュニティ主導",
+                badge_mint: "🔥 ミント権削除済", badge_lp: "🔒 86% LP 永久ロック", badge_solana: "⚡ Solana", badge_ai: "🤖 AI計算",
+                ca_label: "コントラクトアドレス (CA)", supply_label: "総供給量", liquidity_label: "流動性", holders_label: "ホルダー",
+                btn_join: "🚀 コミュニティに参加 (TG)", btn_dex: "📊 DexScreener",
+                about_title: "なぜ XCWW (CnX4) なのか？",
+                feat1_t: "分散型計算", feat1_d: "CnX4を使ってAI学習・推論に必要な膨大な計算資源を支払い、巨大テックの独占を打破します。",
+                feat2_t: "分散型ストレージ", feat2_d: "Web3とAIを支える、安全で低コストかつ永久に失われないデータストレージネットワーク。",
+                feat3_t: "100% フェアローンチ", feat3_d: "VCなし、プリマインなし。ミント権は削除済み、86%のLPは永久にバーンされました。",
+                feat4_t: "Solanaの高速性", feat4_d: "Solanaの超低遅延とほぼゼロの手数料で、スムーズな取引体験を。",
+                token_title: "トークノミクス",
+                tok_supply: "総供給量", tok_supply_v: "10億 (1B)",
+                tok_tax: "送金税", tok_tax_v: "1% (開発費用に充当)",
+                tok_mint: "ミント権", tok_mint_v: "✅ 削除済 (Revoked)",
+                tok_lp: "LPロック", tok_lp_v: "✅ 86% バーン済 (Burned)",
+                roadmap_title: "ロードマップ",
+                rm1: "Raydium流動性プールのローンチ、ミント権削除、86% LPバーン",
+                rm2: "TGコミュニティ1万人達成、DexScreener掲載",
+                rm3: "Galxeコミュニティミッション、初期支援者へのエアドロップ",
+                rm4: "AI計算プラットフォームβ版リリース",
+                rm5: "分散型ストレージネットワークβ版リリース",
+                rm6: "メインネット正式ローンチ、DAOガバナンス開始",
+                faq_title: "よくある質問",
+                faq1_q: "1. CnX4の買い方は？ <span>+</span>",
+                faq1_a: "Phantomウォレットをダウンロードし、SOLを入金、Raydiumでコントラクトアドレス CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf を検索してスワップ。",
+                faq2_q: "2. どこで取引できますか？ <span>+</span>",
+                faq2_a: "現在は分散型取引所のRaydium (Solana) で取引。今後CEX上場を目指します。",
+                faq3_q: "3. 1%の送金税とは？ <span>+</span>",
+                faq3_a: "プロジェクト開発のインフラ費用で、開発者給与・サーバーコスト・将来のマーケティングに充当されます。",
+                faq4_q: "4. プロジェクトが逃げないか確認するには？ <span>+</span>",
+                faq4_a: "Solscanでコントラクトを確認できます。ミント権 (Mint Authority) は \"Revoked\"、LPロック量は86%が \"Burned\" (永久ロック) と表示されます。",
+                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築。"
+            },
+            ko: {
+                nav_about: "소개", nav_roadmap: "로드맵", nav_faq: "FAQ",
+                hero_title: "AI 시대의 컴퓨팅 + 스토리지 인프라",
+                hero_subtitle: "XCWW (CnX4) · Solana 기반, VC 없음, 커뮤니티 주도",
+                badge_mint: "🔥 민트 권한 폐기됨", badge_lp: "🔒 86% LP 영구 잠금", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 컴퓨팅",
+                ca_label: "컨트랙트 주소 (CA)", supply_label: "총 공급량", liquidity_label: "유동성", holders_label: "보유자",
+                btn_join: "🚀 커뮤니티 참여 (TG)", btn_dex: "📊 DexScreener",
+                about_title: "왜 XCWW (CnX4) 인가?",
+                feat1_t: "탈중앙화 컴퓨팅", feat1_d: "CnX4로 AI 학습·추론에 필요한 방대한 컴퓨팅 자원을 결제하여 빅테크 독점을 깨뜨립니다.",
+                feat2_t: "분산형 스토리지", feat2_d: "Web3과 AI를 지원하는 안전하고 저비용이며 영구히 유실되지 않는 데이터 스토리지 네트워크.",
+                feat3_t: "100% 공정 발행", feat3_d: "VC 없음, 프리마이닝 없음. 민트 권한은 폐기되었고, 86%의 LP는 영구히 소각(Burn)되었습니다.",
+                feat4_t: "Solana 속도", feat4_d: "Solana의 초저지연과 거의 무료에 가까운 수수료로 매끄러운 거래 경험을 제공합니다.",
+                token_title: "토큰노믹스",
+                tok_supply: "총 공급량", tok_supply_v: "10억 (1B)",
+                tok_tax: "전송 세금", tok_tax_v: "1% (프로젝트 개발에 사용)",
+                tok_mint: "민트 권한", tok_mint_v: "✅ 폐기됨 (Revoked)",
+                tok_lp: "LP 잠금", tok_lp_v: "✅ 86% 소각됨 (Burned)",
+                roadmap_title: "로드맵",
+                rm1: "Raydium 풀 론칭, 민트 권한 폐기, 86% LP 소각",
+                rm2: "TG 커뮤니티 1만 명 달성, DexScreener 등재",
+                rm3: "Galxe 커뮤니티 미션, 얼리어댑터 에어드랍",
+                rm4: "AI 컴퓨팅 플랫폼 베타 출시",
+                rm5: "분산형 스토리지 네트워크 베타 출시",
+                rm6: "메인넷 정식 론칭, DAO 거버넌스 개시",
+                faq_title: "자주 묻는 질문",
+                faq1_q: "1. CnX4는 어떻게 사나요? <span>+</span>",
+                faq1_a: "Phantom 지갑을 다운로드하고 SOL을 충전한 뒤, Raydium에서 컨트랙트 주소 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 를 검색해 스왑하세요.",
+                faq2_q: "2. 어디서 거래할 수 있나요? <span>+</span>",
+                faq2_a: "현재는 탈중앙화 거래소 Raydium (Solana)에서 거래됩니다. 향후 중앙화 거래소(CEX) 상장을 추진할 예정입니다.",
+                faq3_q: "3. 1% 전송 세금이란? <span>+</span>",
+                faq3_a: "프로젝트 개발을 위한 인프라 비용으로, 개발자 급여·서버 비용·향후 마케팅에 사용됩니다.",
+                faq4_q: "4. 프로젝트가 먹튀하지 않는지 어떻게 확인하나요? <span>+</span>",
+                faq4_a: "Solscan에서 컨트랙트를 조회할 수 있습니다. 민트 권한(Mint Authority)은 \"Revoked\", LP 잠금량은 86%가 \"Burned\"(영구 잠금)로 표시됩니다.",
+                footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축."
+            },
+            en: {
+                nav_about: "About", nav_roadmap: "Roadmap", nav_faq: "FAQ",
+                hero_title: "AI-Era Computing & Storage Infra",
+                hero_subtitle: "XCWW (CnX4) · Built on Solana, 0 VC, Community-Driven",
+                badge_mint: "🔥 Mint Revoked", badge_lp: "🔒 86% LP Burned", badge_solana: "⚡ Solana", badge_ai: "🤖 AI Compute",
+                ca_label: "Contract", supply_label: "Supply", liquidity_label: "Liquidity", holders_label: "Holders",
+                btn_join: "🚀 Join TG", btn_dex: "📊 DexScreener",
+                about_title: "Why XCWW (CnX4)?",
+                feat1_t: "Decentralized Compute", feat1_d: "Pay for AI training & inference compute using CnX4, breaking big-tech monopolies.",
+                feat2_t: "Distributed Storage", feat2_d: "Secure, low-cost, permanent storage network empowering Web3 & AI.",
+                feat3_t: "100% Fair Launch", feat3_d: "0 VC, 0 Premine. Mint authority revoked, 86% LP permanently burned.",
+                feat4_t: "Solana Speed", feat4_d: "Enjoy Solana's ultra-low latency & near-zero fees for a smooth trading experience.",
+                token_title: "Tokenomics",
+                tok_supply: "Total Supply", tok_supply_v: "1B (1,000,000,000)",
+                tok_tax: "Transfer Tax", tok_tax_v: "1% (for project development)",
+                tok_mint: "Mint Auth", tok_mint_v: "✅ Revoked",
+                tok_lp: "LP Lock", tok_lp_v: "✅ 86% Burned",
+                roadmap_title: "Roadmap",
+                rm1: "Raydium Pool Launch, Mint Revoke, 86% LP Burn",
+                rm2: "TG 10k Members, DexScreener Listing",
+                rm3: "Galxe Tasks, Early Adopter Airdrop",
+                rm4: "AI Compute Platform Beta",
+                rm5: "Distributed Storage Beta",
+                rm6: "Mainnet Launch, DAO Governance",
+                faq_title: "FAQ",
+                faq1_q: "1. How to buy CnX4? <span>+</span>",
+                faq1_a: "Download Phantom wallet, fund with SOL, search contract CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf on Raydium to swap.",
+                faq2_q: "2. Where to trade? <span>+</span>",
+                faq2_a: "Currently trading on Raydium (Solana). Future CEX listings planned.",
+                faq3_q: "3. What is the 1% transfer tax? <span>+</span>",
+                faq3_a: "This is the infrastructure fee for project development, covering dev salaries, server costs, and future marketing.",
+                faq4_q: "4. How to verify safety? <span>+</span>",
+                faq4_a: "Check on Solscan. Mint Authority is \"Revoked\"; 86% of LP is \"Burned\" (permanently locked).",
+                footer_copy: "© 2026 XCWW (CnX4). Built on Solana."
+            }
+        };
+
+        // --- 语言切换 ---
+        function switchLang(lang, btn) {
+            if (!I18N[lang]) return;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (I18N[lang][key] !== undefined) {
+                    el.innerHTML = I18N[lang][key];
+                }
+            });
+            const htmlLang = { zh: 'zh-CN', ja: 'ja', ko: 'ko', en: 'en' }[lang] || 'en';
+            document.documentElement.lang = htmlLang;
+            try { localStorage.setItem('xcww_lang', lang); } catch (e) {}
+        }
+
+        // --- 复制合约地址 ---
+        function copyCA() {
+            const ca = "CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(ca).then(() => alert("合约地址已复制: " + ca)).catch(() => {});
+            } else {
+                const t = document.createElement('textarea');
+                t.value = ca; document.body.appendChild(t); t.select();
+                try { document.execCommand('copy'); alert("合约地址已复制: " + ca); } catch (e) {}
+                document.body.removeChild(t);
+            }
+        }
+
+        // --- FAQ 折叠 ---
+        function toggleFAQ(el) {
+            el.classList.toggle('active');
+            const span = el.querySelector('h4 span');
+            if (span) span.textContent = el.classList.contains('active') ? '-' : '+';
+        }
+
+        // --- 初始化：读取上次选择，默认中文 ---
+        (function initLang() {
+            let saved = 'zh';
+            try { saved = localStorage.getItem('xcww_lang') || 'zh'; } catch (e) {}
+            if (!I18N[saved]) saved = 'zh';
+            const btn = document.querySelector('.lang-btn[data-i18n-ignore][onclick*="' + saved + '"]') ||
+                        Array.from(document.querySelectorAll('.lang-btn')).find(b => b.getAttribute('onclick').includes("'" + saved + "'"));
+            switchLang(saved, btn || document.querySelector('.lang-btn'));
+        })();
+    </script>
 </body>
 </html>
