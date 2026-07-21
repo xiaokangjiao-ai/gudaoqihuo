@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCWW (CnX4) 白皮书 - AI 算力与分布式存储基础设施</title>
+    <meta name="description" content="XCWW (CnX4) 白皮书：基于 Solana 的去中心化 AI 算力市场与分布式存储网络，涵盖问题、技术方案、代币经济与 DAO 治理。">
+    <link rel="canonical" href="https://gudaoqihuo.com/whitepaper.html">
+    <style>
+        :root {
+            --bg-color: #0b0b0c; --bg-secondary: #141416; --text-main: #ffffff;
+            --text-muted: #8b8b93; --primary-purple: #8a5cf5; --primary-purple-hover: #7b4fe6;
+            --border-color: #2a2a35;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-main); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+        .lang-switch { position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; gap: 6px; background: var(--bg-secondary); padding: 5px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .lang-btn { background: transparent; border: none; color: var(--text-muted); padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 14px; transition: 0.3s; }
+        .lang-btn:hover { color: var(--text-main); }
+        .lang-btn.active { background: var(--primary-purple); color: #fff; }
+        header { padding: 40px 0 20px; border-bottom: 1px solid var(--border-color); }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; }
+        .nav-logo svg { width: 32px; height: 32px; border-radius: 50%; display: block; }
+        .back { display: inline-block; margin-top: 16px; color: var(--primary-purple); font-size: 14px; }
+        .wp-title { font-size: 42px; font-weight: 700; margin: 40px 0 10px; }
+        .wp-sub { color: var(--text-muted); margin-bottom: 40px; }
+        .wp-section { margin-bottom: 44px; }
+        .wp-section h2 { font-size: 26px; color: var(--primary-purple); margin-bottom: 16px; }
+        .wp-section h3 { font-size: 19px; margin: 22px 0 10px; }
+        .wp-section p { color: var(--text-muted); margin-bottom: 14px; }
+        .wp-box { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; }
+        .wp-list { color: var(--text-muted); padding-left: 22px; }
+        .wp-list li { margin-bottom: 10px; }
+        .disclaimer { background: rgba(138,92,245,.07); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; }
+        .disclaimer h2 { color: var(--primary-purple); }
+        .disclaimer p { color: var(--text-muted); font-size: 14px; }
+        footer { padding: 40px 0 60px; text-align: center; color: var(--text-muted); font-size: 13px; }
+        footer a { color: var(--primary-purple); margin: 0 10px; }
+        @media (max-width: 768px) { .wp-title { font-size: 30px; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+        <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+        <button class="lang-btn" onclick="switchLang('ko')">한국어</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="nav-logo">
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-label="XCWW logo"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5cf5"/><stop offset="1" stop-color="#b794f6"/></linearGradient></defs><circle cx="20" cy="20" r="18" fill="url(#g)"/><text x="20" y="26" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle" font-family="sans-serif">X</text></svg>
+                <span>XCWW <span style="color:var(--primary-purple)">CnX4</span></span>
+            </div>
+            <a class="back" href="index.html" data-i18n="back">← 返回首页</a>
+        </header>
+
+        <h1 class="wp-title" data-i18n="doc_title">XCWW (CnX4) 白皮书</h1>
+        <p class="wp-sub" data-i18n="doc_sub">AI 算力市场 + 分布式存储网络 · 基于 Solana</p>
+
+        <div class="wp-section">
+            <h2 data-i18n="s0_h">摘要</h2>
+            <p data-i18n="s0_p">XCWW 是一个基于 Solana 的 AI 算力与分布式存储基础设施协议。CnX4 作为网络的结算与治理代币，连接闲置 GPU 算力供给与 AI 训练/推理需求，并以去中心化存储网络为数据与模型提供低成本、永久可用的底座。协议采用 100% 公平发行，无 VC、无预挖。</p>
+        </div>
+
+        <div class="wp-section">
+            <h2 data-i18n="s1_h">1. 背景与问题</h2>
+            <p data-i18n="s1_p">AI 训练与推理高度依赖少数中心化云厂商，算力昂贵且供给集中；与此同时，海量数据缺乏低成本、抗审查、可永久保存的存储方案。XCWW 旨在用开放市场与代币激励打破这一垄断，让算力与存储像水电一样被任何人按需调用。</p>
+        </div>
+
+        <div class="wp-section">
+            <h2 data-i18n="s2_h">2. XCWW 解决方案</h2>
+            <h3 data-i18n="s2_1_h">2.1 去中心化算力市场</h3>
+            <p data-i18n="s2_1_p">供给方将闲置 GPU/TPU 接入网络，需求方发布训练或推理任务并以 CnX4 结算。价格由市场供需决定，无需信任中心化平台，全球算力得以被高效调度。</p>
+            <h3 data-i18n="s2_2_h">2.2 分布式存储网络</h3>
+            <p data-i18n="s2_2_p">数据被分片、加密后冗余存储在节点网络中，按 CnX4 计费，单次付费、长期保存。为 AI 数据集、模型权重与 Web3 应用提供抗审查、低成本的存储底座。</p>
+        </div>
+
+        <div class="wp-section">
+            <h2 data-i18n="s3_h">3. CnX4 代币效用</h2>
+            <p data-i18n="s3_p">CnX4 用于算力与存储的支付与结算、网络手续费（1% 用于持续开发与生态）、未来质押以保障网络，以及 DAO 治理投票。代币效用与真实网络使用直接挂钩，而非纯投机。</p>
+        </div>
+
+        <div class="wp-section">
+            <h2 data-i18n="s4_h">4. 代币经济与分配</h2>
+            <div class="wp-box">
+                <p><span data-i18n="s4_supply">总供应量</span>：<b>1,000,000,000 (1B)</b></p>
+                <p><span data-i18n="s4_tax">转账税</span>：<b>1%</b> · <span data-i18n="s4_taxnote">用于项目开发与生态</span></p>
+                <p><span data-i18n="s4_mint">铸币权</span>：<b>✅ Revoked</b> · <span data-i18n="s4_lp">86% LP</span>：<b>✅ Burned</b></p>
+            </div>
+            <ul class="wp-list" style="margin-top:16px;">
+                <li data-i18n="s4_a1">社区与生态 60%</li>
+                <li data-i18n="s4_a2">流动性池 25%（其中 86% 已永久销毁锁定）</li>
+                <li data-i18n="s4_a3">团队与顾问 10%（线性释放，避免集中抛压）</li>
+                <li data-i18n="s4_a4">国库 / 市场 5%</li>
+            </ul>
+        </div>
+
+        <div class="wp-section">
+            <h2 data-i18n="s5_h">5. 路线图</h2>
+            <ul class="wp-list">
+                <li data-i18n="s5_1">2026 Q3：上线流动性并锁定 LP，完成公平起跑。</li>
+                <li data-i18n="s5_2">2026 Q4：社区与链上数据快速积累。</li>
+                <li data-i18n="s5_3">2027 Q1：Galxe 社区任务与早期空投。</li>
+                <li data-i18n="s5_4">2027 Q2：AI 算力平台 Beta。</li>
+                <li data-i18n="s5_5">2027 Q3：分布式存储网络 Beta。</li>
+                <li data-i18n="s5_6">2027 Q4：主网与 DAO 治理上线。</li>
+            </ul>
+        </div>
+
+        <div class="wp-section">
+            <h2 data-i18n="s6_h">6. 治理</h2>
+            <p data-i18n="s6_p">网络成熟后，CnX4 持有者可通过 DAO 对生态基金使用、参数调整与协议升级进行投票，项目走向由社区共同决定。关键权限（铸币、LP）已透明处置，无任何中心化后门。</p>
+        </div>
+
+        <div class="wp-section disclaimer">
+            <h2 data-i18n="s7_h">7. 风险声明</h2>
+            <p data-i18n="s7_p">加密资产风险极高，XCWW (CnX4) 不承诺任何收益或保本，本白皮书不构成投资建议。请在遵守当地法规、充分了解风险的前提下自行判断。参与即视为已阅读并理解本声明。</p>
+        </div>
+
+        <footer>
+            <a href="index.html" data-i18n="back2">首页</a>
+            <a href="https://discord.gg/q8237edzD" target="_blank">Discord</a>
+            <a href="https://t.me/membound_xcww" target="_blank">Telegram</a>
+            <p style="margin-top:14px;" data-i18n="copy">© 2026 XCWW (CnX4). 构建于 Solana.</p>
+        </footer>
+    </div>
+
+    <script>
+        const I18N = {
+            zh: {
+                back: "← 返回首页", doc_title: "XCWW (CnX4) 白皮书", doc_sub: "AI 算力市场 + 分布式存储网络 · 基于 Solana",
+                s0_h: "摘要", s0_p: "XCWW 是一个基于 Solana 的 AI 算力与分布式存储基础设施协议。CnX4 作为网络的结算与治理代币，连接闲置 GPU 算力供给与 AI 训练/推理需求，并以去中心化存储网络为数据与模型提供低成本、永久可用的底座。协议采用 100% 公平发行，无 VC、无预挖。",
+                s1_h: "1. 背景与问题", s1_p: "AI 训练与推理高度依赖少数中心化云厂商，算力昂贵且供给集中；与此同时，海量数据缺乏低成本、抗审查、可永久保存的存储方案。XCWW 旨在用开放市场与代币激励打破这一垄断，让算力与存储像水电一样被任何人按需调用。",
+                s2_h: "2. XCWW 解决方案", s2_1_h: "2.1 去中心化算力市场", s2_1_p: "供给方将闲置 GPU/TPU 接入网络，需求方发布训练或推理任务并以 CnX4 结算。价格由市场供需决定，无需信任中心化平台，全球算力得以被高效调度。",
+                s2_2_h: "2.2 分布式存储网络", s2_2_p: "数据被分片、加密后冗余存储在节点网络中，按 CnX4 计费，单次付费、长期保存。为 AI 数据集、模型权重与 Web3 应用提供抗审查、低成本的存储底座。",
+                s3_h: "3. CnX4 代币效用", s3_p: "CnX4 用于算力与存储的支付与结算、网络手续费（1% 用于持续开发与生态）、未来质押以保障网络，以及 DAO 治理投票。代币效用与真实网络使用直接挂钩，而非纯投机。",
+                s4_h: "4. 代币经济与分配", s4_supply: "总供应量", s4_tax: "转账税", s4_taxnote: "用于项目开发与生态", s4_mint: "铸币权", s4_lp: "86% LP",
+                s4_a1: "社区与生态 60%", s4_a2: "流动性池 25%（其中 86% 已永久销毁锁定）", s4_a3: "团队与顾问 10%（线性释放，避免集中抛压）", s4_a4: "国库 / 市场 5%",
+                s5_h: "5. 路线图", s5_1: "2026 Q3：上线流动性并锁定 LP，完成公平起跑。", s5_2: "2026 Q4：社区与链上数据快速积累。", s5_3: "2027 Q1：Galxe 社区任务与早期空投。", s5_4: "2027 Q2：AI 算力平台 Beta。", s5_5: "2027 Q3：分布式存储网络 Beta。", s5_6: "2027 Q4：主网与 DAO 治理上线。",
+                s6_h: "6. 治理", s6_p: "网络成熟后，CnX4 持有者可通过 DAO 对生态基金使用、参数调整与协议升级进行投票，项目走向由社区共同决定。关键权限（铸币、LP）已透明处置，无任何中心化后门。",
+                s7_h: "7. 风险声明", s7_p: "加密资产风险极高，XCWW (CnX4) 不承诺任何收益或保本，本白皮书不构成投资建议。请在遵守当地法规、充分了解风险的前提下自行判断。参与即视为已阅读并理解本声明。",
+                back2: "首页", copy: "© 2026 XCWW (CnX4). 构建于 Solana."
+            },
+            ja: {
+                back: "← ホームに戻る", doc_title: "XCWW (CnX4) ホワイトペーパー", doc_sub: "AI計算市場 + 分散型ストレージネットワーク · Solana基盤",
+                s0_h: "要約", s0_p: "XCWWはSolanaを基盤とするAI計算・分散型ストレージ・インフラプロトコルです。CnX4はネットワークの決済・ガバナンス・トークンとして、遊休GPUの計算供給とAI学習・推論の需要をつなぎ、分散型ストレージでデータとモデルに低コストで永久利用可能な基盤を提供します。プロトコルはVCなし・プリマインなしの100%フェアローンチです。",
+                s1_h: "1. 背景と課題", s1_p: "AI学習・推論は一部の中央集権クラウドに依存し、計算は高価で供給が集中しています。同時に、大量のデータには低コスト・検閲耐性・永久保存可能なストレージが欠けています。XCWWはオープンマーケットとトークンインセンティブでこの独占を打破します。",
+                s2_h: "2. XCWWの解決策", s2_1_h: "2.1 分散型計算市場", s2_1_p: "供給側が遊休GPU/TPUをネットワークに接続し、需要側が学習・推論タスクを発行してCnX4で決済します。価格は市場の需給で決まり、中央集権プラットフォームを信頼する必要なく、世界中の計算を効率的に稼働させます。",
+                s2_2_h: "2.2 分散型ストレージネットワーク", s2_2_p: "データは断片化・暗号化されノードネットワークに冗長保存され、CnX4で課金。一度の支払いで長期保存。AIデータセット・モデル重み・Web3アプリに検閲耐性・低コストのストレージ基盤を提供します。",
+                s3_h: "3. CnX4のトークン効用", s3_p: "CnX4は計算・ストレージの支払いと決済、ネットワーク手数料（開発・エコシステムに充当する1%）、将来のステーキング、そしてDAOガバナンス投票に用います。トークン効用は実際のネットワーク利用に直結します。",
+                s4_h: "4. トークノミクスと配分", s4_supply: "総供給量", s4_tax: "送金税", s4_taxnote: "開発・エコシステムに充当", s4_mint: "ミント権", s4_lp: "86% LP",
+                s4_a1: "コミュニティ・エコシステム 60%", s4_a2: "流動性プール 25%（うち86%を永久ロック）", s4_a3: "チーム・アドバイザー 10%（線形解放）", s4_a4: "国庫・マーケット 5%",
+                s5_h: "5. ロードマップ", s5_1: "2026 Q3：流動性をローンチしLPをロック。", s5_2: "2026 Q4：コミュニティとオンチェーンデータを蓄積。", s5_3: "2027 Q1：Galxeコミュニティミッションと初期エアドロップ。", s5_4: "2027 Q2：AI計算プラットフォームβ。", s5_5: "2027 Q3：分散型ストレージβ。", s5_6: "2027 Q4：メインネットとDAOガバナンス。",
+                s6_h: "6. ガバナンス", s6_p: "ネットワーク成熟後、CnX4保有者はDAOを通じてエコシステム基金の使途・パラメータ調整・プロトコル昇格を投票でき、プロジェクトの方向はコミュニティで決定します。重要権限（ミント・LP）は透明に処置済みです。",
+                s7_h: "7. リスク声明", s7_p: "暗号資産のリスクは極めて高く、XCWW (CnX4) はいかなる利益や元本保証もせず、本ホワイトペーパーは投資助言ではありません。現地の法規を遵守し、リスクを十分理解した上でご自身で判断してください。参加は本声明の読了・同意とみなされます。",
+                back2: "ホーム", copy: "© 2026 XCWW (CnX4). Solana上に構築."
+            },
+            ko: {
+                back: "← 홈으로 돌아가기", doc_title: "XCWW (CnX4) 백서", doc_sub: "AI 컴퓨팅 시장 + 분산형 스토리지 네트워크 · Solana 기반",
+                s0_h: "요약", s0_p: "XCWW는 Solana 기반의 AI 컴퓨팅 및 분산형 스토리지 인프라 프로토콜입니다. CnX4는 네트워크의 정산 및 거버넌스 토큰으로, 유휴 GPU 컴퓨팅 공급과 AI 학습·추론 수요를 연결하고 분산형 스토리지로 데이터와 모델에 저렴하고 영구 이용 가능한 기반을 제공합니다. 프로토콜은 VC 없음, 프리마이닝 없음의 100% 공정 발행입니다.",
+                s1_h: "1. 배경과 문제", s1_p: "AI 학습·추론은 소수 중앙화 클라우드에 의존하며 컴퓨팅은 비싸고 공급이 집중되어 있습니다. 동시에 방대한 데이터에는 저비용·검열 저항·영구 보존 가능한 스토리지가 부족합니다. XCWW는 개방형 시장과 토큰 인센티브로 이 독점을 깨뜨립니다.",
+                s2_h: "2. XCWW 솔루션", s2_1_h: "2.1 탈중앙화 컴퓨팅 마켓", s2_1_p: "공급자가 유휴 GPU/TPU를 네트워크에 연결하고, 수요자가 학습·추론 작업을 발행해 CnX4로 정산합니다. 가격은 시장 수급으로 결정되며 중앙화 플랫폼을 신뢰할 필요 없이 전 세계 컴퓨팅을 효율적으로调度합니다.",
+                s2_2_h: "2.2 분산형 스토리지 네트워크", s2_2_p: "데이터는 분할·암호화되어 노드 네트워크에 중복 저장되고 CnX4로 과금됩니다. 한 번 결제로 장기 보존. AI 데이터셋·모델 가중치·Web3 앱에 검열 저항·저비용 스토리지 기반을 제공합니다.",
+                s3_h: "3. CnX4 토큰 효용", s3_p: "CnX4는 컴퓨팅·스토리지 결제와 정산, 네트워크 수수료(개발·생태계에 사용되는 1%), 향후 스테이킹, 그리고 DAO 거버넌스 투표에 쓰입니다. 토큰 효용은 실제 네트워크 사용과 직결됩니다.",
+                s4_h: "4. 토큰노믹스와 배분", s4_supply: "총 공급량", s4_tax: "전송 세금", s4_taxnote: "개발·생태계에 사용", s4_mint: "민트 권한", s4_lp: "86% LP",
+                s4_a1: "커뮤니티·생태계 60%", s4_a2: "유동성 풀 25%(그중 86% 영구 잠금)", s4_a3: "팀·어드바이저 10%(선형 해제)", s4_a4: "국고·마켓 5%",
+                s5_h: "5. 로드맵", s5_1: "2026 Q3: 유동성 론칭 및 LP 잠금.", s5_2: "2026 Q4: 커뮤니티와 온체인 데이터 축적.", s5_3: "2027 Q1: Galxe 커뮤니티 미션 및 초기 에어드랍.", s5_4: "2027 Q2: AI 컴퓨팅 플랫폼 β.", s5_5: "2027 Q3: 분산형 스토리지 β.", s5_6: "2027 Q4: 메인넷 및 DAO 거버넌스.",
+                s6_h: "6. 거버넌스", s6_p: "네트워크 성숙 후 CnX4 보유자는 DAO를 통해 생태계 기금 집행, 파라미터 조정, 프로토콜 업그레이드를 투표할 수 있으며 프로젝트 방향은 커뮤니티가 결정합니다. 핵심 권한(민트·LP)은 투명하게 처리되었습니다.",
+                s7_h: "7. 위험 고지", s7_p: "암호자산 위험은 매우 높으며 XCWW (CnX4)는 어떠한 수익이나 원금 보장도 하지 않습니다. 본 백서는 투자 조언이 아닙니다. 현지 법규를 준수하고 위험을 충분히 이해한 후 스스로 판단하십시오. 참여는 본 고지의 숙지·동의로 간주됩니다.",
+                back2: "홈", copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축."
+            },
+            en: {
+                back: "← Back to Home", doc_title: "XCWW (CnX4) Whitepaper", doc_sub: "AI Compute Marketplace + Decentralized Storage Network · on Solana",
+                s0_h: "Abstract", s0_p: "XCWW is a Solana-based AI compute and decentralized storage infrastructure protocol. CnX4 serves as the network's settlement and governance token, connecting idle GPU compute supply with AI training/inference demand, and providing a low-cost, permanently available foundation for data and models via a decentralized storage network. The protocol launched 100% fair: 0 VC, 0 premine.",
+                s1_h: "1. Background & Problem", s1_p: "AI training and inference depend heavily on a few centralized clouds — compute is expensive and supply is concentrated. Meanwhile, vast amounts of data lack low-cost, censorship-resistant, permanently retrievable storage. XCWW uses an open market and token incentives to break this monopoly, making compute and storage callable on demand like utilities.",
+                s2_h: "2. The XCWW Solution", s2_1_h: "2.1 Decentralized Compute Marketplace", s2_1_p: "Suppliers connect idle GPU/TPU to the network; demanders publish training or inference tasks settled in CnX4. Prices are set by market supply and demand, with no need to trust a centralized platform, so global compute is scheduled efficiently.",
+                s2_2_h: "2.2 Decentralized Storage Network", s2_2_p: "Data is sharded, encrypted and redundantly stored across node network, billed in CnX4 — pay once, keep forever. It provides a censorship-resistant, low-cost storage base for AI datasets, model weights and Web3 apps.",
+                s3_h: "3. CnX4 Token Utility", s3_p: "CnX4 is used for compute and storage payments and settlement, network fees (1% directed to ongoing development and ecosystem), future staking to secure the network, and DAO governance voting. Token utility is directly tied to real network usage, not pure speculation.",
+                s4_h: "4. Tokenomics & Distribution", s4_supply: "Total Supply", s4_tax: "Transfer Tax", s4_taxnote: "for development & ecosystem", s4_mint: "Mint Auth", s4_lp: "86% LP",
+                s4_a1: "Community & Ecosystem 60%", s4_a2: "Liquidity Pool 25% (86% of which permanently burned/locked)", s4_a3: "Team & Advisors 10% (linear vesting)", s4_a4: "Treasury / Market 5%",
+                s5_h: "5. Roadmap", s5_1: "2026 Q3: launch liquidity and lock LP.", s5_2: "2026 Q4: grow community and on-chain data.", s5_3: "2027 Q1: Galxe quests and early airdrop.", s5_4: "2027 Q2: AI Compute Platform Beta.", s5_5: "2027 Q3: Storage Network Beta.", s5_6: "2027 Q4: mainnet & DAO governance.",
+                s6_h: "6. Governance", s6_p: "As the network matures, CnX4 holders vote through the DAO on ecosystem fund usage, parameter adjustments, and protocol upgrades — the project's direction is decided by the community. Critical privileges (mint, LP) have been transparently handled with no centralized backdoor.",
+                s7_h: "7. Risk Disclaimer", s7_p: "Crypto assets are extremely risky. XCWW (CnX4) promises no returns or principal protection, and this whitepaper is not investment advice. Comply with local laws and make your own judgment with full understanding of the risks. Participation is deemed acceptance of this disclaimer.",
+                back2: "Home", copy: "© 2026 XCWW (CnX4). Built on Solana."
+            }
+        };
+        function switchLang(lang) {
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+            const dict = I18N[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key] !== undefined) el.innerHTML = dict[key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.getAttribute('onclick').includes(lang)));
+            try { localStorage.setItem('xcww_lang', lang); } catch (e) {}
+        }
+        (function () { let lang = 'zh'; try { lang = localStorage.getItem('xcww_lang') || 'zh'; } catch (e) {} switchLang(lang); })();
+    </script>
+</body>
+</html>

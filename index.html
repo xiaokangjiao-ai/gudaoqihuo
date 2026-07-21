@@ -8,7 +8,6 @@
     <meta name="keywords" content="XCWW, CnX4, Solana, AI算力, 去中心化存储, 区块链, 加密货币">
     <link rel="canonical" href="https://gudaoqihuo.com/">
     <style>
-        /* --- 基础重置与变量 --- */
         :root {
             --bg-color: #0b0b0c;
             --bg-secondary: #141416;
@@ -30,7 +29,6 @@
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* --- 语言切换 --- */
         .lang-switch {
             position: fixed; top: 20px; right: 20px; z-index: 100;
             display: flex; gap: 6px; background: var(--bg-secondary);
@@ -43,7 +41,6 @@
         .lang-btn:hover { color: var(--text-main); }
         .lang-btn.active { background: var(--primary-purple); color: #fff; }
 
-        /* --- Navbar --- */
         nav {
             padding: 20px 0; border-bottom: 1px solid var(--border-color);
             display: flex; justify-content: space-between; align-items: center;
@@ -53,238 +50,294 @@
         .nav-links a { color: var(--text-muted); margin-left: 30px; transition: color 0.3s; font-size: 15px; }
         .nav-links a:hover { color: var(--primary-purple); }
 
-        /* --- Hero Section --- */
         .hero {
             padding: 100px 0 60px; text-align: center;
             background: radial-gradient(circle at center top, rgba(138, 92, 245, 0.08) 0%, transparent 60%);
         }
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700;
-            margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, var(--primary-purple) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero .subtitle { font-size: 20px; color: var(--text-muted); margin-bottom: 40px; }
-        .hero .badges { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .hero h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+        .hero .subtitle { font-size: 19px; color: var(--text-muted); max-width: 680px; margin: 0 auto 30px; }
+        .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 35px; }
         .badge {
             background: var(--bg-secondary); border: 1px solid var(--border-color);
-            padding: 6px 16px; border-radius: 20px; font-size: 13px; color: var(--text-main);
+            padding: 8px 18px; border-radius: 30px; font-size: 14px; color: var(--text-muted);
         }
-        .badge.success { border-color: var(--primary-purple); color: var(--primary-purple); }
-
-        .data-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px; max-width: 800px; margin: 40px auto; background: var(--bg-secondary);
-            padding: 30px; border-radius: 16px; border: 1px solid var(--border-color);
+        .ca-box {
+            display: inline-flex; align-items: center; gap: 12px; background: var(--bg-secondary);
+            border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 20px; margin-bottom: 30px;
         }
-        .data-item h4 { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .data-item p { font-size: 16px; font-weight: 500; word-break: break-all; }
-        .data-item .ca { font-size: 12px; color: var(--primary-purple); cursor: pointer; }
-
-        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .ca-box .label { color: var(--text-muted); font-size: 13px; }
+        .ca-box .addr { font-family: monospace; font-size: 14px; color: var(--primary-purple); word-break: break-all; }
+        .ca-box button {
+            background: var(--primary-purple); color: #fff; border: none; padding: 8px 16px;
+            border-radius: 8px; cursor: pointer; font-size: 13px; transition: 0.3s; white-space: nowrap;
+        }
+        .ca-box button:hover { background: var(--primary-purple-hover); }
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            background: var(--primary-purple); color: #fff; padding: 12px 30px;
-            border-radius: 30px; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; display: inline-block;
+            padding: 14px 32px; border-radius: 12px; font-size: 16px; font-weight: 600;
+            transition: 0.3s; display: inline-block; cursor: pointer; border: none;
         }
-        .btn:hover { background: var(--primary-purple-hover); transform: translateY(-2px); }
-        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-primary { background: var(--primary-purple); color: #fff; }
+        .btn-primary:hover { background: var(--primary-purple-hover); transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
         .btn-outline:hover { border-color: var(--primary-purple); color: var(--primary-purple); }
 
-        /* --- Section General --- */
         section { padding: 80px 0; border-bottom: 1px solid var(--border-color); }
-        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 40px; text-align: center; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .section-title { font-size: 38px; font-weight: 700; text-align: center; margin-bottom: 50px; }
 
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
         .feature-card {
-            background: var(--bg-secondary); padding: 30px; border-radius: 16px;
-            border: 1px solid var(--border-color); transition: 0.3s;
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 30px; transition: 0.3s;
         }
-        .feature-card:hover { border-color: var(--primary-purple); transform: translateY(-4px); }
-        .feature-card h3 { margin-bottom: 10px; color: #fff; }
-        .feature-card p { color: var(--text-muted); }
+        .feature-card:hover { border-color: var(--primary-purple); transform: translateY(-3px); }
+        .feature-card h3 { font-size: 22px; margin-bottom: 12px; color: var(--primary-purple); }
+        .feature-card p { color: var(--text-muted); font-size: 15px; }
 
-        /* --- Tokenomics & Roadmap --- */
-        .tokenomics-list { list-style: none; padding: 0; }
-        .tokenomics-list li { padding: 12px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; gap: 12px; }
-        .tokenomics-list li:last-child { border-bottom: none; }
-
-        .timeline {
-            position: relative; padding-left: 30px; border-left: 2px solid var(--border-color);
-            margin-left: 20px;
+        .token-box {
+            max-width: 700px; margin: 0 auto; background: var(--bg-secondary);
+            border: 1px solid var(--border-color); border-radius: 16px; padding: 35px;
         }
-        .timeline-item { margin-bottom: 30px; position: relative; }
+        .token-list { list-style: none; }
+        .token-list li {
+            display: flex; justify-content: space-between; padding: 15px 0;
+            border-bottom: 1px solid var(--border-color); font-size: 16px;
+        }
+        .token-list li:last-child { border-bottom: none; }
+        .token-list .k { color: var(--text-muted); }
+        .token-list .v { font-weight: 600; }
+        .token-note {
+            margin-top: 20px; padding: 16px 18px; background: rgba(138, 92, 245, 0.07);
+            border-left: 3px solid var(--primary-purple); border-radius: 8px;
+            color: var(--text-muted); font-size: 14px; line-height: 1.8;
+        }
+
+        .timeline { max-width: 780px; margin: 0 auto; position: relative; }
+        .timeline::before {
+            content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+            width: 2px; background: var(--border-color);
+        }
+        .timeline-item { position: relative; padding-left: 60px; margin-bottom: 40px; }
         .timeline-item::before {
-            content: ''; width: 12px; height: 12px; background: var(--primary-purple);
-            border-radius: 50%; position: absolute; left: -36px; top: 6px;
+            content: ''; position: absolute; left: 13px; top: 6px; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--primary-purple); border: 3px solid var(--bg-color);
         }
-        .timeline-item h4 { font-size: 18px; color: var(--primary-purple); }
-        .timeline-item p { color: var(--text-muted); margin-top: 5px; }
+        .timeline-item h4 { font-size: 19px; margin-bottom: 8px; }
+        .timeline-item p { color: var(--text-muted); font-size: 15px; }
 
-        /* --- FAQ --- */
-        .faq-item {
-            background: var(--bg-secondary); padding: 20px; border-radius: 12px;
-            margin-bottom: 15px; border: 1px solid var(--border-color);
+        .wp-box {
+            max-width: 780px; margin: 0 auto; background: var(--bg-secondary);
+            border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; text-align: center;
         }
-        .faq-item h4 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        .faq-item p { max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-muted); padding-top: 0; }
-        .faq-item.active p { max-height: 400px; padding-top: 15px; }
-        .faq-item.active { border-color: var(--primary-purple); }
+        .wp-box p.lead { color: var(--text-muted); font-size: 16px; margin-bottom: 25px; }
+        .wp-points { text-align: left; max-width: 620px; margin: 0 auto 30px; }
+        .wp-points p { color: var(--text-muted); font-size: 15px; padding: 10px 0; border-bottom: 1px dashed var(--border-color); }
+        .wp-points p:last-child { border-bottom: none; }
 
-        /* --- Footer --- */
-        footer { padding: 40px 0; text-align: center; color: var(--text-muted); border-top: 1px solid var(--border-color); }
-        footer a { color: var(--primary-purple); }
+        .community-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+        .community-card {
+            background: var(--bg-secondary); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 30px 20px; text-align: center; transition: 0.3s;
+        }
+        .community-card:hover { border-color: var(--primary-purple); transform: translateY(-3px); }
+        .community-card .ico { font-size: 34px; margin-bottom: 12px; }
+        .community-card h4 { font-size: 18px; margin-bottom: 8px; }
+        .community-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+        .community-card a { color: var(--primary-purple); font-weight: 600; font-size: 14px; }
 
-        /* --- Responsive --- */
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+        .faq-q {
+            padding: 20px; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; font-size: 16px; font-weight: 500; user-select: none;
+        }
+        .faq-q span { color: var(--primary-purple); font-size: 22px; transition: 0.3s; }
+        .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; color: var(--text-muted); font-size: 15px; }
+        .faq-item.active .faq-a { padding: 0 20px 20px; max-height: 300px; }
+        .faq-item.active .faq-q span { transform: rotate(45deg); }
+
+        footer { padding: 60px 0 40px; text-align: center; }
+        .disclaimer {
+            max-width: 820px; margin: 0 auto 30px; background: var(--bg-secondary);
+            border: 1px solid var(--border-color); border-radius: 14px; padding: 24px;
+            text-align: left;
+        }
+        .disclaimer h4 { color: var(--primary-purple); font-size: 16px; margin-bottom: 12px; }
+        .disclaimer p { color: var(--text-muted); font-size: 13.5px; line-height: 1.9; }
+        .footer-links { display: flex; gap: 25px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-muted); font-size: 14px; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary-purple); }
+        .footer-copy { color: var(--text-muted); font-size: 13px; }
+
         @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .feature-grid, .community-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .hero { padding: 80px 0 40px; }
-            .data-grid { grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
-            .lang-switch { top: 10px; right: 10px; }
-        }
-        @media (max-width: 480px) {
-            .data-grid { grid-template-columns: 1fr; text-align: center; }
+            .section-title { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-
-    <!-- 语言切换 -->
     <div class="lang-switch">
-        <button class="lang-btn active" onclick="switchLang('zh', this)">中文</button>
-        <button class="lang-btn" onclick="switchLang('ja', this)">日本語</button>
-        <button class="lang-btn" onclick="switchLang('ko', this)">한국어</button>
-        <button class="lang-btn" onclick="switchLang('en', this)">EN</button>
+        <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+        <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+        <button class="lang-btn" onclick="switchLang('ko')">한국어</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
     </div>
 
-    <!-- 导航 -->
     <div class="container">
         <nav>
             <div class="nav-logo">
-                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="XCWW logo">
-                    <circle cx="16" cy="16" r="16" fill="#8a5cf5"/>
-                    <path d="M10 10 L22 22 M22 10 L10 22" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <span>XCWW</span>
+                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-label="XCWW logo"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5cf5"/><stop offset="1" stop-color="#b794f6"/></linearGradient></defs><circle cx="20" cy="20" r="18" fill="url(#g)"/><text x="20" y="26" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle" font-family="sans-serif">X</text></svg>
+                <span>XCWW <span style="color:var(--primary-purple)">CnX4</span></span>
             </div>
             <div class="nav-links">
                 <a href="#about" data-i18n="nav_about">介绍</a>
                 <a href="#roadmap" data-i18n="nav_roadmap">路线图</a>
+                <a href="#whitepaper" data-i18n="nav_whitepaper">白皮书</a>
+                <a href="#community" data-i18n="nav_community">社区</a>
                 <a href="#faq" data-i18n="nav_faq">FAQ</a>
             </div>
         </nav>
     </div>
 
-    <!-- Hero -->
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero" style="border-bottom:1px solid var(--border-color)">
         <div class="container">
             <h1 data-i18n="hero_title">AI 时代的算力+存储基础设施</h1>
-            <p class="subtitle" data-i18n="hero_subtitle">XCWW (CnX4) · 基于 Solana，0 VC，社区共建</p>
-
+            <p class="subtitle" data-i18n="hero_subtitle">XCWW (CnX4) · 构建于 Solana，0 VC、0 预挖、社区驱动</p>
             <div class="badges">
-                <span class="badge success" data-i18n="badge_mint">🔥 铸币权已销毁</span>
-                <span class="badge success" data-i18n="badge_lp">🔒 86% LP 已永久锁定</span>
+                <span class="badge" data-i18n="badge_mint">🔥 已放弃铸币权</span>
+                <span class="badge" data-i18n="badge_lp">🔒 86% LP 已销毁</span>
                 <span class="badge" data-i18n="badge_solana">⚡ Solana</span>
                 <span class="badge" data-i18n="badge_ai">🤖 AI 算力</span>
             </div>
-
-            <div class="data-grid">
-                <div class="data-item">
-                    <h4 data-i18n="ca_label">合约地址 (CA)</h4>
-                    <p class="ca" onclick="copyCA()" title="Click to copy">CnX4Yd85...LPTf</p>
-                </div>
-                <div class="data-item">
-                    <h4 data-i18n="supply_label">总量</h4>
-                    <p>1,000,000,000</p>
-                </div>
-                <div class="data-item">
-                    <h4 data-i18n="liquidity_label">流动性</h4>
-                    <p>~$99 (Raydium)</p>
-                </div>
-                <div class="data-item">
-                    <h4 data-i18n="holders_label">持有人</h4>
-                    <p>7+</p>
-                </div>
+            <div class="ca-box">
+                <span class="label" data-i18n="ca_label">合约地址 (CA)</span>
+                <span class="addr" id="ca">CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf</span>
+                <button onclick="copyCA()" data-i18n="btn_copy">复制</button>
             </div>
-
             <div class="btn-group">
-                <a href="https://t.me/membound_xcww" target="_blank" class="btn" data-i18n="btn_join">🚀 加入社区 (TG)</a>
-                <a href="https://dexscreener.com/solana/CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf" target="_blank" class="btn btn-outline" data-i18n="btn_dex">📊 DexScreener</a>
+                <a href="https://t.me/membound_xcww" target="_blank" class="btn btn-primary" data-i18n="btn_join">🚀 加入电报群</a>
+                <a href="https://discord.gg/q8237edzD" target="_blank" class="btn btn-outline" data-i18n="btn_discord">💬 Discord</a>
+                <a href="https://dexscreener.com/solana/cnx4" target="_blank" class="btn btn-outline" data-i18n="btn_dex">📊 DexScreener</a>
             </div>
         </div>
     </section>
 
-    <!-- About -->
+    <!-- ABOUT -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title" data-i18n="about_title">为什么选择 XCWW (CnX4)？</h2>
-            <div class="grid-2">
-                <div>
-                    <div class="feature-card">
-                        <h3 data-i18n="feat1_t">去中心化算力</h3>
-                        <p data-i18n="feat1_d">使用 CnX4 支付 AI 训练与推理所需的海量算力，打破巨头垄断。</p>
-                    </div>
-                    <div class="feature-card" style="margin-top: 20px;">
-                        <h3 data-i18n="feat2_t">分布式存储</h3>
-                        <p data-i18n="feat2_d">安全、低成本、永不丢失的数据存储网络，为 Web3 和 AI 提供底层支持。</p>
-                    </div>
+            <h2 class="section-title" data-i18n="about_title">为什么是 XCWW (CnX4)？</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3 data-i18n="feat1_t">去中心化算力</h3>
+                    <p data-i18n="feat1_d">CnX4 是 AI 训练与推理算力的支付媒介。持有者可用代币在去中心化算力市场结算 GPU/TPU 资源，让中小开发者也能以低成本调用算力，打破云巨头的算力垄断与定价权。</p>
                 </div>
-                <div>
-                    <div class="feature-card">
-                        <h3 data-i18n="feat3_t">100% 公平发行</h3>
-                        <p data-i18n="feat3_d">0 VC，0 预挖。铸币权已销毁 (Revoke)，86% LP 已永久销毁 (Burn)。</p>
-                    </div>
-                    <div class="feature-card" style="margin-top: 20px;">
-                        <h3 data-i18n="feat4_t">Solana 速度</h3>
-                        <p data-i18n="feat4_d">享受 Solana 极致的低延迟和微乎其微的 GAS 费用，交易体验丝滑。</p>
-                    </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feat2_t">分布式存储</h3>
+                    <p data-i18n="feat2_d">基于节点网络的永久存储层，数据分片加密、冗余备份、按 CnX4 计费。相比中心化云存储，成本更低、抗审查、且不会因为服务商停运而丢失。</p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feat3_t">100% 公平发行</h3>
+                    <p data-i18n="feat3_d">0 VC、0 预挖、0 团队预留解锁。铸币权已 Revoke，86% 流动性永久 Burn 锁定，剩余代币全部进入社区与生态激励，从第一天起就属于持有人。</p>
+                </div>
+                <div class="feature-card">
+                    <h3 data-i18n="feat4_t">Solana 速度</h3>
+                    <p data-i18n="feat4_d">构建于 Solana，享受亚秒级确认与近乎为零的 Gas 费。无论是链上转账还是未来算力/存储结算，都能获得丝滑体验。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tokenomics -->
-    <section>
+    <!-- TOKENOMICS -->
+    <section id="tokenomics">
         <div class="container">
             <h2 class="section-title" data-i18n="token_title">代币经济学</h2>
-            <div style="max-width: 600px; margin: 0 auto; background: var(--bg-secondary); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color);">
-                <ul class="tokenomics-list">
-                    <li><span data-i18n="tok_supply">总供应量</span> <b data-i18n="tok_supply_v">10亿 (1B)</b></li>
-                    <li><span data-i18n="tok_tax">转账税</span> <b data-i18n="tok_tax_v">1% (用于项目开发)</b></li>
-                    <li><span data-i18n="tok_mint">铸币权</span> <b style="color: var(--primary-purple);" data-i18n="tok_mint_v">✅ 已 Revoke</b></li>
-                    <li><span data-i18n="tok_lp">LP 锁定</span> <b style="color: var(--primary-purple);" data-i18n="tok_lp_v">✅ 86% 已销毁 (Burned)</b></li>
+            <div class="token-box">
+                <ul class="token-list">
+                    <li><span class="k" data-i18n="tok_supply">总供应量</span><span class="v">1B (1,000,000,000)</span></li>
+                    <li><span class="k" data-i18n="tok_tax">转账税</span><span class="v" data-i18n="tok_tax_v">1%（用于项目开发）</span></li>
+                    <li><span class="k" data-i18n="tok_mint">铸币权</span><span class="v" data-i18n="tok_mint_v">✅ 已 Revoke</span></li>
+                    <li><span class="k" data-i18n="tok_lp">LP 锁定</span><span class="v" data-i18n="tok_lp_v">✅ 86% 已销毁</span></li>
                 </ul>
+                <div class="token-note" data-i18n="tok_note">CnX4 采用公平的发射机制：没有预售、没有团队份额解锁、没有隐藏增发。1% 转账税全部回流至生态开发基金，用于支付开发者、服务器与后续市场推广，公开透明。</div>
             </div>
         </div>
     </section>
 
-    <!-- Roadmap -->
+    <!-- ROADMAP -->
     <section id="roadmap">
         <div class="container">
-            <h2 class="section-title" data-i18n="roadmap_title">发展路线图</h2>
-            <div class="timeline" style="max-width: 600px; margin: 0 auto;">
+            <h2 class="section-title" data-i18n="roadmap_title">路线图</h2>
+            <div class="timeline">
                 <div class="timeline-item">
-                    <h4>2026 Q3</h4>
-                    <p data-i18n="rm1">上线 Raydium 交易池、Revoke 铸币权、销毁 86% LP</p>
+                    <h4>2026 Q3 · Launch</h4>
+                    <p data-i18n="rm1">Raydium 流动性池上线，完成铸币权 Revoke 与 86% LP 永久 Burn，确立不可篡改的公平基底。</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>2026 Q4</h4>
-                    <p data-i18n="rm2">TG 社区达成 1万成员、DexScreener 收录</p>
+                    <h4>2026 Q4 · Community</h4>
+                    <p data-i18n="rm2">Telegram 社群突破 1 万成员，DexScreener 收录并维持活跃交易；启动多语言内容运营。</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>2027 Q1</h4>
-                    <p data-i18n="rm3">Galxe 社区任务、早期支持者空投</p>
+                    <h4>2027 Q1 · Growth</h4>
+                    <p data-i18n="rm3">通过 Galxe 发布社区任务与成就系统，向早期支持者进行空投，激活链上交互。</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>2027 Q2</h4>
-                    <p data-i18n="rm4">AI 算力平台 Beta 版发布</p>
+                    <h4>2027 Q2 · Compute Beta</h4>
+                    <p data-i18n="rm4">发布 AI 算力平台 Beta：开发者可接入去中心化 GPU 资源，使用 CnX4 结算。</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>2027 Q3</h4>
-                    <p data-i18n="rm5">分布式存储网络 Beta 版发布</p>
+                    <h4>2027 Q3 · Storage Beta</h4>
+                    <p data-i18n="rm5">分布式存储网络 Beta 上线：开放数据上传、加密分片与按量计费。</p>
                 </div>
                 <div class="timeline-item">
-                    <h4>2027 Q4</h4>
-                    <p data-i18n="rm6">主网正式上线，开启 DAO 治理</p>
+                    <h4>2027 Q4 · Mainnet & DAO</h4>
+                    <p data-i18n="rm6">主网正式上线，启动 DAO 治理，代币持有人对生态参数与资金走向投票决策。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHITEPAPER -->
+    <section id="whitepaper">
+        <div class="container">
+            <h2 class="section-title" data-i18n="wp_title">白皮书</h2>
+            <div class="wp-box">
+                <p class="lead" data-i18n="wp_intro">XCWW (CnX4) 白皮书阐述了用代币驱动的去中心化 AI 算力与存储网络愿景：我们如何解决算力垄断、存储成本与公平发行三大问题，以及代币如何贯穿整个经济循环。</p>
+                <div class="wp-points">
+                    <p data-i18n="wp_p1">问题：算力与存储被少数云巨头垄断，价格高、门槛高，AI 创新被绑定在中心化基础设施上。</p>
+                    <p data-i18n="wp_p2">方案：CnX4 作为结算层的去中心化算力市场 + 永久存储网络，任何人可供给或消费资源。</p>
+                    <p data-i18n="wp_p3">代币经济：公平发射、1% 生态税、LP 永久锁定，代币贯穿算力/存储支付与治理。</p>
+                </div>
+                <a href="whitepaper.html" target="_blank" class="btn btn-primary" data-i18n="btn_whitepaper">📄 阅读完整白皮书</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section id="community">
+        <div class="container">
+            <h2 class="section-title" data-i18n="community_title">加入社区</h2>
+            <p class="subtitle" data-i18n="community_desc" style="text-align:center;color:var(--text-muted);margin-bottom:40px;">与全球持有人一起建设 XCWW。第一时间获取公告、空投与产品进展。</p>
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="ico">💬</div>
+                    <h4>Discord</h4>
+                    <p data-i18n="comm_discord">实时讨论、公告与活动的主场。</p>
+                    <a href="https://discord.gg/q8237edzD" target="_blank" data-i18n="comm_join">加入 Discord →</a>
+                </div>
+                <div class="community-card">
+                    <div class="ico">🚀</div>
+                    <h4>Telegram</h4>
+                    <p data-i18n="comm_tg">快讯、喊单与社区互动。</p>
+                    <a href="https://t.me/membound_xcww" target="_blank" data-i18n="comm_join2">加入 TG →</a>
+                </div>
+                <div class="community-card">
+                    <div class="ico">📊</div>
+                    <h4>DexScreener</h4>
+                    <p data-i18n="comm_dex">实时价格、流动性与持仓数据。</p>
+                    <a href="https://dexscreener.com/solana/cnx4" target="_blank" data-i18n="comm_join3">查看行情 →</a>
                 </div>
             </div>
         </div>
@@ -294,232 +347,284 @@
     <section id="faq">
         <div class="container">
             <h2 class="section-title" data-i18n="faq_title">常见问题</h2>
-            <div style="max-width: 700px; margin: 0 auto;">
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <h4 data-i18n="faq1_q">1. 怎么买 CnX4？ <span>+</span></h4>
-                    <p data-i18n="faq1_a">下载 Phantom 钱包，充值 SOL，在 Raydium 上搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 进行兑换。</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq1_q">1. 如何购买 CnX4？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq1_a">下载 Phantom 钱包 → 充值 SOL → 在 Raydium 搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf → 兑换 CnX4。</div>
                 </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <h4 data-i18n="faq2_q">2. 在哪可以交易？ <span>+</span></h4>
-                    <p data-i18n="faq2_a">目前去中心化交易所在 Raydium (Solana) 上交易。未来将寻求中心化交易所 (CEX) 上线。</p>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq2_q">2. 在哪里可以交易？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq2_a">目前已在 Raydium (Solana) 上线交易，后续将推进中心化交易所 (CEX) 上币。</div>
                 </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <h4 data-i18n="faq3_q">3. 1% 转账税是什么？ <span>+</span></h4>
-                    <p data-i18n="faq3_a">这是项目发展的基础设施费用，用于支付开发人员工资、服务器成本以及未来的市场推广活动。</p>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq3_q">3. 1% 转账税是什么？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq3_a">用于项目开发的基础设施费用，涵盖开发者薪资、服务器成本与后续市场推广。</div>
                 </div>
-
-                <div class="faq-item" onclick="toggleFAQ(this)">
-                    <h4 data-i18n="faq4_q">4. 怎么验证项目不会跑路？ <span>+</span></h4>
-                    <p data-i18n="faq4_a">您可以在 Solscan 上查询合约。铸币权 (Mint Authority) 已显示为 "Revoked"；LP 锁仓量显示 86% 已被 Burn (销毁) 永久锁定。</p>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq4_q">4. 如何验证项目安全性？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq4_a">在 Solscan 上查看：铸币权限显示为 "Revoked"；86% 的 LP 显示为 "Burned"（永久锁定），无法被撤池。</div>
                 </div>
-
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq5_q">5. 白皮书讲了什么？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq5_a">白皮书系统说明了项目要解决的算力垄断与存储成本问题、去中心化算力+存储网络的技术方案、代币经济模型与 DAO 治理路线。可点击上方「阅读完整白皮书」查看。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq6_q">6. 有 Discord 社区吗？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq6_a">有。加入我们的 Discord：https://discord.gg/q8237edzD ，获取实时公告、技术讨论与社区活动。Telegram 与 Discord 同步更新。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq7_q">7. CnX4 有什么实际用途？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq7_a">CnX4 是生态的结算与治理代币：用于在去中心化算力市场支付 GPU/TPU 资源、在存储网络支付存储空间，并参与未来 DAO 治理投票。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq8_q">8. 如何安全地存储 CnX4？ <span>+</span></span></div>
+                    <div class="faq-a" data-i18n="faq8_a">CnX4 是 Solana 链上 SPL 代币，可使用 Phantom、Solflare 等支持 Solana 的钱包接收与存储。请务必备份好钱包助记词，切勿泄露给任何人。</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p data-i18n="footer_copy">© 2026 XCWW (CnX4). 基于 Solana 构建。</p>
-            <p style="margin-top: 10px;">
-                <a href="https://t.me/membound_xcww" target="_blank">Telegram</a> ·
-                <a href="https://dexscreener.com/solana/CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf" target="_blank">DexScreener</a>
-            </p>
+            <div class="disclaimer">
+                <h4 data-i18n="disclaimer_title">风险提示</h4>
+                <p data-i18n="disclaimer_text">加密货币具有极高风险，价格可能剧烈波动，您可能损失全部本金。XCWW (CnX4) 仅为社区驱动的区块链实验项目，不构成任何投资建议、证券要约或财务建议。本网站信息仅供参考，不构成任何投资、法律或税务意见。参与前请自行研究 (DYOR) 并遵守所在司法辖区的法律法规。我们不对任何因使用本项目产生的损失承担责任。</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://t.me/membound_xcww" target="_blank" data-i18n="footer_tg">Telegram</a>
+                <a href="https://discord.gg/q8237edzD" target="_blank" data-i18n="footer_discord">Discord</a>
+                <a href="https://dexscreener.com/solana/cnx4" target="_blank" data-i18n="footer_dex">DexScreener</a>
+                <a href="whitepaper.html" target="_blank" data-i18n="footer_wp">Whitepaper</a>
+            </div>
+            <p class="footer-copy" data-i18n="footer_copy">© 2026 XCWW (CnX4). 构建于 Solana.</p>
         </div>
     </footer>
 
     <script>
-        // --- 多语言文案 (中 / 日 / 韩 / 英) ---
         const I18N = {
             zh: {
-                nav_about: "介绍", nav_roadmap: "路线图", nav_faq: "FAQ",
+                nav_about: "介绍", nav_roadmap: "路线图", nav_whitepaper: "白皮书", nav_community: "社区", nav_faq: "FAQ",
                 hero_title: "AI 时代的算力+存储基础设施",
-                hero_subtitle: "XCWW (CnX4) · 基于 Solana，0 VC，社区共建",
-                badge_mint: "🔥 铸币权已销毁", badge_lp: "🔒 86% LP 已永久锁定", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 算力",
-                ca_label: "合约地址 (CA)", supply_label: "总量", liquidity_label: "流动性", holders_label: "持有人",
-                btn_join: "🚀 加入社区 (TG)", btn_dex: "📊 DexScreener",
-                about_title: "为什么选择 XCWW (CnX4)？",
-                feat1_t: "去中心化算力", feat1_d: "使用 CnX4 支付 AI 训练与推理所需的海量算力，打破巨头垄断。",
-                feat2_t: "分布式存储", feat2_d: "安全、低成本、永不丢失的数据存储网络，为 Web3 和 AI 提供底层支持。",
-                feat3_t: "100% 公平发行", feat3_d: "0 VC，0 预挖。铸币权已销毁 (Revoke)，86% LP 已永久销毁 (Burn)。",
-                feat4_t: "Solana 速度", feat4_d: "享受 Solana 极致的低延迟和微乎其微的 GAS 费用，交易体验丝滑。",
+                hero_subtitle: "XCWW (CnX4) · 构建于 Solana，0 VC、0 预挖、社区驱动",
+                badge_mint: "🔥 已放弃铸币权", badge_lp: "🔒 86% LP 已销毁", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 算力",
+                ca_label: "合约地址 (CA)", btn_copy: "复制",
+                btn_join: "🚀 加入电报群", btn_discord: "💬 Discord", btn_dex: "📊 DexScreener",
+                about_title: "为什么是 XCWW (CnX4)？",
+                feat1_t: "去中心化算力", feat1_d: "CnX4 是 AI 训练与推理算力的支付媒介。持有者可用代币在去中心化算力市场结算 GPU/TPU 资源，让中小开发者也能以低成本调用算力，打破云巨头的算力垄断与定价权。",
+                feat2_t: "分布式存储", feat2_d: "基于节点网络的永久存储层，数据分片加密、冗余备份、按 CnX4 计费。相比中心化云存储，成本更低、抗审查、且不会因为服务商停运而丢失。",
+                feat3_t: "100% 公平发行", feat3_d: "0 VC、0 预挖、0 团队预留解锁。铸币权已 Revoke，86% 流动性永久 Burn 锁定，剩余代币全部进入社区与生态激励，从第一天起就属于持有人。",
+                feat4_t: "Solana 速度", feat4_d: "构建于 Solana，享受亚秒级确认与近乎为零的 Gas 费。无论是链上转账还是未来算力/存储结算，都能获得丝滑体验。",
                 token_title: "代币经济学",
-                tok_supply: "总供应量", tok_supply_v: "10亿 (1B)",
-                tok_tax: "转账税", tok_tax_v: "1% (用于项目开发)",
-                tok_mint: "铸币权", tok_mint_v: "✅ 已 Revoke",
-                tok_lp: "LP 锁定", tok_lp_v: "✅ 86% 已销毁 (Burned)",
-                roadmap_title: "发展路线图",
-                rm1: "上线 Raydium 交易池、Revoke 铸币权、销毁 86% LP",
-                rm2: "TG 社区达成 1万成员、DexScreener 收录",
-                rm3: "Galxe 社区任务、早期支持者空投",
-                rm4: "AI 算力平台 Beta 版发布",
-                rm5: "分布式存储网络 Beta 版发布",
-                rm6: "主网正式上线，开启 DAO 治理",
+                tok_supply: "总供应量", tok_tax: "转账税", tok_mint: "铸币权", tok_lp: "LP 锁定",
+                tok_tax_v: "1%（用于项目开发）", tok_mint_v: "✅ 已 Revoke", tok_lp_v: "✅ 86% 已销毁",
+                tok_note: "CnX4 采用公平的发射机制：没有预售、没有团队份额解锁、没有隐藏增发。1% 转账税全部回流至生态开发基金，用于支付开发者、服务器与后续市场推广，公开透明。",
+                roadmap_title: "路线图",
+                rm1: "Raydium 流动性池上线，完成铸币权 Revoke 与 86% LP 永久 Burn，确立不可篡改的公平基底。",
+                rm2: "Telegram 社群突破 1 万成员，DexScreener 收录并维持活跃交易；启动多语言内容运营。",
+                rm3: "通过 Galxe 发布社区任务与成就系统，向早期支持者进行空投，激活链上交互。",
+                rm4: "发布 AI 算力平台 Beta：开发者可接入去中心化 GPU 资源，使用 CnX4 结算。",
+                rm5: "分布式存储网络 Beta 上线：开放数据上传、加密分片与按量计费。",
+                rm6: "主网正式上线，启动 DAO 治理，代币持有人对生态参数与资金走向投票决策。",
+                wp_title: "白皮书",
+                wp_intro: "XCWW (CnX4) 白皮书阐述了用代币驱动的去中心化 AI 算力与存储网络愿景：我们如何解决算力垄断、存储成本与公平发行三大问题，以及代币如何贯穿整个经济循环。",
+                wp_p1: "问题：算力与存储被少数云巨头垄断，价格高、门槛高，AI 创新被绑定在中心化基础设施上。",
+                wp_p2: "方案：CnX4 作为结算层的去中心化算力市场 + 永久存储网络，任何人可供给或消费资源。",
+                wp_p3: "代币经济：公平发射、1% 生态税、LP 永久锁定，代币贯穿算力/存储支付与治理。",
+                btn_whitepaper: "📄 阅读完整白皮书",
+                community_title: "加入社区",
+                community_desc: "与全球持有人一起建设 XCWW。第一时间获取公告、空投与产品进展。",
+                comm_discord: "实时讨论、公告与活动的主场。", comm_tg: "快讯、喊单与社区互动。", comm_dex: "实时价格、流动性与持仓数据。",
+                comm_join: "加入 Discord →", comm_join2: "加入 TG →", comm_join3: "查看行情 →",
                 faq_title: "常见问题",
-                faq1_q: "1. 怎么买 CnX4？ <span>+</span>",
-                faq1_a: "下载 Phantom 钱包，充值 SOL，在 Raydium 上搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 进行兑换。",
-                faq2_q: "2. 在哪可以交易？ <span>+</span>",
-                faq2_a: "目前去中心化交易所在 Raydium (Solana) 上交易。未来将寻求中心化交易所 (CEX) 上线。",
-                faq3_q: "3. 1% 转账税是什么？ <span>+</span>",
-                faq3_a: "这是项目发展的基础设施费用，用于支付开发人员工资、服务器成本以及未来的市场推广活动。",
-                faq4_q: "4. 怎么验证项目不会跑路？ <span>+</span>",
-                faq4_a: "您可以在 Solscan 上查询合约。铸币权 (Mint Authority) 已显示为 \"Revoked\"；LP 锁仓量显示 86% 已被 Burn (销毁) 永久锁定。",
-                footer_copy: "© 2026 XCWW (CnX4). 基于 Solana 构建。"
+                faq1_q: "1. 如何购买 CnX4？ <span>+</span>", faq1_a: "下载 Phantom 钱包 → 充值 SOL → 在 Raydium 搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf → 兑换 CnX4。",
+                faq2_q: "2. 在哪里可以交易？ <span>+</span>", faq2_a: "目前已在 Raydium (Solana) 上线交易，后续将推进中心化交易所 (CEX) 上币。",
+                faq3_q: "3. 1% 转账税是什么？ <span>+</span>", faq3_a: "用于项目开发的基础设施费用，涵盖开发者薪资、服务器成本与后续市场推广。",
+                faq4_q: "4. 如何验证项目安全性？ <span>+</span>", faq4_a: "在 Solscan 上查看：铸币权限显示为 \"Revoked\"；86% 的 LP 显示为 \"Burned\"（永久锁定），无法被撤池。",
+                faq5_q: "5. 白皮书讲了什么？ <span>+</span>", faq5_a: "白皮书系统说明了项目要解决的算力垄断与存储成本问题、去中心化算力+存储网络的技术方案、代币经济模型与 DAO 治理路线。可点击上方「阅读完整白皮书」查看。",
+                faq6_q: "6. 有 Discord 社区吗？ <span>+</span>", faq6_a: "有。加入我们的 Discord：https://discord.gg/q8237edzD ，获取实时公告、技术讨论与社区活动。Telegram 与 Discord 同步更新。",
+                faq7_q: "7. CnX4 有什么实际用途？ <span>+</span>", faq7_a: "CnX4 是生态的结算与治理代币：用于在去中心化算力市场支付 GPU/TPU 资源、在存储网络支付存储空间，并参与未来 DAO 治理投票。",
+                faq8_q: "8. 如何安全地存储 CnX4？ <span>+</span>", faq8_a: "CnX4 是 Solana 链上 SPL 代币，可使用 Phantom、Solflare 等支持 Solana 的钱包接收与存储。请务必备份好钱包助记词，切勿泄露给任何人。",
+                disclaimer_title: "风险提示",
+                disclaimer_text: "加密货币具有极高风险，价格可能剧烈波动，您可能损失全部本金。XCWW (CnX4) 仅为社区驱动的区块链实验项目，不构成任何投资建议、证券要约或财务建议。本网站信息仅供参考，不构成任何投资、法律或税务意见。参与前请自行研究 (DYOR) 并遵守所在司法辖区的法律法规。我们不对任何因使用本项目产生的损失承担责任。",
+                footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
+                footer_copy: "© 2026 XCWW (CnX4). 构建于 Solana."
             },
             ja: {
-                nav_about: "概要", nav_roadmap: "ロードマップ", nav_faq: "FAQ",
+                nav_about: "概要", nav_roadmap: "ロードマップ", nav_whitepaper: "ホワイトペーパー", nav_community: "コミュニティ", nav_faq: "FAQ",
                 hero_title: "AI時代の計算能力＋ストレージインフラ",
                 hero_subtitle: "XCWW (CnX4) · Solana基盤、VCなし、コミュニティ主導",
                 badge_mint: "🔥 ミント権削除済", badge_lp: "🔒 86% LP 永久ロック", badge_solana: "⚡ Solana", badge_ai: "🤖 AI計算",
-                ca_label: "コントラクトアドレス (CA)", supply_label: "総供給量", liquidity_label: "流動性", holders_label: "ホルダー",
-                btn_join: "🚀 コミュニティに参加 (TG)", btn_dex: "📊 DexScreener",
+                ca_label: "コントラクトアドレス (CA)", btn_copy: "コピー",
+                btn_join: "🚀 コミュニティに参加 (TG)", btn_discord: "💬 Discord", btn_dex: "📊 DexScreener",
                 about_title: "なぜ XCWW (CnX4) なのか？",
-                feat1_t: "分散型計算", feat1_d: "CnX4を使ってAI学習・推論に必要な膨大な計算資源を支払い、巨大テックの独占を打破します。",
-                feat2_t: "分散型ストレージ", feat2_d: "Web3とAIを支える、安全で低コストかつ永久に失われないデータストレージネットワーク。",
-                feat3_t: "100% フェアローンチ", feat3_d: "VCなし、プリマインなし。ミント権は削除済み、86%のLPは永久にバーンされました。",
-                feat4_t: "Solanaの高速性", feat4_d: "Solanaの超低遅延とほぼゼロの手数料で、スムーズな取引体験を。",
+                feat1_t: "分散型計算", feat1_d: "CnX4はAI学習・推論の計算資源を決済するトークンです。ホルダーは分散型計算マーケットプレイスでGPU/TPUリソースをCnX4で決済でき、中小開発者も低コストで利用可能になり、巨大テックの独占を打破します。",
+                feat2_t: "分散型ストレージ", feat2_d: "ノードネットワーク上の永久ストレージ層。データは分割・暗号化・冗長化され、CnX4で課金。中央集権クラウドより低コストで検閲耐性があり、単一障害点がありません。",
+                feat3_t: "100% フェアローンチ", feat3_d: "VCなし、プリマインなし、チームのアンロックなし。ミント権は削除済み、86%のLPは永久にバーン。残りのトークンはすべてコミュニティとエコシステムインセンティブへ——初日からホルダーのもの。",
+                feat4_t: "Solanaの高速性", feat4_d: "Solana上に構築され、準瞬時のファイナリティとほぼゼロの手数料を実現。送金も将来の計算・ストレージ決済もスムーズ。",
                 token_title: "トークノミクス",
-                tok_supply: "総供給量", tok_supply_v: "10億 (1B)",
-                tok_tax: "送金税", tok_tax_v: "1% (開発費用に充当)",
-                tok_mint: "ミント権", tok_mint_v: "✅ 削除済 (Revoked)",
-                tok_lp: "LPロック", tok_lp_v: "✅ 86% バーン済 (Burned)",
+                tok_supply: "総供給量", tok_tax: "送金税", tok_mint: "ミント権", tok_lp: "LPロック",
+                tok_tax_v: "1% (開発費用に充当)", tok_mint_v: "✅ 削除済 (Revoked)", tok_lp_v: "✅ 86% バーン済 (Burned)",
+                tok_note: "CnX4はフェアローンチモデルを採用：プレセールなし、チームのアンロックなし、隠れたインフレなし。1%の送金税はエコシステム開発基金へ充てられ、開発者・サーバー・マーケティングに透明性高く使用されます。",
                 roadmap_title: "ロードマップ",
-                rm1: "Raydium流動性プールのローンチ、ミント権削除、86% LPバーン",
-                rm2: "TGコミュニティ1万人達成、DexScreener掲載",
-                rm3: "Galxeコミュニティミッション、初期支援者へのエアドロップ",
-                rm4: "AI計算プラットフォームβ版リリース",
-                rm5: "分散型ストレージネットワークβ版リリース",
-                rm6: "メインネット正式ローンチ、DAOガバナンス開始",
+                rm1: "Raydium流動性プールのローンチ、ミント権削除、86% LPバーンを完了——改ざん不可能なフェアな基盤を確立。",
+                rm2: "TGコミュニティ1万人達成、DexScreener掲載・取引活発化、多言語コンテンツ運用開始。",
+                rm3: "Galxeコミュニティミッションと実績システム、初期支援者へのエアドロップ、オンチェーン活動の活性化。",
+                rm4: "AI計算プラットフォームβ版：開発者が分散型GPUリソースを利用し、CnX4で決済。",
+                rm5: "分散型ストレージネットワークβ版：アップロード、暗号化分割、従量課金を開始。",
+                rm6: "メインネット正式ローンチ、DAOガバナンス開始——ホルダーがパラメータと資金の行方に投票。",
+                wp_title: "ホワイトペーパー",
+                wp_intro: "XCWW (CnX4) ホワイトペーパーは、トークンで駆動する分散型AI計算・ストレージネットワークのビジョンを述べます。計算独占・ストレージコスト・フェアローンチという3つの課題の解決策と、トークンが経済循環全体をどう支えるかを説明します。",
+                wp_p1: "課題：計算とストレージは一部のクラウド巨人に独占され、高価で参入障壁が高く、AI革新が中央集権インフラに縛られている。",
+                wp_p2: "解決策：決済層としてのCnX4による分散型計算マーケットプレイス＋永久ストレージネットワーク。誰もがリソースを供給・消費可能。",
+                wp_p3: "トークン経済：フェアローンチ、1%エコシステム税、LP永久ロック。トークンは計算・ストレージ決済とガバナンスを貫く。",
+                btn_whitepaper: "📄 ホワイトペーパーを読む",
+                community_title: "コミュニティに参加",
+                community_desc: "世界中のホルダーと共にXCWWを構築。発表・エアドロップ・製品アップデートを最速で入手。",
+                comm_discord: "リアルタイムの議論・告知・イベントの拠点。", comm_tg: "速報・アナウンス・コミュニティ交流。", comm_dex: "リアルタイムの価格・流動性・ホルダーデータ。",
+                comm_join: "Discordに参加 →", comm_join2: "TGに参加 →", comm_join3: "相場を見る →",
                 faq_title: "よくある質問",
-                faq1_q: "1. CnX4の買い方は？ <span>+</span>",
-                faq1_a: "Phantomウォレットをダウンロードし、SOLを入金、Raydiumでコントラクトアドレス CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf を検索してスワップ。",
-                faq2_q: "2. どこで取引できますか？ <span>+</span>",
-                faq2_a: "現在は分散型取引所のRaydium (Solana) で取引。今後CEX上場を目指します。",
-                faq3_q: "3. 1%の送金税とは？ <span>+</span>",
-                faq3_a: "プロジェクト開発のインフラ費用で、開発者給与・サーバーコスト・将来のマーケティングに充当されます。",
-                faq4_q: "4. プロジェクトが逃げないか確認するには？ <span>+</span>",
-                faq4_a: "Solscanでコントラクトを確認できます。ミント権 (Mint Authority) は \"Revoked\"、LPロック量は86%が \"Burned\" (永久ロック) と表示されます。",
-                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築。"
+                faq1_q: "1. CnX4の買い方は？ <span>+</span>", faq1_a: "Phantomウォレットをダウンロードし、SOLを入金、Raydiumでコントラクトアドレス CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf を検索してスワップ。",
+                faq2_q: "2. どこで取引できますか？ <span>+</span>", faq2_a: "現在は分散型取引所のRaydium (Solana) で取引。今後CEX上場を目指します。",
+                faq3_q: "3. 1%の送金税とは？ <span>+</span>", faq3_a: "プロジェクト開発のインフラ費用。開発者給与・サーバーコスト・将来のマーケティングに充当。",
+                faq4_q: "4. プロジェクトが逃げないか確認するには？ <span>+</span>", faq4_a: "Solscanで確認：ミント権は \"Revoked\"、LPロック量の86%が \"Burned\" (永久ロック)。",
+                faq5_q: "5. ホワイトペーパーの内容は？ <span>+</span>", faq5_a: "計算独占とストレージコストの課題、分散型計算＋ストレージの技術、トークン経済モデル、DAOのロードマップを解説。上の「ホワイトペーパーを読む」をクリック。",
+                faq6_q: "6. Discordはありますか？ <span>+</span>", faq6_a: "はい。Discordにご参加ください：https://discord.gg/q8237edzD 。リアルタイムの発表、技術議論、コミュニティイベントを提供。TGとDiscordは同期更新。",
+                faq7_q: "7. CnX4の実際の用途は？ <span>+</span>", faq7_a: "CnX4はエコシステムの決済・ガバナンストークン。分散型計算マーケットプレイスでGPU/TPUを決済し、ストレージネットワークで容量を支払い、将来のDAOガバナンスで投票に使います。",
+                faq8_q: "8. CnX4を安全に保管するには？ <span>+</span>", faq8_a: "CnX4はSolanaのSPLトークン。PhantomやSolflareなどSolana対応ウォレットで受取・保管できます。シードフレーズは必ずバックアップし、絶対に他人に教えないでください。",
+                disclaimer_title: "リスク警告",
+                disclaimer_text: "暗号資産は極めて高いリスクがあり、価格は激しく変動し、元本をすべて失う可能性があります。XCWW (CnX4) はコミュニティ主導のブロックチェーン実験であり、投資・証券・金融アドバイスにはなりません。本サイトの情報は参考用です。参加前にご自身で調査 (DYOR) し、お住まいの法域の法規制を遵守してください。本プロジェクトの利用によるいかなる損失についても責任を負いません。",
+                footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
+                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築."
             },
             ko: {
-                nav_about: "소개", nav_roadmap: "로드맵", nav_faq: "FAQ",
+                nav_about: "소개", nav_roadmap: "로드맵", nav_whitepaper: "백서", nav_community: "커뮤니티", nav_faq: "FAQ",
                 hero_title: "AI 시대의 컴퓨팅 + 스토리지 인프라",
                 hero_subtitle: "XCWW (CnX4) · Solana 기반, VC 없음, 커뮤니티 주도",
                 badge_mint: "🔥 민트 권한 폐기됨", badge_lp: "🔒 86% LP 영구 잠금", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 컴퓨팅",
-                ca_label: "컨트랙트 주소 (CA)", supply_label: "총 공급량", liquidity_label: "유동성", holders_label: "보유자",
-                btn_join: "🚀 커뮤니티 참여 (TG)", btn_dex: "📊 DexScreener",
+                ca_label: "컨트랙트 주소 (CA)", btn_copy: "복사",
+                btn_join: "🚀 커뮤니티 참여 (TG)", btn_discord: "💬 Discord", btn_dex: "📊 DexScreener",
                 about_title: "왜 XCWW (CnX4) 인가?",
-                feat1_t: "탈중앙화 컴퓨팅", feat1_d: "CnX4로 AI 학습·추론에 필요한 방대한 컴퓨팅 자원을 결제하여 빅테크 독점을 깨뜨립니다.",
-                feat2_t: "분산형 스토리지", feat2_d: "Web3과 AI를 지원하는 안전하고 저비용이며 영구히 유실되지 않는 데이터 스토리지 네트워크.",
-                feat3_t: "100% 공정 발행", feat3_d: "VC 없음, 프리마이닝 없음. 민트 권한은 폐기되었고, 86%의 LP는 영구히 소각(Burn)되었습니다.",
-                feat4_t: "Solana 속도", feat4_d: "Solana의 초저지연과 거의 무료에 가까운 수수료로 매끄러운 거래 경험을 제공합니다.",
+                feat1_t: "탈중앙화 컴퓨팅", feat1_d: "CnX4는 AI 학습·추론 컴퓨팅 자원을 결제하는 토큰입니다. 홀더는 탈중앙화 컴퓨팅 마켓플레이스에서 GPU/TPU 자원을 CnX4로 결제해 소규모 팀도 저비용으로 이용할 수 있으며, 빅테크 독점을 깨뜨립니다.",
+                feat2_t: "분산형 스토리지", feat2_d: "노드 네트워크 기반 영구 스토리지 레이어. 데이터는 분할·암호화·중복화되고 CnX4로 과금됩니다. 중앙집중형 클라우드보다 저비용·검열 저항적이며 단일 장애점이 없습니다.",
+                feat3_t: "100% 공정 발행", feat3_d: "VC 없음, 프리마이닝 없음, 팀 언락 없음. 민트 권한은 폐기되었고 86%의 LP는 영구히 소각. 남은 토큰은 모두 커뮤니티와 생태계 인센티브로 — 초기부터 홀더의 것.",
+                feat4_t: "Solana 속도", feat4_d: "Solana 위에 구축되어 준초 단위 확정과 거의 무료 수수료를 제공. 송금은 물론 향후 컴퓨팅·스토리지 결제도 매끄럽습니다.",
                 token_title: "토큰노믹스",
-                tok_supply: "총 공급량", tok_supply_v: "10억 (1B)",
-                tok_tax: "전송 세금", tok_tax_v: "1% (프로젝트 개발에 사용)",
-                tok_mint: "민트 권한", tok_mint_v: "✅ 폐기됨 (Revoked)",
-                tok_lp: "LP 잠금", tok_lp_v: "✅ 86% 소각됨 (Burned)",
+                tok_supply: "총 공급량", tok_tax: "전송 세금", tok_mint: "민트 권한", tok_lp: "LP 잠금",
+                tok_tax_v: "1% (프로젝트 개발에 사용)", tok_mint_v: "✅ 폐기됨 (Revoked)", tok_lp_v: "✅ 86% 소각됨 (Burned)",
+                tok_note: "CnX4는 공정 발행 모델을 채택합니다. 프리세일 없음, 팀 언락 없음, 숨겨진 인플레이션 없음. 1% 전송 세금은 생태계 개발 기금으로 들어가 개발자·서버·마케팅에 투명하게 사용됩니다.",
                 roadmap_title: "로드맵",
-                rm1: "Raydium 풀 론칭, 민트 권한 폐기, 86% LP 소각",
-                rm2: "TG 커뮤니티 1만 명 달성, DexScreener 등재",
-                rm3: "Galxe 커뮤니티 미션, 얼리어댑터 에어드랍",
-                rm4: "AI 컴퓨팅 플랫폼 베타 출시",
-                rm5: "분산형 스토리지 네트워크 베타 출시",
-                rm6: "메인넷 정식 론칭, DAO 거버넌스 개시",
+                rm1: "Raydium 풀 론칭, 민트 권한 폐기, 86% LP 소각 완료 — 변조 불가능한 공정 기반 확립.",
+                rm2: "TG 커뮤니티 1만 명 돌파, DexScreener 등재 및 활발한 거래, 다국어 콘텐츠 운영 시작.",
+                rm3: "Galxe 커뮤니티 미션과 업적 시스템, 얼리어댑터 에어드랍, 온체인 활동 활성화.",
+                rm4: "AI 컴퓨팅 플랫폼 베타: 개발자가 탈중앙화 GPU 자원을 이용하고 CnX4로 결제.",
+                rm5: "분산형 스토리지 네트워크 베타: 업로드, 암호화 분할, 종량제 오픈.",
+                rm6: "메인넷 정식 론칭, DAO 거버넌스 시작 — 홀더가 파라미터와 자금 흐름에 투표.",
+                wp_title: "백서",
+                wp_intro: "XCWW (CnX4) 백서는 토큰이 주도하는 탈중앙화 AI 컴퓨팅·스토리지 네트워크 비전을 제시합니다. 컴퓨팅 독점·스토리지 비용·공정 발행이라는 세 가지 과제 해결과 토큰이 경제 순환 전체를 어떻게 지탱하는지 설명합니다.",
+                wp_p1: "문제: 컴퓨팅과 스토리지는 소수 클라우드 거인이 독점하여 비싸고 진입장벽이 높으며, AI 혁신이 중앙집중형 인프라에 종속됩니다.",
+                wp_p2: "해결책: 결제 레이어로서의 CnX4 기반 탈중앙화 컴퓨팅 마켓플레이스 + 영구 스토리지 네트워크. 누구나 자원을 공급하거나 소비 가능.",
+                wp_p3: "토큰 경제: 공정 발행, 1% 생태계 세금, LP 영구 잠금. 토큰은 컴퓨팅·스토리지 결제와 거버넌스를 관통합니다.",
+                btn_whitepaper: "📄 전체 백서 보기",
+                community_title: "커뮤니티 참여",
+                community_desc: "전 세계 홀더와 함께 XCWW를 만드세요. 공지, 에어드랍, 제품 업데이트를 가장 먼저 받으세요.",
+                comm_discord: "실시간 토론·공지·이벤트의 본거지.", comm_tg: "속보·알림·커뮤니티 소통.", comm_dex: "실시간 가격·유동성·홀더 데이터.",
+                comm_join: "Discord 참여 →", comm_join2: "TG 참여 →", comm_join3: "시세 보기 →",
                 faq_title: "자주 묻는 질문",
-                faq1_q: "1. CnX4는 어떻게 사나요? <span>+</span>",
-                faq1_a: "Phantom 지갑을 다운로드하고 SOL을 충전한 뒤, Raydium에서 컨트랙트 주소 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 를 검색해 스왑하세요.",
-                faq2_q: "2. 어디서 거래할 수 있나요? <span>+</span>",
-                faq2_a: "현재는 탈중앙화 거래소 Raydium (Solana)에서 거래됩니다. 향후 중앙화 거래소(CEX) 상장을 추진할 예정입니다.",
-                faq3_q: "3. 1% 전송 세금이란? <span>+</span>",
-                faq3_a: "프로젝트 개발을 위한 인프라 비용으로, 개발자 급여·서버 비용·향후 마케팅에 사용됩니다.",
-                faq4_q: "4. 프로젝트가 먹튀하지 않는지 어떻게 확인하나요? <span>+</span>",
-                faq4_a: "Solscan에서 컨트랙트를 조회할 수 있습니다. 민트 권한(Mint Authority)은 \"Revoked\", LP 잠금량은 86%가 \"Burned\"(영구 잠금)로 표시됩니다.",
+                faq1_q: "1. CnX4는 어떻게 사나요? <span>+</span>", faq1_a: "Phantom 지갑을 다운로드하고 SOL을 충전한 뒤, Raydium에서 컨트랙트 주소 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 를 검색해 스왑하세요.",
+                faq2_q: "2. 어디서 거래할 수 있나요? <span>+</span>", faq2_a: "현재는 탈중앙화 거래소 Raydium (Solana)에서 거래됩니다. 향후 CEX 상장을 추진할 예정입니다.",
+                faq3_q: "3. 1% 전송 세금이란? <span>+</span>", faq3_a: "개발을 위한 인프라 비용. 개발자 급여·서버 비용·향후 마케팅에 사용됩니다.",
+                faq4_q: "4. 프로젝트가 먹튀하지 않는지 어떻게 확인하나요? <span>+</span>", faq4_a: "Solscan에서 확인: 민트 권한 \"Revoked\", LP 잠금량의 86%가 \"Burned\" (영구 잠금).",
+                faq5_q: "5. 백서 내용은? <span>+</span>", faq5_a: "컴퓨팅 독점과 스토리지 비용 문제, 탈중앙화 컴퓨팅+스토리지 기술, 토큰 경제 모델, DAO 로드맵을 설명합니다. 위의 '전체 백서 보기'를 클릭하세요.",
+                faq6_q: "6. Discord가 있나요? <span>+</span>", faq6_a: "네. Discord에 참여하세요: https://discord.gg/q8237edzD . 실시간 공지, 기술 토론, 커뮤니티 이벤트를 제공합니다. TG와 Discord는 동기화 업데이트됩니다.",
+                faq7_q: "7. CnX4의 실제 용도는? <span>+</span>", faq7_a: "CnX4는 생태계 결제·거버넌스 토큰입니다. 컴퓨팅 마켓플레이스에서 GPU/TPU를 결제하고, 스토리지 네트워크에서 용량을 지불하며, 향후 DAO 거버넌스에서 투표에 사용됩니다.",
+                faq8_q: "8. CnX4를 안전하게 보관하려면? <span>+</span>", faq8_a: "CnX4는 Solana SPL 토큰입니다. Phantom, Solflare 등 Solana 지갑으로 받고 보관하세요. 시드 구절은 반드시 백업하고 절대 타인과 공유하지 마세요.",
+                disclaimer_title: "위험 고지",
+                disclaimer_text: "암호자산은 매우 높은 위험이 있으며 가격이 급격히 변동해 원금 전액을 잃을 수 있습니다. XCWW (CnX4) 는 커뮤니티 주도 블록체인 실험이며 투자·증권·금융 조언이 아닙니다. 이 사이트 정보는 참고용입니다. 참여 전 반드시 직접 조사(DYOR)하고 현지 법규를 준수하세요. 본 프로젝트 이용으로 인한 어떠한 손실에 대해서도 책임지지 않습니다.",
+                footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축."
             },
             en: {
-                nav_about: "About", nav_roadmap: "Roadmap", nav_faq: "FAQ",
+                nav_about: "About", nav_roadmap: "Roadmap", nav_whitepaper: "Whitepaper", nav_community: "Community", nav_faq: "FAQ",
                 hero_title: "AI-Era Computing & Storage Infra",
                 hero_subtitle: "XCWW (CnX4) · Built on Solana, 0 VC, Community-Driven",
                 badge_mint: "🔥 Mint Revoked", badge_lp: "🔒 86% LP Burned", badge_solana: "⚡ Solana", badge_ai: "🤖 AI Compute",
-                ca_label: "Contract", supply_label: "Supply", liquidity_label: "Liquidity", holders_label: "Holders",
-                btn_join: "🚀 Join TG", btn_dex: "📊 DexScreener",
+                ca_label: "Contract (CA)", btn_copy: "Copy",
+                btn_join: "🚀 Join TG", btn_discord: "💬 Discord", btn_dex: "📊 DexScreener",
                 about_title: "Why XCWW (CnX4)?",
-                feat1_t: "Decentralized Compute", feat1_d: "Pay for AI training & inference compute using CnX4, breaking big-tech monopolies.",
-                feat2_t: "Distributed Storage", feat2_d: "Secure, low-cost, permanent storage network empowering Web3 & AI.",
-                feat3_t: "100% Fair Launch", feat3_d: "0 VC, 0 Premine. Mint authority revoked, 86% LP permanently burned.",
-                feat4_t: "Solana Speed", feat4_d: "Enjoy Solana's ultra-low latency & near-zero fees for a smooth trading experience.",
+                feat1_t: "Decentralized Compute", feat1_d: "CnX4 is the settlement token for AI training & inference compute. Holders pay for GPU/TPU resources in a decentralized compute marketplace, giving small teams low-cost access and breaking big-tech monopolies.",
+                feat2_t: "Distributed Storage", feat2_d: "A permanent storage layer over a node network — sharded, encrypted, redundant, and priced in CnX4. Lower cost and censorship-resistant versus centralized cloud, with no single point of failure.",
+                feat3_t: "100% Fair Launch", feat3_d: "0 VC, 0 premine, 0 team unlock. Mint authority revoked, 86% liquidity permanently burned. All remaining tokens go to community & ecosystem incentives — owned by holders from day one.",
+                feat4_t: "Solana Speed", feat4_d: "Built on Solana for sub-second finality and near-zero fees. Smooth transfers and future compute/storage settlements alike.",
                 token_title: "Tokenomics",
-                tok_supply: "Total Supply", tok_supply_v: "1B (1,000,000,000)",
-                tok_tax: "Transfer Tax", tok_tax_v: "1% (for project development)",
-                tok_mint: "Mint Auth", tok_mint_v: "✅ Revoked",
-                tok_lp: "LP Lock", tok_lp_v: "✅ 86% Burned",
+                tok_supply: "Total Supply", tok_tax: "Transfer Tax", tok_mint: "Mint Auth", tok_lp: "LP Lock",
+                tok_tax_v: "1% (for project development)", tok_mint_v: "✅ Revoked", tok_lp_v: "✅ 86% Burned",
+                tok_note: "CnX4 uses a fair-launch model: no presale, no team unlocks, no hidden inflation. The 1% transfer tax flows into the ecosystem development fund — covering devs, servers and marketing — fully transparent.",
                 roadmap_title: "Roadmap",
-                rm1: "Raydium Pool Launch, Mint Revoke, 86% LP Burn",
-                rm2: "TG 10k Members, DexScreener Listing",
-                rm3: "Galxe Tasks, Early Adopter Airdrop",
-                rm4: "AI Compute Platform Beta",
-                rm5: "Distributed Storage Beta",
-                rm6: "Mainnet Launch, DAO Governance",
+                rm1: "Raydium pool live; Mint Revoke & 86% LP Burn completed — an immutable fair foundation.",
+                rm2: "Telegram community passes 10k; DexScreener listed & active; multilingual content ops begin.",
+                rm3: "Galxe community quests & achievements; airdrop to early supporters; activate on-chain activity.",
+                rm4: "AI Compute Platform Beta: developers tap decentralized GPU resources, settled in CnX4.",
+                rm5: "Distributed Storage Network Beta: uploads, encrypted sharding & pay-as-you-go live.",
+                rm6: "Mainnet launch; DAO governance live — holders vote on parameters & treasury.",
+                wp_title: "Whitepaper",
+                wp_intro: "The XCWW (CnX4) whitepaper sets out a token-driven decentralized AI compute & storage network: how we solve compute monopoly, storage cost and fair launch, and how the token powers the whole economy.",
+                wp_p1: "Problem: compute & storage are monopolized by a few cloud giants — costly, gated, and binding AI innovation to centralized infrastructure.",
+                wp_p2: "Solution: CnX4 as the settlement layer for a decentralized compute marketplace + permanent storage network anyone can supply or consume.",
+                wp_p3: "Token economy: fair launch, 1% ecosystem tax, LP permanently locked; token spans compute/storage payments & governance.",
+                btn_whitepaper: "📄 Read Full Whitepaper",
+                community_title: "Join the Community",
+                community_desc: "Build XCWW with holders worldwide. Get announcements, airdrops and product updates first.",
+                comm_discord: "Home of real-time discussion, announcements and events.", comm_tg: "News flashes, signals, and community interaction.", comm_dex: "Real-time price, liquidity, and holder data.",
+                comm_join: "Join Discord →", comm_join2: "Join TG →", comm_join3: "View Chart →",
                 faq_title: "FAQ",
-                faq1_q: "1. How to buy CnX4? <span>+</span>",
-                faq1_a: "Download Phantom wallet, fund with SOL, search contract CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf on Raydium to swap.",
-                faq2_q: "2. Where to trade? <span>+</span>",
-                faq2_a: "Currently trading on Raydium (Solana). Future CEX listings planned.",
-                faq3_q: "3. What is the 1% transfer tax? <span>+</span>",
-                faq3_a: "This is the infrastructure fee for project development, covering dev salaries, server costs, and future marketing.",
-                faq4_q: "4. How to verify safety? <span>+</span>",
-                faq4_a: "Check on Solscan. Mint Authority is \"Revoked\"; 86% of LP is \"Burned\" (permanently locked).",
+                faq1_q: "1. How to buy CnX4? <span>+</span>", faq1_a: "Download Phantom, fund with SOL, search contract CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf on Raydium to swap.",
+                faq2_q: "2. Where to trade? <span>+</span>", faq2_a: "Currently on Raydium (Solana). Future CEX listings planned.",
+                faq3_q: "3. What is the 1% transfer tax? <span>+</span>", faq3_a: "Infrastructure fee for development — dev salaries, servers, future marketing.",
+                faq4_q: "4. How to verify safety? <span>+</span>", faq4_a: "On Solscan: Mint Authority \"Revoked\"; 86% of LP \"Burned\" (permanently locked), cannot be pulled.",
+                faq5_q: "5. What does the whitepaper cover? <span>+</span>", faq5_a: "It explains the compute-monopoly & storage-cost problems, the decentralized compute+storage tech, the token model and DAO roadmap. Click \"Read Full Whitepaper\" above.",
+                faq6_q: "6. Is there a Discord? <span>+</span>", faq6_a: "Yes — join our Discord: https://discord.gg/q8237edzD for live announcements, tech talk and community events. TG & Discord update in sync.",
+                faq7_q: "7. What is CnX4 actually used for? <span>+</span>", faq7_a: "CnX4 is the ecosystem settlement & governance token: pay for GPU/TPU in the compute marketplace, pay for storage, and vote in future DAO governance.",
+                faq8_q: "8. How to store CnX4 safely? <span>+</span>", faq8_a: "CnX4 is a Solana SPL token — receive & store it in Phantom, Solflare or any Solana wallet. Back up your seed phrase and never share it.",
+                disclaimer_title: "Risk Disclaimer",
+                disclaimer_text: "Cryptocurrencies are extremely high-risk; prices can swing violently and you may lose all principal. XCWW (CnX4) is a community-driven blockchain experiment and is NOT investment, securities or financial advice. This site is for information only. Do your own research (DYOR) and comply with your local laws before participating. We are not liable for any losses.",
+                footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_copy: "© 2026 XCWW (CnX4). Built on Solana."
             }
         };
 
-        // --- 语言切换 ---
-        function switchLang(lang, btn) {
-            if (!I18N[lang]) return;
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            if (btn) btn.classList.add('active');
+        function switchLang(lang) {
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+            const dict = I18N[lang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (I18N[lang][key] !== undefined) {
-                    el.innerHTML = I18N[lang][key];
-                }
+                if (dict[key] !== undefined) el.innerHTML = dict[key];
             });
-            const htmlLang = { zh: 'zh-CN', ja: 'ja', ko: 'ko', en: 'en' }[lang] || 'en';
-            document.documentElement.lang = htmlLang;
+            document.querySelectorAll('.lang-btn').forEach(b => {
+                b.classList.toggle('active', b.getAttribute('onclick').includes(lang));
+            });
             try { localStorage.setItem('xcww_lang', lang); } catch (e) {}
         }
 
-        // --- 复制合约地址 ---
         function copyCA() {
-            const ca = "CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf";
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(ca).then(() => alert("合约地址已复制: " + ca)).catch(() => {});
-            } else {
-                const t = document.createElement('textarea');
-                t.value = ca; document.body.appendChild(t); t.select();
-                try { document.execCommand('copy'); alert("合约地址已复制: " + ca); } catch (e) {}
-                document.body.removeChild(t);
-            }
+            const addr = document.getElementById('ca').textContent.trim();
+            navigator.clipboard.writeText(addr).then(() => {
+                const btn = document.querySelector('.ca-box button');
+                const old = btn.textContent;
+                btn.textContent = '✅';
+                setTimeout(() => btn.textContent = old, 1500);
+            });
         }
 
-        // --- FAQ 折叠 ---
         function toggleFAQ(el) {
-            el.classList.toggle('active');
-            const span = el.querySelector('h4 span');
-            if (span) span.textContent = el.classList.contains('active') ? '-' : '+';
+            el.parentElement.classList.toggle('active');
         }
 
-        // --- 初始化：读取上次选择，默认中文 ---
-        (function initLang() {
-            let saved = 'zh';
-            try { saved = localStorage.getItem('xcww_lang') || 'zh'; } catch (e) {}
-            if (!I18N[saved]) saved = 'zh';
-            const btn = document.querySelector('.lang-btn[data-i18n-ignore][onclick*="' + saved + '"]') ||
-                        Array.from(document.querySelectorAll('.lang-btn')).find(b => b.getAttribute('onclick').includes("'" + saved + "'"));
-            switchLang(saved, btn || document.querySelector('.lang-btn'));
+        // init
+        (function () {
+            let lang = 'zh';
+            try { lang = localStorage.getItem('xcww_lang') || 'zh'; } catch (e) {}
+            switchLang(lang);
         })();
     </script>
 </body>
