@@ -41,6 +41,48 @@
         .lang-btn:hover { color: var(--text-main); }
         .lang-btn.active { background: var(--primary-purple); color: #fff; }
 
+        .zealy-banner {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1060 50%, #1a0a2e 100%);
+            border-bottom: 1px solid #7c3aed;
+            padding: 14px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .zealy-banner::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(124, 58, 237, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .zealy-banner .zealy-inner {
+            display: flex; align-items: center; justify-content: center;
+            gap: 20px; flex-wrap: wrap; position: relative; z-index: 1;
+        }
+        .zealy-banner .zealy-text {
+            font-size: 15px; color: #e2d9f9; font-weight: 500;
+        }
+        .zealy-banner .zealy-tasks {
+            display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+        }
+        .zealy-banner .zealy-task {
+            background: rgba(124, 58, 237, 0.25); border: 1px solid rgba(124, 58, 237, 0.5);
+            color: #c4b5fd; font-size: 12px; padding: 3px 10px; border-radius: 20px;
+        }
+        .zealy-banner .zealy-cta {
+            background: #7c3aed; color: #fff; font-size: 14px; font-weight: 700;
+            padding: 8px 22px; border-radius: 10px; transition: background 0.3s, transform 0.2s;
+            white-space: nowrap;
+        }
+        .zealy-banner .zealy-cta:hover { background: #6d28d9; transform: translateY(-1px); }
+        .zealy-banner .zealy-close {
+            position: absolute; top: 10px; right: 16px;
+            background: none; border: none; color: #7c3aed; font-size: 18px;
+            cursor: pointer; line-height: 1; padding: 2px 6px;
+            opacity: 0.7; transition: opacity 0.2s;
+        }
+        .zealy-banner .zealy-close:hover { opacity: 1; }
+
         nav {
             padding: 20px 0; border-bottom: 1px solid var(--border-color);
             display: flex; justify-content: space-between; align-items: center;
@@ -199,6 +241,22 @@
                 <a href="#faq" data-i18n="nav_faq">FAQ</a>
             </div>
         </nav>
+    </div>
+
+    <!-- AIRDROP BANNER -->
+    <div class="zealy-banner" id="zealyBanner">
+        <button class="zealy-close" onclick="closeZealy()" title="Close">×</button>
+        <div class="zealy-inner">
+            <span class="zealy-text" data-i18n="airdrop_title">🚀 XCWW 空投活动开启！0成本赚币</span>
+            <div class="zealy-tasks">
+                <span class="zealy-task" data-i18n="airdrop_task1">✅ 加入TG +100</span>
+                <span class="zealy-task" data-i18n="airdrop_task2">✅ 加Discord +100</span>
+                <span class="zealy-task" data-i18n="airdrop_task3">✅ 邀请10人 +100</span>
+                <span class="zealy-task" data-i18n="airdrop_task4">✅ 持有XCWW +100</span>
+                <span class="zealy-task" data-i18n="airdrop_task5">✅ 访问官网 +100</span>
+            </div>
+            <a href="https://zealy.io/cw/xcwwaipowerhouse" target="_blank" class="zealy-cta" data-i18n="airdrop_btn">立即参加 →</a>
+        </div>
     </div>
 
     <!-- HERO -->
@@ -448,7 +506,12 @@
                 disclaimer_title: "风险提示",
                 disclaimer_text: "加密货币具有极高风险，价格可能剧烈波动，您可能损失全部本金。XCWW (CnX4) 仅为社区驱动的区块链实验项目，不构成任何投资建议、证券要约或财务建议。本网站信息仅供参考，不构成任何投资、法律或税务意见。参与前请自行研究 (DYOR) 并遵守所在司法辖区的法律法规。我们不对任何因使用本项目产生的损失承担责任。",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
-                footer_copy: "© 2026 XCWW (CnX4). 构建于 Solana."
+                footer_copy: "© 2026 XCWW (CnX4). 构建于 Solana.",
+                airdrop_title: "🚀 XCWW 空投活动开启！0成本赚币",
+                airdrop_task1: "✅ 加入TG +100", airdrop_task2: "✅ 加Discord +100",
+                airdrop_task3: "✅ 邀请10人 +100", airdrop_task4: "✅ 持有XCWW +100",
+                airdrop_task5: "✅ 访问官网 +100",
+                airdrop_btn: "立即参加 →"
             },
             ja: {
                 nav_about: "概要", nav_roadmap: "ロードマップ", nav_whitepaper: "ホワイトペーパー", nav_community: "コミュニティ", nav_faq: "FAQ",
@@ -495,7 +558,12 @@
                 disclaimer_title: "リスク警告",
                 disclaimer_text: "暗号資産は極めて高いリスクがあり、価格は激しく変動し、元本をすべて失う可能性があります。XCWW (CnX4) はコミュニティ主導のブロックチェーン実験であり、投資・証券・金融アドバイスにはなりません。本サイトの情報は参考用です。参加前にご自身で調査 (DYOR) し、お住まいの法域の法規制を遵守してください。本プロジェクトの利用によるいかなる損失についても責任を負いません。",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
-                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築."
+                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築。",
+                airdrop_title: "🚀 XCWW エアドロップ開始！無料でトークン獲得",
+                airdrop_task1: "✅ TG参加 +100", airdrop_task2: "✅ Discord参加 +100",
+                airdrop_task3: "✅ 10人招待 +100", airdrop_task4: "✅ XCWW保有 +100",
+                airdrop_task5: "✅ 公式サイト訪問 +100",
+                airdrop_btn: "参加する →"
             },
             ko: {
                 nav_about: "소개", nav_roadmap: "로드맵", nav_whitepaper: "백서", nav_community: "커뮤니티", nav_faq: "FAQ",
@@ -542,7 +610,12 @@
                 disclaimer_title: "위험 고지",
                 disclaimer_text: "암호자산은 매우 높은 위험이 있으며 가격이 급격히 변동해 원금 전액을 잃을 수 있습니다. XCWW (CnX4) 는 커뮤니티 주도 블록체인 실험이며 투자·증권·금융 조언이 아닙니다. 이 사이트 정보는 참고용입니다. 참여 전 반드시 직접 조사(DYOR)하고 현지 법규를 준수하세요. 본 프로젝트 이용으로 인한 어떠한 손실에 대해서도 책임지지 않습니다.",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
-                footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축."
+                footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축.",
+                airdrop_title: "🚀 XCWW 에어드롭 시작！무료로 토큰 획득",
+                airdrop_task1: "✅ TG 참가 +100", airdrop_task2: "✅ Discord 참가 +100",
+                airdrop_task3: "✅ 10명 초대 +100", airdrop_task4: "✅ XCWW 보유 +100",
+                airdrop_task5: "✅ 공식 사이트 방문 +100",
+                airdrop_btn: "지금 참여하기 →"
             },
             en: {
                 nav_about: "About", nav_roadmap: "Roadmap", nav_whitepaper: "Whitepaper", nav_community: "Community", nav_faq: "FAQ",
@@ -589,7 +662,12 @@
                 disclaimer_title: "Risk Disclaimer",
                 disclaimer_text: "Cryptocurrencies are extremely high-risk; prices can swing violently and you may lose all principal. XCWW (CnX4) is a community-driven blockchain experiment and is NOT investment, securities or financial advice. This site is for information only. Do your own research (DYOR) and comply with your local laws before participating. We are not liable for any losses.",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
-                footer_copy: "© 2026 XCWW (CnX4). Built on Solana."
+                footer_copy: "© 2026 XCWW (CnX4). Built on Solana.",
+                airdrop_title: "🚀 XCWW Airdrop is Live! Earn Tokens with Zero Cost",
+                airdrop_task1: "✅ Join TG +100", airdrop_task2: "✅ Join Discord +100",
+                airdrop_task3: "✅ Invite 10 People +100", airdrop_task4: "✅ Hold XCWW +100",
+                airdrop_task5: "✅ Visit Website +100",
+                airdrop_btn: "Join Now →"
             }
         };
 
@@ -620,11 +698,18 @@
             el.parentElement.classList.toggle('active');
         }
 
+        function closeZealy() {
+            document.getElementById('zealyBanner').style.display = 'none';
+            try { localStorage.setItem('xcww_zealy_closed', '1'); } catch (e) {}
+        }
+
         // init
         (function () {
             let lang = 'zh';
             try { lang = localStorage.getItem('xcww_lang') || 'zh'; } catch (e) {}
             switchLang(lang);
+            // hide Zealy banner if already closed
+            try { if (localStorage.getItem('xcww_zealy_closed') === '1') document.getElementById('zealyBanner').style.display = 'none'; } catch (e) {}
         })();
     </script>
 </body>
