@@ -193,6 +193,24 @@
         }
         .gold .tier-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(245, 197, 24, 0.42); }
 
+        /* dual CTA: TG bot (primary) + Android APK (secondary) */
+        .tier-cta-group { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+        .tier-cta-group .tier-cta { margin-top: 0; }
+        .tier-cta--tg {
+            background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%) !important;
+            color: #fff !important; border: none !important;
+            box-shadow: 0 6px 18px rgba(42, 171, 238, 0.30);
+        }
+        .tier-cta--tg:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(42, 171, 238, 0.42); }
+        .tier-cta--apk {
+            background: transparent !important; color: var(--muted) !important;
+            border: 1px solid var(--border) !important; font-size: 13px !important;
+            padding: 9px 12px !important;
+        }
+        .tier-cta--apk:hover { color: var(--text) !important; border-color: var(--muted) !important; }
+        /* iOS 设备隐藏 APK（App Store 限制，TG 机器人是唯一入口） */
+        body.is-ios .tier-cta--apk { display: none; }
+
         /* comparison table */
         .tb-wrap {
             background: var(--card); border: 1px solid var(--border); border-radius: 20px;
@@ -486,7 +504,10 @@
                         <li data-i18n="mem_b_f3">✅ 直推 20% · 间推 5% 佣金</li>
                         <li data-i18n="mem_b_f4">✅ 即刻解锁提现资格</li>
                     </ul>
-                    <a class="tier-cta" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_b_cta">1 USDT 开通</a>
+                    <div class="tier-cta-group">
+                        <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_bronze" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
+                        <a class="tier-cta tier-cta--apk" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_apk_btn">📱 下载安卓 APP 开通</a>
+                    </div>
                 </div>
                 <div class="tier-card silver reveal">
                     <div class="tier-name" data-i18n="mem_silver_t">🥈 银牌 Silver</div>
@@ -498,7 +519,10 @@
                         <li data-i18n="mem_s_f3">✅ 直推 25% · 间推 8% 佣金</li>
                         <li data-i18n="mem_s_f4">✅ 10 倍代币，回本最快</li>
                     </ul>
-                    <a class="tier-cta" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_s_cta">10 USDT 开通</a>
+                    <div class="tier-cta-group">
+                        <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_silver" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
+                        <a class="tier-cta tier-cta--apk" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_apk_btn">📱 下载安卓 APP 开通</a>
+                    </div>
                 </div>
                 <div class="tier-card gold reveal">
                     <div class="tier-badge" data-i18n="mem_badge">最受欢迎</div>
@@ -511,7 +535,10 @@
                         <li data-i18n="mem_g_f3">✅ 直推 30% · 间推 10% 佣金</li>
                         <li data-i18n="mem_g_f4">✅ 开通即超提现线 5 倍</li>
                     </ul>
-                    <a class="tier-cta" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_g_cta">100 USDT 开通</a>
+                    <div class="tier-cta-group">
+                        <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_gold" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
+                        <a class="tier-cta tier-cta--apk" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_apk_btn">📱 下载安卓 APP 开通</a>
+                    </div>
                 </div>
             </div>
 
@@ -899,13 +926,13 @@
                 mem_badge: "最受欢迎",
                 mem_bronze_t: "🥉 铜牌 Bronze", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ 每日签到 100 HPL", mem_b_f2: "✅ 每日 3 次免费抽奖",
-                mem_b_f3: "✅ 直推 20% · 间推 5% 佣金", mem_b_f4: "✅ 即刻解锁提现资格", mem_b_cta: "1 USDT 开通",
+                mem_b_f3: "✅ 直推 20% · 间推 5% 佣金", mem_b_f4: "✅ 即刻解锁提现资格", mem_tg_btn: "🤖 用 TG 机器人开通", mem_apk_btn: "📱 下载安卓 APP 开通",
                 mem_silver_t: "🥈 银牌 Silver", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ 签到加成 +30%（130 HPL/日）", mem_s_f2: "✅ 每日 6 次免费抽奖",
-                mem_s_f3: "✅ 直推 25% · 间推 8% 佣金", mem_s_f4: "✅ 10 倍代币，回本最快", mem_s_cta: "10 USDT 开通",
+                mem_s_f3: "✅ 直推 25% · 间推 8% 佣金", mem_s_f4: "✅ 10 倍代币，回本最快",
                 mem_gold_t: "🥇 金牌 Gold", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
                 mem_g_f1: "✅ 签到加成 +60%（160 HPL/日）", mem_g_f2: "✅ 抽奖不限次数",
-                mem_g_f3: "✅ 直推 30% · 间推 10% 佣金", mem_g_f4: "✅ 开通即超提现线 5 倍", mem_g_cta: "100 USDT 开通",
+                mem_g_f3: "✅ 直推 30% · 间推 10% 佣金", mem_g_f4: "✅ 开通即超提现线 5 倍",
                 tb_title: "权益一览",
                 tb_h0: "权益", tb_h1: "🥉 铜牌", tb_h2: "🥈 银牌", tb_h3: "🥇 金牌",
                 tb_r1_k: "激活到账", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
@@ -1013,13 +1040,13 @@
                 mem_badge: "一番人気",
                 mem_bronze_t: "🥉 ブロンズ", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ 毎日チェックイン 100 HPL", mem_b_f2: "✅ 毎日3回の無料抽選",
-                mem_b_f3: "✅ 直接紹介20% · 間接紹介5%", mem_b_f4: "✅ 即時に引き出し資格を獲得", mem_b_cta: "1 USDTで開通",
+                mem_b_f3: "✅ 直接紹介20% · 間接紹介5%", mem_b_f4: "✅ 即時に引き出し資格を獲得", mem_tg_btn: "🤖 TGボットで開通", mem_apk_btn: "📱 Android APPで開通",
                 mem_silver_t: "🥈 シルバー", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ チェックイン+30%（130 HPL/日）", mem_s_f2: "✅ 毎日6回の無料抽選",
-                mem_s_f3: "✅ 直接紹介25% · 間接紹介8%", mem_s_f4: "✅ 10倍トークン、最速の回収プラン", mem_s_cta: "10 USDTで開通",
+                mem_s_f3: "✅ 直接紹介25% · 間接紹介8%", mem_s_f4: "✅ 10倍トークン、最速の回収プラン",
                 mem_gold_t: "🥇 ゴールド", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
                 mem_g_f1: "✅ チェックイン+60%（160 HPL/日）", mem_g_f2: "✅ 抽選回数無制限",
-                mem_g_f3: "✅ 直接紹介30% · 間接紹介10%", mem_g_f4: "✅ 開通時点で引き出しラインの5倍", mem_g_cta: "100 USDTで開通",
+                mem_g_f3: "✅ 直接紹介30% · 間接紹介10%", mem_g_f4: "✅ 開通時点で引き出しラインの5倍",
                 tb_title: "特典一覧",
                 tb_h0: "特典", tb_h1: "🥉 ブロンズ", tb_h2: "🥈 シルバー", tb_h3: "🥇 ゴールド",
                 tb_r1_k: "アクティベート時の付与", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
@@ -1127,13 +1154,13 @@
                 mem_badge: "최고 인기",
                 mem_bronze_t: "🥉 브론즈", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ 매일 출석 100 HPL", mem_b_f2: "✅ 매일 3회 무료 추첨",
-                mem_b_f3: "✅ 직접 추천 20% · 간접 5%", mem_b_f4: "✅ 즉시 출금 자격 획득", mem_b_cta: "1 USDT 개통",
+                mem_b_f3: "✅ 직접 추천 20% · 간접 5%", mem_b_f4: "✅ 즉시 출금 자격 획득", mem_tg_btn: "🤖 TG 봇으로 개통", mem_apk_btn: "📱 Android APP으로 개통",
                 mem_silver_t: "🥈 실버", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ 출석 +30% (130 HPL/일)", mem_s_f2: "✅ 매일 6회 무료 추첨",
-                mem_s_f3: "✅ 직접 추천 25% · 간접 8%", mem_s_f4: "✅ 10배 토큰, 가장 빠른 회수", mem_s_cta: "10 USDT 개통",
+                mem_s_f3: "✅ 직접 추천 25% · 간접 8%", mem_s_f4: "✅ 10배 토큰, 가장 빠른 회수",
                 mem_gold_t: "🥇 골드", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
                 mem_g_f1: "✅ 출석 +60% (160 HPL/일)", mem_g_f2: "✅ 추첨 무제한",
-                mem_g_f3: "✅ 직접 추천 30% · 간접 10%", mem_g_f4: "✅ 개통 즉시 출금선 5배 달성", mem_g_cta: "100 USDT 개통",
+                mem_g_f3: "✅ 직접 추천 30% · 간접 10%", mem_g_f4: "✅ 개통 즉시 출금선 5배 달성",
                 tb_title: "혜택 한눈에 보기",
                 tb_h0: "혜택", tb_h1: "🥉 브론즈", tb_h2: "🥈 실버", tb_h3: "🥇 골드",
                 tb_r1_k: "활성화 시 지급", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
@@ -1241,13 +1268,13 @@
                 mem_badge: "Most Popular",
                 mem_bronze_t: "🥉 Bronze", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ Daily check-in 100 HPL", mem_b_f2: "✅ 3 free lottery spins daily",
-                mem_b_f3: "✅ 20% L1 · 5% L2 commission", mem_b_f4: "✅ Withdrawal eligibility unlocked", mem_b_cta: "Join for 1 USDT",
+                mem_b_f3: "✅ 20% L1 · 5% L2 commission", mem_b_f4: "✅ Withdrawal eligibility unlocked", mem_tg_btn: "🤖 Activate via TG Bot", mem_apk_btn: "📱 Download Android App",
                 mem_silver_t: "🥈 Silver", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ Check-in +30% (130 HPL/day)", mem_s_f2: "✅ 6 free lottery spins daily",
-                mem_s_f3: "✅ 25% L1 · 8% L2 commission", mem_s_f4: "✅ 10x tokens, fastest payback", mem_s_cta: "Join for 10 USDT",
+                mem_s_f3: "✅ 25% L1 · 8% L2 commission", mem_s_f4: "✅ 10x tokens, fastest payback",
                 mem_gold_t: "🥇 Gold", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
                 mem_g_f1: "✅ Check-in +60% (160 HPL/day)", mem_g_f2: "✅ Unlimited lottery spins",
-                mem_g_f3: "✅ 30% L1 · 10% L2 commission", mem_g_f4: "✅ 5x above the withdrawal line on day one", mem_g_cta: "Join for 100 USDT",
+                mem_g_f3: "✅ 30% L1 · 10% L2 commission", mem_g_f4: "✅ 5x above the withdrawal line on day one",
                 tb_title: "Benefits at a Glance",
                 tb_h0: "Benefit", tb_h1: "🥉 Bronze", tb_h2: "🥈 Silver", tb_h3: "🥇 Gold",
                 tb_r1_k: "Tokens on activation", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
