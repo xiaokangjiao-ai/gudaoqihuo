@@ -178,6 +178,28 @@
         .wp-points p { color: var(--text-muted); font-size: 15px; padding: 10px 0; border-bottom: 1px dashed var(--border-color); }
         .wp-points p:last-child { border-bottom: none; }
 
+        .download-box {
+            max-width: 860px; margin: 0 auto; background: var(--bg-secondary);
+            border: 1px solid var(--border-color); border-radius: 16px; padding: 40px;
+            display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap;
+        }
+        .download-info { flex: 1; min-width: 300px; }
+        .download-info h3 { font-size: 24px; margin-bottom: 12px; }
+        .download-info p { color: var(--text-muted); font-size: 15px; margin-bottom: 20px; }
+        .dl-features { list-style: none; margin-bottom: 28px; }
+        .dl-features li { color: var(--text-muted); font-size: 14px; padding: 5px 0; }
+        .dl-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .qr-wrap { text-align: center; }
+        .qr-wrap img {
+            width: 200px; height: 200px; background: #fff; padding: 10px;
+            border-radius: 14px; display: block; margin: 0 auto;
+        }
+        .qr-wrap .qr-note { margin-top: 12px; color: var(--text-muted); font-size: 13px; }
+        @media (max-width: 720px) {
+            .download-box { flex-direction: column; text-align: center; }
+            .dl-btns { justify-content: center; }
+        }
+
         .community-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
         .community-card {
             background: var(--bg-secondary); border: 1px solid var(--border-color);
@@ -237,6 +259,7 @@
             </div>
             <div class="nav-links">
                 <a href="#about" data-i18n="nav_about">介绍</a>
+                <a href="#download" data-i18n="nav_download">下载 App</a>
                 <a href="#roadmap" data-i18n="nav_roadmap">路线图</a>
                 <a href="#whitepaper" data-i18n="nav_whitepaper">白皮书</a>
                 <a href="#community" data-i18n="nav_community">社区</a>
@@ -278,7 +301,8 @@
                 <button onclick="copyCA()" data-i18n="btn_copy">复制</button>
             </div>
             <div class="btn-group">
-                <a href="https://t.me/membound_xcww" target="_blank" class="btn btn-primary" data-i18n="btn_join">🚀 加入电报群</a>
+                <a href="#download" class="btn btn-primary" data-i18n="btn_download">📱 下载 App</a>
+                <a href="https://t.me/membound_xcww" target="_blank" class="btn btn-outline" data-i18n="btn_join">🚀 加入电报群</a>
                 <a href="https://discord.gg/BzFRBzWpeM" target="_blank" class="btn btn-outline" data-i18n="btn_discord">💬 Discord</a>
                 <a href="https://dexscreener.com/solana/cqqalzbdp31i53hn2eddrgzns2n623xmth7dfnqwzx6" target="_blank" class="btn btn-outline" data-i18n="btn_dex">📊 DexScreener</a>
             </div>
@@ -375,6 +399,32 @@
         </div>
     </section>
 
+    <!-- DOWNLOAD APP -->
+    <section id="download">
+        <div class="container">
+            <h2 class="section-title" data-i18n="dl_title">📱 下载算力纪元 App</h2>
+            <div class="download-box">
+                <div class="download-info">
+                    <h3 data-i18n="dl_name">算力纪元 · AI 算力平台</h3>
+                    <p data-i18n="dl_desc">XCWW 生态官方客户端。手机端随时查看算力收益、管理账户并参与生态活动。</p>
+                    <ul class="dl-features">
+                        <li data-i18n="dl_f1">✅ Android APK · 仅 3.6MB，下载即装</li>
+                        <li data-i18n="dl_f2">✅ Web 版免安装，浏览器直接打开</li>
+                        <li data-i18n="dl_f3">🍎 iOS 版规划中，敬请期待</li>
+                    </ul>
+                    <div class="dl-btns">
+                        <a href="https://mini.gudaoqihuo.com/suanli.apk" class="btn btn-primary" data-i18n="dl_btn">⬇️ 下载 Android APK</a>
+                        <a href="https://mini.gudaoqihuo.com/" target="_blank" class="btn btn-outline" data-i18n="dl_web">🌐 打开 Web 版</a>
+                    </div>
+                </div>
+                <div class="qr-wrap">
+                    <img src="assets/qr-app.png" alt="扫码下载算力纪元 APK">
+                    <div class="qr-note" data-i18n="dl_qr_note">手机扫码直接下载 APK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- COMMUNITY -->
     <section id="community">
         <div class="container">
@@ -456,6 +506,7 @@
                 <a href="https://discord.gg/BzFRBzWpeM" target="_blank" data-i18n="footer_discord">Discord</a>
                 <a href="https://dexscreener.com/solana/cqqalzbdp31i53hn2eddrgzns2n623xmth7dfnqwzx6" target="_blank" data-i18n="footer_dex">DexScreener</a>
                 <a href="whitepaper.html" target="_blank" data-i18n="footer_wp">Whitepaper</a>
+                <a href="https://mini.gudaoqihuo.com/" target="_blank" data-i18n="footer_app">算力纪元 App</a>
             </div>
             <p class="footer-copy" data-i18n="footer_copy">© 2026 XCWW (CnX4). 构建于 Solana.</p>
         </div>
@@ -465,6 +516,16 @@
         const I18N = {
             zh: {
                 nav_about: "介绍", nav_roadmap: "路线图", nav_whitepaper: "白皮书", nav_community: "社区", nav_faq: "FAQ",
+                nav_download: "下载 App", btn_download: "📱 下载 App",
+                dl_title: "📱 下载算力纪元 App",
+                dl_name: "算力纪元 · AI 算力平台",
+                dl_desc: "XCWW 生态官方客户端。手机端随时查看算力收益、管理账户并参与生态活动。",
+                dl_f1: "✅ Android APK · 仅 3.6MB，下载即装",
+                dl_f2: "✅ Web 版免安装，浏览器直接打开",
+                dl_f3: "🍎 iOS 版规划中，敬请期待",
+                dl_btn: "⬇️ 下载 Android APK", dl_web: "🌐 打开 Web 版",
+                dl_qr_note: "手机扫码直接下载 APK",
+                footer_app: "算力纪元 App",
                 hero_title: "AI 时代的算力+存储基础设施",
                 hero_subtitle: "XCWW (CnX4) · 构建于 Solana，0 VC、0 预挖、社区驱动",
                 badge_mint: "🔥 已放弃铸币权", badge_lp: "🔒 86% LP 已销毁", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 算力",
@@ -517,6 +578,16 @@
             },
             ja: {
                 nav_about: "概要", nav_roadmap: "ロードマップ", nav_whitepaper: "ホワイトペーパー", nav_community: "コミュニティ", nav_faq: "FAQ",
+                nav_download: "アプリDL", btn_download: "📱 アプリDL",
+                dl_title: "📱 算力紀元アプリをダウンロード",
+                dl_name: "算力紀元 · AIコンピューティングプラットフォーム",
+                dl_desc: "XCWWエコシステムの公式クライアント。スマホでいつでも収益確認・アカウント管理・イベント参加が可能。",
+                dl_f1: "✅ Android APK · わずか3.6MB、ダウンロードしてすぐインストール",
+                dl_f2: "✅ Web版はインストール不要、ブラウザで直接開ける",
+                dl_f3: "🍎 iOS版は準備中、お楽しみに",
+                dl_btn: "⬇️ Android APKをダウンロード", dl_web: "🌐 Web版を開く",
+                dl_qr_note: "スマホでスキャンしてダウンロード",
+                footer_app: "算力紀元アプリ",
                 hero_title: "AI時代の計算能力＋ストレージインフラ",
                 hero_subtitle: "XCWW (CnX4) · Solana基盤、VCなし、コミュニティ主導",
                 badge_mint: "🔥 ミント権削除済", badge_lp: "🔒 86% LP 永久ロック", badge_solana: "⚡ Solana", badge_ai: "🤖 AI計算",
@@ -569,6 +640,16 @@
             },
             ko: {
                 nav_about: "소개", nav_roadmap: "로드맵", nav_whitepaper: "백서", nav_community: "커뮤니티", nav_faq: "FAQ",
+                nav_download: "앱 다운로드", btn_download: "📱 앱 다운로드",
+                dl_title: "📱 算力纪元 앱 다운로드",
+                dl_name: "算力纪元 · AI 컴퓨팅 플랫폼",
+                dl_desc: "XCWW 생태계 공식 클라이언트. 모바일에서 언제든 수익 확인, 계정 관리, 이벤트 참여가 가능합니다.",
+                dl_f1: "✅ Android APK · 3.6MB, 다운로드 후 바로 설치",
+                dl_f2: "✅ 웹 버전은 설치 없이 브라우저에서 바로 실행",
+                dl_f3: "🍎 iOS 버전은 준비 중입니다",
+                dl_btn: "⬇️ Android APK 다운로드", dl_web: "🌐 웹 버전 열기",
+                dl_qr_note: "휴대폰으로 스캔하여 다운로드",
+                footer_app: "算力纪元 앱",
                 hero_title: "AI 시대의 컴퓨팅 + 스토리지 인프라",
                 hero_subtitle: "XCWW (CnX4) · Solana 기반, VC 없음, 커뮤니티 주도",
                 badge_mint: "🔥 민트 권한 폐기됨", badge_lp: "🔒 86% LP 영구 잠금", badge_solana: "⚡ Solana", badge_ai: "🤖 AI 컴퓨팅",
@@ -621,6 +702,16 @@
             },
             en: {
                 nav_about: "About", nav_roadmap: "Roadmap", nav_whitepaper: "Whitepaper", nav_community: "Community", nav_faq: "FAQ",
+                nav_download: "Download", btn_download: "📱 Download App",
+                dl_title: "📱 Download the Suanli App",
+                dl_name: "Suanli App · AI Compute Platform",
+                dl_desc: "The official XCWW ecosystem client. Check compute rewards, manage your account and join ecosystem events on mobile — anytime.",
+                dl_f1: "✅ Android APK · only 3.6MB, install right after download",
+                dl_f2: "✅ Web version — no install, opens in any browser",
+                dl_f3: "🍎 iOS version coming soon",
+                dl_btn: "⬇️ Download Android APK", dl_web: "🌐 Open Web Version",
+                dl_qr_note: "Scan with your phone to download",
+                footer_app: "Suanli App",
                 hero_title: "AI-Era Computing & Storage Infra",
                 hero_subtitle: "XCWW (CnX4) · Built on Solana, 0 VC, Community-Driven",
                 badge_mint: "🔥 Mint Revoked", badge_lp: "🔒 86% LP Burned", badge_solana: "⚡ Solana", badge_ai: "🤖 AI Compute",
