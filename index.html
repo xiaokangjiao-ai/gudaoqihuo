@@ -410,6 +410,42 @@
             html { scroll-behavior: auto; }
         }
 
+        /* ── wallet / Phantom guide ── */
+        .wallet-platforms {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 18px; margin: 32px 0 12px;
+        }
+        .wallet-platform {
+            display: flex; flex-direction: column; align-items: center;
+            background: var(--card-solid); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px 18px; text-align: center;
+            transition: all 0.25s; cursor: pointer;
+        }
+        .wallet-platform:hover {
+            transform: translateY(-4px);
+            border-color: rgba(138, 92, 245, 0.55);
+            box-shadow: 0 10px 30px rgba(138, 92, 245, 0.18);
+        }
+        .wallet-ico { font-size: 40px; margin-bottom: 10px; line-height: 1; }
+        .wallet-ptitle { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .wallet-phint { font-size: 12.5px; color: var(--muted); }
+        html.ios .wallet-android { display: none; }
+        .wallet-steps-title {
+            text-align: center; font-size: 22px; font-weight: 700; margin: 32px 0 24px;
+            color: #cbb8ff;
+        }
+        .wallet-alts {
+            margin-top: 36px; text-align: center; padding: 22px;
+            background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+        }
+        .wallet-alts p { color: var(--muted); margin-bottom: 14px; font-size: 14.5px; }
+        .wallet-alts-list { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .wallet-alt {
+            padding: 6px 14px; border-radius: 18px;
+            background: rgba(138, 92, 245, 0.12); border: 1px solid rgba(138, 92, 245, 0.35);
+            color: #cbb8ff; font-size: 13.5px; font-weight: 500;
+        }
+
         /* ── responsive ── */
         @media (max-width: 980px) {
             .tier-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
@@ -422,7 +458,7 @@
             .hero { padding: 64px 0 48px; }
             .hero h1 { font-size: 34px; }
             .section-title { font-size: 27px; }
-            .feature-grid, .community-grid, .ref-grid { grid-template-columns: 1fr; }
+            .feature-grid, .community-grid, .ref-grid, .wallet-platforms { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .vis-grid, .steps-grid { grid-template-columns: 1fr; }
@@ -709,12 +745,74 @@
                     </ul>
                     <div class="dl-btns">
                         <a href="https://mini.gudaoqihuo.com/suanli.apk" class="btn btn-primary" data-i18n="dl_btn">⬇️ 下载 Android APK</a>
+                        <a href="#wallet" class="btn btn-outline" data-i18n="dl_phantom">🦊 装 Phantom 钱包</a>
                         <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="dl_web">🌐 打开 Web 版</a>
                     </div>
                 </div>
                 <div class="qr-wrap">
                     <img src="assets/qr-app.png" alt="扫码下载算力纪元 APK">
                     <div class="qr-note" data-i18n="dl_qr_note">手机扫码直接下载 APK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WALLET · Phantom 推荐 -->
+    <section id="wallet">
+        <div class="container">
+            <h2 class="section-title" data-i18n="wallet_title">🦊 推荐钱包 · Phantom</h2>
+            <p class="section-sub" data-i18n="wallet_sub">Solana 生态最受信赖的钱包，全球超 700 万用户。开通会员、收款提现、签名登录都靠它——链上身份 = 你的账号，新设备也能一键找回。</p>
+
+            <div class="wallet-platforms reveal">
+                <a class="wallet-platform wallet-ios" href="https://apps.apple.com/app/phantom-solana-wallet/id1650417576" target="_blank" rel="noopener">
+                    <div class="wallet-ico">🍎</div>
+                    <div class="wallet-ptitle" data-i18n="wallet_ios_btn">iOS App Store</div>
+                    <div class="wallet-phint" data-i18n="wallet_ios_hint">iPhone / iPad · 官方正版</div>
+                </a>
+                <a class="wallet-platform wallet-android" href="https://phantom.app/download" target="_blank" rel="noopener">
+                    <div class="wallet-ico">🤖</div>
+                    <div class="wallet-ptitle" data-i18n="wallet_android_btn">Android APK</div>
+                    <div class="wallet-phint" data-i18n="wallet_android_hint">国内推荐 APKPure / 酷安</div>
+                </a>
+                <a class="wallet-platform wallet-chrome" href="https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa" target="_blank" rel="noopener">
+                    <div class="wallet-ico">🌐</div>
+                    <div class="wallet-ptitle" data-i18n="wallet_chrome_btn">Chrome 浏览器扩展</div>
+                    <div class="wallet-phint" data-i18n="wallet_chrome_hint">Windows / Mac / Linux</div>
+                </a>
+            </div>
+
+            <h3 class="wallet-steps-title reveal" data-i18n="wallet_steps_title">🔑 4 步完成钱包登录 / 签名</h3>
+            <div class="steps-grid">
+                <div class="step-card reveal">
+                    <div class="step-num" data-i18n="wallet_step1_n">STEP 1</div>
+                    <h3 data-i18n="wallet_step1_t">下载并安装</h3>
+                    <p data-i18n="wallet_step1_d">从上方按钮选择你的设备（iOS / Android / Chrome），装好后打开 Phantom。</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num" data-i18n="wallet_step2_n">STEP 2</div>
+                    <h3 data-i18n="wallet_step2_t">新建或导入钱包</h3>
+                    <p data-i18n="wallet_step2_d">新用户选「创建新钱包」并备份助记词；老用户选「导入已有钱包」粘贴 base58 私钥即可。</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num" data-i18n="wallet_step3_n">STEP 3</div>
+                    <h3 data-i18n="wallet_step3_t">浏览器内打开算力纪元</h3>
+                    <p data-i18n="wallet_step3_d">iPhone/Android 用 Phantom 自带浏览器输入 mini.gudaoqihuo.com；电脑用 Chrome 打开后插件自动连接。</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num" data-i18n="wallet_step4_n">STEP 4</div>
+                    <h3 data-i18n="wallet_step4_t">签名登录 / 转账</h3>
+                    <p data-i18n="wallet_step4_d">点「🔑 已有账号登录」或激活会员时输入金额，Phantom 弹窗签名即完成，私钥永不离开本地。</p>
+                </div>
+            </div>
+
+            <div class="wallet-alts reveal">
+                <p data-i18n="wallet_alts_intro">不喜欢 Phantom？这些钱包同样支持 Solana 链上操作：</p>
+                <div class="wallet-alts-list">
+                    <span class="wallet-alt" data-i18n="wallet_alt_solflare">Solflare</span>
+                    <span class="wallet-alt" data-i18n="wallet_alt_backpack">Backpack</span>
+                    <span class="wallet-alt" data-i18n="wallet_alt_trust">Trust Wallet</span>
+                    <span class="wallet-alt" data-i18n="wallet_alt_okx">OKX Web3 钱包</span>
+                    <span class="wallet-alt" data-i18n="wallet_alt_math">Math Wallet</span>
                 </div>
             </div>
         </div>
@@ -886,6 +984,10 @@
                     <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq8_q">8. 如何安全地存储 CnX4？ <b>+</b></span></div>
                     <div class="faq-a" data-i18n="faq8_a">CnX4 是 Solana 链上 SPL 代币，可使用 Phantom、Solflare 等支持 Solana 的钱包接收与存储。请务必备份好钱包助记词，切勿泄露给任何人。</div>
                 </div>
+                <div class="faq-item reveal">
+                    <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq9_q">9. Phantom 钱包怎么下载使用？ <b>+</b></span></div>
+                    <div class="faq-a" data-i18n="faq9_a">见网站「🦊 推荐钱包」板块。iPhone 从 App Store 搜 Phantom；安卓国内用户从 APKPure / 酷安 / phantom.app/download 装 APK；电脑装 Chrome 浏览器扩展。装好后在「我的资产」页点「🔑 已有账号？用钱包登录」即可一键登录，私钥全程不上传服务器。</div>
+                </div>
             </div>
         </div>
     </section>
@@ -976,7 +1078,7 @@
                 dl_f1: "✅ Android APK · 仅 3.6MB，下载即装",
                 dl_f2: "✅ Web 版免安装，浏览器直接打开",
                 dl_f3: "🍎 iOS 版规划中，敬请期待",
-                dl_btn: "⬇️ 下载 Android APK", dl_web: "🌐 打开 Web 版",
+                dl_btn: "⬇️ 下载 Android APK", dl_web: "🌐 打开 Web 版", dl_phantom: "🦊 装 Phantom 钱包",
                 dl_qr_note: "手机扫码直接下载 APK",
                 vis_title: "🚀 目标与远景",
                 vis_sub: "算力纪元不只是打卡赚钱，更是一个长期增长的算力生态。早参与，早受益。",
@@ -1018,6 +1120,19 @@
                 faq4_q: "6. 如何验证项目安全性？ <b>+</b>", faq4_a: "在 Solscan 上查看：铸币权限显示为 \"Revoked\"；86% 的 LP 显示为 \"Burned\"（永久锁定），无法被撤池。",
                 faq7_q: "7. CnX4 有什么实际用途？ <b>+</b>", faq7_a: "CnX4 是生态的结算与治理代币：用于在去中心化算力市场支付 GPU/TPU 资源、在存储网络支付存储空间，并参与未来 DAO 治理投票。",
                 faq8_q: "8. 如何安全地存储 CnX4？ <b>+</b>", faq8_a: "CnX4 是 Solana 链上 SPL 代币，可使用 Phantom、Solflare 等支持 Solana 的钱包接收与存储。请务必备份好钱包助记词，切勿泄露给任何人。",
+                faq9_q: "9. Phantom 钱包怎么下载使用？ <b>+</b>", faq9_a: "见网站「🦊 推荐钱包」板块。iPhone 从 App Store 搜 Phantom；安卓国内用户从 APKPure / 酷安 / phantom.app/download 装 APK；电脑装 Chrome 浏览器扩展。装好后在「我的资产」页点「🔑 已有账号？用钱包登录」即可一键登录，私钥全程不上传服务器。",
+                wallet_title: "🦊 推荐钱包 · Phantom",
+                wallet_sub: "Solana 生态最受信赖的钱包，全球超 700 万用户。开通会员、收款提现、签名登录都靠它——链上身份 = 你的账号，新设备也能一键找回。",
+                wallet_ios_btn: "iOS App Store", wallet_ios_hint: "iPhone / iPad · 官方正版",
+                wallet_android_btn: "Android APK", wallet_android_hint: "国内推荐 APKPure / 酷安",
+                wallet_chrome_btn: "Chrome 浏览器扩展", wallet_chrome_hint: "Windows / Mac / Linux",
+                wallet_steps_title: "🔑 4 步完成钱包登录 / 签名",
+                wallet_step1_n: "STEP 1", wallet_step1_t: "下载并安装", wallet_step1_d: "从上方按钮选择你的设备（iOS / Android / Chrome），装好后打开 Phantom。",
+                wallet_step2_n: "STEP 2", wallet_step2_t: "新建或导入钱包", wallet_step2_d: "新用户选「创建新钱包」并备份助记词；老用户选「导入已有钱包」粘贴 base58 私钥即可。",
+                wallet_step3_n: "STEP 3", wallet_step3_t: "浏览器内打开算力纪元", wallet_step3_d: "iPhone/Android 用 Phantom 自带浏览器输入 mini.gudaoqihuo.com；电脑用 Chrome 打开后插件自动连接。",
+                wallet_step4_n: "STEP 4", wallet_step4_t: "签名登录 / 转账", wallet_step4_d: "点「🔑 已有账号登录」或激活会员时输入金额，Phantom 弹窗签名即完成，私钥永不离开本地。",
+                wallet_alts_intro: "不喜欢 Phantom？这些钱包同样支持 Solana 链上操作：",
+                wallet_alt_solflare: "Solflare", wallet_alt_backpack: "Backpack", wallet_alt_trust: "Trust Wallet", wallet_alt_okx: "OKX Web3 钱包", wallet_alt_math: "Math Wallet",
                 disclaimer_title: "风险提示",
                 disclaimer_text: "加密货币具有极高风险，价格可能剧烈波动，您可能损失全部本金。XCWW (CnX4) 仅为社区驱动的区块链实验项目，不构成任何投资建议、证券要约或财务建议。本网站信息仅供参考，不构成任何投资、法律或税务意见。参与前请自行研究 (DYOR) 并遵守所在司法辖区的法律法规。我们不对任何因使用本项目产生的损失承担责任。",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
@@ -1090,7 +1205,7 @@
                 dl_f1: "✅ Android APK · わずか3.6MB、ダウンロードしてすぐインストール",
                 dl_f2: "✅ Web版はインストール不要、ブラウザで直接開ける",
                 dl_f3: "🍎 iOS版は準備中、お楽しみに",
-                dl_btn: "⬇️ Android APKをダウンロード", dl_web: "🌐 Web版を開く",
+                dl_btn: "⬇️ Android APKをダウンロード", dl_web: "🌐 Web版を開く", dl_phantom: "🦊 Phantom財布を導入",
                 dl_qr_note: "スマホでスキャンしてダウンロード",
                 vis_title: "🚀 ビジョンと未来",
                 vis_sub: "算力紀元はチェックインで稼ぐだけではなく、長期的に成長するコンピューティングエコシステム。早く参加するほど得をする。",
@@ -1132,6 +1247,19 @@
                 faq4_q: "6. プロジェクトが逃げないか確認するには？ <b>+</b>", faq4_a: "Solscanで確認：ミント権は \"Revoked\"、LPロック量の86%が \"Burned\" (永久ロック)。",
                 faq7_q: "7. CnX4の実際の用途は？ <b>+</b>", faq7_a: "CnX4はエコシステムの決済・ガバナンストークン。分散型計算マーケットプレイスでGPU/TPUを決済し、ストレージネットワークで容量を支払い、将来のDAOガバナンスで投票に使います。",
                 faq8_q: "8. CnX4を安全に保管するには？ <b>+</b>", faq8_a: "CnX4はSolanaのSPLトークン。PhantomやSolflareなどSolana対応ウォレットで受取・保管できます。シードフレーズは必ずバックアップし、絶対に他人に教えないでください。",
+                faq9_q: "9. Phantomウォレットのダウンロード方法は？ <b>+</b>", faq9_a: "サイトの「🦊 おすすめウォレット」セクションを参照。iPhoneはApp StoreでPhantomを検索、AndroidはAPKPure/酷安/phantom.app/downloadでAPKを、PCはChrome拡張機能を導入。導入後「資産」ページで「🔑 アカウントログイン」をクリックすれば即ログイン可能、秘密鍵はサーバーへ送信されません。",
+                wallet_title: "🦊 おすすめウォレット · Phantom",
+                wallet_sub: "Solanaエコシステムで最も信頼されるウォレット（ユーザー700万人超）。会員開通・出金受取・署名ログインに必須——オンチェーンID = あなたのアカウント、新しいデバイスでも即復元。",
+                wallet_ios_btn: "iOS App Store", wallet_ios_hint: "iPhone / iPad · 公式版",
+                wallet_android_btn: "Android APK", wallet_android_hint: "国内はAPKPure/酷安推奨",
+                wallet_chrome_btn: "Chrome拡張機能", wallet_chrome_hint: "Windows / Mac / Linux",
+                wallet_steps_title: "🔑 4ステップでウォレットログイン / 署名",
+                wallet_step1_n: "STEP 1", wallet_step1_t: "ダウンロードとインストール", wallet_step1_d: "上のボタンから端末（iOS / Android / Chrome）を選び、インストール後にPhantomを起動。",
+                wallet_step2_n: "STEP 2", wallet_step2_t: "新規作成またはインポート", wallet_step2_d: "新規ユーザーは「新しいウォレットを作成」でシードフレーズをバックアップ、既存ユーザーは「既存のウォレットをインポート」でbase58秘密鍵を貼り付け。",
+                wallet_step3_n: "STEP 3", wallet_step3_t: "ブラウザで算力紀元を開く", wallet_step3_d: "iPhone/AndroidはPhantom内蔵ブラウザでmini.gudaoqihuo.comを開く、PCはChromeで開くと拡張機能が自動接続。",
+                wallet_step4_n: "STEP 4", wallet_step4_t: "署名ログイン / 送金", wallet_step4_d: "「🔑 アカウントログイン」または会員開通時の金額入力後、Phantomの署名ポップアップで確認——秘密鍵は端末から出ません。",
+                wallet_alts_intro: "Phantom以外のSolana対応ウォレット：",
+                wallet_alt_solflare: "Solflare", wallet_alt_backpack: "Backpack", wallet_alt_trust: "Trust Wallet", wallet_alt_okx: "OKX Web3ウォレット", wallet_alt_math: "Math Wallet",
                 disclaimer_title: "リスク警告",
                 disclaimer_text: "暗号資産は極めて高いリスクがあり、価格は激しく変動し、元本をすべて失う可能性があります。XCWW (CnX4) はコミュニティ主導のブロックチェーン実験であり、投資・証券・金融アドバイスにはなりません。本サイトの情報は参考用です。参加前にご自身で調査 (DYOR) し、お住まいの法域の法規制を遵守してください。本プロジェクトの利用によるいかなる損失についても責任を負いません。",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
@@ -1204,7 +1332,7 @@
                 dl_f1: "✅ Android APK · 3.6MB, 다운로드 후 바로 설치",
                 dl_f2: "✅ 웹 버전은 설치 없이 브라우저에서 바로 실행",
                 dl_f3: "🍎 iOS 버전은 준비 중입니다",
-                dl_btn: "⬇️ Android APK 다운로드", dl_web: "🌐 웹 버전 열기",
+                dl_btn: "⬇️ Android APK 다운로드", dl_web: "🌐 웹 버전 열기", dl_phantom: "🦊 Phantom 지갑 설치",
                 dl_qr_note: "휴대폰으로 스캔하여 다운로드",
                 vis_title: "🚀 목표와 비전",
                 vis_sub: "算力纪元는 출석으로 돈을 버는 것 이상, 장기적으로 성장하는 컴퓨팅 생태계입니다. 일찍 참여할수록 더 큰 혜택을.",
@@ -1246,6 +1374,19 @@
                 faq4_q: "6. 프로젝트가 먹튀하지 않는지 어떻게 확인하나요? <b>+</b>", faq4_a: "Solscan에서 확인: 민트 권한 \"Revoked\", LP 잠금량의 86%가 \"Burned\" (영구 잠금).",
                 faq7_q: "7. CnX4의 실제 용도는? <b>+</b>", faq7_a: "CnX4는 생태계 결제·거버넌스 토큰입니다. 컴퓨팅 마켓플레이스에서 GPU/TPU를 결제하고, 스토리지 네트워크에서 용량을 지불하며, 향후 DAO 거버넌스에서 투표에 사용됩니다.",
                 faq8_q: "8. CnX4를 안전하게 보관하려면? <b>+</b>", faq8_a: "CnX4는 Solana SPL 토큰입니다. Phantom, Solflare 등 Solana 지갑으로 받고 보관하세요. 시드 구절은 반드시 백업하고 절대 타인과 공유하지 마세요.",
+                faq9_q: "9. Phantom 지갑은 어떻게 다운로드하나요? <b>+</b>", faq9_a: "사이트 '🦊 추천 지갑' 섹션 참고. iPhone은 App Store에서 Phantom 검색, Android는 APKPure/쿨안/phantom.app/download에서 APK 설치, PC는 Chrome 확장 프로그램 설치. 설치 후 '자산' 페이지에서 '🔑 기존 계정 로그인'을 누르면 즉시 로그인, 개인키는 서버로 전송되지 않습니다.",
+                wallet_title: "🦊 추천 지갑 · Phantom",
+                wallet_sub: "Solana 생태계에서 가장 신뢰받는 지갑(전 세계 700만+ 사용자). 멤버십 개통·출금 수령·서명 로그인의 필수 도구 — 온체인 신원 = 당신의 계정, 새 기기에서도 즉시 복구.",
+                wallet_ios_btn: "iOS App Store", wallet_ios_hint: "iPhone / iPad · 공식 정품",
+                wallet_android_btn: "Android APK", wallet_android_hint: "국내는 APKPure / 쿨안 추천",
+                wallet_chrome_btn: "Chrome 확장 프로그램", wallet_chrome_hint: "Windows / Mac / Linux",
+                wallet_steps_title: "🔑 4단계로 지갑 로그인 / 서명",
+                wallet_step1_n: "STEP 1", wallet_step1_t: "다운로드 및 설치", wallet_step1_d: "위 버튼에서 기기(iOS / Android / Chrome)를 선택해 설치 후 Phantom 실행.",
+                wallet_step2_n: "STEP 2", wallet_step2_t: "신규 생성 또는 가져오기", wallet_step2_d: "신규 사용자는 '새 지갑 생성'으로 시드 구절 백업, 기존 사용자는 '기존 지갑 가져오기'로 base58 개인키 붙여넣기.",
+                wallet_step3_n: "STEP 3", wallet_step3_t: "브라우저에서 算力纪元 열기", wallet_step3_d: "iPhone/Android는 Phantom 내장 브라우저로 mini.gudaoqihuo.com 입력, PC는 Chrome에서 열면 확장 프로그램 자동 연결.",
+                wallet_step4_n: "STEP 4", wallet_step4_t: "서명 로그인 / 송금", wallet_step4_d: "'🔑 기존 계정 로그인' 또는 멤버십 개통 시 금액 입력 후, Phantom 서명 팝업으로 확인 — 개인키는 기기 밖으로 나가지 않습니다.",
+                wallet_alts_intro: "Phantom 외에 Solana 지원 지갑:",
+                wallet_alt_solflare: "Solflare", wallet_alt_backpack: "Backpack", wallet_alt_trust: "Trust Wallet", wallet_alt_okx: "OKX Web3 지갑", wallet_alt_math: "Math Wallet",
                 disclaimer_title: "위험 고지",
                 disclaimer_text: "암호자산은 매우 높은 위험이 있으며 가격이 급격히 변동해 원금 전액을 잃을 수 있습니다. XCWW (CnX4) 는 커뮤니티 주도 블록체인 실험이며 투자·증권·금융 조언이 아닙니다. 이 사이트 정보는 참고용입니다. 참여 전 반드시 직접 조사(DYOR)하고 현지 법규를 준수하세요. 본 프로젝트 이용으로 인한 어떠한 손실에 대해서도 책임지지 않습니다.",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
@@ -1318,7 +1459,7 @@
                 dl_f1: "✅ Android APK · only 3.6MB, install right after download",
                 dl_f2: "✅ Web version — no install, opens in any browser",
                 dl_f3: "🍎 iOS version coming soon",
-                dl_btn: "⬇️ Download Android APK", dl_web: "🌐 Open Web Version",
+                dl_btn: "⬇️ Download Android APK", dl_web: "🌐 Open Web Version", dl_phantom: "🦊 Install Phantom Wallet",
                 dl_qr_note: "Scan with your phone to download",
                 vis_title: "🚀 Goals & Vision",
                 vis_sub: "Suanli is more than check-in earnings — it's a long-term growing compute ecosystem. The earlier you join, the more you gain.",
@@ -1360,6 +1501,19 @@
                 faq4_q: "6. How to verify safety? <b>+</b>", faq4_a: "On Solscan: Mint Authority \"Revoked\"; 86% of LP \"Burned\" (permanently locked), cannot be pulled.",
                 faq7_q: "7. What is CnX4 actually used for? <b>+</b>", faq7_a: "CnX4 is the ecosystem settlement & governance token: pay for GPU/TPU in the compute marketplace, pay for storage, and vote in future DAO governance.",
                 faq8_q: "8. How to store CnX4 safely? <b>+</b>", faq8_a: "CnX4 is a Solana SPL token — receive & store it in Phantom, Solflare or any Solana wallet. Back up your seed phrase and never share it.",
+                faq9_q: "9. How to download & use the Phantom wallet? <b>+</b>", faq9_a: "See the \"🦊 Recommended Wallet\" section on the site. iPhone: search Phantom in the App Store. Android (mainland China): install the APK from APKPure / Coolapk / phantom.app/download. PC: install the Chrome extension. After installing, tap \"🔑 Log In\" on the Assets page for one-tap sign-in. Your private key never leaves your device.",
+                wallet_title: "🦊 Recommended Wallet · Phantom",
+                wallet_sub: "The most trusted wallet in the Solana ecosystem, with 7M+ users worldwide. Required for activation, withdrawals and signature-based login — your on-chain identity is your account, recoverable on any new device.",
+                wallet_ios_btn: "iOS App Store", wallet_ios_hint: "iPhone / iPad · Official",
+                wallet_android_btn: "Android APK", wallet_android_hint: "APKPure / Coolapk recommended in China",
+                wallet_chrome_btn: "Chrome Extension", wallet_chrome_hint: "Windows / Mac / Linux",
+                wallet_steps_title: "🔑 Wallet Login / Signing in 4 Steps",
+                wallet_step1_n: "STEP 1", wallet_step1_t: "Download & Install", wallet_step1_d: "Pick your device (iOS / Android / Chrome) from the buttons above and open Phantom after install.",
+                wallet_step2_n: "STEP 2", wallet_step2_t: "Create or Import", wallet_step2_d: "New users choose \"Create a new wallet\" and back up the seed phrase; existing users pick \"Import existing wallet\" and paste a base58 private key.",
+                wallet_step3_n: "STEP 3", wallet_step3_t: "Open Suanli in Browser", wallet_step3_d: "On iPhone/Android, use Phantom's built-in browser to open mini.gudaoqihuo.com. On PC, open the link in Chrome — the extension auto-connects.",
+                wallet_step4_n: "STEP 4", wallet_step4_t: "Sign In / Send", wallet_step4_d: "Tap \"🔑 Log In\" or enter the amount when activating. Confirm in the Phantom popup. Your private key never leaves your device.",
+                wallet_alts_intro: "Other Solana-compatible wallets if Phantom isn't your thing:",
+                wallet_alt_solflare: "Solflare", wallet_alt_backpack: "Backpack", wallet_alt_trust: "Trust Wallet", wallet_alt_okx: "OKX Web3 Wallet", wallet_alt_math: "Math Wallet",
                 disclaimer_title: "Risk Disclaimer",
                 disclaimer_text: "Cryptocurrencies are extremely high-risk; prices can swing violently and you may lose all principal. XCWW (CnX4) is a community-driven blockchain experiment and is NOT investment, securities or financial advice. This site is for information only. Do your own research (DYOR) and comply with your local laws before participating. We are not liable for any losses.",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
