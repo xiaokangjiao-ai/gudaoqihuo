@@ -209,7 +209,7 @@
         }
         .tier-cta--apk:hover { color: var(--text) !important; border-color: var(--muted) !important; }
         /* iOS 设备隐藏 APK（App Store 限制，TG 机器人是唯一入口） */
-        body.is-ios .tier-cta--apk { display: none; }
+        html.ios .tier-cta--apk { display: none !important; }
 
         /* comparison table */
         .tb-wrap {
@@ -1403,6 +1403,15 @@
                 });
             }, { threshold: 0.12 });
             document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        })();
+
+        // iOS detection: hide Android-APK download buttons on iPhone/iPad
+        (function () {
+            const ua = navigator.userAgent || '';
+            const platform = navigator.platform || '';
+            const isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                (platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            document.documentElement.classList.toggle('ios', isIOS);
         })();
 
         // init language
