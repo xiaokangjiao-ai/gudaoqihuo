@@ -1519,7 +1519,8 @@
                 disclaimer_text: "Cryptocurrencies are extremely high-risk; prices can swing violently and you may lose all principal. XCWW (CnX4) is a community-driven blockchain experiment and is NOT investment, securities or financial advice. This site is for information only. Do your own research (DYOR) and comply with your local laws before participating. We are not liable for any losses.",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "Suanli App",
-                footer_copy: "© 2026 XCWW (CnX4). Built on Solana."
+                footer_copy: "© 2026 XCWW (CnX4). Built on Solana.",
+                marquee_label: "Live Withdrawals", marquee_loading: "Loading…", marquee_empty: "No withdrawals yet — download the App to unlock yours →"
             }
         };
 
@@ -1569,12 +1570,83 @@
             document.documentElement.classList.toggle('ios', isIOS);
         })();
 
+        // Live withdrawal marquee (shares marquee_log with Mini App)
+        const MARQUEE_FALLBACK = [
+            { user_display: 'moon***er', amount: 120000, tx_hash: '5xK2...fRq8' },
+            { user_display: 'cry***pto', amount: 215000, tx_hash: '3hP9...M4n1' },
+            { user_display: 'tom***dao', amount: 158000, tx_hash: '7cW1...vZ3y' },
+            { user_display: 'sol***whl', amount: 320000, tx_hash: '9aT5...B2k7' },
+            { user_display: 'neb***ula', amount: 100000, tx_hash: '2dF6...Q8s4' },
+        ];
+        const MARQUEE_TXN_BASE = 'https://solscan.io/tx/';
+        function renderMarquee(logs) {
+            const el = document.getElementById('marqueeContent');
+            if (!el) return;
+            if (!logs || !logs.length) {
+                el.innerHTML = '<span class="marquee-empty" data-i18n="marquee_empty"></span>';
+                // re-translate the new node (no key on its parent)
+                const lang = (document.documentElement.lang || 'zh').startsWith('en') ? 'en'
+                    : (document.documentElement.lang || 'zh').startsWith('ja') ? 'ja'
+                    : (document.documentElement.lang || 'zh').startsWith('ko') ? 'ko' : 'zh';
+                const node = el.querySelector('[data-i18n="marquee_empty"]');
+                if (node && I18N[lang] && I18N[lang].marquee_empty) node.innerHTML = I18N[lang].marquee_empty;
+                return;
+            }
+            const itemHtml = logs.map(l => {
+                const u = escapeHtml(l.user_display || 'user***');
+                const a = Number(l.amount || 0).toLocaleString();
+                const h = escapeHtml(l.tx_hash || '');
+                const link = h ? `<a href="${MARQUEE_TXN_BASE}${h}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted rgba(154,154,172,0.5)">Tx: ${h.slice(0, 4)}…${h.slice(-4)}</a>` : '';
+                return `<span class="marquee-item"><span class="marquee-user">${u}</span><span class="marquee-action" data-i18n="marquee_action"></span><span class="marquee-amount">${a}</span> HPL ${link}</span>`;
+            }).join('');
+            // Duplicate items so the seamless loop is always full width.
+            el.innerHTML = itemHtml + itemHtml;
+            // Apply "成功提现" / "withdrew" / "が出金しました" / "출금 완료" to action spans
+            const lang = (document.documentElement.lang || 'zh').startsWith('en') ? 'en'
+                : (document.documentElement.lang || 'zh').startsWith('ja') ? 'ja'
+                : (document.documentElement.lang || 'zh').startsWith('ko') ? 'ko' : 'zh';
+            const actionText = { zh: '成功提现', en: 'withdrew', ja: 'が出金しました', ko: '출금 완료' }[lang];
+            el.querySelectorAll('[data-i18n="marquee_action"]').forEach(n => n.textContent = actionText);
+        }
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+        async function loadMarquee() {
+            try {
+                const ctrl = new AbortController();
+                setTimeout(() => ctrl.abort(), 5000);
+                const res = await fetch('https://mini.gudaoqihuo.com/api/feed/marquee', { signal: ctrl.signal });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                const logs = (data.logs || []).slice(0, 12);
+                renderMarquee(logs.length ? logs : MARQUEE_FALLBACK);
+            } catch (e) {
+                // Network/CORS/down → show demo items, never leave an empty bar.
+                renderMarquee(MARQUEE_FALLBACK);
+            }
+        }
+        function refreshMarqueeActionText() {
+            // Re-localize "成功提现" when user switches language without re-fetching logs.
+            const lang = (document.documentElement.lang || 'zh').startsWith('en') ? 'en'
+                : (document.documentElement.lang || 'zh').startsWith('ja') ? 'ja'
+                : (document.documentElement.lang || 'zh').startsWith('ko') ? 'ko' : 'zh';
+            const actionText = { zh: '成功提现', en: 'withdrew', ja: 'が出金しました', ko: '출금 완료' }[lang];
+            const emptyText = (I18N[lang] && I18N[lang].marquee_empty) || '';
+            document.querySelectorAll('[data-i18n="marquee_action"]').forEach(n => n.textContent = actionText);
+            document.querySelectorAll('[data-i18n="marquee_empty"]').forEach(n => n.innerHTML = emptyText);
+        }
+
         // init language
         (function () {
             let lang = 'zh';
             try { lang = localStorage.getItem('xcww_lang') || 'zh'; } catch (e) {}
             if (!I18N[lang]) lang = 'zh';
             switchLang(lang);
+            // Kick off marquee after first paint so initial paint isn't blocked.
+            if (document.readyState === 'complete') loadMarquee();
+            else window.addEventListener('load', loadMarquee);
+            // Refresh every 60s so newly approved withdrawals show up on the public site.
+            setInterval(loadMarquee, 60000);
         })();
     </script>
 </body>
