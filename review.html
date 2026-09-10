@@ -104,7 +104,11 @@ nav { display:flex; align-items:center; justify-content:space-between; padding:1
     </div>
     <div class="modal-body">
       <div>
-        <video id="modalVideo" class="modal-video" controls playsinline></video>
+        <div id="videoWrap" style="position:relative; cursor:pointer;" onclick="loadVideo()">
+          <img id="modalCover" class="modal-cover" style="display:block;">
+          <div id="playBtn" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); border-radius:12px; font-size:60px; color:#fff;">▶</div>
+        </div>
+        <video id="modalVideo" class="modal-video" controls playsinline style="display:none;"></video>
         <div style="margin-top:10px; font-size:12px; color:var(--muted);">
           <span id="modalPlatform"></span> · <span id="modalDate"></span>
         </div>
@@ -180,7 +184,13 @@ async function loadPosts() {
     document.getElementById('countApproved').textContent = all.posts.filter(p => p.status === 'approved').length;
     document.getElementById('countRejected').textContent = all.posts.filter(p => p.status === 'rejected').length;
     renderPosts(data.posts);
-  } catch (e) { console.error(e); }
+  } catch (e) {
+    console.error(e);
+    document.getElementById('grid').innerHTML =
+      '<div style="color:var(--red); padding:40px; text-align:center; grid-column:1/-1;">' +
+      '加载失败：后端 API 未部署 publish 模块。<br>' +
+      '请确认另一台机器已更新 maya_api.py + publish_manager.py 并重启服务。</div>';
+  }
 }
 
 function renderPosts(posts) {
@@ -209,11 +219,20 @@ function statusLabel(s) {
   return { pending_review: '待审核', approved: '已通过', rejected: '已拒绝' }[s] || s;
 }
 
+let currentVideoPostId = null;
+
 function openPost(postId) {
   api(`/api/publish/posts/${postId}`).then(p => {
     currentPost = p;
+    currentVideoPostId = postId;
     document.getElementById('modalTitle').textContent = p.title || '审核详情';
-    document.getElementById('modalVideo').src = `${API}/api/publish/posts/${postId}/video`;
+    // Show cover image immediately (fast), video loads only on click
+    document.getElementById('modalCover').src = `${API}/api/publish/posts/${postId}/cover`;
+    document.getElementById('modalCover').style.display = 'block';
+    document.getElementById('videoWrap').style.display = 'block';
+    document.getElementById('playBtn').style.display = 'flex';
+    document.getElementById('modalVideo').style.display = 'none';
+    document.getElementById('modalVideo').src = '';
     document.getElementById('modalPlatform').textContent = p.platform || '';
     document.getElementById('modalDate').textContent = (p.created_at || '').slice(0, 16).replace('T', ' ');
     document.getElementById('fTitle').value = p.title || '';
@@ -221,12 +240,25 @@ function openPost(postId) {
     document.getElementById('fTags').value = (p.hashtags || []).join(', ');
     document.getElementById('fCta').value = p.cta || '';
     document.getElementById('modal').classList.add('show');
+  }).catch(e => {
+    toast('加载失败：' + e.message, 'error');
   });
+}
+
+function loadVideo() {
+  if (!currentVideoPostId) return;
+  const video = document.getElementById('modalVideo');
+  video.src = `${API}/api/publish/posts/${currentVideoPostId}/video`;
+  video.style.display = 'block';
+  document.getElementById('videoWrap').style.display = 'none';
+  video.play().catch(() => {});
 }
 
 function closeModal() {
   document.getElementById('modal').classList.remove('show');
-  document.getElementById('modalVideo').pause();
+  const video = document.getElementById('modalVideo');
+  video.pause();
+  video.src = '';
 }
 
 async function saveEdit() {
