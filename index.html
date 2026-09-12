@@ -465,9 +465,66 @@
             .stats { grid-template-columns: repeat(2, 1fr); }
             .download-box { padding: 30px 22px; }
         }
+        /* ── promo banner (增量，独立元素，不碰业务) ── */
+        #promo-banner {
+            position: relative;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 44px 9px 16px;
+            background: linear-gradient(90deg, #f5c518 0%, #ff5c8a 48%, #8a5cf5 100%);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.4;
+            text-align: center;
+        }
+        #promo-banner .promo-text { flex: 1; }
+        #promo-banner .promo-disc {
+            font-size: 11px;
+            font-weight: 400;
+            opacity: .9;
+            border-left: 1px solid rgba(255,255,255,.45);
+            padding-left: 10px;
+            white-space: nowrap;
+        }
+        #promo-banner .promo-close {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px; height: 24px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(0,0,0,.22);
+            color: #fff;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        @media (max-width: 560px) {
+            #promo-banner { font-size: 12.5px; padding-right: 40px; }
+            #promo-banner .promo-disc { display: none; }
+        }
     </style>
 </head>
 <body>
+    <div id="promo-banner">
+        <span class="promo-text" data-i18n="promo_main">🎁 每天送 10 名幸运用户免费激活！只要钱包登录的都有机会，人人都有薅羊毛到 10 万的机会！</span>
+        <span class="promo-disc" data-i18n="promo_risk">市场有风险，活动以规则为准</span>
+        <button class="promo-close" aria-label="关闭" onclick="(function(){try{localStorage.setItem('promo_dismiss_'+new Date().toISOString().slice(0,10),'1');}catch(e){}var b=document.getElementById('promo-banner');if(b)b.style.display='none';})()">×</button>
+    </div>
+    <script>
+      (function(){
+        try {
+          if (localStorage.getItem('promo_dismiss_'+new Date().toISOString().slice(0,10)) === '1') {
+            var b = document.getElementById('promo-banner');
+            if (b) b.style.display = 'none';
+          }
+        } catch(e){}
+      })();
+    </script>
     <div class="bg-fx" aria-hidden="true">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
@@ -1173,7 +1230,9 @@
                 disclaimer_text: "加密货币具有极高风险，价格可能剧烈波动，您可能损失全部本金。XCWW (CnX4) 仅为社区驱动的区块链实验项目，不构成任何投资建议、证券要约或财务建议。本网站信息仅供参考，不构成任何投资、法律或税务意见。参与前请自行研究 (DYOR) 并遵守所在司法辖区的法律法规。我们不对任何因使用本项目产生的损失承担责任。",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "算力纪元 App",
-                footer_copy: "© 2026 XCWW (CnX4). 构建于 Solana."
+                footer_copy: "© 2026 XCWW (CnX4). 构建于 Solana.",
+                promo_main: "🎁 每天送 10 名幸运用户免费激活！只要钱包登录的都有机会，人人都有薅羊毛到 10 万的机会！",
+                promo_risk: "市场有风险，活动以规则为准"
             },
             ja: {
                 nav_member: "会員特権", nav_how: "稼ぎ方ガイド", nav_ref: "紹介報酬", nav_download: "アプリDL",
@@ -1300,7 +1359,9 @@
                 disclaimer_text: "暗号資産は極めて高いリスクがあり、価格は激しく変動し、元本をすべて失う可能性があります。XCWW (CnX4) はコミュニティ主導のブロックチェーン実験であり、投資・証券・金融アドバイスにはなりません。本サイトの情報は参考用です。参加前にご自身で調査 (DYOR) し、お住まいの法域の法規制を遵守してください。本プロジェクトの利用によるいかなる損失についても責任を負いません。",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "算力紀元アプリ",
-                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築。"
+                footer_copy: "© 2026 XCWW (CnX4). Solana上に構築。",
+                promo_main: "🎁 毎日10名のラッキーユーザーに無料アクティベーション！ウォレットログインなら誰でもチャンス、みんなで10万稼ぐチャンス！",
+                promo_risk: "投資にはリスクがあります。特典は規約に準じます"
             },
             ko: {
                 nav_member: "멤버십 혜택", nav_how: "수익 가이드", nav_ref: "추천 보상", nav_download: "앱 다운로드",
@@ -1427,7 +1488,9 @@
                 disclaimer_text: "암호자산은 매우 높은 위험이 있으며 가격이 급격히 변동해 원금 전액을 잃을 수 있습니다. XCWW (CnX4) 는 커뮤니티 주도 블록체인 실험이며 투자·증권·금융 조언이 아닙니다. 이 사이트 정보는 참고용입니다. 참여 전 반드시 직접 조사(DYOR)하고 현지 법규를 준수하세요. 본 프로젝트 이용으로 인한 어떠한 손실에 대해서도 책임지지 않습니다.",
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "算力纪元 앱",
-                footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축."
+                footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축.",
+                promo_main: "🎁 매일 10명의 럭키 유저에게 무료 활성화! 지갑 로그인만 하면 누구나 기회, 모두가 10만 벌릴 기회!",
+                promo_risk: "투자에는 위험이 따릅니다. 혜택은 규정에 따릅니다"
             },
             en: {
                 nav_member: "Membership", nav_how: "How to Earn", nav_ref: "Referral", nav_download: "Download",
@@ -1555,6 +1618,8 @@
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "Suanli App",
                 footer_copy: "© 2026 XCWW (CnX4). Built on Solana.",
+                promo_main: "🎁 10 lucky users get FREE activation every day! Wallet login = your chance — everyone can grab up to 100K!",
+                promo_risk: "Trading involves risk. Offers subject to terms"
                 marquee_label: "Live Withdrawals", marquee_loading: "Loading…", marquee_empty: "No withdrawals yet — download the App to unlock yours →"
             }
         };
