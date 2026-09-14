@@ -136,9 +136,9 @@
         .stat .v em { font-style: normal; color: #a78bfa; }
 
         /* ── sections ── */
-        section { padding: 84px 0; border-bottom: 1px solid var(--border); position: relative; }
+        section { padding: 64px 0; border-bottom: 1px solid var(--border); position: relative; }
         .section-title { font-size: 38px; font-weight: 800; text-align: center; margin-bottom: 14px; letter-spacing: -0.4px; }
-        .section-sub { text-align: center; color: var(--muted); font-size: 16.5px; max-width: 760px; margin: 0 auto 48px; }
+        .section-sub { text-align: center; color: var(--muted); font-size: 16.5px; max-width: 760px; margin: 0 auto 36px; }
 
         /* ── membership (star section) ── */
         .section-star {
@@ -1651,16 +1651,6 @@
             el.parentElement.classList.toggle('active');
         }
 
-        // scroll-reveal animation
-        (function () {
-            const io = new IntersectionObserver(entries => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-                });
-            }, { threshold: 0.12 });
-            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-        })();
-
         // iOS detection: hide Android-APK download buttons on iPhone/iPad
         (function () {
             const ua = navigator.userAgent || '';
@@ -1749,5 +1739,33 @@
             setInterval(loadMarquee, 60000);
         })();
     </script>
+    <script>
+        // scroll-reveal 动画：独立 script 块 + 多重兜底。
+        // 即使主脚本（i18n/跑马灯等）抛错，或 IntersectionObserver 不可用/不触发，
+        // 内容也绝不永久隐藏（否则板块之间会出现巨大空白，看起来像排版坏了）。
+        (function () {
+            var els = document.querySelectorAll('.reveal');
+            var done = false;
+            function showAll() {
+                if (done) return;
+                done = true;
+                for (var i = 0; i < els.length; i++) els[i].classList.add('on');
+            }
+            try {
+                if (!('IntersectionObserver' in window)) { showAll(); return; }
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+                for (var i = 0; i < els.length; i++) io.observe(els[i]);
+                // 双保险：8 秒后仍未显示的（观察器异常/事件不触发）强制显示
+                setTimeout(showAll, 8000);
+            } catch (err) {
+                showAll();
+            }
+        })();
+    </script>
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </body>
 </html>
