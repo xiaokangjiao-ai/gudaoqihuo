@@ -446,6 +446,71 @@
             color: #cbb8ff; font-size: 13.5px; font-weight: 500;
         }
 
+        /* ── download center ── */
+        .dc-note {
+            display: flex; align-items: flex-start; gap: 12px;
+            max-width: 860px; margin: 0 auto 34px;
+            padding: 16px 20px; border-radius: var(--radius);
+            background: rgba(255, 176, 32, 0.08);
+            border: 1px solid rgba(255, 176, 32, 0.32);
+            color: #f0d9a8; font-size: 14.5px; line-height: 1.7;
+        }
+        .dc-note b { color: #ffca5c; font-weight: 700; }
+        .dc-note-ico { font-size: 18px; line-height: 1.5; flex-shrink: 0; }
+        .dc-group-title {
+            font-size: 18px; font-weight: 700; color: #cbb8ff;
+            margin: 30px 0 16px; padding-left: 12px;
+            border-left: 3px solid var(--p1, #8a5cf5);
+        }
+        .dc-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 14px;
+        }
+        .dc-card {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 18px; border-radius: var(--radius);
+            background: var(--card-solid); border: 1px solid var(--border);
+            transition: all 0.25s; cursor: pointer;
+        }
+        .dc-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(138, 92, 245, 0.55);
+            box-shadow: 0 10px 26px rgba(138, 92, 245, 0.16);
+        }
+        .dc-card--own { border-color: rgba(138, 92, 245, 0.5); background: rgba(138, 92, 245, 0.08); }
+        .dc-ico {
+            width: 46px; height: 46px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; border-radius: 12px;
+            background: rgba(138, 92, 245, 0.14);
+        }
+        .dc-main { flex: 1; min-width: 0; }
+        .dc-title { font-size: 15.5px; font-weight: 700; margin-bottom: 3px; }
+        .dc-hint {
+            font-size: 12.5px; color: var(--muted); line-height: 1.5;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .dc-badge {
+            flex-shrink: 0; padding: 4px 10px; border-radius: 12px;
+            font-size: 11.5px; font-weight: 600; white-space: nowrap;
+        }
+        .dc-badge--ok { background: rgba(46, 204, 113, 0.14); color: #5fd68f; border: 1px solid rgba(46, 204, 113, 0.35); }
+        .dc-badge--warn { background: rgba(255, 176, 32, 0.12); color: #ffca5c; border: 1px solid rgba(255, 176, 32, 0.34); }
+        .dc-arrow { flex-shrink: 0; color: var(--muted); font-size: 16px; transition: transform 0.25s; }
+        .dc-card:hover .dc-arrow { transform: translateX(3px); color: #b9a1ff; }
+        .dc-tip {
+            margin-top: 32px; padding: 18px 22px; border-radius: var(--radius);
+            background: var(--card); border: 1px solid var(--border);
+            color: var(--muted); font-size: 14px; line-height: 1.8; text-align: center;
+        }
+        .dc-tip b { color: #cbb8ff; }
+        @media (max-width: 640px) {
+            .dc-grid { grid-template-columns: 1fr; }
+            .dc-hint { white-space: normal; }
+            .dc-card { flex-wrap: wrap; }
+            .dc-badge { order: 3; }
+        }
+
         /* ── responsive ── */
         @media (max-width: 980px) {
             .tier-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
@@ -542,6 +607,7 @@
                 <a href="#how" data-i18n="nav_how">赚币攻略</a>
                 <a href="#referral" data-i18n="nav_ref">推广奖励</a>
                 <a href="#download" data-i18n="nav_download">下载 App</a>
+                <a href="#center" data-i18n="nav_center">下载中心</a>
                 <a href="#whitepaper" data-i18n="nav_whitepaper">白皮书</a>
                 <a href="#community" data-i18n="nav_community">社区</a>
                 <a href="#faq" data-i18n="nav_faq">FAQ</a>
@@ -831,8 +897,6 @@
                     </ul>
                     <div class="dl-btns">
                         <a href="https://mini.gudaoqihuo.com/suanli.apk" class="btn btn-primary" data-i18n="dl_btn">⬇️ 下载 Android APK</a>
-                        <a href="https://mini.gudaoqihuo.com/dl/sai-installer.apk" class="btn btn-outline" download data-i18n="dl_sai">① 装安装器 SAI（5MB）</a>
-                        <a href="https://mini.gudaoqihuo.com/dl/phantom.xapk" class="btn btn-outline" download data-i18n="dl_phantom">② 下 Phantom 钱包（89MB）</a>
                         <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="dl_web">🌐 打开 Web 版</a>
                     </div>
                 </div>
@@ -844,63 +908,94 @@
         </div>
     </section>
 
-    <!-- WALLET · Phantom 推荐 -->
-    <section id="wallet">
+    <!-- DOWNLOAD CENTER · 推广下载中心 -->
+    <section id="center">
         <div class="container">
-            <h2 class="section-title" data-i18n="wallet_title">🦊 推荐钱包 · Phantom</h2>
-            <p class="section-sub" data-i18n="wallet_sub">Solana 生态最受信赖的钱包，全球超 700 万用户。开通会员、收款提现、签名登录都靠它——链上身份 = 你的账号，新设备也能一键找回。</p>
+            <h2 class="section-title" data-i18n="dc_title">🧰 下载中心</h2>
+            <p class="section-sub" data-i18n="dc_sub">算力纪元 App、机场工具、交易所与 Web3 钱包一站式直达，全部为官方渠道，点开即注册。</p>
 
-            <div class="wallet-platforms reveal">
-                <a class="wallet-platform wallet-ios" href="https://apps.apple.com/app/phantom-solana-wallet/id1650417576" target="_blank" rel="noopener">
-                    <div class="wallet-ico">🍎</div>
-                    <div class="wallet-ptitle" data-i18n="wallet_ios_btn">iOS App Store</div>
-                    <div class="wallet-phint" data-i18n="wallet_ios_hint">iPhone / iPad · 官方正版</div>
-                </a>
-                <a class="wallet-platform wallet-android" href="https://mini.gudaoqihuo.com/dl/phantom.xapk" download>
-                    <div class="wallet-ico">🤖</div>
-                    <div class="wallet-ptitle" data-i18n="wallet_android_btn">Android APK</div>
-                    <div class="wallet-phint" data-i18n="wallet_android_hint">官方原包 · 89MB · v25.43 · 需安装器</div>
-                </a>
-                <a class="wallet-platform wallet-chrome" href="https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa" target="_blank" rel="noopener">
-                    <div class="wallet-ico">🌐</div>
-                    <div class="wallet-ptitle" data-i18n="wallet_chrome_btn">Chrome 浏览器扩展</div>
-                    <div class="wallet-phint" data-i18n="wallet_chrome_hint">Windows / Mac / Linux</div>
+            <div class="dc-note reveal">
+                <span class="dc-note-ico">⚠️</span>
+                <div data-i18n="dc_note">除 <b>杨帆云机场</b> 可国内直连外，其余站点与 App 均为境外服务，<b>需要先科学上网</b> 才能正常打开、下载与注册。建议先把机场装好，再回来下载其他应用。</div>
+            </div>
+
+            <h3 class="dc-group-title reveal" data-i18n="dc_g1">📱 算力纪元 App</h3>
+            <div class="dc-grid">
+                <a class="dc-card dc-card--own reveal" href="#download">
+                    <div class="dc-ico">⚡</div>
+                    <div class="dc-main">
+                        <div class="dc-title">算力纪元 XCWW</div>
+                        <div class="dc-hint">Android APK 3.6MB · Web 版免安装 · 签到抽奖产币</div>
+                    </div>
+                    <span class="dc-badge dc-badge--ok">站内下载</span>
+                    <span class="dc-arrow">→</span>
                 </a>
             </div>
 
-            <h3 class="wallet-steps-title reveal" data-i18n="wallet_steps_title">🔑 4 步完成钱包登录 / 签名</h3>
-            <div class="steps-grid">
-                <div class="step-card reveal">
-                    <div class="step-num" data-i18n="wallet_step1_n">STEP 1</div>
-                    <h3 data-i18n="wallet_step1_t">下载并安装</h3>
-                    <p data-i18n="wallet_step1_d">从上方按钮选择你的设备（iOS / Android / Chrome），装好后打开 Phantom。</p>
-                </div>
-                <div class="step-card reveal">
-                    <div class="step-num" data-i18n="wallet_step2_n">STEP 2</div>
-                    <h3 data-i18n="wallet_step2_t">新建或导入钱包</h3>
-                    <p data-i18n="wallet_step2_d">新用户选「创建新钱包」并备份助记词；老用户选「导入已有钱包」粘贴 base58 私钥即可。</p>
-                </div>
-                <div class="step-card reveal">
-                    <div class="step-num" data-i18n="wallet_step3_n">STEP 3</div>
-                    <h3 data-i18n="wallet_step3_t">浏览器内打开算力纪元</h3>
-                    <p data-i18n="wallet_step3_d">iPhone/Android 用 Phantom 自带浏览器输入 mini.gudaoqihuo.com；电脑用 Chrome 打开后插件自动连接。</p>
-                </div>
-                <div class="step-card reveal">
-                    <div class="step-num" data-i18n="wallet_step4_n">STEP 4</div>
-                    <h3 data-i18n="wallet_step4_t">签名登录 / 转账</h3>
-                    <p data-i18n="wallet_step4_d">点「🔑 已有账号登录」或激活会员时输入金额，Phantom 弹窗签名即完成，私钥永不离开本地。</p>
-                </div>
+            <h3 class="dc-group-title reveal" data-i18n="dc_g2">✈️ 机场 App（网络加速）</h3>
+            <div class="dc-grid">
+                <a class="dc-card reveal" href="https://ml.yfqz1.net/register?code=jb1hoxlM" target="_blank" rel="noopener noreferrer">
+                    <div class="dc-ico">🚀</div>
+                    <div class="dc-main">
+                        <div class="dc-title">杨帆云机场</div>
+                        <div class="dc-hint">邀请码 jb1hoxlM · 稳定高速 · 长期使用首选</div>
+                    </div>
+                    <span class="dc-badge dc-badge--ok">国内直连</span>
+                    <span class="dc-arrow">↗</span>
+                </a>
+                <a class="dc-card reveal" href="https://www.cutecloud.net/#/register?code=WoosEwj2" target="_blank" rel="noopener noreferrer">
+                    <div class="dc-ico">☁️</div>
+                    <div class="dc-main">
+                        <div class="dc-title">CC 机场</div>
+                        <div class="dc-hint">邀请码 WoosEwj2 · 5 元起 · 最便宜</div>
+                    </div>
+                    <span class="dc-badge dc-badge--warn">需科学上网</span>
+                    <span class="dc-arrow">↗</span>
+                </a>
             </div>
 
-            <div class="wallet-alts reveal">
-                <p data-i18n="wallet_alts_intro">不喜欢 Phantom？这些钱包同样支持 Solana 链上操作：</p>
-                <div class="wallet-alts-list">
-                    <span class="wallet-alt" data-i18n="wallet_alt_solflare">Solflare</span>
-                    <span class="wallet-alt" data-i18n="wallet_alt_backpack">Backpack</span>
-                    <span class="wallet-alt" data-i18n="wallet_alt_trust">Trust Wallet</span>
-                    <span class="wallet-alt" data-i18n="wallet_alt_okx">OKX Web3 钱包</span>
-                    <span class="wallet-alt" data-i18n="wallet_alt_math">Math Wallet</span>
-                </div>
+            <h3 class="dc-group-title reveal" data-i18n="dc_g3">💼 交易所 &amp; Web3 钱包</h3>
+            <div class="dc-grid">
+                <a class="dc-card reveal" href="https://www.bsmkweb.cc/referral/earn-together/refer2earn-usdc/claim?hl=zh-CN&amp;ref=GRO_28502_LKKX5&amp;utm_medium=web_share_copy" target="_blank" rel="noopener noreferrer">
+                    <div class="dc-ico">🪙</div>
+                    <div class="dc-main">
+                        <div class="dc-title">币安交易所</div>
+                        <div class="dc-hint">邀请码 GRO_28502_LKKX5 · 注册领 USDC 奖励</div>
+                    </div>
+                    <span class="dc-badge dc-badge--warn">需科学上网</span>
+                    <span class="dc-arrow">↗</span>
+                </a>
+                <a class="dc-card reveal" href="https://web3.binance.com/referral?ref=A9Y8NGI1" target="_blank" rel="noopener noreferrer">
+                    <div class="dc-ico">🔐</div>
+                    <div class="dc-main">
+                        <div class="dc-title">币安 Web3 钱包</div>
+                        <div class="dc-hint">邀请码 A9Y8NGI1 · 支持 Solana 链上签名</div>
+                    </div>
+                    <span class="dc-badge dc-badge--warn">需科学上网</span>
+                    <span class="dc-arrow">↗</span>
+                </a>
+                <a class="dc-card reveal" href="https://www.topfgcnzqwl.com/join/87209518" target="_blank" rel="noopener noreferrer">
+                    <div class="dc-ico">📊</div>
+                    <div class="dc-main">
+                        <div class="dc-title">欧易交易所</div>
+                        <div class="dc-hint">邀请码 87209518 · 全球主流交易平台</div>
+                    </div>
+                    <span class="dc-badge dc-badge--warn">需科学上网</span>
+                    <span class="dc-arrow">↗</span>
+                </a>
+                <a class="dc-card reveal" href="https://web3.okx.com/join/XIAOKANG" target="_blank" rel="noopener noreferrer">
+                    <div class="dc-ico">👛</div>
+                    <div class="dc-main">
+                        <div class="dc-title">OKX Web3 钱包</div>
+                        <div class="dc-hint">邀请码 XIAOKANG · 支持 Solana 链上签名</div>
+                    </div>
+                    <span class="dc-badge dc-badge--warn">需科学上网</span>
+                    <span class="dc-arrow">↗</span>
+                </a>
+            </div>
+
+            <div class="dc-tip reveal">
+                提示：第一次使用建议顺序 —— 先装 <b>杨帆云机场</b> → 开启加速 → 再回来下载交易所与钱包 App，注册时务必用上方带邀请码的链接，才能享受返佣与优惠。
             </div>
         </div>
     </section>
@@ -1101,7 +1196,11 @@
         const I18N = {
             zh: {
                 nav_member: "会员特权", nav_how: "赚币攻略", nav_ref: "推广奖励", nav_download: "下载 App",
-                nav_whitepaper: "白皮书", nav_community: "社区", nav_faq: "FAQ",
+                nav_whitepaper: "白皮书", nav_community: "社区", nav_faq: "FAQ", nav_center: "下载中心",
+                dc_title: "🧰 下载中心",
+                dc_sub: "算力纪元 App、机场工具、交易所与 Web3 钱包一站式直达，全部为官方渠道，点开即注册。",
+                dc_note: "除 <b>杨帆云机场</b> 可国内直连外，其余站点与 App 均为境外服务，<b>需要先科学上网</b> 才能正常打开、下载与注册。建议先把机场装好，再回来下载其他应用。",
+                dc_g1: "📱 算力纪元 App", dc_g2: "✈️ 机场 App（网络加速）", dc_g3: "💼 交易所 &amp; Web3 钱包",
                 hero_pill: "🚀 天天产币 · 当天即可提现 · 1 USDT 起步",
                 hero_t1: "天天产币的 AI 算力代币",
                 hero_t2: "1 USDT 起步 · 当天就能提现",
@@ -1236,7 +1335,11 @@
             },
             ja: {
                 nav_member: "会員特権", nav_how: "稼ぎ方ガイド", nav_ref: "紹介報酬", nav_download: "アプリDL",
-                nav_whitepaper: "ホワイトペーパー", nav_community: "コミュニティ", nav_faq: "FAQ",
+                nav_whitepaper: "ホワイトペーパー", nav_community: "コミュニティ", nav_faq: "FAQ", nav_center: "ダウンロード",
+                dc_title: "🧰 ダウンロードセンター",
+                dc_sub: "算力紀元アプリ・VPN・取引所・Web3 ウォレットをまとめて。すべて公式リンクです。",
+                dc_note: "<b>杨帆云机场</b> 以外は海外サービスのため、<b>事前のインターネット接続環境（科学上网）</b> が必要です。",
+                dc_g1: "📱 算力紀元アプリ", dc_g2: "✈️ VPN アプリ", dc_g3: "💼 取引所 &amp; Web3 ウォレット",
                 hero_pill: "🚀 メンバーシップ開始 · 1 USDT から",
                 hero_t1: "1 USDTで会員登録",
                 hero_t2: "毎日チェックインでトークン獲得、当日から引き出し可能",
@@ -1365,7 +1468,11 @@
             },
             ko: {
                 nav_member: "멤버십 혜택", nav_how: "수익 가이드", nav_ref: "추천 보상", nav_download: "앱 다운로드",
-                nav_whitepaper: "백서", nav_community: "커뮤니티", nav_faq: "FAQ",
+                nav_whitepaper: "백서", nav_community: "커뮤니티", nav_faq: "FAQ", nav_center: "다운로드",
+                dc_title: "🧰 다운로드 센터",
+                dc_sub: "算力紀元 앱 · VPN · 거래소 · Web3 지갑을 한곳에. 모두 공식 링크입니다.",
+                dc_note: "<b>杨帆云机场</b> 외에는 해외 서비스이므로 <b>과학적 인터넷 접속(科学上网)</b> 이 필요합니다.",
+                dc_g1: "📱 算力紀元 앱", dc_g2: "✈️ VPN 앱", dc_g3: "💼 거래소 &amp; Web3 지갑",
                 hero_pill: "🚀 멤버십 출시 · 1 USDT부터",
                 hero_t1: "1 USDT로 멤버십 개통",
                 hero_t2: "매일 출석으로 토큰 획득, 당일 출금 가능",
@@ -1494,7 +1601,11 @@
             },
             en: {
                 nav_member: "Membership", nav_how: "How to Earn", nav_ref: "Referral", nav_download: "Download",
-                nav_whitepaper: "Whitepaper", nav_community: "Community", nav_faq: "FAQ",
+                nav_whitepaper: "Whitepaper", nav_community: "Community", nav_faq: "FAQ", nav_center: "Downloads",
+                dc_title: "🧰 Download Center",
+                dc_sub: "XCWW App, VPN tools, exchanges and Web3 wallets — all official links in one place.",
+                dc_note: "Except <b>Yangfan Cloud VPN</b>, all services below are hosted overseas and <b>require a working internet tool (VPN)</b> to open, download or register.",
+                dc_g1: "📱 XCWW App", dc_g2: "✈️ VPN Apps", dc_g3: "💼 Exchanges &amp; Web3 Wallets",
                 hero_pill: "🚀 Membership is live · from 1 USDT",
                 hero_t1: "Join from 1 USDT",
                 hero_t2: "Earn tokens daily, withdraw same day",
