@@ -193,7 +193,7 @@
         }
         .gold .tier-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(245, 197, 24, 0.42); }
 
-        /* dual CTA: TG bot (primary) + Android APK (secondary) */
+        /* membership CTA: TG bot (primary). 安卓 App 已于 2026-09-28 下架，APK 次按钮已移除 */
         .tier-cta-group { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
         .tier-cta-group .tier-cta { margin-top: 0; }
         .tier-cta--tg {
@@ -202,14 +202,6 @@
             box-shadow: 0 6px 18px rgba(42, 171, 238, 0.30);
         }
         .tier-cta--tg:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(42, 171, 238, 0.42); }
-        .tier-cta--apk {
-            background: transparent !important; color: var(--muted) !important;
-            border: 1px solid var(--border) !important; font-size: 13px !important;
-            padding: 9px 12px !important;
-        }
-        .tier-cta--apk:hover { color: var(--text) !important; border-color: var(--muted) !important; }
-        /* iOS 设备隐藏 APK（App Store 限制，TG 机器人是唯一入口） */
-        html.ios .tier-cta--apk { display: none !important; }
 
         /* comparison table */
         .tb-wrap {
@@ -694,7 +686,7 @@
                     </ul>
                     <div class="tier-cta-group">
                         <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_bronze" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
-                        <a class="tier-cta tier-cta--apk" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_apk_btn">📱 下载安卓 APP 开通</a>
+                        <!-- APK 下载入口随安卓 App 一并下架（2026-09-28） -->
                     </div>
                 </div>
                 <div class="tier-card silver reveal">
@@ -709,7 +701,7 @@
                     </ul>
                     <div class="tier-cta-group">
                         <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_silver" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
-                        <a class="tier-cta tier-cta--apk" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_apk_btn">📱 下载安卓 APP 开通</a>
+                        <!-- APK 下载入口随安卓 App 一并下架（2026-09-28） -->
                     </div>
                 </div>
                 <div class="tier-card gold reveal">
@@ -725,7 +717,7 @@
                     </ul>
                     <div class="tier-cta-group">
                         <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_gold" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
-                        <a class="tier-cta tier-cta--apk" href="https://mini.gudaoqihuo.com/suanli.apk" data-i18n="mem_apk_btn">📱 下载安卓 APP 开通</a>
+                        <!-- APK 下载入口随安卓 App 一并下架（2026-09-28） -->
                     </div>
                 </div>
             </div>
@@ -788,7 +780,7 @@
                 <li data-i18n="mem_n3">🎯 提现条件：完成档位激活 + 余额 ≥ 100,000 HPL，激活当日即可申请提现</li>
             </ul>
             <div class="ref-cta reveal">
-                <a href="https://mini.gudaoqihuo.com/suanli.apk" class="btn btn-primary" data-i18n="mem_cta">📲 下载 App，立即开通会员</a>
+                <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="mem_cta">🌐 打开 Web 版，立即开通会员</a>
             </div>
         </div>
     </section>
@@ -801,8 +793,8 @@
             <div class="steps-grid">
                 <div class="step-card reveal">
                     <div class="step-num" data-i18n="how1_n">STEP 1</div>
-                    <h3 data-i18n="how1_t">① 下载 App</h3>
-                    <p data-i18n="how1_d">Android APK 仅 3.6MB 下载即装；也可浏览器打开 Web 版，免安装。</p>
+                    <h3 data-i18n="how1_t">① 打开官网</h3>
+                    <p data-i18n="how1_d">手机浏览器打开 Web 版，或用 Telegram 机器人，无需下载安装。</p>
                 </div>
                 <div class="step-card reveal">
                     <div class="step-num" data-i18n="how2_n">STEP 2</div>
@@ -851,7 +843,7 @@
                 <li data-i18n="ref_n3">🔗 打开 App「团队」页生成专属邀请链接，分享即推广</li>
             </ul>
             <div class="ref-cta reveal">
-                <a href="https://mini.gudaoqihuo.com/suanli.apk" class="btn btn-primary" data-i18n="ref_btn">📲 下载 App，开始推广</a>
+                <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="ref_btn">🌐 打开 Web 版，开始推广</a>
             </div>
         </div>
     </section>
@@ -882,27 +874,27 @@
         </div>
     </section>
 
-    <!-- DOWNLOAD APP -->
+    <!-- GET STARTED：原「下载 App」区块。安卓 App 已于 2026-09-28 下架，只保留 Web / TG 入口 -->
     <section id="download">
         <div class="container">
-            <h2 class="section-title" data-i18n="dl_title">📱 下载算力纪元 App</h2>
-            <p class="section-sub" data-i18n="dl_desc">XCWW 生态官方客户端。手机端随时查看算力收益、管理账户并参与生态活动。</p>
+            <h2 class="section-title" data-i18n="dl_title">🌐 立即体验算力纪元</h2>
+            <p class="section-sub" data-i18n="dl_desc">XCWW 生态官方入口。手机端随时查看算力收益、管理账户并参与生态活动，无需下载安装。</p>
             <div class="download-box reveal">
                 <div class="download-info">
                     <h3 data-i18n="dl_name">算力纪元 · AI 算力平台</h3>
                     <ul class="dl-features">
-                        <li data-i18n="dl_f1">✅ Android APK · 仅 3.6MB，下载即装</li>
                         <li data-i18n="dl_f2">✅ Web 版免安装，浏览器直接打开</li>
-                        <li data-i18n="dl_f3">🍎 iOS 版规划中，敬请期待</li>
+                        <li data-i18n="dl_f3">🤖 Telegram 版，机器人对话式操作</li>
+                        <li data-i18n="dl_f4">📲 浏览器「添加到主屏幕」，桌面图标一键启动</li>
                     </ul>
                     <div class="dl-btns">
-                        <a href="https://mini.gudaoqihuo.com/suanli.apk" class="btn btn-primary" data-i18n="dl_btn">⬇️ 下载 Android APK</a>
-                        <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="dl_web">🌐 打开 Web 版</a>
+                        <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="dl_web">🌐 打开 Web 版</a>
+                        <a href="https://t.me/XCWWCnX4_bot" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="dl_tg">🤖 打开 Telegram 版</a>
                     </div>
                 </div>
                 <div class="qr-wrap">
-                    <img src="assets/qr-app.png" alt="扫码下载算力纪元 APK">
-                    <div class="qr-note" data-i18n="dl_qr_note">手机扫码直接下载 APK</div>
+                    <img src="assets/qr-web.png" alt="扫码打开算力纪元 Web 版">
+                    <div class="qr-note" data-i18n="dl_qr_note">手机扫码打开 Web 版</div>
                 </div>
             </div>
         </div>
@@ -925,7 +917,7 @@
                     <div class="dc-ico">⚡</div>
                     <div class="dc-main">
                         <div class="dc-title">算力纪元 XCWW</div>
-                        <div class="dc-hint">Android APK 3.6MB · Web 版免安装 · 签到抽奖产币</div>
+                        <div class="dc-hint">Web 版免安装 · TG 机器人直达 · 签到抽奖产币</div>
                     </div>
                     <span class="dc-badge dc-badge--ok">站内下载</span>
                     <span class="dc-arrow">→</span>
@@ -1214,7 +1206,7 @@
                 mem_badge: "最受欢迎",
                 mem_bronze_t: "🥉 铜牌 Bronze", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ 每日签到 100 HPL", mem_b_f2: "✅ 每日 3 次免费抽奖",
-                mem_b_f3: "✅ 直推 20% · 间推 5% 佣金", mem_b_f4: "✅ 即刻解锁提现资格", mem_tg_btn: "🤖 用 TG 机器人开通", mem_apk_btn: "📱 下载安卓 APP 开通",
+                mem_b_f3: "✅ 直推 20% · 间推 5% 佣金", mem_b_f4: "✅ 即刻解锁提现资格", mem_tg_btn: "🤖 用 TG 机器人开通",
                 mem_silver_t: "🥈 银牌 Silver", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ 签到加成 +30%（130 HPL/日）", mem_s_f2: "✅ 每日 6 次免费抽奖",
                 mem_s_f3: "✅ 直推 25% · 间推 8% 佣金", mem_s_f4: "✅ 10 倍代币，回本最快",
@@ -1232,11 +1224,11 @@
                 mem_n1: "⚡ 代币按 1U = 5,000 HPL 比例发放，激活奖励与注册赠送（2,000 HPL）叠加",
                 mem_n2: "🔗 充值至项目方钱包并提交 tx_hash，链上校验通过自动到账",
                 mem_n3: "🎯 提现条件：完成档位激活 + 余额 ≥ 100,000 HPL，激活当日即可申请提现",
-                mem_cta: "📲 下载 App，立即开通会员",
+                mem_cta: "🌐 打开 Web 版，立即开通会员",
                 how_title: "🧭 四步开启收益之旅",
                 how_sub: "从下载到提现，全程链上可查，收益看得见摸得着。",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
-                how1_t: "① 下载 App", how1_d: "Android APK 仅 3.6MB 下载即装；也可浏览器打开 Web 版，免安装。",
+                how1_t: "① 打开官网", how1_d: "手机浏览器打开 Web 版，或用 Telegram 机器人，无需下载安装。",
                 how2_t: "② 充值激活", how2_d: "向项目钱包转入 USDT/USDC（1 / 10 / 100），App 内提交 tx_hash，链上校验秒级激活。",
                 how3_t: "③ 每日领币", how3_d: "签到、抽奖、推广三路收益一起滚，连签 7 天 +20%、30 天 +50%。",
                 how4_t: "④ 解锁提现", how4_d: "完成档位激活且余额 ≥ 100,000 HPL，即可提现至绑定的 Solana 钱包，最快当天到账。",
@@ -1251,21 +1243,21 @@
                 ref_n1: "🎁 新人注册即送 2,000 HPL，好友入伙零门槛",
                 ref_n2: "📅 每日打卡 100 HPL，连续 30 天全勤额外 +9,000 HPL",
                 ref_n3: "🔗 打开 App「团队」页生成专属邀请链接，分享即推广",
-                ref_btn: "📲 下载 App，开始推广",
+                ref_btn: "🌐 打开 Web 版，开始推广",
                 about_title: "为什么是 XCWW (CnX4)？",
                 about_sub: "不只是签到 App —— 算力纪元背后是一个真实落地的去中心化算力与存储生态。",
                 feat1_t: "去中心化算力", feat1_d: "CnX4 是 AI 训练与推理算力的支付媒介。持有者可用代币在去中心化算力市场结算 GPU/TPU 资源，让中小开发者也能以低成本调用算力，打破云巨头的算力垄断与定价权。",
                 feat2_t: "分布式存储", feat2_d: "基于节点网络的永久存储层，数据分片加密、冗余备份、按 CnX4 计费。相比中心化云存储，成本更低、抗审查、且不会因为服务商停运而丢失。",
                 feat3_t: "100% 公平发行", feat3_d: "0 VC、0 预挖、0 团队预留解锁。铸币权已 Revoke，86% 流动性永久 Burn 锁定，剩余代币全部进入社区与生态激励，从第一天起就属于持有人。",
                 feat4_t: "Solana 速度", feat4_d: "构建于 Solana，享受亚秒级确认与近乎为零的 Gas 费。无论是链上转账还是未来算力/存储结算，都能获得丝滑体验。",
-                dl_title: "📱 下载算力纪元 App",
+                dl_title: "🌐 立即体验算力纪元",
                 dl_name: "算力纪元 · AI 算力平台",
-                dl_desc: "XCWW 生态官方客户端。手机端随时查看算力收益、管理账户并参与生态活动。",
-                dl_f1: "✅ Android APK · 仅 3.6MB，下载即装",
+                dl_desc: "XCWW 生态官方入口。手机端随时查看算力收益、管理账户并参与生态活动，无需下载安装。",
                 dl_f2: "✅ Web 版免安装，浏览器直接打开",
-                dl_f3: "🍎 iOS 版规划中，敬请期待",
-                dl_btn: "⬇️ 下载 Android APK", dl_web: "🌐 打开 Web 版", dl_sai: "① 装安装器 SAI（5MB）", dl_phantom: "② 下 Phantom 钱包（89MB）",
-                dl_qr_note: "手机扫码直接下载 APK",
+                dl_f3: "🤖 Telegram 版，机器人对话式操作",
+                dl_f4: "📲 浏览器「添加到主屏幕」，桌面图标一键启动",
+                dl_web: "🌐 打开 Web 版", dl_tg: "🤖 打开 Telegram 版", dl_sai: "① 装安装器 SAI（5MB）", dl_phantom: "② 下 Phantom 钱包（89MB）",
+                dl_qr_note: "手机扫码打开 Web 版",
                 early_title: "🔥 为什么现在就要入场？",
                 early_sub: "算力纪元不是空气币 —— 它是真实落地的去中心化 AI 算力与存储生态的通行证。早一步持有，早一步锁定未来红利。",
                 early_1t: "天天产币 · 躺着积累", early_1d: "签到 + 抽奖 + 推广，三路收益每天自动进账。1 USDT 起就能启动，代币按 1U=5,000 HPL 链上发放，越早参与雪球滚得越快。",
@@ -1353,7 +1345,7 @@
                 mem_badge: "一番人気",
                 mem_bronze_t: "🥉 ブロンズ", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ 毎日チェックイン 100 HPL", mem_b_f2: "✅ 毎日3回の無料抽選",
-                mem_b_f3: "✅ 直接紹介20% · 間接紹介5%", mem_b_f4: "✅ 即時に引き出し資格を獲得", mem_tg_btn: "🤖 TGボットで開通", mem_apk_btn: "📱 Android APPで開通",
+                mem_b_f3: "✅ 直接紹介20% · 間接紹介5%", mem_b_f4: "✅ 即時に引き出し資格を獲得", mem_tg_btn: "🤖 TGボットで開通",
                 mem_silver_t: "🥈 シルバー", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ チェックイン+30%（130 HPL/日）", mem_s_f2: "✅ 毎日6回の無料抽選",
                 mem_s_f3: "✅ 直接紹介25% · 間接紹介8%", mem_s_f4: "✅ 10倍トークン、最速の回収プラン",
@@ -1371,11 +1363,11 @@
                 mem_n1: "⚡ トークンは1U=5,000 HPLで発行、アクティベート報酬は登録ボーナス（2,000 HPL）と上乗せ",
                 mem_n2: "🔗 プロジェクトウォレットにチャージし tx_hash を提出、オンチェーン検証後に自動付与",
                 mem_n3: "🎯 引き出し条件：ランク活性化 + 残高 ≥ 100,000 HPL、活性化当日に申請可能",
-                mem_cta: "📲 アプリをDLして今すぐ開通",
+                mem_cta: "🌐 Web版を開いて今すぐ開通",
                 how_title: "🧭 4ステップで収益スタート",
                 how_sub: "ダウンロードから引き出しまで、すべてオンチェーンで確認可能。",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
-                how1_t: "① アプリをDL", how1_d: "Android APKは3.6MBで即インストール。ブラウザで開くWeb版もインストール不要。",
+                how1_t: "① 公式サイトを開く", how1_d: "スマホのブラウザでWeb版を開くか、Telegramボットをご利用ください。インストール不要。",
                 how2_t: "② チャージしてアクティベート", how2_d: "プロジェクトウォレットにUSDT/USDC（1/10/100）を送金し、アプリでtx_hashを提出。オンチェーン検証で即時アクティベート。",
                 how3_t: "③ 毎日トークン獲得", how3_d: "チェックイン・抽選・紹介の3チャネルで収益が雪だるま式に増加。7日連続+20%、30日連続+50%。",
                 how4_t: "④ 引き出し解禁", how4_d: "ランク活性化済みかつ残高≥100,000 HPLで、紐付けたSolanaウォレットに即時引き出し可能（最短当日着金）。",
@@ -1390,21 +1382,21 @@
                 ref_n1: "🎁 新規登録で2,000 HPLをプレゼント、友人の参加はハードルなし",
                 ref_n2: "📅 毎日チェックインで100 HPL、30日連続で追加+9,000 HPL",
                 ref_n3: "🔗 アプリの「チーム」ページで専用招待リンクを生成、シェアするだけでOK",
-                ref_btn: "📲 アプリをダウンロードして紹介開始",
+                ref_btn: "🌐 Web版を開いて紹介開始",
                 about_title: "なぜ XCWW (CnX4) なのか？",
                 about_sub: "チェックインアプリにとどまらない —— 算力紀元の背景には実在する分散型計算·ストレージエコシステムがあります。",
                 feat1_t: "分散型計算", feat1_d: "CnX4はAI学習・推論の計算資源を決済するトークンです。ホルダーは分散型計算マーケットプレイスでGPU/TPUリソースをCnX4で決済でき、中小開発者も低コストで利用可能になり、巨大テックの独占を打破します。",
                 feat2_t: "分散型ストレージ", feat2_d: "ノードネットワーク上の永久ストレージ層。データは分割・暗号化・冗長化され、CnX4で課金。中央集権クラウドより低コストで検閲耐性があり、単一障害点がありません。",
                 feat3_t: "100% フェアローンチ", feat3_d: "VCなし、プリマインなし、チームのアンロックなし。ミント権は削除済み、86%のLPは永久にバーン。残りのトークンはすべてコミュニティとエコシステムインセンティブへ——初日からホルダーのもの。",
                 feat4_t: "Solanaの高速性", feat4_d: "Solana上に構築され、準瞬時のファイナリティとほぼゼロの手数料を実現。送金も将来の計算・ストレージ決済もスムーズ。",
-                dl_title: "📱 算力紀元アプリをダウンロード",
+                dl_title: "🌐 すぐに使える算力紀元",
                 dl_name: "算力紀元 · AIコンピューティングプラットフォーム",
-                dl_desc: "XCWWエコシステムの公式クライアント。スマホでいつでも収益確認・アカウント管理・イベント参加が可能。",
-                dl_f1: "✅ Android APK · わずか3.6MB、ダウンロードしてすぐインストール",
+                dl_desc: "XCWWエコシステムの公式エントリー。スマホでいつでも収益確認・アカウント管理・イベント参加が可能。インストール不要。",
                 dl_f2: "✅ Web版はインストール不要、ブラウザで直接開ける",
-                dl_f3: "🍎 iOS版は準備中、お楽しみに",
-                dl_btn: "⬇️ Android APKをダウンロード", dl_web: "🌐 Web版を開く", dl_sai: "① インストーラー SAI（5MB）", dl_phantom: "② Phantomをダウンロード（89MB）",
-                dl_qr_note: "スマホでスキャンしてダウンロード",
+                dl_f3: "🤖 Telegram版、ボットでそのまま操作",
+                dl_f4: "📲 ブラウザの「ホーム画面に追加」でアプリのまま起動",
+                dl_web: "🌐 Web版を開く", dl_tg: "🤖 Telegram版を開く", dl_sai: "① インストーラー SAI（5MB）", dl_phantom: "② Phantomをダウンロード（89MB）",
+                dl_qr_note: "スマホでスキャンしてWeb版を開く",
                 vis_title: "🚀 ビジョンと未来",
                 vis_sub: "算力紀元はチェックインで稼ぐだけではなく、長期的に成長するコンピューティングエコシステム。早く参加するほど得をする。",
                 vis_1t: "📈 トークンは継続的に增值", vis_1d: "エコシステムのユーザーと計算需要が拡大し、CnX4の価値は着実に上昇、毎日積み重なる",
@@ -1486,7 +1478,7 @@
                 mem_badge: "최고 인기",
                 mem_bronze_t: "🥉 브론즈", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ 매일 출석 100 HPL", mem_b_f2: "✅ 매일 3회 무료 추첨",
-                mem_b_f3: "✅ 직접 추천 20% · 간접 5%", mem_b_f4: "✅ 즉시 출금 자격 획득", mem_tg_btn: "🤖 TG 봇으로 개통", mem_apk_btn: "📱 Android APP으로 개통",
+                mem_b_f3: "✅ 직접 추천 20% · 간접 5%", mem_b_f4: "✅ 즉시 출금 자격 획득", mem_tg_btn: "🤖 TG 봇으로 개통",
                 mem_silver_t: "🥈 실버", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ 출석 +30% (130 HPL/일)", mem_s_f2: "✅ 매일 6회 무료 추첨",
                 mem_s_f3: "✅ 직접 추천 25% · 간접 8%", mem_s_f4: "✅ 10배 토큰, 가장 빠른 회수",
@@ -1504,11 +1496,11 @@
                 mem_n1: "⚡ 토큰은 1U=5,000 HPL 비율로 발급, 활성화 보상은 가입 보너스(2,000 HPL)에 추가",
                 mem_n2: "🔗 프로젝트 지갑으로 충전 후 tx_hash 제출, 온체인 검증 후 자동 지급",
                 mem_n3: "🎯 출금 조건: 등급 활성화 + 잔액 ≥ 100,000 HPL, 활성화 당일 신청 가능",
-                mem_cta: "📲 앱 다운로드 후 바로 개통",
+                mem_cta: "🌐 웹 버전 열어 바로 개통",
                 how_title: "🧭 4단계 수익 시작하기",
                 how_sub: "다운로드부터 출금까지 전 과정이 온체인에서 확인 가능합니다.",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
-                how1_t: "① 앱 다운로드", how1_d: "Android APK 3.6MB, 다운로드 즉시 설치. 브라우저에서 여는 웹 버전도 설치 불필요.",
+                how1_t: "① 공식 사이트 열기", how1_d: "모바일 브라우저로 웹 버전을 열거나 Telegram 봇을 이용하세요. 설치가 필요 없습니다.",
                 how2_t: "② 충전 및 활성화", how2_d: "프로젝트 지갑으로 USDT/USDC(1/10/100)를 보내고 앱에서 tx_hash 제출. 온체인 검증으로 즉시 활성화됩니다.",
                 how3_t: "③ 매일 토큰 획득", how3_d: "출석·추첨·추천 3개 채널로 수익이 눈덩이처럼 증가. 7일 연속 +20%, 30일 연속 +50%.",
                 how4_t: "④ 출금 해제", how4_d: "등급 활성화 완료 및 잔액 ≥ 100,000 HPL이면 연동된 Solana 지갑으로 즉시 출금 가능(최단 당일).",
@@ -1523,21 +1515,21 @@
                 ref_n1: "🎁 신규 가입 시 2,000 HPL 즉시 지급, 친구 초대 장벽 없음",
                 ref_n2: "📅 매일 출석 100 HPL, 30일 연속 달성 시 추가 +9,000 HPL",
                 ref_n3: "🔗 앱 '팀' 페이지에서 전용 초대 링크 생성, 공유만 하면 끝",
-                ref_btn: "📲 앱 다운로드하고 추천 시작",
+                ref_btn: "🌐 웹 버전 열고 추천 시작",
                 about_title: "왜 XCWW (CnX4) 인가?",
                 about_sub: "출석 앱에 머무르지 않습니다 — 算力纪元 배경에는 실재하는 탈중앙화 컴퓨팅·스토리지 생태계가 있습니다.",
                 feat1_t: "탈중앙화 컴퓨팅", feat1_d: "CnX4는 AI 학습·추론 컴퓨팅 자원을 결제하는 토큰입니다. 홀더는 탈중앙화 컴퓨팅 마켓플레이스에서 GPU/TPU 자원을 CnX4로 결제해 소규모 팀도 저비용으로 이용할 수 있으며, 빅테크 독점을 깨뜨립니다.",
                 feat2_t: "분산형 스토리지", feat2_d: "노드 네트워크 기반 영구 스토리지 레이어. 데이터는 분할·암호화·중복화되고 CnX4로 과금됩니다. 중앙집중형 클라우드보다 저비용·검열 저항적이며 단일 장애점이 없습니다.",
                 feat3_t: "100% 공정 발행", feat3_d: "VC 없음, 프리마이닝 없음, 팀 언락 없음. 민트 권한은 폐기되었고 86%의 LP는 영구히 소각. 남은 토큰은 모두 커뮤니티와 생태계 인센티브로 — 초기부터 홀더의 것.",
                 feat4_t: "Solana 속도", feat4_d: "Solana 위에 구축되어 준초 단위 확정과 거의 무료 수수료를 제공. 송금은 물론 향후 컴퓨팅·스토리지 결제도 매끄럽습니다.",
-                dl_title: "📱 算力纪元 앱 다운로드",
+                dl_title: "🌐 지금 바로 시작 · 算力纪元",
                 dl_name: "算力纪元 · AI 컴퓨팅 플랫폼",
-                dl_desc: "XCWW 생태계 공식 클라이언트. 모바일에서 언제든 수익 확인, 계정 관리, 이벤트 참여가 가능합니다.",
-                dl_f1: "✅ Android APK · 3.6MB, 다운로드 후 바로 설치",
+                dl_desc: "XCWW 생태계 공식 진입점. 모바일에서 언제든 수익 확인, 계정 관리, 이벤트 참여가 가능합니다. 설치가 필요 없습니다.",
                 dl_f2: "✅ 웹 버전은 설치 없이 브라우저에서 바로 실행",
-                dl_f3: "🍎 iOS 버전은 준비 중입니다",
-                dl_btn: "⬇️ Android APK 다운로드", dl_web: "🌐 웹 버전 열기", dl_sai: "① 설치기 SAI（5MB）", dl_phantom: "② Phantom 다운로드（89MB）",
-                dl_qr_note: "휴대폰으로 스캔하여 다운로드",
+                dl_f3: "🤖 Telegram 버전, 봇으로 바로 조작",
+                dl_f4: "📲 브라우저의 「홈 화면에 추가」로 앱처럼 실행",
+                dl_web: "🌐 웹 버전 열기", dl_tg: "🤖 Telegram 버전 열기", dl_sai: "① 설치기 SAI（5MB）", dl_phantom: "② Phantom 다운로드（89MB）",
+                dl_qr_note: "휴대폰으로 스캔해 웹 버전 열기",
                 vis_title: "🚀 목표와 비전",
                 vis_sub: "算力纪元는 출석으로 돈을 버는 것 이상, 장기적으로 성장하는 컴퓨팅 생태계입니다. 일찍 참여할수록 더 큰 혜택을.",
                 vis_1t: "📈 토큰 지속 가치 상승", vis_1d: "생태계 사용자와 컴퓨팅 수요가 계속 확대되며 CnX4 가치는 꾸준히 상승, 매일 쌓여갑니다",
@@ -1619,7 +1611,7 @@
                 mem_badge: "Most Popular",
                 mem_bronze_t: "🥉 Bronze", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
                 mem_b_f1: "✅ Daily check-in 100 HPL", mem_b_f2: "✅ 3 free lottery spins daily",
-                mem_b_f3: "✅ 20% L1 · 5% L2 commission", mem_b_f4: "✅ Withdrawal eligibility unlocked", mem_tg_btn: "🤖 Activate via TG Bot", mem_apk_btn: "📱 Download Android App",
+                mem_b_f3: "✅ 20% L1 · 5% L2 commission", mem_b_f4: "✅ Withdrawal eligibility unlocked", mem_tg_btn: "🤖 Activate via TG Bot",
                 mem_silver_t: "🥈 Silver", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
                 mem_s_f1: "✅ Check-in +30% (130 HPL/day)", mem_s_f2: "✅ 6 free lottery spins daily",
                 mem_s_f3: "✅ 25% L1 · 8% L2 commission", mem_s_f4: "✅ 10x tokens, fastest payback",
@@ -1637,11 +1629,11 @@
                 mem_n1: "⚡ Tokens issued at 1U = 5,000 HPL, stacked on top of the 2,000 HPL signup bonus",
                 mem_n2: "🔗 Deposit to the project wallet and submit tx_hash — verified on-chain, credited automatically",
                 mem_n3: "🎯 Withdrawal requires: tier activation + balance ≥ 100,000 HPL, available same day",
-                mem_cta: "📲 Download the App & Join Now",
+                mem_cta: "🌐 Open Web Version & Join Now",
                 how_title: "🧭 Start Earning in 4 Steps",
                 how_sub: "From download to withdrawal, everything is verifiable on-chain.",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
-                how1_t: "① Download", how1_d: "The Android APK is just 3.6MB; or open the web version in any browser — no install needed.",
+                how1_t: "① Open the site", how1_d: "Open the web version in your mobile browser, or use the Telegram bot — no download needed.",
                 how2_t: "② Deposit & Activate", how2_d: "Send USDT/USDC (1/10/100) to the project wallet and submit tx_hash in the app — verified on-chain in seconds.",
                 how3_t: "③ Earn Daily", how3_d: "Check in, spin and refer — three streams snowball. 7-day streak +20%, 30-day streak +50%.",
                 how4_t: "④ Withdraw", how4_d: "After tier activation with balance ≥ 100,000 HPL, withdraw to your Solana wallet, same-day payout.",
@@ -1656,21 +1648,21 @@
                 ref_n1: "🎁 2,000 HPL free on signup — zero barrier for your friends",
                 ref_n2: "📅 100 HPL daily check-in, plus 9,000 HPL for a 30-day streak",
                 ref_n3: "🔗 Generate your invite link on the Team page in the app and share",
-                ref_btn: "📲 Download the App & Start Referring",
+                ref_btn: "🌐 Open Web Version & Start Referring",
                 about_title: "Why XCWW (CnX4)?",
                 about_sub: "More than a check-in app — Suanli is backed by a real decentralized compute & storage ecosystem.",
                 feat1_t: "Decentralized Compute", feat1_d: "CnX4 is the settlement token for AI training & inference compute. Holders pay for GPU/TPU resources in a decentralized compute marketplace, giving small teams low-cost access and breaking big-tech monopolies.",
                 feat2_t: "Distributed Storage", feat2_d: "A permanent storage layer over a node network — sharded, encrypted, redundant, and priced in CnX4. Lower cost and censorship-resistant versus centralized cloud, with no single point of failure.",
                 feat3_t: "100% Fair Launch", feat3_d: "0 VC, 0 premine, 0 team unlock. Mint authority revoked, 86% liquidity permanently burned. All remaining tokens go to community & ecosystem incentives — owned by holders from day one.",
                 feat4_t: "Solana Speed", feat4_d: "Built on Solana for sub-second finality and near-zero fees. Smooth transfers and future compute/storage settlements alike.",
-                dl_title: "📱 Download the Suanli App",
-                dl_name: "Suanli App · AI Compute Platform",
-                dl_desc: "The official XCWW ecosystem client. Check compute rewards, manage your account and join ecosystem events on mobile — anytime.",
-                dl_f1: "✅ Android APK · only 3.6MB, install right after download",
+                dl_title: "🌐 Get Started with Suanli",
+                dl_name: "Suanli · AI Compute Platform",
+                dl_desc: "The official XCWW entry point. Check compute rewards, manage your account and join ecosystem events on mobile — no install required.",
                 dl_f2: "✅ Web version — no install, opens in any browser",
-                dl_f3: "🍎 iOS version coming soon",
-                dl_btn: "⬇️ Download Android APK", dl_web: "🌐 Open Web Version", dl_sai: "① Install SAI helper (5MB)", dl_phantom: "② Download Phantom (89MB)",
-                dl_qr_note: "Scan with your phone to download",
+                dl_f3: "🤖 Telegram version — operate it right inside the bot",
+                dl_f4: "📲 Browser \"Add to Home Screen\" launches it like an app",
+                dl_web: "🌐 Open Web Version", dl_tg: "🤖 Open Telegram Version", dl_sai: "① Install SAI helper (5MB)", dl_phantom: "② Download Phantom (89MB)",
+                dl_qr_note: "Scan with your phone to open the Web version",
                 vis_title: "🚀 Goals & Vision",
                 vis_sub: "Suanli is more than check-in earnings — it's a long-term growing compute ecosystem. The earlier you join, the more you gain.",
                 vis_1t: "📈 Ever-Appreciating Token", vis_1d: "Growing users and compute demand push CnX4 value steadily upward, compounding every day",
@@ -1762,7 +1754,8 @@
             el.parentElement.classList.toggle('active');
         }
 
-        // iOS detection: hide Android-APK download buttons on iPhone/iPad
+        // iOS 检测：iPhone/iPad 上隐藏 Android 侧载入口（第三方 Phantom 钱包）。
+        // 自家安卓 App 已下架，这里只为钱包下载保留（2026-09-28 精简过）。
         (function () {
             const ua = navigator.userAgent || '';
             const platform = navigator.platform || '';
