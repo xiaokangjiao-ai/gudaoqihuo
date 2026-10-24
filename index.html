@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>算力纪元 XCWW · 天天产币的 AI 算力代币｜1 USDT 开通，当天即可提现</title>
-    <meta name="description" content="算力纪元 XCWW(CnX4)：1 USDT 起开通三档会员，代币按 1U=5,000 HPL 链上发放。每日签到、免费抽奖、三级推广三路产币，当天即可提现。未来用于 AI 算力与分布式存储结算，早入场共享算力经济红利。">
+    <meta name="description" content="算力纪元 XCWW(CnX4)：0 元领免费会员，每天登录送 1,000 HPL，满 1 万绑定钱包即可提现；也可 1 USDT 起升级铜 / 银 / 金牌，代币按 1U=5,000 HPL 链上发放。签到、抽奖、推广三路产币。未来用于 AI 算力与分布式存储结算，早入场共享算力经济红利。">
     <meta name="keywords" content="算力纪元, XCWW, CnX4, 会员, 签到领币, Solana, AI算力, 去中心化存储, 区块链, 加密货币">
     <link rel="canonical" href="https://gudaoqihuo.com/">
     <style>
@@ -144,7 +144,11 @@
                 radial-gradient(760px 420px at 50% 0%, rgba(138, 92, 245, 0.10), transparent 68%),
                 radial-gradient(600px 380px at 85% 100%, rgba(245, 197, 24, 0.05), transparent 65%);
         }
-        .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; margin-bottom: 40px; }
+        .tier-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: stretch; margin-bottom: 40px; }
+        .tier-card.free { border-color: rgba(125, 211, 160, 0.38); box-shadow: 0 0 0 1px rgba(125, 211, 160, 0.14), 0 12px 40px rgba(125, 211, 160, 0.10); }
+        .tier-card.free .tier-amount { color: #7DD3A0; }
+        .tier-cta--free { background: linear-gradient(135deg, #7DD3A0, #34D399); color: #062b1c; }
+        .tier-cta--free:hover { filter: brightness(1.08); }
         .tier-card {
             position: relative; display: flex; flex-direction: column;
             background: var(--card); border: 1px solid var(--border); border-radius: 22px;
@@ -208,7 +212,8 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
         .tb-title { font-size: 20px; font-weight: 800; text-align: center; margin-bottom: 22px; }
-        table.tb { width: 100%; border-collapse: collapse; min-width: 560px; }
+        table.tb { width: 100%; border-collapse: collapse; min-width: 700px; }
+        .tb .free-col { background: rgba(125, 211, 160, 0.07); border-left: 1px solid rgba(125, 211, 160, 0.22); border-right: 1px solid rgba(125, 211, 160, 0.22); }
         .tb th, .tb td { padding: 13px 14px; font-size: 14.5px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
         .tb thead th { color: var(--muted); font-size: 14px; font-weight: 700; }
         .tb td:first-child, .tb th:first-child { text-align: left; color: var(--muted); }
@@ -502,6 +507,9 @@
         }
 
         /* ── responsive ── */
+        @media (max-width: 1180px) {
+            .tier-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 980px) {
             .tier-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
             .steps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -566,7 +574,7 @@
 </head>
 <body>
     <div id="promo-banner">
-        <span class="promo-text" data-i18n="promo_main">🎁 每天送 10 名幸运用户免费激活！只要钱包登录的都有机会，人人都有薅羊毛到 10 万的机会！</span>
+        <span class="promo-text" data-i18n="promo_main">🎁 0 元免费会员上线！每天登录送 1,000 HPL，绑定钱包满 1 万即可提现，推荐 1 人再送 1,000！</span>
         <span class="promo-disc" data-i18n="promo_risk">市场有风险，活动以规则为准</span>
         <button class="promo-close" aria-label="关闭" onclick="(function(){try{localStorage.setItem('promo_dismiss_'+new Date().toISOString().slice(0,10),'1');}catch(e){}var b=document.getElementById('promo-banner');if(b)b.style.display='none';})()">×</button>
     </div>
@@ -615,9 +623,9 @@
     <!-- HERO · 会员营销主视觉 -->
     <section class="hero">
         <div class="container">
-            <div class="hero-pill" data-i18n="hero_pill">🚀 天天产币 · 当天即可提现 · 1 USDT 起步</div>
-            <h1><span data-i18n="hero_t1">天天产币的 AI 算力代币</span><br><span class="grad" data-i18n="hero_t2">1 USDT 起步 · 当天就能提现</span></h1>
-            <p class="subtitle" data-i18n="hero_sub">算力纪元 XCWW(CnX4) —— 1U=5,000 HPL 链上发放，签到、抽奖、推广三路产币。未来代币用于 AI 算力与分布式存储结算，越早入场，越能捕获算力经济红利。</p>
+            <div class="hero-pill" data-i18n="hero_pill">🚀 0 元免费加入 · 每天送 1,000 HPL · 满 1 万提现</div>
+            <h1><span data-i18n="hero_t1">天天产币的 AI 算力代币</span><br><span class="grad" data-i18n="hero_t2">0 元起步 · 满 1 万即可提现</span></h1>
+            <p class="subtitle" data-i18n="hero_sub">算力纪元 XCWW(CnX4) —— 0 元领免费会员，每天登录送 1,000 HPL；也可按 1U=5,000 HPL 付费升级。签到、抽奖、推广三路产币，绑定钱包即可提现。未来代币用于 AI 算力与分布式存储结算，越早入场，越能捕获算力经济红利。</p>
             <div class="badges">
                 <span class="badge" data-i18n="badge_solana">⚡ Solana 链上</span>
                 <span class="badge" data-i18n="badge_lp">🔒 86% LP 已销毁</span>
@@ -625,14 +633,14 @@
                 <span class="badge" data-i18n="badge_ai">🤖 AI 算力生态</span>
             </div>
             <div class="btn-group">
-                <a href="#membership" class="btn btn-primary" data-i18n="hero_cta1">💎 立即开通会员</a>
+                <a href="#membership" class="btn btn-primary" data-i18n="hero_cta1">🎁 0 元领取免费会员</a>
                 <a href="https://mini.gudaoqihuo.com/#/?tab=assets" class="btn btn-outline" data-i18n="hero_login">🔑 已有账号登录</a>
                 <a href="https://t.me/membound_xcww" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero_cta3">🚀 加入电报群</a>
             </div>
             <div class="stats">
                 <div class="stat"><span class="k" data-i18n="stat1_k">兑换比例</span><span class="v"><em>1U = 5,000 HPL</em></span></div>
-                <div class="stat"><span class="k" data-i18n="stat2_k">会员档位</span><span class="v" data-i18n="stat2_v">铜 · 银 · 金</span></div>
-                <div class="stat"><span class="k" data-i18n="stat3_k">解锁提现</span><span class="v" data-i18n="stat3_v">当天可提现</span></div>
+                <div class="stat"><span class="k" data-i18n="stat2_k">会员档位</span><span class="v" data-i18n="stat2_v">免费 · 铜 · 银 · 金</span></div>
+                <div class="stat"><span class="k" data-i18n="stat3_k">解锁提现</span><span class="v" data-i18n="stat3_v">满 1 万可提</span></div>
                 <div class="stat"><span class="k" data-i18n="stat4_k">收益通道</span><span class="v" data-i18n="stat4_v">签到 · 抽奖 · 推广</span></div>
             </div>
         </div>
@@ -647,7 +655,7 @@
                 <div class="vis-card reveal">
                     <div class="vis-icon">💰</div>
                     <div class="vis-t" data-i18n="early_1t">天天产币 · 躺着积累</div>
-                    <div class="vis-d" data-i18n="early_1d">签到 + 抽奖 + 推广，三路收益每天自动进账。1 USDT 起就能启动，代币按 1U=5,000 HPL 链上发放，越早参与雪球滚得越快。</div>
+                    <div class="vis-d" data-i18n="early_1d">0 元就能启动：每天登录自动到账 1,000 HPL，加上抽奖与推广，三路收益每天进账。想加速可按 1U=5,000 HPL 付费升级，越早参与雪球滚得越快。</div>
                 </div>
                 <div class="vis-card reveal">
                     <div class="vis-icon">⚡</div>
@@ -669,18 +677,32 @@
     <!-- MEMBERSHIP · 明星板块（置顶） -->
     <section id="membership" class="section-star">
         <div class="container">
-            <h2 class="section-title" data-i18n="mem_title">💎 三档会员 · 10 倍跃迁</h2>
-            <p class="section-sub" data-i18n="mem_sub">充值 USDT/USDC 即刻激活，代币按 1U = 5,000 HPL 发放。档位每升一级，代币 10 倍递增，签到加成、抽奖次数、推广佣金全面升级。</p>
+            <h2 class="section-title" data-i18n="mem_title">💎 四档会员 · 0 元起步</h2>
+            <p class="section-sub" data-i18n="mem_sub">🆓 免费会员 0 元开通，每天登录送 1,000 HPL，满 1 万就能提现；想加速就付费升级，代币按 1U = 5,000 HPL 发放，签到与奖励同步提升。</p>
             <div class="tier-grid">
+                <div class="tier-card free reveal">
+                    <div class="tier-name" data-i18n="mem_free_t">🆓 免费会员 Free</div>
+                    <div class="tier-price" data-i18n="mem_free_p">0 元 · 一键领取</div>
+                    <div class="tier-amount" data-i18n="mem_free_a">1,000 <small>HPL / 天</small></div>
+                    <ul class="tier-list">
+                        <li data-i18n="mem_f_f1">✅ 每日登录送 1,000 HPL</li>
+                        <li data-i18n="mem_f_f2">✅ 每日 1 次免费抽奖</li>
+                        <li data-i18n="mem_f_f3">✅ 推荐 1 人 +1,000 HPL</li>
+                        <li data-i18n="mem_f_f4">✅ 满 1 万绑钱包即可提现</li>
+                    </ul>
+                    <div class="tier-cta-group">
+                        <a class="tier-cta tier-cta--free" href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" data-i18n="mem_free_btn">🎁 0 元领取，立即开始</a>
+                    </div>
+                </div>
                 <div class="tier-card bronze reveal">
                     <div class="tier-name" data-i18n="mem_bronze_t">🥉 铜牌 Bronze</div>
                     <div class="tier-price" data-i18n="mem_bronze_p">1 USDT / USDC</div>
                     <div class="tier-amount c-bronze" data-i18n="mem_bronze_a">5,000 <small>HPL</small></div>
                     <ul class="tier-list">
                         <li data-i18n="mem_b_f1">✅ 每日签到 100 HPL</li>
-                        <li data-i18n="mem_b_f2">✅ 每日 3 次免费抽奖</li>
-                        <li data-i18n="mem_b_f3">✅ 直推 20% · 间推 5% 佣金</li>
-                        <li data-i18n="mem_b_f4">✅ 即刻解锁提现资格</li>
+                        <li data-i18n="mem_b_f2">✅ 每日 1 次免费抽奖</li>
+                        <li data-i18n="mem_b_f3">✅ 直推 +5,000 · 间推 +2,500</li>
+                        <li data-i18n="mem_b_f4">✅ 满 10 万绑钱包即可提现</li>
                     </ul>
                     <div class="tier-cta-group">
                         <a class="tier-cta tier-cta--tg" href="https://t.me/XCWWCnX4_bot?start=activate_bronze" data-i18n="mem_tg_btn">🤖 用 TG 机器人开通</a>
@@ -693,8 +715,8 @@
                     <div class="tier-amount c-silver" data-i18n="mem_silver_a">50,000 <small>HPL</small></div>
                     <ul class="tier-list">
                         <li data-i18n="mem_s_f1">✅ 签到加成 +30%（130 HPL/日）</li>
-                        <li data-i18n="mem_s_f2">✅ 每日 6 次免费抽奖</li>
-                        <li data-i18n="mem_s_f3">✅ 直推 25% · 间推 8% 佣金</li>
+                        <li data-i18n="mem_s_f2">✅ 每日 2 次免费抽奖</li>
+                        <li data-i18n="mem_s_f3">✅ 直推 +5,000 · 间推 +2,500</li>
                         <li data-i18n="mem_s_f4">✅ 10 倍代币，回本最快</li>
                     </ul>
                     <div class="tier-cta-group">
@@ -709,8 +731,8 @@
                     <div class="tier-amount c-gold" data-i18n="mem_gold_a">500,000 <small>HPL</small></div>
                     <ul class="tier-list">
                         <li data-i18n="mem_g_f1">✅ 签到加成 +60%（160 HPL/日）</li>
-                        <li data-i18n="mem_g_f2">✅ 抽奖不限次数</li>
-                        <li data-i18n="mem_g_f3">✅ 直推 30% · 间推 10% 佣金</li>
+                        <li data-i18n="mem_g_f2">✅ 每日 3 次免费抽奖</li>
+                        <li data-i18n="mem_g_f3">✅ 直推 +5,000 · 间推 +2,500</li>
                         <li data-i18n="mem_g_f4">✅ 开通即超提现线 5 倍</li>
                     </ul>
                     <div class="tier-cta-group">
@@ -726,6 +748,7 @@
                     <thead>
                         <tr>
                             <th data-i18n="tb_h0">权益</th>
+                            <th class="free-col" data-i18n="tb_h4">🆓 免费</th>
                             <th data-i18n="tb_h1">🥉 铜牌</th>
                             <th data-i18n="tb_h2">🥈 银牌</th>
                             <th class="gold-col" data-i18n="tb_h3">🥇 金牌</th>
@@ -733,52 +756,56 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-i18n="tb_r1_k">激活到账</td>
-                            <td data-i18n="tb_r1_b">5,000 HPL</td>
-                            <td data-i18n="tb_r1_s">50,000 HPL</td>
-                            <td class="gold-col" data-i18n="tb_r1_g">500,000 HPL</td>
+                            <td data-i18n="tb_r1_k">开通费用</td>
+                            <td class="free-col" data-i18n="tb_r1_f">0 元</td>
+                            <td data-i18n="tb_r1_b">1 USDT</td>
+                            <td data-i18n="tb_r1_s">10 USDT</td>
+                            <td class="gold-col" data-i18n="tb_r1_g">100 USDT</td>
                         </tr>
                         <tr>
-                            <td data-i18n="tb_r2_k">每日签到</td>
-                            <td data-i18n="tb_r2_b">100 HPL</td>
-                            <td data-i18n="tb_r2_s">130 HPL</td>
-                            <td class="gold-col" data-i18n="tb_r2_g">160 HPL</td>
+                            <td data-i18n="tb_r2_k">激活到账</td>
+                            <td class="free-col" data-i18n="tb_r2_f">每天送 1,000</td>
+                            <td data-i18n="tb_r2_b">5,000 HPL</td>
+                            <td data-i18n="tb_r2_s">50,000 HPL</td>
+                            <td class="gold-col" data-i18n="tb_r2_g">500,000 HPL</td>
                         </tr>
                         <tr>
-                            <td data-i18n="tb_r3_k">每日抽奖</td>
-                            <td data-i18n="tb_r3_b">3 次</td>
-                            <td data-i18n="tb_r3_s">6 次</td>
-                            <td class="gold-col" data-i18n="tb_r3_g">不限次</td>
+                            <td data-i18n="tb_r3_k">每日签到</td>
+                            <td class="free-col" data-i18n="tb_r3_f">1,000 HPL</td>
+                            <td data-i18n="tb_r3_b">100 HPL</td>
+                            <td data-i18n="tb_r3_s">130 HPL</td>
+                            <td class="gold-col" data-i18n="tb_r3_g">160 HPL</td>
                         </tr>
                         <tr>
-                            <td data-i18n="tb_r4_k">直推佣金</td>
-                            <td data-i18n="tb_r4_b">20%</td>
-                            <td data-i18n="tb_r4_s">25%</td>
-                            <td class="gold-col" data-i18n="tb_r4_g">30%</td>
+                            <td data-i18n="tb_r4_k">每日抽奖</td>
+                            <td class="free-col" data-i18n="tb_r4_f">1 次</td>
+                            <td data-i18n="tb_r4_b">1 次</td>
+                            <td data-i18n="tb_r4_s">2 次</td>
+                            <td class="gold-col" data-i18n="tb_r4_g">3 次</td>
                         </tr>
                         <tr>
-                            <td data-i18n="tb_r5_k">间推佣金</td>
-                            <td data-i18n="tb_r5_b">5%</td>
-                            <td data-i18n="tb_r5_s">8%</td>
-                            <td class="gold-col" data-i18n="tb_r5_g">10%</td>
+                            <td data-i18n="tb_r5_k">推荐好友</td>
+                            <td class="free-col" data-i18n="tb_r5_f">+1,000（对方绑钱包）</td>
+                            <td data-i18n="tb_r5_b" colspan="3">直推 +5,000 · 间推 +2,500 · 三级 +1,250</td>
                         </tr>
                         <tr>
-                            <td data-i18n="tb_r6_k">距离提现线（100,000 HPL）</td>
-                            <td data-i18n="tb_r6_b">靠签到推广补足</td>
-                            <td data-i18n="tb_r6_s">靠签到推广补足</td>
-                            <td class="gold-col" data-i18n="tb_r6_g">✅ 开通即达标</td>
+                            <td data-i18n="tb_r6_k">提现门槛</td>
+                            <td class="free-col" data-i18n="tb_r6_f">10,000 HPL</td>
+                            <td data-i18n="tb_r6_b">100,000 HPL</td>
+                            <td data-i18n="tb_r6_s">100,000 HPL</td>
+                            <td class="gold-col" data-i18n="tb_r6_g">100,000 HPL</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <ul class="ref-notes reveal">
-                <li data-i18n="mem_n1">⚡ 代币按 1U = 5,000 HPL 比例发放，激活奖励与注册赠送（2,000 HPL）叠加</li>
-                <li data-i18n="mem_n2">🔗 充值至项目方钱包并提交 tx_hash，链上校验通过自动到账</li>
-                <li data-i18n="mem_n3">🎯 提现条件：完成档位激活 + 余额 ≥ 100,000 HPL，激活当日即可申请提现</li>
+                <li data-i18n="mem_n1">⚡ 免费会员 0 元开通，每天登录自动到账 1,000 HPL；付费档按 1U = 5,000 HPL 一次性发放</li>
+                <li data-i18n="mem_n2">🔗 付费档：充值至项目方钱包并提交 tx_hash，链上校验通过自动到账（免费会员无需付款）</li>
+                <li data-i18n="mem_n3">🎯 提现：绑定 Solana 钱包 + 余额达标即可申请（免费会员 1 万，付费档 10 万），最快当天到账</li>
             </ul>
             <div class="ref-cta reveal">
-                <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="mem_cta">🌐 打开 Web 版，立即开通会员</a>
+                <a href="https://mini.gudaoqihuo.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="mem_cta">🌐 0 元领取免费会员，立即开始</a>
             </div>
         </div>
     </section>
@@ -796,18 +823,18 @@
                 </div>
                 <div class="step-card reveal">
                     <div class="step-num" data-i18n="how2_n">STEP 2</div>
-                    <h3 data-i18n="how2_t">② 充值激活</h3>
-                    <p data-i18n="how2_d">向项目钱包转入 USDT/USDC（1 / 10 / 100），App 内提交 tx_hash，链上校验秒级激活。</p>
+                    <h3 data-i18n="how2_t">② 0 元领免费会员</h3>
+                    <p data-i18n="how2_d">点一下就开通，不用充值、不用钱包，立刻开始产币；想加速再按 1 / 10 / 100 USDT 升级。</p>
                 </div>
                 <div class="step-card reveal">
                     <div class="step-num" data-i18n="how3_n">STEP 3</div>
-                    <h3 data-i18n="how3_t">③ 每日领币</h3>
-                    <p data-i18n="how3_d">签到、抽奖、推广三路收益一起滚，连签 7 天 +20%、30 天 +50%。</p>
+                    <h3 data-i18n="how3_t">③ 每天登录领币</h3>
+                    <p data-i18n="how3_d">每天登录自动到账 1,000 HPL，签到、抽奖、推广三路收益一起滚，连签 7 / 15 / 30 天再送 1,000 / 2,000 / 6,000。</p>
                 </div>
                 <div class="step-card reveal">
                     <div class="step-num" data-i18n="how4_n">STEP 4</div>
-                    <h3 data-i18n="how4_t">④ 解锁提现</h3>
-                    <p data-i18n="how4_d">完成档位激活且余额 ≥ 100,000 HPL，即可提现至绑定的 Solana 钱包，最快当天到账。</p>
+                    <h3 data-i18n="how4_t">④ 绑钱包提现</h3>
+                    <p data-i18n="how4_d">绑定 Solana 钱包，免费会员余额满 10,000 HPL 即可申请提现，最快当天到账。</p>
                 </div>
             </div>
         </div>
@@ -822,22 +849,22 @@
                 <div class="ref-card reveal">
                     <div class="ref-level">L1 · <span data-i18n="ref_l1_t">直推好友</span></div>
                     <div class="ref-amount" data-i18n="ref_l1_a">+5,000 <small>HPL</small></div>
-                    <div class="ref-desc" data-i18n="ref_l1_d">你直接邀请的好友加入并激活，另赠 2 次额外抽奖机会</div>
+                    <div class="ref-desc" data-i18n="ref_l1_d">好友注册成免费会员并绑定钱包，你即得 +1,000 HPL；他日后付费升级，你再拿 +5,000</div>
                 </div>
                 <div class="ref-card reveal">
                     <div class="ref-level">L2 · <span data-i18n="ref_l2_t">二级好友</span></div>
                     <div class="ref-amount" data-i18n="ref_l2_a">+2,500 <small>HPL</small></div>
-                    <div class="ref-desc" data-i18n="ref_l2_d">好友邀请的好友加入并激活，你同样获得奖励</div>
+                    <div class="ref-desc" data-i18n="ref_l2_d">好友的好友付费开通会员，你同样获得奖励</div>
                 </div>
                 <div class="ref-card reveal">
                     <div class="ref-level">L3 · <span data-i18n="ref_l3_t">三级好友</span></div>
                     <div class="ref-amount" data-i18n="ref_l3_a">+1,250 <small>HPL</small></div>
-                    <div class="ref-desc" data-i18n="ref_l3_d">团队扩展到第三层依然计酬，裂变越深拿得越多</div>
+                    <div class="ref-desc" data-i18n="ref_l3_d">团队第三层付费开通仍计酬，裂变越深拿得越多</div>
                 </div>
             </div>
             <ul class="ref-notes reveal">
-                <li data-i18n="ref_n1">🎁 新人注册即送 2,000 HPL，好友入伙零门槛</li>
-                <li data-i18n="ref_n2">📅 每日打卡 100 HPL，连续 30 天全勤额外 +9,000 HPL</li>
+                <li data-i18n="ref_n1">🎁 推荐 1 位好友 +1,000 HPL，他绑定钱包即到账，推荐 10 人正好够提现</li>
+                <li data-i18n="ref_n2">📅 免费会员每天登录送 1,000 HPL，连签 7 / 15 / 30 天再送 1,000 / 2,000 / 6,000</li>
                 <li data-i18n="ref_n3">🔗 打开 App「团队」页生成专属邀请链接，分享即推广</li>
             </ul>
             <div class="ref-cta reveal">
@@ -1187,11 +1214,11 @@
             <div class="faq-list">
                 <div class="faq-item reveal">
                     <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faqA_q">1. 如何开通会员？ <b>+</b></span></div>
-                    <div class="faq-a" data-i18n="faqA_a">下载 App 或打开 Web 版 → 在「资产」页复制项目钱包地址 → 向该地址转入 USDT/USDC（铜 1 / 银 10 / 金 100）→ 回到 App 提交交易哈希（tx_hash）。系统会到 Solana 链上核实到账金额，通过后自动激活并发放对应数量 HPL。</div>
+                    <div class="faq-a" data-i18n="faqA_a">免费会员：打开 Web 版点「0 元领取」即可，不用充值。付费档：在「资产」页复制项目钱包地址 → 转入 USDT/USDC（铜 1 / 银 10 / 金 100）→ 提交交易哈希（tx_hash），系统到 Solana 链上核实到账金额，通过后自动激活并发放 HPL。</div>
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faqB_q">2. 收益怎么提现？ <b>+</b></span></div>
-                    <div class="faq-a" data-i18n="faqB_a">需满足两个条件：① 已完成任意档位激活；② 账户余额 ≥ 100,000 HPL。激活当日即可申请提现，代币将打款至你绑定的 Solana 钱包地址，最快当天到账。</div>
+                    <div class="faq-a" data-i18n="faqB_a">需满足两个条件：① 已在「我的资产」绑定 Solana 钱包地址；② 账户余额达标 —— 免费会员 10,000 HPL，铜 / 银 / 金牌 100,000 HPL。提交后进入打款队列，项目方代付 Gas，最快当天到账。</div>
                 </div>
                 <div class="faq-item reveal">
                     <div class="faq-q" onclick="toggleFAQ(this)"><span data-i18n="faq1_q">3. 如何购买 CnX4？ <b>+</b></span></div>
@@ -1252,55 +1279,58 @@
                 dc_sub: "算力纪元 App、机场工具、交易所与 Web3 钱包一站式直达，全部为官方渠道，点开即注册。",
                 dc_note: "两家机场（<b>杨帆云机场</b>、<b>CC 机场</b>）国内可直接打开注册；其余交易所与钱包 App 均为境外服务，<b>需要先科学上网</b> 才能正常打开、下载与注册。建议先把机场装好，再回来下载其他应用。",
                 dc_g1: "📱 算力纪元 App", dc_g2: "✈️ 机场 App（网络加速）", dc_g3: "💼 交易所 &amp; Web3 钱包",
-                hero_pill: "🚀 天天产币 · 当天即可提现 · 1 USDT 起步",
+                hero_pill: "🚀 0 元免费加入 · 每天送 1,000 HPL · 满 1 万提现",
                 hero_t1: "天天产币的 AI 算力代币",
-                hero_t2: "1 USDT 起步 · 当天就能提现",
-                hero_sub: "算力纪元 XCWW(CnX4) —— 1U=5,000 HPL 链上发放，签到、抽奖、推广三路产币。未来代币用于 AI 算力与分布式存储结算，越早入场，越能捕获算力经济红利。",
-                hero_cta1: "💎 立即开通会员", hero_cta2: "📱 下载 App", hero_cta3: "🚀 加入电报群", hero_login: "🔑 已有账号登录",
+                hero_t2: "0 元起步 · 满 1 万即可提现",
+                hero_sub: "算力纪元 XCWW(CnX4) —— 0 元领免费会员，每天登录送 1,000 HPL；也可按 1U=5,000 HPL 付费升级。签到、抽奖、推广三路产币，绑定钱包即可提现。未来代币用于 AI 算力与分布式存储结算，越早入场，越能捕获算力经济红利。",
+                hero_cta1: "🎁 0 元领取免费会员", hero_cta2: "📱 下载 App", hero_cta3: "🚀 加入电报群", hero_login: "🔑 已有账号登录",
                 stat1_k: "兑换比例", stat2_k: "会员档位", stat3_k: "解锁提现", stat4_k: "收益通道",
-                stat2_v: "铜 · 银 · 金", stat3_v: "当天可提现", stat4_v: "签到 · 抽奖 · 推广",
+                stat2_v: "免费 · 铜 · 银 · 金", stat3_v: "满 1 万可提", stat4_v: "签到 · 抽奖 · 推广",
                 badge_solana: "⚡ Solana 链上", badge_lp: "🔒 86% LP 已销毁", badge_fair: "🔥 0 VC · 0 预挖", badge_ai: "🤖 AI 算力生态",
-                mem_title: "💎 三档会员 · 10 倍跃迁",
-                mem_sub: "充值 USDT/USDC 即刻激活，代币按 1U = 5,000 HPL 发放。档位每升一级，代币 10 倍递增，签到加成、抽奖次数、推广佣金全面升级。",
+                mem_title: "💎 四档会员 · 0 元起步",
+                mem_sub: "🆓 免费会员 0 元开通，每天登录送 1,000 HPL，满 1 万就能提现；想加速就付费升级，代币按 1U = 5,000 HPL 发放，签到与奖励同步提升。",
                 mem_badge: "最受欢迎",
+                mem_free_t: "🆓 免费会员 Free", mem_free_p: "0 元 · 一键领取", mem_free_a: "1,000 <small>HPL / 天</small>",
+                mem_f_f1: "✅ 每日登录送 1,000 HPL", mem_f_f2: "✅ 每日 1 次免费抽奖",
+                mem_f_f3: "✅ 推荐 1 人 +1,000 HPL", mem_f_f4: "✅ 满 1 万绑钱包即可提现", mem_free_btn: "🎁 0 元领取，立即开始",
                 mem_bronze_t: "🥉 铜牌 Bronze", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
-                mem_b_f1: "✅ 每日签到 100 HPL", mem_b_f2: "✅ 每日 3 次免费抽奖",
-                mem_b_f3: "✅ 直推 20% · 间推 5% 佣金", mem_b_f4: "✅ 即刻解锁提现资格", mem_tg_btn: "🤖 用 TG 机器人开通",
+                mem_b_f1: "✅ 每日签到 100 HPL", mem_b_f2: "✅ 每日 1 次免费抽奖",
+                mem_b_f3: "✅ 直推 +5,000 · 间推 +2,500", mem_b_f4: "✅ 满 10 万绑钱包即可提现", mem_tg_btn: "🤖 用 TG 机器人开通",
                 mem_silver_t: "🥈 银牌 Silver", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
-                mem_s_f1: "✅ 签到加成 +30%（130 HPL/日）", mem_s_f2: "✅ 每日 6 次免费抽奖",
-                mem_s_f3: "✅ 直推 25% · 间推 8% 佣金", mem_s_f4: "✅ 10 倍代币，回本最快",
+                mem_s_f1: "✅ 签到加成 +30%（130 HPL/日）", mem_s_f2: "✅ 每日 2 次免费抽奖",
+                mem_s_f3: "✅ 直推 +5,000 · 间推 +2,500", mem_s_f4: "✅ 10 倍代币，回本最快",
                 mem_gold_t: "🥇 金牌 Gold", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
-                mem_g_f1: "✅ 签到加成 +60%（160 HPL/日）", mem_g_f2: "✅ 抽奖不限次数",
-                mem_g_f3: "✅ 直推 30% · 间推 10% 佣金", mem_g_f4: "✅ 开通即超提现线 5 倍",
+                mem_g_f1: "✅ 签到加成 +60%（160 HPL/日）", mem_g_f2: "✅ 每日 3 次免费抽奖",
+                mem_g_f3: "✅ 直推 +5,000 · 间推 +2,500", mem_g_f4: "✅ 开通即超提现线 5 倍",
                 tb_title: "权益一览",
-                tb_h0: "权益", tb_h1: "🥉 铜牌", tb_h2: "🥈 银牌", tb_h3: "🥇 金牌",
-                tb_r1_k: "激活到账", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
-                tb_r2_k: "每日签到", tb_r2_b: "100 HPL", tb_r2_s: "130 HPL", tb_r2_g: "160 HPL",
-                tb_r3_k: "每日抽奖", tb_r3_b: "3 次", tb_r3_s: "6 次", tb_r3_g: "不限次",
-                tb_r4_k: "直推佣金", tb_r4_b: "20%", tb_r4_s: "25%", tb_r4_g: "30%",
-                tb_r5_k: "间推佣金", tb_r5_b: "5%", tb_r5_s: "8%", tb_r5_g: "10%",
-                tb_r6_k: "距离提现线（100,000 HPL）", tb_r6_b: "靠签到推广补足", tb_r6_s: "靠签到推广补足", tb_r6_g: "✅ 开通即达标",
-                mem_n1: "⚡ 代币按 1U = 5,000 HPL 比例发放，激活奖励与注册赠送（2,000 HPL）叠加",
-                mem_n2: "🔗 充值至项目方钱包并提交 tx_hash，链上校验通过自动到账",
-                mem_n3: "🎯 提现条件：完成档位激活 + 余额 ≥ 100,000 HPL，激活当日即可申请提现",
-                mem_cta: "🌐 打开 Web 版，立即开通会员",
+                tb_h0: "权益", tb_h4: "🆓 免费", tb_h1: "🥉 铜牌", tb_h2: "🥈 银牌", tb_h3: "🥇 金牌",
+                tb_r1_k: "开通费用", tb_r1_f: "0 元", tb_r1_b: "1 USDT", tb_r1_s: "10 USDT", tb_r1_g: "100 USDT",
+                tb_r2_k: "激活到账", tb_r2_f: "每天送 1,000", tb_r2_b: "5,000 HPL", tb_r2_s: "50,000 HPL", tb_r2_g: "500,000 HPL",
+                tb_r3_k: "每日签到", tb_r3_f: "1,000 HPL", tb_r3_b: "100 HPL", tb_r3_s: "130 HPL", tb_r3_g: "160 HPL",
+                tb_r4_k: "每日抽奖", tb_r4_f: "1 次", tb_r4_b: "1 次", tb_r4_s: "2 次", tb_r4_g: "3 次",
+                tb_r5_k: "推荐好友", tb_r5_f: "+1,000（对方绑钱包）", tb_r5_b: "直推 +5,000 · 间推 +2,500 · 三级 +1,250",
+                tb_r6_k: "提现门槛", tb_r6_f: "10,000 HPL", tb_r6_b: "100,000 HPL", tb_r6_s: "100,000 HPL", tb_r6_g: "100,000 HPL",
+                mem_n1: "⚡ 免费会员 0 元开通，每天登录自动到账 1,000 HPL；付费档按 1U = 5,000 HPL 一次性发放",
+                mem_n2: "🔗 付费档：充值至项目方钱包并提交 tx_hash，链上校验通过自动到账（免费会员无需付款）",
+                mem_n3: "🎯 提现：绑定 Solana 钱包 + 余额达标即可申请（免费会员 1 万，付费档 10 万），最快当天到账",
+                mem_cta: "🌐 0 元领取免费会员，立即开始",
                 how_title: "🧭 四步开启收益之旅",
                 how_sub: "从下载到提现，全程链上可查，收益看得见摸得着。",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
                 how1_t: "① 打开官网", how1_d: "手机浏览器打开 Web 版，或用 Telegram 机器人，无需下载安装。",
-                how2_t: "② 充值激活", how2_d: "向项目钱包转入 USDT/USDC（1 / 10 / 100），App 内提交 tx_hash，链上校验秒级激活。",
-                how3_t: "③ 每日领币", how3_d: "签到、抽奖、推广三路收益一起滚，连签 7 天 +20%、30 天 +50%。",
-                how4_t: "④ 解锁提现", how4_d: "完成档位激活且余额 ≥ 100,000 HPL，即可提现至绑定的 Solana 钱包，最快当天到账。",
+                how2_t: "② 0 元领免费会员", how2_d: "点一下就开通，不用充值、不用钱包，立刻开始产币；想加速再按 1 / 10 / 100 USDT 升级。",
+                how3_t: "③ 每天登录领币", how3_d: "每天登录自动到账 1,000 HPL，签到、抽奖、推广三路收益一起滚，连签 7 / 15 / 30 天再送 1,000 / 2,000 / 6,000。",
+                how4_t: "④ 绑钱包提现", how4_d: "绑定 Solana 钱包，免费会员余额满 10,000 HPL 即可申请提现，最快当天到账。",
                 ref_title: "🤝 三级推广奖励",
                 ref_sub: "邀请好友加入算力纪元，三层以内人人有份。好友越活跃，你的收益越多。",
                 ref_l1_t: "直推好友", ref_l1_a: "+5,000 <small>HPL</small>",
-                ref_l1_d: "你直接邀请的好友加入并激活，另赠 2 次额外抽奖机会",
+                ref_l1_d: "好友注册成免费会员并绑定钱包，你即得 +1,000 HPL；他日后付费升级，你再拿 +5,000",
                 ref_l2_t: "二级好友", ref_l2_a: "+2,500 <small>HPL</small>",
-                ref_l2_d: "好友邀请的好友加入并激活，你同样获得奖励",
+                ref_l2_d: "好友的好友付费开通会员，你同样获得奖励",
                 ref_l3_t: "三级好友", ref_l3_a: "+1,250 <small>HPL</small>",
-                ref_l3_d: "团队扩展到第三层依然计酬，裂变越深拿得越多",
-                ref_n1: "🎁 新人注册即送 2,000 HPL，好友入伙零门槛",
-                ref_n2: "📅 每日打卡 100 HPL，连续 30 天全勤额外 +9,000 HPL",
+                ref_l3_d: "团队第三层付费开通仍计酬，裂变越深拿得越多",
+                ref_n1: "🎁 推荐 1 位好友 +1,000 HPL，他绑定钱包即到账，推荐 10 人正好够提现",
+                ref_n2: "📅 免费会员每天登录送 1,000 HPL，连签 7 / 15 / 30 天再送 1,000 / 2,000 / 6,000",
                 ref_n3: "🔗 打开 App「团队」页生成专属邀请链接，分享即推广",
                 ref_btn: "🌐 打开 Web 版，开始推广",
                 about_title: "为什么是 XCWW (CnX4)？",
@@ -1319,10 +1349,11 @@
                 dl_qr_note: "手机扫码打开 Web 版",
                 early_title: "🔥 为什么现在就要入场？",
                 early_sub: "算力纪元不是空气币 —— 它是真实落地的去中心化 AI 算力与存储生态的通行证。早一步持有，早一步锁定未来红利。",
-                early_1t: "天天产币 · 躺着积累", early_1d: "签到 + 抽奖 + 推广，三路收益每天自动进账。1 USDT 起就能启动，代币按 1U=5,000 HPL 链上发放，越早参与雪球滚得越快。",
+                early_1t: "天天产币 · 躺着积累", early_1d: "0 元就能启动：每天登录自动到账 1,000 HPL，加上抽奖与推广，三路收益每天进账。想加速可按 1U=5,000 HPL 付费升级，越早参与雪球滚得越快。",
                 early_2t: "真实算力效用 · 不是空气", early_2d: "CnX4 是去中心化 AI 算力与存储网络的结算代币。未来调用 GPU 算力、买存储空间、付推广工具，都消耗 HPL —— 真实需求增长，价值随之增长。",
                 early_3t: "早期红利 · 属于先行者", early_3d: "0 VC、0 预挖、86% LP 已销毁锁定，代币从第一天就属于社区。越早持有，越能捕获未来 AI 算力经济增长红利；主网与 DAO 上线后，持有人共享生态决策权。",
-                early_cta: "💎 立即开通会员，抢占早期红利",
+                early_cta: "🎁 0 元领取免费会员，抢占早期红利",
+                marquee_label: "实时提现动态", marquee_loading: "加载中…", marquee_empty: "暂无提现记录 —— 开通会员后这里就会出现你的名字 →",
                 vis_title: "🚀 目标与远景",
                 vis_sub: "算力纪元不只是打卡赚钱，更是一个长期增长的算力生态。早参与，早受益。",
                 vis_1t: "📈 代币持续增值", vis_1d: "生态用户与算力需求不断增长，CnX4 价值稳步上行，每一天都在积累",
@@ -1354,9 +1385,9 @@
                 comm_join: "加入 Discord →", comm_join2: "加入 TG →", comm_join3: "查看行情 →",
                 faq_title: "常见问题",
                 faqA_q: "1. 如何开通会员？ <b>+</b>",
-                faqA_a: "下载 App 或打开 Web 版 → 在「资产」页复制项目钱包地址 → 向该地址转入 USDT/USDC（铜 1 / 银 10 / 金 100）→ 回到 App 提交交易哈希（tx_hash）。系统会到 Solana 链上核实到账金额，通过后自动激活并发放对应数量 HPL。",
+                faqA_a: "免费会员：打开 Web 版点「0 元领取」即可，不用充值。付费档：在「资产」页复制项目钱包地址 → 转入 USDT/USDC（铜 1 / 银 10 / 金 100）→ 提交交易哈希（tx_hash），系统到 Solana 链上核实到账金额，通过后自动激活并发放 HPL。",
                 faqB_q: "2. 收益怎么提现？ <b>+</b>",
-                faqB_a: "需满足两个条件：① 已完成任意档位激活；② 账户余额 ≥ 100,000 HPL。激活当日即可申请提现，代币将打款至你绑定的 Solana 钱包地址，最快当天到账。",
+                faqB_a: "需满足两个条件：① 已在「我的资产」绑定 Solana 钱包地址；② 账户余额达标 —— 免费会员 10,000 HPL，铜 / 银 / 金牌 100,000 HPL。提交后进入打款队列，项目方代付 Gas，最快当天到账。",
                 faq1_q: "3. 如何购买 CnX4？ <b>+</b>", faq1_a: "下载 Phantom 钱包 → 充值 SOL → 在 Raydium 搜索合约地址 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf → 兑换 CnX4。",
                 faq2_q: "4. 在哪里可以交易？ <b>+</b>", faq2_a: "目前已在 Raydium (Solana) 上线交易，后续将推进中心化交易所 (CEX) 上币。",
                 faq3_q: "5. 1% 转账税是什么？ <b>+</b>", faq3_a: "用于项目开发的基础设施费用，涵盖开发者薪资、服务器成本与后续市场推广。",
@@ -1381,7 +1412,7 @@
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "算力纪元 App",
                 footer_copy: "© 2026 XCWW (CnX4). 构建于 Solana.",
-                promo_main: "🎁 每天送 10 名幸运用户免费激活！只要钱包登录的都有机会，人人都有薅羊毛到 10 万的机会！",
+                promo_main: "🎁 0 元免费会员上线！每天登录送 1,000 HPL，绑定钱包满 1 万即可提现，推荐 1 人再送 1,000！",
                 promo_risk: "市场有风险，活动以规则为准"
             },
             ja: {
@@ -1391,55 +1422,58 @@
                 dc_sub: "算力紀元アプリ・VPN・取引所・Web3 ウォレットをまとめて。すべて公式リンクです。",
                 dc_note: "VPN2種（<b>杨帆云机场</b>・<b>CC 机场</b>）は国内から直接登録可能。その他の取引所・ウォレットは海外サービスのため、<b>事前のインターネット接続環境（科学上网）</b> が必要です。",
                 dc_g1: "📱 算力紀元アプリ", dc_g2: "✈️ VPN アプリ", dc_g3: "💼 取引所 &amp; Web3 ウォレット",
-                hero_pill: "🚀 メンバーシップ開始 · 1 USDT から",
-                hero_t1: "1 USDTで会員登録",
-                hero_t2: "毎日チェックインでトークン獲得、当日から引き出し可能",
-                hero_sub: "算力紀元 · 3段階のメンバーシップ：トークンは1U = 5,000 HPLでオンチェーン発行。チェックイン・抽選・紹介の3つの収益チャネルから、あなたのSolanaウォレットへ直接届きます。",
-                hero_cta1: "💎 今すぐ会員になる", hero_cta2: "📱 アプリDL", hero_cta3: "🚀 TGに参加", hero_login: "🔑 アカウントログイン",
+                hero_pill: "🚀 0円でスタート · 毎日1,000 HPL · 10,000で出金",
+                hero_t1: "毎日トークンが貯まるAI計算トークン",
+                hero_t2: "0円でスタート · 10,000 HPLで出金可能",
+                hero_sub: "算力紀元 · 無料会員は0円で登録でき、毎日のログインで1,000 HPLを獲得。1U = 5,000 HPLで有料ランクへアップグレードも可能。チェックイン・抽選・紹介の3つの収益チャネルから、ウォレットを紐付ければ出金できます。",
+                hero_cta1: "🎁 0円で無料会員になる", hero_cta2: "📱 アプリDL", hero_cta3: "🚀 TGに参加", hero_login: "🔑 アカウントログイン",
                 stat1_k: "換算レート", stat2_k: "会員ランク", stat3_k: "引き出し解禁", stat4_k: "収益チャネル",
-                stat2_v: "銅 · 銀 · 金", stat3_v: "当日引き出し可能", stat4_v: "チェックイン · 抽選 · 紹介",
+                stat2_v: "無料 · 銅 · 銀 · 金", stat3_v: "10,000で出金可", stat4_v: "チェックイン · 抽選 · 紹介",
                 badge_solana: "⚡ Solanaオンチェーン", badge_lp: "🔒 86% LPバーン済", badge_fair: "🔥 VCなし·プリマインなし", badge_ai: "🤖 AI計算エコシステム",
-                mem_title: "💎 3段階メンバーシップ · 10倍ジャンプ",
-                mem_sub: "USDT/USDCをチャージして即時アクティベート。トークンは1U = 5,000 HPLで発行。ランクが上がるごとにトークン10倍、チェックインボーナス・抽選回数・紹介コミッションも全面アップ。",
+                mem_title: "💎 4段階メンバーシップ · 0円から",
+                mem_sub: "🆓 無料会員は0円、毎日のログインで1,000 HPL、10,000 HPLで出金可能。加速したい場合は1U = 5,000 HPLで有料ランクへアップグレード。",
                 mem_badge: "一番人気",
+                mem_free_t: "🆓 無料会員 Free", mem_free_p: "0円 · ワンタップで取得", mem_free_a: "1,000 <small>HPL / 日</small>",
+                mem_f_f1: "✅ 毎日ログインで1,000 HPL", mem_f_f2: "✅ 毎日1回の無料抽選",
+                mem_f_f3: "✅ 紹介1人につき+1,000 HPL", mem_f_f4: "✅ 10,000 HPL＋ウォレット紐付けで出金可", mem_free_btn: "🎁 0円で今すぐ始める",
                 mem_bronze_t: "🥉 ブロンズ", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
-                mem_b_f1: "✅ 毎日チェックイン 100 HPL", mem_b_f2: "✅ 毎日3回の無料抽選",
-                mem_b_f3: "✅ 直接紹介20% · 間接紹介5%", mem_b_f4: "✅ 即時に引き出し資格を獲得", mem_tg_btn: "🤖 TGボットで開通",
+                mem_b_f1: "✅ 毎日チェックイン 100 HPL", mem_b_f2: "✅ 毎日1回の無料抽選",
+                mem_b_f3: "✅ 直接紹介+5,000 · 間接紹介+2,500", mem_b_f4: "✅ 100,000 HPL＋ウォレット紐付けで出金可", mem_tg_btn: "🤖 TGボットで開通",
                 mem_silver_t: "🥈 シルバー", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
-                mem_s_f1: "✅ チェックイン+30%（130 HPL/日）", mem_s_f2: "✅ 毎日6回の無料抽選",
-                mem_s_f3: "✅ 直接紹介25% · 間接紹介8%", mem_s_f4: "✅ 10倍トークン、最速の回収プラン",
+                mem_s_f1: "✅ チェックイン+30%（130 HPL/日）", mem_s_f2: "✅ 毎日2回の無料抽選",
+                mem_s_f3: "✅ 直接紹介+5,000 · 間接紹介+2,500", mem_s_f4: "✅ 10倍トークン、最速の回収プラン",
                 mem_gold_t: "🥇 ゴールド", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
-                mem_g_f1: "✅ チェックイン+60%（160 HPL/日）", mem_g_f2: "✅ 抽選回数無制限",
-                mem_g_f3: "✅ 直接紹介30% · 間接紹介10%", mem_g_f4: "✅ 開通時点で引き出しラインの5倍",
+                mem_g_f1: "✅ チェックイン+60%（160 HPL/日）", mem_g_f2: "✅ 毎日3回の無料抽選",
+                mem_g_f3: "✅ 直接紹介+5,000 · 間接紹介+2,500", mem_g_f4: "✅ 開通時点で引き出しラインの5倍",
                 tb_title: "特典一覧",
-                tb_h0: "特典", tb_h1: "🥉 ブロンズ", tb_h2: "🥈 シルバー", tb_h3: "🥇 ゴールド",
-                tb_r1_k: "アクティベート時の付与", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
-                tb_r2_k: "毎日チェックイン", tb_r2_b: "100 HPL", tb_r2_s: "130 HPL", tb_r2_g: "160 HPL",
-                tb_r3_k: "毎日の抽選", tb_r3_b: "3回", tb_r3_s: "6回", tb_r3_g: "無制限",
-                tb_r4_k: "直接紹介コミッション", tb_r4_b: "20%", tb_r4_s: "25%", tb_r4_g: "30%",
-                tb_r5_k: "間接紹介コミッション", tb_r5_b: "5%", tb_r5_s: "8%", tb_r5_g: "10%",
-                tb_r6_k: "引き出しライン（100,000 HPL）まで", tb_r6_b: "チェックインと紹介で補う", tb_r6_s: "チェックインと紹介で補う", tb_r6_g: "✅ 開通即達成",
-                mem_n1: "⚡ トークンは1U=5,000 HPLで発行、アクティベート報酬は登録ボーナス（2,000 HPL）と上乗せ",
-                mem_n2: "🔗 プロジェクトウォレットにチャージし tx_hash を提出、オンチェーン検証後に自動付与",
-                mem_n3: "🎯 引き出し条件：ランク活性化 + 残高 ≥ 100,000 HPL、活性化当日に申請可能",
-                mem_cta: "🌐 Web版を開いて今すぐ開通",
+                tb_h0: "特典", tb_h4: "🆓 無料", tb_h1: "🥉 ブロンズ", tb_h2: "🥈 シルバー", tb_h3: "🥇 ゴールド",
+                tb_r1_k: "開通費用", tb_r1_f: "0円", tb_r1_b: "1 USDT", tb_r1_s: "10 USDT", tb_r1_g: "100 USDT",
+                tb_r2_k: "アクティベート時の付与", tb_r2_f: "毎日1,000", tb_r2_b: "5,000 HPL", tb_r2_s: "50,000 HPL", tb_r2_g: "500,000 HPL",
+                tb_r3_k: "毎日チェックイン", tb_r3_f: "1,000 HPL", tb_r3_b: "100 HPL", tb_r3_s: "130 HPL", tb_r3_g: "160 HPL",
+                tb_r4_k: "毎日の抽選", tb_r4_f: "1回", tb_r4_b: "1回", tb_r4_s: "2回", tb_r4_g: "3回",
+                tb_r5_k: "友人紹介", tb_r5_f: "+1,000（相手がウォレット紐付け）", tb_r5_b: "直接+5,000 · 間接+2,500 · 第三層+1,250",
+                tb_r6_k: "引き出しライン", tb_r6_f: "10,000 HPL", tb_r6_b: "100,000 HPL", tb_r6_s: "100,000 HPL", tb_r6_g: "100,000 HPL",
+                mem_n1: "⚡ 無料会員は0円、毎日のログインで1,000 HPLが自動付与。有料ランクは1U = 5,000 HPLで一括付与",
+                mem_n2: "🔗 有料ランク：プロジェクトウォレットにチャージし tx_hash を提出、オンチェーン検証後に自動付与（無料会員は不要）",
+                mem_n3: "🎯 出金：Solanaウォレットの紐付け + 残高達成で申請可（無料 10,000 HPL / 有料 100,000 HPL）、最短当日着金",
+                mem_cta: "🌐 0円で無料会員を取得して今すぐスタート",
                 how_title: "🧭 4ステップで収益スタート",
                 how_sub: "ダウンロードから引き出しまで、すべてオンチェーンで確認可能。",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
                 how1_t: "① 公式サイトを開く", how1_d: "スマホのブラウザでWeb版を開くか、Telegramボットをご利用ください。インストール不要。",
-                how2_t: "② チャージしてアクティベート", how2_d: "プロジェクトウォレットにUSDT/USDC（1/10/100）を送金し、アプリでtx_hashを提出。オンチェーン検証で即時アクティベート。",
-                how3_t: "③ 毎日トークン獲得", how3_d: "チェックイン・抽選・紹介の3チャネルで収益が雪だるま式に増加。7日連続+20%、30日連続+50%。",
-                how4_t: "④ 引き出し解禁", how4_d: "ランク活性化済みかつ残高≥100,000 HPLで、紐付けたSolanaウォレットに即時引き出し可能（最短当日着金）。",
+                how2_t: "② 0円で無料会員を取得", how2_d: "ワンタップで開通。チャージもウォレットも不要で、すぐに産出スタート。加速したい場合は1/10/100 USDTでアップグレード。",
+                how3_t: "③ 毎日ログインで獲得", how3_d: "毎日のログインで1,000 HPLが自動付与。チェックイン・抽選・紹介の3チャネルで増加、7/15/30日連続でさらに1,000/2,000/6,000。",
+                how4_t: "④ ウォレット紐付けで出金", how4_d: "Solanaウォレットを紐付け、無料会員は残高10,000 HPLで出金申請可能（最短当日着金）。",
                 ref_title: "🤝 3層紹介報酬",
                 ref_sub: "算力紀元に友人を招待しよう。3層以内なら全員が報酬対象。チームが活発になるほど収益も増加。",
                 ref_l1_t: "直接紹介", ref_l1_a: "+5,000 <small>HPL</small>",
-                ref_l1_d: "あなたが直接招待した友人が参加・アクティベートすると、追加で2回の抽選チャンスをプレゼント",
+                ref_l1_d: "友人が無料会員に登録しウォレットを紐付けると +1,000 HPL。後に有料ランクへ升级すれば、さらに +5,000",
                 ref_l2_t: "友人の友人", ref_l2_a: "+2,500 <small>HPL</small>",
-                ref_l2_d: "友人が招待した友人が参加・アクティベートしても、あなたが報酬を獲得",
+                ref_l2_d: "友人の友人が有料ランクを開通しても、あなたが報酬を獲得",
                 ref_l3_t: "第三層の友人", ref_l3_a: "+1,250 <small>HPL</small>",
                 ref_l3_d: "チームが第3層に拡大しても報酬は継続、裂変が深いほど多く獲得",
-                ref_n1: "🎁 新規登録で2,000 HPLをプレゼント、友人の参加はハードルなし",
-                ref_n2: "📅 毎日チェックインで100 HPL、30日連続で追加+9,000 HPL",
+                ref_n1: "🎁 友人1人を紹介するごとに+1,000 HPL（相手がウォレット紐付けで即付与）。10人で出金ライン達成",
+                ref_n2: "📅 無料会員は毎日のログインで1,000 HPL、7/15/30日連続でさらに1,000/2,000/6,000",
                 ref_n3: "🔗 アプリの「チーム」ページで専用招待リンクを生成、シェアするだけでOK",
                 ref_btn: "🌐 Web版を開いて紹介開始",
                 about_title: "なぜ XCWW (CnX4) なのか？",
@@ -1487,9 +1521,9 @@
                 comm_join: "Discordに参加 →", comm_join2: "TGに参加 →", comm_join3: "相場を見る →",
                 faq_title: "よくある質問",
                 faqA_q: "1. メンバーシップの開通方法は？ <b>+</b>",
-                faqA_a: "アプリまたはWeb版を開く → 「資産」ページでプロジェクトウォレットアドレスをコピー → USDT/USDC（銅1/銀10/金100）を送金 → アプリでtx_hashを提出。Solanaチェーン上で入金額が検証され、承認後に対応するHPLが自動発行されます。",
+                faqA_a: "無料会員：Web版を開いて「0円で取得」をタップするだけで、チャージ不要。有料ランク：「資産」ページでプロジェクトウォレットアドレスをコピー → USDT/USDC（銅1/銀10/金100）を送金 → tx_hashを提出。Solanaチェーンで入金額が検証され、承認後にHPLが自動発行されます。",
                 faqB_q: "2. 収益の引き出し方法は？ <b>+</b>",
-                faqB_a: "2つの条件を満たす必要があります：①いずれかのランクをアクティベート済み、②残高≥100,000 HPL。アクティベート当日に引き出しを申請でき、紐付けたSolanaウォレットに送金されます（最短当日着金）。",
+                faqB_a: "2つの条件を満たす必要があります：①「マイ資産」でSolanaウォレットを紐付け済み、②残高が基準に到達（無料会員10,000 HPL / 有料ランク100,000 HPL）。申請後は送金キューに入り、Gasはプロジェクト負担、最短当日着金。",
                 faq1_q: "3. CnX4の買い方は？ <b>+</b>", faq1_a: "Phantomウォレットをダウンロードし、SOLを入金、Raydiumでコントラクトアドレス CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf を検索してスワップ。",
                 faq2_q: "4. どこで取引できますか？ <b>+</b>", faq2_a: "現在は分散型取引所のRaydium (Solana) で取引。今後CEX上場を目指します。",
                 faq3_q: "5. 1%の送金税とは？ <b>+</b>", faq3_a: "プロジェクト開発のインフラ費用。開発者給与・サーバーコスト・将来のマーケティングに充当。",
@@ -1514,8 +1548,15 @@
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "算力紀元アプリ",
                 footer_copy: "© 2026 XCWW (CnX4). Solana上に構築。",
-                promo_main: "🎁 毎日10名のラッキーユーザーに無料アクティベーション！ウォレットログインなら誰でもチャンス、みんなで10万稼ぐチャンス！",
-                promo_risk: "投資にはリスクがあります。特典は規約に準じます"
+                promo_main: "🎁 0円の無料会員が登場！毎日のログインで1,000 HPL、ウォレット紐付けで10,000 HPLから出金OK、紹介1人でさらに1,000！",
+                promo_risk: "投資にはリスクがあります。特典は規約に準じます",
+                early_title: "🔥 なぜ今参加すべきなのか？",
+                early_sub: "算力紀元はエアコインではありません —— 実在する分散型AI計算・ストレージエコシステムへのパスポートです。早く保有するほど、将来の恩恵を確保できます。",
+                early_1t: "毎日貯まる · 寝ていても増える", early_1d: "0円でスタート：毎日のログインで1,000 HPLが自動付与され、抽選と紹介も加わって毎日収益が積み上がります。加速したい場合は1U=5,000 HPLでアップグレード。",
+                early_2t: "実用性のある計算力 · エアではない", early_2d: "CnX4は分散型AI計算・ストレージネットワークの決済トークンです。将来的にGPU計算の利用、ストレージ購入、プロモーションツールの支払いにHPLが消費されます —— 実需が伸びれば価値も伸びます。",
+                early_3t: "先行者利益 · 早い者勝ち", early_3d: "VCなし・プリマインなし・86% LPをバーン済み。トークンは初日からコミュニティのものです。早く保有するほどAI計算経済の成長を取り込めます。",
+                early_cta: "🎁 0円で無料会員を取得して先行利益を掴む",
+                marquee_label: "リアルタイム出金", marquee_loading: "読み込み中…", marquee_empty: "まだ出金記録がありません —— 会員になればここにあなたの名前が並びます →"
             },
             ko: {
                 nav_member: "멤버십 혜택", nav_how: "수익 가이드", nav_ref: "추천 보상", nav_download: "앱 다운로드",
@@ -1524,55 +1565,58 @@
                 dc_sub: "算力紀元 앱 · VPN · 거래소 · Web3 지갑을 한곳에. 모두 공식 링크입니다.",
                 dc_note: "VPN 2종(<b>杨帆云机场</b>·<b>CC 机场</b>)은 국내에서 직접 가입 가능합니다. 그 외 거래소·지갑은 해외 서비스이므로 <b>인터넷 연결 도구(科学上网)</b> 가 필요합니다.",
                 dc_g1: "📱 算力紀元 앱", dc_g2: "✈️ VPN 앱", dc_g3: "💼 거래소 &amp; Web3 지갑",
-                hero_pill: "🚀 멤버십 출시 · 1 USDT부터",
-                hero_t1: "1 USDT로 멤버십 개통",
-                hero_t2: "매일 출석으로 토큰 획득, 당일 출금 가능",
-                hero_sub: "算力纪元 · 3단계 멤버십: 토큰은 1U = 5,000 HPL로 온체인 발급. 출석·추첨·추천 3가지 수익 채널이 여러분의 Solana 지갑으로 바로 연결됩니다.",
-                hero_cta1: "💎 지금 멤버십 개통", hero_cta2: "📱 앱 다운로드", hero_cta3: "🚀 TG 참여", hero_login: "🔑 기존 계정 로그인",
+                hero_pill: "🚀 0원 시작 · 매일 1,000 HPL · 10,000부터 출금",
+                hero_t1: "매일 토큰이 쌓이는 AI 컴퓨팅 토큰",
+                hero_t2: "0원 시작 · 10,000 HPL부터 출금 가능",
+                hero_sub: "算力纪元 · 무료 회원은 0원에 가입하고 매일 로그인 시 1,000 HPL을 받습니다. 1U = 5,000 HPL로 유료 등급 업그레이드도 가능. 출석·추첨·추천 3가지 수익 채널, 지갑만 연동하면 출금됩니다.",
+                hero_cta1: "🎁 0원 무료 회원 받기", hero_cta2: "📱 앱 다운로드", hero_cta3: "🚀 TG 참여", hero_login: "🔑 기존 계정 로그인",
                 stat1_k: "환율", stat2_k: "멤버십 등급", stat3_k: "출금 해제", stat4_k: "수익 채널",
-                stat2_v: "브론즈 · 실버 · 골드", stat3_v: "당일 출금 가능", stat4_v: "출석 · 추첨 · 추천",
+                stat2_v: "무료 · 브론즈 · 실버 · 골드", stat3_v: "10,000부터 출금", stat4_v: "출석 · 추첨 · 추천",
                 badge_solana: "⚡ Solana 온체인", badge_lp: "🔒 86% LP 소각", badge_fair: "🔥 VC 없음 · 프리마인 없음", badge_ai: "🤖 AI 컴퓨팅 생태계",
-                mem_title: "💎 3단계 멤버십 · 10배 점프",
-                mem_sub: "USDT/USDC 충전으로 즉시 활성화. 토큰은 1U = 5,000 HPL 발급. 등급이 올라갈수록 토큰 10배, 출석 보너스·추첨 횟수·추천 수수료도 전면 업그레이드.",
+                mem_title: "💎 4단계 멤버십 · 0원부터",
+                mem_sub: "🆓 무료 회원은 0원, 매일 로그인 시 1,000 HPL, 10,000 HPL이면 출금 가능. 빠르게 가려면 1U = 5,000 HPL로 유료 등급 업그레이드.",
                 mem_badge: "최고 인기",
+                mem_free_t: "🆓 무료 회원 Free", mem_free_p: "0원 · 원터치 발급", mem_free_a: "1,000 <small>HPL / 일</small>",
+                mem_f_f1: "✅ 매일 로그인 시 1,000 HPL", mem_f_f2: "✅ 매일 1회 무료 추첨",
+                mem_f_f3: "✅ 친구 1명 추천 시 +1,000 HPL", mem_f_f4: "✅ 10,000 HPL + 지갑 연동 시 출금 가능", mem_free_btn: "🎁 0원으로 지금 시작",
                 mem_bronze_t: "🥉 브론즈", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
-                mem_b_f1: "✅ 매일 출석 100 HPL", mem_b_f2: "✅ 매일 3회 무료 추첨",
-                mem_b_f3: "✅ 직접 추천 20% · 간접 5%", mem_b_f4: "✅ 즉시 출금 자격 획득", mem_tg_btn: "🤖 TG 봇으로 개통",
+                mem_b_f1: "✅ 매일 출석 100 HPL", mem_b_f2: "✅ 매일 1회 무료 추첨",
+                mem_b_f3: "✅ 직접 추천 +5,000 · 간접 +2,500", mem_b_f4: "✅ 100,000 HPL + 지갑 연동 시 출금 가능", mem_tg_btn: "🤖 TG 봇으로 개통",
                 mem_silver_t: "🥈 실버", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
-                mem_s_f1: "✅ 출석 +30% (130 HPL/일)", mem_s_f2: "✅ 매일 6회 무료 추첨",
-                mem_s_f3: "✅ 직접 추천 25% · 간접 8%", mem_s_f4: "✅ 10배 토큰, 가장 빠른 회수",
+                mem_s_f1: "✅ 출석 +30% (130 HPL/일)", mem_s_f2: "✅ 매일 2회 무료 추첨",
+                mem_s_f3: "✅ 직접 추천 +5,000 · 간접 +2,500", mem_s_f4: "✅ 10배 토큰, 가장 빠른 회수",
                 mem_gold_t: "🥇 골드", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
-                mem_g_f1: "✅ 출석 +60% (160 HPL/일)", mem_g_f2: "✅ 추첨 무제한",
-                mem_g_f3: "✅ 직접 추천 30% · 간접 10%", mem_g_f4: "✅ 개통 즉시 출금선 5배 달성",
+                mem_g_f1: "✅ 출석 +60% (160 HPL/일)", mem_g_f2: "✅ 매일 3회 무료 추첨",
+                mem_g_f3: "✅ 직접 추천 +5,000 · 간접 +2,500", mem_g_f4: "✅ 개통 즉시 출금선 5배 달성",
                 tb_title: "혜택 한눈에 보기",
-                tb_h0: "혜택", tb_h1: "🥉 브론즈", tb_h2: "🥈 실버", tb_h3: "🥇 골드",
-                tb_r1_k: "활성화 시 지급", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
-                tb_r2_k: "매일 출석", tb_r2_b: "100 HPL", tb_r2_s: "130 HPL", tb_r2_g: "160 HPL",
-                tb_r3_k: "매일 추첨", tb_r3_b: "3회", tb_r3_s: "6회", tb_r3_g: "무제한",
-                tb_r4_k: "직접 추천 수수료", tb_r4_b: "20%", tb_r4_s: "25%", tb_r4_g: "30%",
-                tb_r5_k: "간접 추천 수수료", tb_r5_b: "5%", tb_r5_s: "8%", tb_r5_g: "10%",
-                tb_r6_k: "출금선(100,000 HPL)까지", tb_r6_b: "출석·추천으로 충당", tb_r6_s: "출석·추천으로 충당", tb_r6_g: "✅ 개통 즉시 달성",
-                mem_n1: "⚡ 토큰은 1U=5,000 HPL 비율로 발급, 활성화 보상은 가입 보너스(2,000 HPL)에 추가",
-                mem_n2: "🔗 프로젝트 지갑으로 충전 후 tx_hash 제출, 온체인 검증 후 자동 지급",
-                mem_n3: "🎯 출금 조건: 등급 활성화 + 잔액 ≥ 100,000 HPL, 활성화 당일 신청 가능",
-                mem_cta: "🌐 웹 버전 열어 바로 개통",
+                tb_h0: "혜택", tb_h4: "🆓 무료", tb_h1: "🥉 브론즈", tb_h2: "🥈 실버", tb_h3: "🥇 골드",
+                tb_r1_k: "개통 비용", tb_r1_f: "0원", tb_r1_b: "1 USDT", tb_r1_s: "10 USDT", tb_r1_g: "100 USDT",
+                tb_r2_k: "활성화 시 지급", tb_r2_f: "매일 1,000", tb_r2_b: "5,000 HPL", tb_r2_s: "50,000 HPL", tb_r2_g: "500,000 HPL",
+                tb_r3_k: "매일 출석", tb_r3_f: "1,000 HPL", tb_r3_b: "100 HPL", tb_r3_s: "130 HPL", tb_r3_g: "160 HPL",
+                tb_r4_k: "매일 추첨", tb_r4_f: "1회", tb_r4_b: "1회", tb_r4_s: "2회", tb_r4_g: "3회",
+                tb_r5_k: "친구 추천", tb_r5_f: "+1,000 (상대방 지갑 연동)", tb_r5_b: "직접 +5,000 · 간접 +2,500 · 3단계 +1,250",
+                tb_r6_k: "출금 기준", tb_r6_f: "10,000 HPL", tb_r6_b: "100,000 HPL", tb_r6_s: "100,000 HPL", tb_r6_g: "100,000 HPL",
+                mem_n1: "⚡ 무료 회원은 0원, 매일 로그인 시 1,000 HPL 자동 지급. 유료 등급은 1U = 5,000 HPL로 일괄 지급",
+                mem_n2: "🔗 유료 등급: 프로젝트 지갑 충전 후 tx_hash 제출, 온체인 검증 통과 시 자동 지급(무료 회원은 불필요)",
+                mem_n3: "🎯 출금: Solana 지갑 연동 + 기준 잔액 충족 시 신청 가능(무료 10,000 HPL / 유료 100,000 HPL), 최단 당일 지급",
+                mem_cta: "🌐 0원 무료 회원 받고 바로 시작",
                 how_title: "🧭 4단계 수익 시작하기",
                 how_sub: "다운로드부터 출금까지 전 과정이 온체인에서 확인 가능합니다.",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
                 how1_t: "① 공식 사이트 열기", how1_d: "모바일 브라우저로 웹 버전을 열거나 Telegram 봇을 이용하세요. 설치가 필요 없습니다.",
-                how2_t: "② 충전 및 활성화", how2_d: "프로젝트 지갑으로 USDT/USDC(1/10/100)를 보내고 앱에서 tx_hash 제출. 온체인 검증으로 즉시 활성화됩니다.",
-                how3_t: "③ 매일 토큰 획득", how3_d: "출석·추첨·추천 3개 채널로 수익이 눈덩이처럼 증가. 7일 연속 +20%, 30일 연속 +50%.",
-                how4_t: "④ 출금 해제", how4_d: "등급 활성화 완료 및 잔액 ≥ 100,000 HPL이면 연동된 Solana 지갑으로 즉시 출금 가능(최단 당일).",
+                how2_t: "② 0원 무료 회원 받기", how2_d: "한 번 탭하면 개통. 충전도 지갑도 필요 없고 바로 채굴 시작. 빠르게 가려면 1/10/100 USDT로 업그레이드.",
+                how3_t: "③ 매일 로그인하고 받기", how3_d: "매일 로그인 시 1,000 HPL 자동 지급. 출석·추첨·추천 3개 채널로 증가, 7/15/30일 연속 시 추가 1,000/2,000/6,000.",
+                how4_t: "④ 지갑 연동 후 출금", how4_d: "Solana 지갑을 연동하면, 무료 회원은 잔액 10,000 HPL부터 출금 신청 가능(최단 당일).",
                 ref_title: "🤝 3단계 추천 보상",
                 ref_sub: "친구를 算力纪元에 초대하세요. 3단계 이내라면 모두 보상 대상. 팀이 활발할수록 수익도 커집니다.",
                 ref_l1_t: "직접 추천", ref_l1_a: "+5,000 <small>HPL</small>",
-                ref_l1_d: "직접 초대한 친구가 가입·활성화하면 추가 추첨 기회 2회 증정",
+                ref_l1_d: "친구가 무료 회원으로 가입하고 지갑을 연동하면 +1,000 HPL. 이후 유료 등급으로 업그레이드하면 추가 +5,000",
                 ref_l2_t: "2단계 친구", ref_l2_a: "+2,500 <small>HPL</small>",
-                ref_l2_d: "친구가 초대한 친구가 가입·활성화해도 보상을 획득",
+                ref_l2_d: "친구의 친구가 유료 등급을 개통해도 보상을 획득",
                 ref_l3_t: "3단계 친구", ref_l3_a: "+1,250 <small>HPL</small>",
                 ref_l3_d: "팀이 3단계까지 확장되어도 보상 지속, 확산이 깊을수록 더 많이 획득",
-                ref_n1: "🎁 신규 가입 시 2,000 HPL 즉시 지급, 친구 초대 장벽 없음",
-                ref_n2: "📅 매일 출석 100 HPL, 30일 연속 달성 시 추가 +9,000 HPL",
+                ref_n1: "🎁 친구 1명 추천 시 +1,000 HPL(상대방 지갑 연동 시 즉시 지급). 10명이면 출금 기준 달성",
+                ref_n2: "📅 무료 회원은 매일 로그인 시 1,000 HPL, 7/15/30일 연속 시 추가 1,000/2,000/6,000",
                 ref_n3: "🔗 앱 '팀' 페이지에서 전용 초대 링크 생성, 공유만 하면 끝",
                 ref_btn: "🌐 웹 버전 열고 추천 시작",
                 about_title: "왜 XCWW (CnX4) 인가?",
@@ -1620,9 +1664,9 @@
                 comm_join: "Discord 참여 →", comm_join2: "TG 참여 →", comm_join3: "시세 보기 →",
                 faq_title: "자주 묻는 질문",
                 faqA_q: "1. 멤버십은 어떻게 개통하나요? <b>+</b>",
-                faqA_a: "앱 또는 웹 버전 실행 → '자산' 페이지에서 프로젝트 지갑 주소 복사 → USDT/USDC(브론즈 1/실버 10/골드 100) 전송 → 앱에서 tx_hash 제출. Solana 체인에서 입금액이 검증되면 승인 후 해당 HPL이 자동 발급됩니다.",
+                faqA_a: "무료 회원: 웹 버전을 열고 '0원으로 받기'만 누르면 되며 충전이 필요 없습니다. 유료 등급: '자산' 페이지에서 프로젝트 지갑 주소 복사 → USDT/USDC(브론즈 1/실버 10/골드 100) 전송 → tx_hash 제출. Solana 체인에서 입금액이 검증되면 승인 후 HPL이 자동 발급됩니다.",
                 faqB_q: "2. 수익은 어떻게 출금하나요? <b>+</b>",
-                faqB_a: "2가지 조건을 충족해야 합니다: ① 임의 등급 활성화 완료, ② 잔액 ≥ 100,000 HPL. 활성화 당일 출금 신청 가능, 연동된 Solana 지갑으로 송금됩니다(최단 당일).",
+                faqB_a: "2가지 조건을 충족해야 합니다: ① '내 자산'에서 Solana 지갑 주소 연동 완료, ② 기준 잔액 충족(무료 회원 10,000 HPL / 유료 등급 100,000 HPL). 신청 후 지급 대기열에 들어가며 Gas는 프로젝트 부담, 최단 당일 지급.",
                 faq1_q: "3. CnX4는 어떻게 사나요? <b>+</b>", faq1_a: "Phantom 지갑을 다운로드하고 SOL을 충전한 뒤, Raydium에서 컨트랙트 주소 CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf 를 검색해 스왑하세요.",
                 faq2_q: "4. 어디서 거래할 수 있나요? <b>+</b>", faq2_a: "현재는 탈중앙화 거래소 Raydium (Solana)에서 거래됩니다. 향후 CEX 상장을 추진할 예정입니다.",
                 faq3_q: "5. 1% 전송 세금이란? <b>+</b>", faq3_a: "개발을 위한 인프라 비용. 개발자 급여·서버 비용·향후 마케팅에 사용됩니다.",
@@ -1647,8 +1691,15 @@
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "算力纪元 앱",
                 footer_copy: "© 2026 XCWW (CnX4). Solana 기반으로 구축.",
-                promo_main: "🎁 매일 10명의 럭키 유저에게 무료 활성화! 지갑 로그인만 하면 누구나 기회, 모두가 10만 벌릴 기회!",
-                promo_risk: "투자에는 위험이 따릅니다. 혜택은 규정에 따릅니다"
+                promo_main: "🎁 0원 무료 회원 오픈! 매일 로그인 시 1,000 HPL, 지갑 연동 후 10,000 HPL부터 출금, 추천 1명당 추가 1,000!",
+                promo_risk: "투자에는 위험이 따릅니다. 혜택은 규정에 따릅니다",
+                early_title: "🔥 지금 시작해야 하는 이유",
+                early_sub: "算力纪元은 잡코인이 아닙니다 —— 실제로 구축된 탈중앙 AI 컴퓨팅·스토리지 생태계로 가는 패스입니다. 먼저 보유할수록 미래 혜택을 먼저 확보합니다.",
+                early_1t: "매일 쌓이는 수익 · 가만히 있어도 증가", early_1d: "0원으로 시작: 매일 로그인 시 1,000 HPL이 자동 지급되고 추첨·추천까지 더해져 매일 수익이 쌓입니다. 빠르게 가려면 1U=5,000 HPL로 업그레이드.",
+                early_2t: "실제 컴퓨팅 효용 · 잡코인 아님", early_2d: "CnX4는 탈중앙 AI 컴퓨팅·스토리지 네트워크의 결제 토큰입니다. 향후 GPU 컴퓨팅 사용, 스토리지 구매, 프로모션 도구 결제에 HPL이 소모됩니다 —— 실수요가 늘면 가치도 늘어납니다.",
+                early_3t: "초기 혜택 · 먼저 온 사람의 것", early_3d: "VC 없음·프리마인 없음·86% LP 소각 완료. 토큰은 첫날부터 커뮤니티의 것입니다. 일찍 보유할수록 AI 컴퓨팅 경제 성장을 누릴 수 있습니다.",
+                early_cta: "🎁 0원 무료 회원 받고 초기 혜택 잡기",
+                marquee_label: "실시간 출금 현황", marquee_loading: "불러오는 중…", marquee_empty: "아직 출금 기록이 없습니다 —— 회원이 되면 여기에 이름이 올라갑니다 →"
             },
             en: {
                 nav_member: "Membership", nav_how: "How to Earn", nav_ref: "Referral", nav_download: "Download",
@@ -1657,55 +1708,58 @@
                 dc_sub: "XCWW App, VPN tools, exchanges and Web3 wallets — all official links in one place.",
                 dc_note: "Both VPN apps (<b>Yangfan Cloud</b> and <b>CC</b>) can be opened directly. All exchanges and wallet apps below are hosted overseas and <b>require a working internet tool (VPN)</b> to open, download or register.",
                 dc_g1: "📱 XCWW App", dc_g2: "✈️ VPN Apps", dc_g3: "💼 Exchanges &amp; Web3 Wallets",
-                hero_pill: "🚀 Membership is live · from 1 USDT",
-                hero_t1: "Join from 1 USDT",
-                hero_t2: "Earn tokens daily, withdraw same day",
-                hero_sub: "Suanli Era · Three membership tiers to choose from: tokens issued on-chain at 1U = 5,000 HPL, with check-ins, lotteries and referrals — three income streams straight to your Solana wallet.",
-                hero_cta1: "💎 Join Membership", hero_cta2: "📱 Download App", hero_cta3: "🚀 Join TG", hero_login: "🔑 Log In",
+                hero_pill: "🚀 Start free · 1,000 HPL daily · withdraw at 10,000",
+                hero_t1: "The AI compute token that pays you daily",
+                hero_t2: "Start at $0 · withdraw from 10,000 HPL",
+                hero_sub: "Suanli Era · Join as a Free member for $0 and get 1,000 HPL every day you log in, or upgrade from 1 USDT at 1U = 5,000 HPL. Check-ins, lotteries and referrals — three income streams straight to your Solana wallet.",
+                hero_cta1: "🎁 Claim Free Membership", hero_cta2: "📱 Download App", hero_cta3: "🚀 Join TG", hero_login: "🔑 Log In",
                 stat1_k: "Rate", stat2_k: "Tiers", stat3_k: "Withdrawal", stat4_k: "Income Streams",
-                stat2_v: "Bronze · Silver · Gold", stat3_v: "Withdraw same day", stat4_v: "Check-in · Lottery · Referral",
+                stat2_v: "Free · Bronze · Silver · Gold", stat3_v: "From 10,000 HPL", stat4_v: "Check-in · Lottery · Referral",
                 badge_solana: "⚡ On Solana", badge_lp: "🔒 86% LP Burned", badge_fair: "🔥 0 VC · 0 Premine", badge_ai: "🤖 AI Compute Ecosystem",
-                mem_title: "💎 3 Membership Tiers · 10x Leap",
-                mem_sub: "Deposit USDT/USDC to activate instantly. Tokens issued at 1U = 5,000 HPL — every tier up means 10x tokens, plus upgraded check-in bonuses, lottery spins and referral commissions.",
+                mem_title: "💎 4 Membership Tiers · Start at $0",
+                mem_sub: "🆓 Free tier costs nothing: 1,000 HPL every day you log in, withdraw once you reach 10,000. Want to move faster? Upgrade from 1 USDT at 1U = 5,000 HPL.",
                 mem_badge: "Most Popular",
+                mem_free_t: "🆓 Free", mem_free_p: "$0 · one tap", mem_free_a: "1,000 <small>HPL / day</small>",
+                mem_f_f1: "✅ 1,000 HPL for every daily login", mem_f_f2: "✅ 1 free lottery spin daily",
+                mem_f_f3: "✅ +1,000 HPL per friend you refer", mem_f_f4: "✅ Withdraw at 10,000 with a bound wallet", mem_free_btn: "🎁 Claim for $0, start now",
                 mem_bronze_t: "🥉 Bronze", mem_bronze_p: "1 USDT / USDC", mem_bronze_a: "5,000 <small>HPL</small>",
-                mem_b_f1: "✅ Daily check-in 100 HPL", mem_b_f2: "✅ 3 free lottery spins daily",
-                mem_b_f3: "✅ 20% L1 · 5% L2 commission", mem_b_f4: "✅ Withdrawal eligibility unlocked", mem_tg_btn: "🤖 Activate via TG Bot",
+                mem_b_f1: "✅ Daily check-in 100 HPL", mem_b_f2: "✅ 1 free lottery spin daily",
+                mem_b_f3: "✅ L1 +5,000 · L2 +2,500 HPL", mem_b_f4: "✅ Withdraw at 100,000 with a bound wallet", mem_tg_btn: "🤖 Activate via TG Bot",
                 mem_silver_t: "🥈 Silver", mem_silver_p: "10 USDT / USDC", mem_silver_a: "50,000 <small>HPL</small>",
-                mem_s_f1: "✅ Check-in +30% (130 HPL/day)", mem_s_f2: "✅ 6 free lottery spins daily",
-                mem_s_f3: "✅ 25% L1 · 8% L2 commission", mem_s_f4: "✅ 10x tokens, fastest payback",
+                mem_s_f1: "✅ Check-in +30% (130 HPL/day)", mem_s_f2: "✅ 2 free lottery spins daily",
+                mem_s_f3: "✅ L1 +5,000 · L2 +2,500 HPL", mem_s_f4: "✅ 10x tokens, fastest payback",
                 mem_gold_t: "🥇 Gold", mem_gold_p: "100 USDT / USDC", mem_gold_a: "500,000 <small>HPL</small>",
-                mem_g_f1: "✅ Check-in +60% (160 HPL/day)", mem_g_f2: "✅ Unlimited lottery spins",
-                mem_g_f3: "✅ 30% L1 · 10% L2 commission", mem_g_f4: "✅ 5x above the withdrawal line on day one",
+                mem_g_f1: "✅ Check-in +60% (160 HPL/day)", mem_g_f2: "✅ 3 free lottery spins daily",
+                mem_g_f3: "✅ L1 +5,000 · L2 +2,500 HPL", mem_g_f4: "✅ 5x above the withdrawal line on day one",
                 tb_title: "Benefits at a Glance",
-                tb_h0: "Benefit", tb_h1: "🥉 Bronze", tb_h2: "🥈 Silver", tb_h3: "🥇 Gold",
-                tb_r1_k: "Tokens on activation", tb_r1_b: "5,000 HPL", tb_r1_s: "50,000 HPL", tb_r1_g: "500,000 HPL",
-                tb_r2_k: "Daily check-in", tb_r2_b: "100 HPL", tb_r2_s: "130 HPL", tb_r2_g: "160 HPL",
-                tb_r3_k: "Daily lottery", tb_r3_b: "3 spins", tb_r3_s: "6 spins", tb_r3_g: "Unlimited",
-                tb_r4_k: "L1 commission", tb_r4_b: "20%", tb_r4_s: "25%", tb_r4_g: "30%",
-                tb_r5_k: "L2 commission", tb_r5_b: "5%", tb_r5_s: "8%", tb_r5_g: "10%",
-                tb_r6_k: "To the 100,000 HPL withdrawal line", tb_r6_b: "Via check-ins & referrals", tb_r6_s: "Via check-ins & referrals", tb_r6_g: "✅ Met on activation",
-                mem_n1: "⚡ Tokens issued at 1U = 5,000 HPL, stacked on top of the 2,000 HPL signup bonus",
-                mem_n2: "🔗 Deposit to the project wallet and submit tx_hash — verified on-chain, credited automatically",
-                mem_n3: "🎯 Withdrawal requires: tier activation + balance ≥ 100,000 HPL, available same day",
-                mem_cta: "🌐 Open Web Version & Join Now",
+                tb_h0: "Benefit", tb_h4: "🆓 Free", tb_h1: "🥉 Bronze", tb_h2: "🥈 Silver", tb_h3: "🥇 Gold",
+                tb_r1_k: "Cost to join", tb_r1_f: "$0", tb_r1_b: "1 USDT", tb_r1_s: "10 USDT", tb_r1_g: "100 USDT",
+                tb_r2_k: "On activation", tb_r2_f: "1,000 / day", tb_r2_b: "5,000 HPL", tb_r2_s: "50,000 HPL", tb_r2_g: "500,000 HPL",
+                tb_r3_k: "Daily check-in", tb_r3_f: "1,000 HPL", tb_r3_b: "100 HPL", tb_r3_s: "130 HPL", tb_r3_g: "160 HPL",
+                tb_r4_k: "Daily lottery", tb_r4_f: "1 spin", tb_r4_b: "1 spin", tb_r4_s: "2 spins", tb_r4_g: "3 spins",
+                tb_r5_k: "Referral bonus", tb_r5_f: "+1,000 (friend binds wallet)", tb_r5_b: "L1 +5,000 · L2 +2,500 · L3 +1,250",
+                tb_r6_k: "Withdrawal line", tb_r6_f: "10,000 HPL", tb_r6_b: "100,000 HPL", tb_r6_s: "100,000 HPL", tb_r6_g: "100,000 HPL",
+                mem_n1: "⚡ Free tier is $0 and credits 1,000 HPL on every daily login; paid tiers are issued once at 1U = 5,000 HPL",
+                mem_n2: "🔗 Paid tiers: deposit to the project wallet and submit tx_hash — verified on-chain, credited automatically (not needed for Free)",
+                mem_n3: "🎯 Withdrawal requires a bound Solana wallet + reaching your tier's line (Free 10,000 / paid 100,000 HPL), same-day payout",
+                mem_cta: "🌐 Claim Free Membership & Start Now",
                 how_title: "🧭 Start Earning in 4 Steps",
                 how_sub: "From download to withdrawal, everything is verifiable on-chain.",
                 how1_n: "STEP 1", how2_n: "STEP 2", how3_n: "STEP 3", how4_n: "STEP 4",
                 how1_t: "① Open the site", how1_d: "Open the web version in your mobile browser, or use the Telegram bot — no download needed.",
-                how2_t: "② Deposit & Activate", how2_d: "Send USDT/USDC (1/10/100) to the project wallet and submit tx_hash in the app — verified on-chain in seconds.",
-                how3_t: "③ Earn Daily", how3_d: "Check in, spin and refer — three streams snowball. 7-day streak +20%, 30-day streak +50%.",
-                how4_t: "④ Withdraw", how4_d: "After tier activation with balance ≥ 100,000 HPL, withdraw to your Solana wallet, same-day payout.",
+                how2_t: "② Claim the free tier", how2_d: "One tap, no deposit, no wallet needed — you start earning right away. Upgrade later with 1 / 10 / 100 USDT.",
+                how3_t: "③ Log in daily", how3_d: "1,000 HPL credited on every daily login, plus check-ins, spins and referrals; 7 / 15 / 30-day streaks add 1,000 / 2,000 / 6,000.",
+                how4_t: "④ Bind wallet & withdraw", how4_d: "Bind your Solana wallet — Free members can withdraw once the balance reaches 10,000 HPL, same-day payout.",
                 ref_title: "🤝 3-Tier Referral Rewards",
                 ref_sub: "Invite friends to Suanli and earn through three tiers. The more active your team, the more you earn.",
                 ref_l1_t: "Direct Referral", ref_l1_a: "+5,000 <small>HPL</small>",
-                ref_l1_d: "When a friend you invited joins and activates, plus 2 extra lottery spins",
+                ref_l1_d: "Your friend joins Free and binds a wallet → you get +1,000 HPL; if they later upgrade to a paid tier, you get +5,000 more",
                 ref_l2_t: "2nd Tier", ref_l2_a: "+2,500 <small>HPL</small>",
-                ref_l2_d: "Earn rewards when friends of your friends join and activate",
+                ref_l2_d: "Earn rewards when friends of your friends activate a paid tier",
                 ref_l3_t: "3rd Tier", ref_l3_a: "+1,250 <small>HPL</small>",
                 ref_l3_d: "Rewards continue as your team grows to the third tier",
-                ref_n1: "🎁 2,000 HPL free on signup — zero barrier for your friends",
-                ref_n2: "📅 100 HPL daily check-in, plus 9,000 HPL for a 30-day streak",
+                ref_n1: "🎁 +1,000 HPL per friend referred, credited as soon as they bind a wallet — 10 friends hits the withdrawal line",
+                ref_n2: "📅 Free members get 1,000 HPL per daily login; 7 / 15 / 30-day streaks add 1,000 / 2,000 / 6,000",
                 ref_n3: "🔗 Generate your invite link on the Team page in the app and share",
                 ref_btn: "🌐 Open Web Version & Start Referring",
                 about_title: "Why XCWW (CnX4)?",
@@ -1753,9 +1807,9 @@
                 comm_join: "Join Discord →", comm_join2: "Join TG →", comm_join3: "View Chart →",
                 faq_title: "FAQ",
                 faqA_q: "1. How do I join a membership tier? <b>+</b>",
-                faqA_a: "Open the app or web version → copy the project wallet address on the Assets page → send USDT/USDC (Bronze 1 / Silver 10 / Gold 100) → submit the tx_hash in the app. The amount is verified on Solana, and your HPL is issued automatically once confirmed.",
+                faqA_a: "Free tier: open the web version and tap \"Claim for $0\" — no deposit needed. Paid tiers: copy the project wallet address on the Assets page → send USDT/USDC (Bronze 1 / Silver 10 / Gold 100) → submit the tx_hash. The amount is verified on Solana, and your HPL is issued automatically once confirmed.",
                 faqB_q: "2. How do I withdraw my earnings? <b>+</b>",
-                faqB_a: "Two conditions must be met: ① any tier activated, ② balance ≥ 100,000 HPL. Apply same day after activation; tokens are sent to your bound Solana wallet.",
+                faqB_a: "Two conditions must be met: ① a Solana wallet address bound on the Assets page, ② balance reaching your tier's line — Free 10,000 HPL, Bronze / Silver / Gold 100,000 HPL. Once submitted it enters the payout queue; gas is covered by the project and payouts usually land the same day.",
                 faq1_q: "3. How to buy CnX4? <b>+</b>", faq1_a: "Download Phantom, fund with SOL, search contract CnX4Yd85Rr7PMkCyqhi1nm5diKoMhsKFieqSdMxiLPTf on Raydium to swap.",
                 faq2_q: "4. Where to trade? <b>+</b>", faq2_a: "Currently on Raydium (Solana). Future CEX listings planned.",
                 faq3_q: "5. What is the 1% transfer tax? <b>+</b>", faq3_a: "Infrastructure fee for development — dev salaries, servers, future marketing.",
@@ -1780,8 +1834,15 @@
                 footer_tg: "Telegram", footer_discord: "Discord", footer_dex: "DexScreener", footer_wp: "Whitepaper",
                 footer_app: "Suanli App",
                 footer_copy: "© 2026 XCWW (CnX4). Built on Solana.",
-                promo_main: "🎁 10 lucky users get FREE activation every day! Wallet login = your chance — everyone can grab up to 100K!",
-                promo_risk: "Trading involves risk. Offers subject to terms"
+                promo_main: "🎁 Free membership is live! 1,000 HPL every daily login, withdraw from 10,000 with a bound wallet, +1,000 per friend you refer!",
+                dl_sai: "① Install SAI installer (5MB)", dl_phantom: "② Get Phantom wallet (89MB)",
+                early_title: "🔥 Why join right now?",
+                early_sub: "Suanli Era isn't a vapor coin — it's your pass to a decentralized AI compute and storage ecosystem that's actually being built. Hold it earlier and you lock in the upside earlier.",
+                early_1t: "Earns every day · grows while you sleep", early_1d: "Start at $0: 1,000 HPL credited on every daily login, plus lottery spins and referrals stacking on top. Want to move faster? Upgrade at 1U = 5,000 HPL.",
+                early_2t: "Real compute utility · not vapor", early_2d: "CnX4 is the settlement token of a decentralized AI compute and storage network. Renting GPU power, buying storage, paying for promo tools — all of it consumes HPL, so real demand growth feeds value growth.",
+                early_3t: "Early-bird upside · first come, first served", early_3d: "0 VC, 0 premine, 86% of LP burned. The tokens have belonged to the community since day one — the earlier you hold, the more of the AI compute economy's growth you capture.",
+                early_cta: "🎁 Claim free membership and capture the early upside",
+                promo_risk: "Trading involves risk. Offers subject to terms",
                 marquee_label: "Live Withdrawals", marquee_loading: "Loading…", marquee_empty: "No withdrawals yet — download the App to unlock yours →"
             }
         };
